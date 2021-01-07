@@ -1,0 +1,119 @@
+﻿<div id="express-personal" style="width: 700px;">
+    <h3>Điểm mạnh của cá nhân theo MI Model</h3>
+    <div class="form-group text-left mar-top-30">
+        <div class="col-sm-6">
+            <div>
+                <div class="col-sm-8">Ngôn Ngữ</div>
+                <div class="col-sm-2">:</div>
+                <div class="col-sm-2">{{calculator.Language()}}</div>
+            </div>
+            <div>
+                <div class="col-sm-8">Logic - Toán học</div>
+                <div class="col-sm-2">:</div>
+                <div class="col-sm-2">{{calculator.LogicAndMath()}}</div>
+            </div>
+            <div>
+                <div class="col-sm-8">Âm nhạc</div>
+                <div class="col-sm-2">:</div>
+                <div class="col-sm-2">{{calculator.Music()}}</div>
+            </div>
+            <div>
+                <div class="col-sm-8">Vận động thân thể</div>
+                <div class="col-sm-2">:</div>
+                <div class="col-sm-2">{{calculator.Sport()}}</div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div>
+                <div class="col-sm-8">Không gian, hình ảnh</div>
+                <div class="col-sm-2">:</div>
+                <div class="col-sm-2">{{calculator.SpaceAndImage()}}</div>
+            </div>
+            <div>
+                <div class="col-sm-8">Quan hệ giao tiếp</div>
+                <div class="col-sm-2">:</div>
+                <div class="col-sm-2">{{calculator.Communication()}}</div>
+            </div>
+            <div>
+                <div class="col-sm-8">Nội tâm</div>
+                <div class="col-sm-2">:</div>
+                <div class="col-sm-2">{{calculator.Introspective()}}</div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div id="graph">
+        <div class="graph-grid">
+            <div class="graph-grid-line" style="top:0px"><p>40</p></div>
+            <div class="graph-grid-line" style="top:100px"><p>30</p></div>
+            <div class="graph-grid-line" style="top:200px"><p>20</p></div>
+            <div class="graph-grid-line" style="top:300px"><p>10</p></div>
+            <div class="graph-grid-line" style="top:400px"><p>0</p></div>
+        </div>
+        <div class="graph-layer">
+            <div id="Language" style="height:0px;left:20px"><p>Ngôn ngữ</p></div>
+            <div id="Logic" style="height:0px;left:120px"><p>Logic Toán học</p></div>
+            <div id="Music" style="height:0px;left:220px"><p>Âm nhạc</p></div>
+            <div id="Sport" style="height:0px;left:320px"><p>Vận động thân thể</p></div>
+            <div id="Space" style="height:0px;left:420px"><p>Không gian hình ảnh</p></div>
+            <div id="Comm" style="height:0px;left:520px"><p>Quan hệ giao tiếp</p></div>
+            <div id="Inspec" style="height:0px;left:620px"><p>Nội tâm</p></div>
+        </div>
+    </div>
+</div>
+<div id="full-bottom">
+    <a href="#/Honesty" class="btn btn-complete">Tiếp Tục</a>
+</div>
+    <script type="text/javascript">
+        
+    </script>
+<script>
+    //private function
+    var browser;
+    var documentElement;
+    var FF = 1, SFR = 2, IE = 3, CHR = 4;
+    var controller = document.getElementById('full');
+    var chartHeight = document.getElementById('graph').clientHeight;
+    var $scope = angular.element(controller).scope();
+    
+    var done = false;
+    function detectBrowser() {
+        if (typeof InstallTrigger !== 'undefined') {
+            browser = FF;
+        } else if (Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0) {
+            browser = SFR;
+        } else if (false || !!document.documentMode) {
+            browser = IE;
+        } else {
+            browser = CHR;
+        }
+    }
+    detectBrowser();
+    documentElement = ((browser == FF) || (browser == IE))? document.documentElement : document.body;
+    documentElement.scrollTop = 0;
+
+    window.onscroll = function () {
+        var currentScroll = documentElement.scrollTop;
+        if (currentScroll > 160 && done === false) {
+            active();        
+        }
+    }
+    function active() {
+        done = true;
+        document.getElementById('Language').style.height = $scope.chart.Language(chartHeight) + "px";
+        document.getElementById('Logic').style.height = $scope.chart.LogicAndMath(chartHeight) + "px";
+        document.getElementById('Music').style.height = $scope.chart.Music(chartHeight) + "px";
+        document.getElementById('Sport').style.height = $scope.chart.Sport(chartHeight) + "px";
+        document.getElementById('Space').style.height = $scope.chart.SpaceAndImage(chartHeight) + "px";
+        document.getElementById('Comm').style.height = $scope.chart.Communication(chartHeight) + "px";
+        document.getElementById('Inspec').style.height = $scope.chart.Introspective(chartHeight) + "px";
+        html2canvas(document.querySelector("#express-personal")).then(function(canvas) {
+            var imgSrc = canvas.toDataURL("image/png");
+            $.post('save_jpg.php', {data: imgSrc}, function(res){
+                 console.log(res);
+                 $('#MyImg').attr('src', document.location.origin+'/quodisystest'+res);
+			});
+        });
+    }
+    
+</script>

@@ -1,0 +1,48 @@
+﻿<div class="main-box">
+    <div class="main-content">
+        <div class="main-question">
+            <p class="text-center"><img src="{{globalConfig.rootImage}}img_q19.png" /></p>
+            <p class="mar-top-20">Which two squares are missing?</p>
+        </div>
+        <div class="main-answer text-left">
+            <div class="form-group">
+                <div class="col-sm-4">
+                    <input type="radio" id="answer-1" class="trigger-radio hidden" name="answer" 
+                           ng-value="'A'"
+                           ng-model="questions[currentQuestion.index()].questionAnswer"/>
+                    <label for="answer-1" class="radio-label" data-value=""><img src="{{globalConfig.rootImage}}answer_q19_01.png"></label>
+                </div>
+                <div class="col-sm-4">
+                    <input type="radio" id="answer-2" class="trigger-radio hidden" name="answer"
+                            ng-value="'B'"
+                           ng-model="questions[currentQuestion.index()].questionAnswer" />
+                    <label class="radio-label" for="answer-2" data-value=""><img src="{{globalConfig.rootImage}}answer_q19_02.png"></label>
+                </div>
+                <div class="col-sm-4">
+                    <input type="radio" id="answer-3" class="trigger-radio hidden" name="answer" 
+                            ng-value="'C'"
+                           ng-model="questions[currentQuestion.index()].questionAnswer"/>
+                    <label class="radio-label" for="answer-3" data-value=""><img src="{{globalConfig.rootImage}}answer_q19_03.png"></label>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="form-group mar-top-100">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-5">
+                    <input type="radio" id="answer-4" class="trigger-radio hidden" name="answer" 
+                            ng-value="'D'"
+                           ng-model="questions[currentQuestion.index()].questionAnswer"/>
+                    <label class="radio-label" for="answer-4" data-value=""><img src="{{globalConfig.rootImage}}answer_q19_04.png"></label>
+                </div>
+                <div class="col-sm-5">
+                    <input type="radio" id="answer-5" class="trigger-radio hidden" name="answer" 
+                            ng-value="'E'"
+                           ng-model="questions[currentQuestion.index()].questionAnswer"/>
+                    <label class="radio-label" for="answer-5" data-value=""><img src="{{globalConfig.rootImage}}answer_q19_05.png"></label>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>

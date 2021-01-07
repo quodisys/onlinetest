@@ -1,0 +1,16 @@
+﻿<div class="main-box">
+    <div class="main-content">
+        <div class="main-question">
+            <p>Fill in the question mark</p>
+            <p>{{$scope.questions[currentQuestion.number].questionAnswer}}</p>
+        </div>
+        <div class="main-answer">
+            <img src="{{globalConfig.rootImage}}img_q2.png" width="400" />            
+        </div>
+        <div class="main-answer">
+            <div class="fill-answer text-right">
+                Answer <input class="ng-pristine ng-valid" ng-model="questions[currentQuestion.index()].questionAnswer" type="text">
+            </div>
+        </div>
+    </div>
+</div>

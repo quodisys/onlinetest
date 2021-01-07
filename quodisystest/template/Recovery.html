@@ -1,0 +1,42 @@
+<div ng-show="user !== undefined">
+    <table>
+        <tr>
+            <td>Email</td>
+            <td>
+                <p ng-bind="user.information.email"></p>
+            </td>
+        </tr>
+        <tr>
+            <td>Phone</td>
+            <td>
+                <p ng-bind="user.information.phone"></p>
+            </td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>
+                <p ng-bind="user.information.name"></p>
+            </td>
+        </tr>
+        <tr>
+            <td>Age</td>
+            <td>
+                <p ng-bind="user.information.age"></p>
+            </td>
+        </tr>
+        <tr>
+            <td>Birthday</td>
+            <td>
+                <p ng-bind="user.information.birthday"></p>
+            </td>
+        </tr>
+        <tr>
+            <td>Position</td>
+            <td>
+                <p ng-bind="user.information.position"></p>
+            </td>
+        </tr>
+    </table>
+    <a id="printFile" download="test.html" target="blank">Download</a>
+</div>
+<button ng-click="next()">Next</button>

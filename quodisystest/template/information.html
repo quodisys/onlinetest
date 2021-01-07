@@ -1,0 +1,74 @@
+﻿<div id="contain-box">
+    <form role="form" class="width-50">
+        <div class="form-group">
+            <input id="name" type="text" class="form-control" placeholder="Full name" ng-class="invalid.name == true ? 'error-valid' :''" ng-model="Tester.name">
+        </div>
+        <div class="form-group">
+            <input id="birthday" maxlength="10" type="text" class="form-control" placeholder="Date of birth (dd/mm/yyyy)" ng-class="invalid.birthday == true ? 'error-valid' :''" ng-model="Tester.birthday">
+        </div>
+        <div class="form-group text-left">
+            <label class="custom-label">Select your testing language:</label>
+            <input type="radio" id="checkbox_vn" name="checkbox-language" ng-model="Tester.language" value="vn">
+            <label class="checkbox-mask" for="checkbox_vn" ng-class="invalid.company == true ? 'error-valid' :''" style="width: 100px;">Vietnamese</label>
+            <input type="radio" id="checkbox_en" name="checkbox-language" ng-model="Tester.language" value="en">
+            <label class="checkbox-mask" for="checkbox_en" ng-class="invalid.company == true ? 'error-valid' :''">English</label>
+        </div>
+        <div class="form-group">
+            <input id="position" type="text" class="form-control" placeholder="Apply position" ng-class="invalid.position == true ? 'error-valid' :''" ng-model="Tester.position">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Username" ng-class="invalid.email == true ? 'error-valid' :''" ng-model="Tester.email">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Password" ng-class="invalid.password == true ? 'error-valid' :''" ng-model="Tester.password">
+        </div>
+        <div class="form-group" ng-if="invalid.message !== ''" style="font-size:15px;color:red">
+            {{invalid.message}}
+        </div>
+        <button type="button" ng-disabled="isprocessing" class="btn btn-complete" ng-click="nextstep()">
+            <span ng-show="isprocessing"><i class='fa fa-spinner fa-spin'></i> </span>
+            START
+        </button>
+    </form>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('#birthday').on("cut copy paste", function(e) {
+            e.preventDefault();
+        });
+        $('#birthday').unbind('keypress keyup blur').bind('keypress keyup blur', function(e) {
+            var $this = $(this);
+            // Limits number of characters (10) //
+            var val = $this.val();
+            var valLength = val.length;
+            var maxCount = $this.attr('maxlength');
+            if (valLength > maxCount) {
+                $this.val($this.val().substring(0, maxCount));
+            }
+            // Only allows numbers //
+            $(this).val($(this).val().replace(/[^0-9\/]/g, ''));
+            if ((event.which < 48 || event.which > 57)) {
+                event.preventDefault();
+            }
+            // Separates numbers with '/' //
+            if (e.which != 8 && (valLength == 2 || valLength == 5)) {
+                $this.val($this.val() + '/');
+            }
+        });
+        // Capitalize all first letters of words //
+        $('#name, #position').unbind('keypress keyup blur').bind('keypress keyup blur', function(e) {
+            var $this = $(this);
+            var val = titleCase($this.val());
+            $this.val(val);
+        });
+
+        function titleCase(str) {
+            var splitStr = str.toLowerCase().split(' ');
+            for (var i = 0; i < splitStr.length; i++) {
+                splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
+            }
+            return splitStr.join(' ');
+        }
+    });
+</script>

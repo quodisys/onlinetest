@@ -1,0 +1,72 @@
+﻿<div class="main-box">
+    <div class="main-content">
+        <div class="main-question">
+            <p>Insert numbers into the remaining blank squares so that the sums in each line and column are correct. All numbers to be inserted are less than 10.</p>
+            <table class="sudoku">
+                <tr>
+                    <td class="inp"><input placeholder="?" ng-model="questions[currentQuestion.index()].questionAnswer.a1"/></td>
+                    <td>%</td>
+                    <td class="inp"><input ng-model="questions[currentQuestion.index()].questionAnswer.a2"/></td>
+                    <td>x</td>
+                    <td class="inp"><input ng-model="questions[currentQuestion.index()].questionAnswer.a3"/></td>
+                    <td>=</td>
+                    <td>6</td>
+                </tr>
+                <tr>
+                    <td>+</td>
+                    <td class="hard"></td>
+                    <td>-</td>
+                    <td class="hard"></td>
+                    <td>x</td>
+                    <td class="hard"></td>
+                    <td>+</td>
+                </tr>
+                <tr>
+                    <td class="inp"><input ng-model="questions[currentQuestion.index()].questionAnswer.a4"/></td>
+                    <td>+</td>
+                    <td class="inp"><input ng-model="questions[currentQuestion.index()].questionAnswer.a5"/></td>
+                    <td>-</td>
+                    <td>4</td>
+                    <td>=</td>
+                    <td class="inp"><input ng-model="questions[currentQuestion.index()].questionAnswer.a6"/></td>
+                </tr>
+                <tr>
+                    <td>%</td>
+                    <td class="hard"></td>
+                    <td>+</td>
+                    <td class="hard"></td>
+                    <td>-</td>
+                    <td class="hard"></td>
+                    <td>%</td>
+                </tr>
+                <tr>
+                    <td class="inp"><input ng-model="questions[currentQuestion.index()].questionAnswer.a7"/></td>
+                    <td>x</td>
+                    <td>3</td>
+                    <td>-</td>
+                    <td class="inp"><input ng-model="questions[currentQuestion.index()].questionAnswer.a8"/></td>
+                    <td>=</td>
+                    <td class="inp"><input ng-model="questions[currentQuestion.index()].questionAnswer.a9"/></td>
+                </tr>
+                <tr>
+                    <td>=</td>
+                    <td class="hard"></td>
+                    <td>=</td>
+                    <td class="hard"></td>
+                    <td>=</td>
+                    <td class="hard"></td>
+                    <td>=</td>
+                </tr>
+                <tr>
+                    <td class="inp"><input ng-model="questions[currentQuestion.index()].questionAnswer.a10"/></td>
+                    <td>%</td>
+                    <td class="inp"><input ng-model="questions[currentQuestion.index()].questionAnswer.a11"/></td>
+                    <td>+</td>
+                    <td class="inp"><input ng-model="questions[currentQuestion.index()].questionAnswer.a12"/></td>
+                    <td>=</td>
+                    <td class="inp"><input ng-model="questions[currentQuestion.index()].questionAnswer.a13"/></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

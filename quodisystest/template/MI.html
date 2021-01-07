@@ -1,0 +1,16 @@
+﻿<h3 class="cl-green">Multiple Intelligences – Test 2</h3>
+<section>
+    <div ng-include="MIView.views()"></div>  
+</section>
+
+<script>
+    console.log(location.href);
+    history.pushState(null, null, location.href);
+    window.onpopstate = function(event) {
+         history.go(1);
+    };
+    window.onbeforeunload  = function(){
+        return "If you close page , all data will lose";
+    }
+    window.scrollTo(0, 0);
+</script>

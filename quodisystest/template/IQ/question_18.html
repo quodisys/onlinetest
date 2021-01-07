@@ -1,0 +1,40 @@
+﻿<div class="main-box">
+    <div class="main-content">
+        <div class="main-question">
+            <p>Which is the odd one out?</p>
+        </div>
+        <div class="main-answer text-left">
+            <div class="col-sm-12">
+                <input type="radio" id="answer-1" class="trigger-radio hidden" name="answer" 
+                       ng-value="'A'"
+                       ng-model="questions[currentQuestion.index()].questionAnswer"/>
+                <label for="answer-1" class="radio-label scale-100" data-value=""><img src="{{globalConfig.rootImage}}answer_q17_01.png"></label>
+            </div>
+            <div class="col-sm-12 mar-top-50">
+                <input type="radio" id="answer-2" class="trigger-radio hidden" name="answer" 
+                       ng-value="'B'"
+                       ng-model="questions[currentQuestion.index()].questionAnswer"/>
+                <label class="radio-label scale-100" for="answer-2" data-value=""><img src="{{globalConfig.rootImage}}answer_q17_02.png"></label>
+            </div>
+            <div class="col-sm-12 mar-top-50">
+                <input type="radio" id="answer-3" class="trigger-radio hidden" name="answer" 
+                       ng-value="'C'"
+                       ng-model="questions[currentQuestion.index()].questionAnswer"/>
+                <label class="radio-label scale-100" for="answer-3" data-value=""><img src="{{globalConfig.rootImage}}answer_q17_03.png"></label>
+            </div>
+            <div class="col-sm-12 mar-top-50">
+                <input type="radio" id="answer-4" class="trigger-radio hidden" name="answer" 
+                       ng-value="'D'"
+                       ng-model="questions[currentQuestion.index()].questionAnswer"/>
+                <label class="radio-label scale-100" for="answer-4" data-value=""><img src="{{globalConfig.rootImage}}answer_q17_04.png"></label>
+            </div>
+            <div class="col-sm-12 mar-top-50">
+                <input type="radio" id="answer-5" class="trigger-radio hidden" name="answer" 
+                       ng-value="'E'"
+                       ng-model="questions[currentQuestion.index()].questionAnswer"/>
+                <label class="radio-label scale-100" for="answer-5" data-value=""><img src="{{globalConfig.rootImage}}answer_q17_05.png"></label>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>

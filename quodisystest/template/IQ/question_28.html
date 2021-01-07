@@ -1,0 +1,50 @@
+﻿<div class="main-box">
+    <div class="main-content">
+        <div class="main-question">
+            <p>An electrical circuit wiring a set of four lights depends on a system of switches A, B, C and D. Each switch when working has the following effect on the lights:</p>
+            <div class="form-group">
+                <div class="col-sm-8">
+                    <p>Switch A turns lights 1 and 2 on/off or off/on</p>
+                    <p>Switch B turns lights 2 and 4 on/off or off/on</p>
+                    <p>Switch C turns lights 1 and 3 on/off or off/on</p>
+                    <p>Switch D turns lights 3 and 4 on/off or off/on</p>
+                </div>
+                <div class="col-sm-4"><img src="{{globalConfig.rootImage}}img_q28_01.png"></div>
+                <div class="clearfix"></div>
+            </div>
+            <p>In the following, switches C B D A are thrown in turn, with the result that Figure 1 is transformed into Figure 2. One of the switches is therefore not working and has had no effect on the numbered lights.</p>
+            <div class="form-group">
+                <div class="col-sm-8">Identify which one of the switches is not working.</div>
+                <div class="col-sm-4"><img src="{{globalConfig.rootImage}}img_q28_02.png"></div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="main-answer">
+            <div class="col-sm-2">
+                <input type="radio" id="answer-1" class="trigger-radio hidden" name="answer"
+                       ng-value="'A'"
+                       ng-model="questions[currentQuestion.index()].questionAnswer" />
+                <label for="answer-1" class="radio-label" data-value="Switch A"></label>
+            </div>
+            <div class="col-sm-2">
+                <input type="radio" id="answer-2" class="trigger-radio hidden" name="answer"
+                       ng-value="'B'"
+                       ng-model="questions[currentQuestion.index()].questionAnswer" />
+                <label class="radio-label" for="answer-2" data-value="Switch B"></label>
+            </div>
+            <div class="col-sm-2">
+                <input type="radio" id="answer-3" class="trigger-radio hidden" name="answer"
+                       ng-value="'C'"
+                       ng-model="questions[currentQuestion.index()].questionAnswer" />
+                <label class="radio-label" for="answer-3" data-value="Switch C"></label>
+            </div>
+            <div class="col-sm-2">
+                <input type="radio" id="answer-4" class="trigger-radio hidden" name="answer"
+                       ng-value="'D'"
+                       ng-model="questions[currentQuestion.index()].questionAnswer" />
+                <label class="radio-label" for="answer-4" data-value="Switch D"></label>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>

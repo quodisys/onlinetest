@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Technical Test Login</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        @charset "utf-8";
+        @font-face {
+            font-family: 'proxima nova-Bold';
+            src: url('../fonts/proximanova-bold-webfont.ttf');
+        }
+
+        @font-face {
+            font-family: 'proxima nova-Light';
+            src: url('../fonts/proximanova-regular-webfont.ttf');
+        }
+
+        @font-face {
+            font-family: 'proxima nova-Extra';
+            src: url('../fonts/proximanova-extrabold-webfont.ttf');
+        }
+
+        @font-face {
+            font-family: 'proxima nova';
+            src: url('../fonts/proximanova-regular-webfont.ttf');
+        }
+
+        @font-face {
+            font-family: 'proxima nova-Semi';
+            src: url('../fonts/proximanova-semibold-webfont.ttf');
+        }
+
+        body {
+            user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .container {
+            width: 25%;
+            min-width: 370px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            text-align: center;
+        }
+
+        .logo img {
+            width: 100%;
+        }
+
+        /* .user-info {
+            margin-top: 25px;
+        } */
+
+        header {
+            padding: 60px 0 10px 0;
+        }
+
+        .user-info input {
+            width: 100%;
+            border: 1px solid #CCCCCC;
+            border-radius: 4px;
+            padding: 9px 0px;
+            text-indent: 10px;
+            font-family: 'proxima nova';
+        }
+
+        .user-info input {
+            font-family: 'proxima nova';
+            font-size: 14px;
+            letter-spacing: -0.03px;
+            line-height: 17px;
+        }
+
+        .user-info input::placeholder {
+            color: #9B9B9B;
+        }
+
+        .user-info input:-ms-input-placeholder {
+            color: #9B9B9B;
+        }
+
+        .user-info input::-ms-input-placeholder {
+            color: #9B9B9B;
+        }
+
+        .password,
+        .level {
+            margin-top: 15px;
+        }
+
+        .level .title,
+        .strength .title {
+            color: #4A4A4A;
+            font-family: 'proxima nova-Bold';
+            font-size: 14px;
+            letter-spacing: -0.03px;
+            line-height: 17px;
+            text-align: left;
+        }
+
+        ul.level-choice,
+        ul.strength-choice {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            /*display: flex;
+            flex-wrap: wrap;*/
+			display: grid;
+			grid-template-columns: auto auto auto;
+            user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .level-choice li,
+        .strength-choice li {
+            /* flex-grow: 1; */
+			text-align: left;
+            position: relative;
+        }
+
+        .level-choice li,
+        .strength-choice li {
+            color: #4A4A4A;
+            font-family: "Proxima Nova";
+            font-size: 14px;
+            letter-spacing: -0.03px;
+            line-height: 17px;
+            margin-right: 15px;
+        }
+
+        ul.level-choice li input[type=radio],
+        ul.strength-choice li input[type=radio] {
+            position: absolute;
+            visibility: hidden;
+        }
+
+        ul.level-choice li label,
+        ul.strength-choice li label {
+            display: block;
+            position: relative;
+            margin: 10px auto;
+            cursor: pointer;
+            z-index: 9;
+            padding-left: 25px;
+        }
+
+        ul.level-choice li .check,
+        ul.strength-choice li .check {
+            position: absolute;
+            border-radius: 100%;
+            height: 21px;
+            width: 21px;
+            z-index: 5;
+            top: 50%;
+            transform: translateY(-50%);
+            border: 1px solid #6D6E70;
+        }
+
+        ul.level-choice li input[type=radio]:checked~.check,
+        ul.strength-choice li input[type=radio]:checked~.check {
+            background: #D6BA69;
+        }
+
+        .strength {
+            margin-top: 5px;
+        }
+
+        .submit {
+            text-align: center;
+            margin-top: 5px;
+        }
+
+        .submit-button {
+            border: none;
+            border-radius: 4px;
+            background-color: #D6BA69;
+            padding: 8px 15px;
+        }
+
+        .submit-button {
+            color: #FFFFFF;
+            font-family: 'proxima nova';
+            font-size: 20px;
+            letter-spacing: -0.04px;
+            line-height: 24px;
+            text-transform: uppercase;
+            opacity: 1;
+            transition: opacity .3s ease;
+            cursor: pointer;
+        }
+
+        .submit-button:hover {
+            opacity: .7;
+        }
+    </style>
+</head>
+
+<body>
+    <a id="download" style="display:none;" ng-click="triggerClick()">download</a>
+    <div class="container">
+        <form role="form">
+            <div class="user-info">
+                <div class="username">
+                    <input type="text" class="form-control" placeholder="Username" ng-class="invalid.email == true ? 'error-valid' :''" ng-model="Tester.email">
+                </div>
+                <div class="password">
+                    <input type="password" class="form-control" placeholder="Password" ng-class="invalid.password == true ? 'error-valid' :''" ng-model="Tester.password">
+                </div>
+            </div>
+            <div class="form-group" ng-if="invalid.message !== ''" style="font-size:15px;color:red">
+                {{invalid.message}}
+            </div>
+            <div class="level">
+                <div class="title">Level:<span style="color:#D0021B;margin-left:4px;">*</span></div>
+                <ul class="level-choice">
+                    <li>
+                        <input type="radio" id="intern" name="checkbox-level" ng-model="Tester.level" value="1">
+                        <label class="checkbox-mask" for="intern" ng-class="invalid.company == true ? 'error-valid' :''">Intern</label>
+                    </li>
+                    <li>
+                        <input type="radio" id="junior" name="checkbox-level" ng-model="Tester.level" value="2">
+                        <label class="checkbox-mask" for="junior" ng-class="invalid.company == true ? 'error-valid' :''">Junior</label>
+                    </li>
+                    <li>
+                        <input type="radio" id="mid-level" name="checkbox-level" ng-model="Tester.level" value="3">
+                        <label class="checkbox-mask" for="mid-level" ng-class="invalid.company == true ? 'error-valid' :''">Mid - level</label>
+                    </li>
+                    <li>
+                        <input type="radio" id="senior" name="checkbox-level" ng-model="Tester.level" value="4">
+                        <label class="checkbox-mask" for="senior" ng-class="invalid.company == true ? 'error-valid' :''">Senior</label>
+                    </li>
+                </ul>
+            </div>
+			<div class="strength">
+                <div style="width: 130%;" class="title">What else are you good at?:</div>
+				<div class="username" style="margin-top:10px;"><input type="text" id="codelanguage" name="codelanguage" class="form-control" ng-model="Tester.codelanguage"></div>
+			</div><br>
+            <div class="submit">
+                <button type="button" class="submit-button" ng-disabled="isprocessing" ng-click="nextsteptechnicaltest()">
+                    <span ng-show="isprocessing"><i class='fa fa-spinner fa-spin'></i> </span>
+                    START
+                </button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
+<script>
+    $(document).ready(function() {
+        $('#birthday').on("cut copy paste", function(e) {
+            e.preventDefault();
+        });
+        $('#birthday').unbind('keypress keyup blur').bind('keypress keyup blur', function(e) {
+            var $this = $(this);
+            // Limits number of characters (10) //
+            var val = $this.val();
+            var valLength = val.length;
+            var maxCount = $this.attr('maxlength');
+            if (valLength > maxCount) {
+                $this.val($this.val().substring(0, maxCount));
+            }
+            // Only allows numbers //
+            $(this).val($(this).val().replace(/[^0-9\/]/g, ''));
+            if ((event.which < 48 || event.which > 57)) {
+                event.preventDefault();
+            }
+            // Separates numbers with '/' //
+            if (e.which != 8 && (valLength == 2 || valLength == 5)) {
+                $this.val($this.val() + '/');
+            }
+        });
+        // Capitalize all first letters of words //
+        $('#name, #position').unbind('keypress keyup blur').bind('keypress keyup blur', function(e) {
+            var $this = $(this);
+            var val = titleCase($this.val());
+            $this.val(val);
+        });
+
+        function titleCase(str) {
+            var splitStr = str.toLowerCase().split(' ');
+            for (var i = 0; i < splitStr.length; i++) {
+                splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
+            }
+            return splitStr.join(' ');
+        }
+    });
+</script>

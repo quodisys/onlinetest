@@ -1,0 +1,33 @@
+﻿<!-- <div ng-show="process !== true && process !== false" class=" padd-top-100 f-s-35">
+	<p>Processing</p>
+</div> 
+<div ng-show="process === true" class=" padd-top-100 f-s-35">
+	That’s it. Thanks for taking your time
+</div> 
+<div ng-show="process === false" class=" padd-top-100 f-s-35">
+	<p>Error ! Can't process your test</p>
+	<a class=" btn  btn-complete" ng-click="sendTest()">RESEND</a>
+	<a id="printFile" class=" btn  btn-complete" download="interview.html">PRINT TEST</a>
+</div> -->
+<style>
+	h1 {
+		color: #4A4A4A;
+		font-size: 30px;
+		font-weight: bold;
+	}
+
+	p {
+		font-size: 14px;
+		color: #4A4A4A;
+	}
+</style>
+<div class="padd-top-100 f-s-35">
+	<img src="../quodisystest/asset/images/thanks.svg" alt="">
+	<h1>Thank you!</h1>
+</div>
+<div id="download" style="display:none;"  ng-click="triggerClick()"></div>
+<script>
+    window.onbeforeunload  = function(){
+        return "If you close page , all data will lose";
+    }
+</script>

@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Technical Test Result</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<div class="submit">
+    <button type="button" class="submit-button">PDF</button>
+</div>
+<body>
+    <div class="container" ng-init="questions">
+        <style>
+            @charset "utf-8";
+
+            @font-face {
+                font-family: "roboto regular";
+                src: url("../fonts/Roboto-Regular.ttf");
+            }
+
+            @font-face {
+                font-family: "roboto light";
+                src: url("../fonts/Roboto-Light.ttf");
+            }
+
+            @font-face {
+                font-family: "roboto bold";
+                src: url("../fonts/Roboto-Bold.ttf");
+            }
+
+            @font-face {
+                font-family: "roboto black";
+                src: url("../fonts/Roboto-Black.ttf");
+            }
+
+            @font-face {
+                font-family: "proxima nova-Bold";
+                src: url("../fonts/proximanova-bold-webfont.ttf");
+            }
+
+            @font-face {
+                font-family: "proxima nova-Thin";
+                src: url("../fonts/proximanova-light-webfont.otf");
+            }
+
+            @font-face {
+                font-family: "proxima nova-Light";
+                src: url("../fonts/proximanova-regular-webfont.ttf");
+            }
+
+            @font-face {
+                font-family: "proxima nova-Extra";
+                src: url("../../../fonts/proximanova-extrabold-webfont.ttf");
+            }
+
+            @font-face {
+                font-family: "proxima nova";
+                src: url("../fonts/proximanova-regular-webfont.ttf");
+            }
+
+            @font-face {
+                font-family: "proxima nova-Semi";
+                src: url("../fonts/proximanova-semibold-webfont.ttf");
+            }
+
+            .logo-container {
+                width: 30%;
+                margin: 60px auto 0;
+            }
+
+            .logo-container img {
+                width: 100%;
+            }
+
+            .page-title {
+                font-family: roboto bold;
+                color: #47B383;
+                font-size: 24px;
+                font-weight: bold;
+                letter-spacing: -0.05px;
+                line-height: 28px;
+            }
+
+            .page-title {
+                text-align: center;
+                margin-top: 50px;
+            }
+
+            .result-container {
+                margin-top: 40px;
+            }
+
+            .summary-container {
+                width: 25%;
+                float: left;
+            }
+
+            .summary-container {
+                font-family: proxima nova;
+                font-size: 14px;
+                letter-spacing: -0.03px;
+                line-height: 17px;
+                border-radius: 2px;
+            }
+
+            .summary-container .table-container {
+                width: 70%;
+                border: 1px solid #E6E6E6;
+                text-align: center;
+                padding-left: 15px;
+                padding-right: 15px;
+                margin-left: 15px;
+            }
+
+            .summary-container table {
+                width: 100%;
+                text-align: left;
+                border-collapse: collapse;
+            }
+
+            .summary-container thead tr th {
+                padding: 9px 0;
+                border-bottom: 1px solid #979797;
+            }
+
+            .summary-container thead tr {
+                font-family: proxima nova-Thin;
+                color: #D6BA69;
+                text-align: left;
+                text-transform: uppercase;
+            }
+
+            .summary-container tbody td {
+                padding: 8px 0;
+            }
+
+            .levels-note {
+                color: #6D6E70;
+                font-family: roboto regular;
+                font-size: 15px;
+                letter-spacing: -0.03px;
+                line-height: 18px;
+            }
+
+            .levels-note {
+                width: 71.5%;
+                margin-top: 15px;
+                margin-left: 15px;
+                display: flex;
+                justify-content: center;
+            }
+
+            .levels-note>div {
+                position: relative;
+            }
+
+            .levels-note>div:not(:last-child) {
+                margin-right: 30px;
+            }
+
+            .easy-level::before,
+            .medium-level::before,
+            .hard-level::before {
+                display: block;
+                content: "";
+                position: absolute;
+                top: -7px;
+                left: -16px;
+                width: 12px;
+                height: 32px;
+                background-repeat: no-repeat;
+            }
+
+            .easy-level::before {
+                background-image: url("../../../images/easy.svg");
+            }
+
+            .medium-level::before {
+                background-image: url("../../../images/medium.svg");
+            }
+
+            .hard-level::before {
+                background-image: url("../../../images/hard.svg");
+            }
+
+            .question-record {
+                overflow: auto;
+            }
+
+            .question-record:last-child {
+                margin-bottom: 30px;
+            }
+
+            .question-record:not(:first-child) {
+                margin-top: 30px;
+            }
+
+            .questions-container {
+                width: 68%;
+                float: left;
+            }
+
+            .no {
+                width: 3%;
+                float: left;
+            }
+
+            .number {
+                position: relative;
+            }
+
+            .number::before {
+                display: block;
+                content: "";
+                position: absolute;
+                top: 20px;
+                left: 0px;
+                width: 12px;
+                height: 32px;
+                background-repeat: no-repeat;
+            }
+
+            .number.easy-level::before {
+                background-image: url("../../../images/easy.svg");
+            }
+
+            .number.medium-level::before {
+                background-image: url("../../../images/medium.svg");
+            }
+
+            .number.hard-level::before {
+                background-image: url("../../../images/hard.svg");
+            }
+
+            .no,
+            .question-title,
+            .multiple-choices .title {
+                color: #6D6E70;
+                font-family: roboto bold;
+                font-size: 18px;
+                font-weight: bold;
+                letter-spacing: -0.03px;
+                line-height: 21px;
+            }
+
+            .content {
+                width: 97%;
+                float: left;
+            }
+
+            .question-content {
+                margin-top: 12px;
+                color: #6D6E70;
+                font-family: roboto regular;
+                font-size: 15px;
+                letter-spacing: -0.03px;
+                line-height: 18px;
+            }
+
+            .multiple-choices {
+                margin-top: 12px;
+            }
+
+            .choices {
+                display: flex;
+                flex-wrap: wrap;
+                width: 35%;
+                margin-top: 17px;
+            }
+
+            .choices {
+                color: #6D6E70;
+                font-family: roboto regular;
+                font-size: 15px;
+                letter-spacing: -0.03px;
+                line-height: 18px;
+            }
+
+            .choices>li {
+                width: 50%;
+            }
+
+            .choices>li:nth-child(3),
+            .choices>li:nth-child(4) {
+                margin-top: 30px;
+            }
+
+            ul.choices {
+                list-style-type: none;
+                padding: 0;
+                display: flex;
+            }
+
+            .choices li {
+                position: relative;
+            }
+
+            .choices li.right-answer::after {
+                display: block;
+                content: "";
+                position: absolute;
+                top: 50%;
+                right: 40px;
+                width: 14px;
+                height: 14px;
+                background-repeat: no-repeat;
+                background-image: url(../../../images/accepted.svg);
+                transform: translateY(-50%);
+            }
+
+            ul.choices li input[type=radio] {
+                position: absolute;
+                visibility: hidden;
+            }
+
+            ul.choices li label {
+                display: block;
+                position: relative;
+                margin: 0 auto;
+                z-index: 9;
+                padding-left: 28px;
+            }
+
+            ul.choices li .check {
+                position: absolute;
+                border-radius: 100%;
+                height: 21px;
+                width: 21px;
+                z-index: 5;
+                top: 50%;
+                transform: translateY(-50%);
+                border: 1px solid #6D6E70;
+            }
+
+            ul.choices li input[type=radio]:checked~.check {
+                background: #D6BA69;
+            }
+        </style>
+        <div class="logo-container">
+            <img src="../../asset/images/qds_compliy.svg" alt="Company Logo">
+        </div>
+        <div class="page-title">Technical Test Result</div>
+        <div class="result-container">
+            <div class="summary-container">
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <th>Description</th>
+                            <th>Status</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Attempted Questions</td>
+                                <td>20</td>
+                            </tr>
+                            <tr>
+                                <td>Blank Answer</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>Basic Correct</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td>Optional Correct</td>
+                                <td>4</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="levels-note">
+                    <div class="easy-level">Easy</div>
+                    <div class="medium-level">Medium</div>
+                    <div class="hard-level">Hard</div>
+                </div>
+            </div>
+            <div class="questions-container">
+                <div class="question-record">
+                    <div class="question">
+                        <div ng-repeat="question_url in awnser_url">
+                            <div ng-include="question_url"></div>
+                        </div>
+                    </div>
+                    <!--<div class="question">
+                        <div class="no">
+                            <div class="number easy-level">1.</div>
+                        </div>
+                        <div class="content">
+                            <div class="question-title">
+                                What is the result of compiling and running the following program. Select one correct answer. (optional)
+                            </div>
+                            <div class="question-content">
+                                public class test
+                                <br>{
+                                <br>public static void main(String args[])
+                                <br>{
+                                <br>int i = -1;
+                                <br>i = i >> 1;
+                                <br>System.out.println(i);
+                                <br>}
+                                <br>}
+                            </div>
+                            <div class="multiple-choices">
+                                <div class="title">
+                                    Answer:
+                                </div>
+                                <ul class="choices">
+                                    <li class="q1-a right-answer">
+                                        <input type="radio" name="q1">
+                                        <label>(A) 255</label>
+                                        <div class="check"></div>
+                                    </li>
+                                    <li class="q1-b">
+                                        <input type="radio" name="q1" checked>
+                                        <label>(B) 128</label>
+                                        <div class="check"></div>
+                                    </li>
+                                    <li class="q1-c">
+                                        <input type="radio" name="q1">
+                                        <label>(C) -1</label>
+                                        <div class="check"></div>
+                                    </li>
+                                    <li class="q1-d">
+                                        <input type="radio" name="q1" checked>
+                                        <label>(D) 1</label>
+                                        <div class="check"></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="question-record">
+                    <div class="question">
+                        <div class="no">
+                            <div class="number medium-level">2.</div>
+                        </div>
+                        <div class="content">
+                            <div class="question-title">
+                                Keytar McSweeney"s Williamsburg, readymade leggings try-hard 90"s street art letterpress hoo.
+                            </div>
+                            <div class="question-content">
+                                Synth polaroid bitters chillwave pickled. Vegan disrupt tousled, Portland keffiyeh aesthetic food truck sriracha cornhole single-origin coffee church-key roof party. Leggings ethical McSweeney"s, normcore you probably
+                                haven"t
+                                heard
+                                of them Marfa organic squid. Slow-carb 90"s ennui Godard pug asymmetrical, narwhal VHS Tonx High Life. Retro dreamcatcher synth Godard pickled Etsy jean shorts beard, pour-over fanny pack mumblecore. Quinoa retro
+                                aesthetic
+                                polaroid,
+                                Williamsburg American Apparel plaid small batch. Blue Bottle Vice fanny pack, Williamsburg roof party Wes Anderson mlkshk seitan brunch before they sold out lo-fi XOXO tofu scenester small batch.
+                            </div>
+                            <div class="multiple-choices">
+                                <div class="title">
+                                    Answer:
+                                </div>
+                                <ul class="choices">
+                                    <li class="q2-a">
+                                        <input type="radio" name="q2">
+                                        <label>(A) 255</label>
+                                        <div class="check"></div>
+                                    </li>
+                                    <li class="q2-b right-answer">
+                                        <input type="radio" name="q2" checked>
+                                        <label>(B) 128</label>
+                                        <div class="check"></div>
+                                    </li>
+                                    <li class="q2-c">
+                                        <input type="radio" name="q2">
+                                        <label>(C) -1</label>
+                                        <div class="check"></div>
+                                    </li>
+                                    <li class="q2-d">
+                                        <input type="radio" name="q2">
+                                        <label>(D) 1</label>
+                                        <div class="check"></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="question-record">
+                    <div class="question">
+                        <div class="no">
+                            <div class="number hard-level">3.</div>
+                        </div>
+                        <div class="content">
+                            <div class="question-title">
+                                Keytar McSweeney"s Williamsburg, readymade leggings try-hard 90"s street art letterpress hoo.
+                            </div>
+                            <div class="question-content">
+                                Synth polaroid bitters chillwave pickled. Vegan disrupt tousled, Portland keffiyeh aesthetic food truck sriracha cornhole single-origin coffee church-key roof party. Leggings ethical McSweeney"s, normcore you probably
+                                haven"t
+                                heard
+                                of them Marfa organic squid. Slow-carb 90"s ennui Godard pug asymmetrical, narwhal VHS Tonx High Life. Retro dreamcatcher synth Godard pickled Etsy jean shorts beard, pour-over fanny pack mumblecore. Quinoa retro
+                                aesthetic
+                                polaroid,
+                                Williamsburg American Apparel plaid small batch. Blue Bottle Vice fanny pack, Williamsburg roof party Wes Anderson mlkshk seitan brunch before they sold out lo-fi XOXO tofu scenester small batch.
+                            </div>
+                            <div class="multiple-choices">
+                                <div class="title">
+                                    Answer:
+                                </div>
+                                <ul class="choices">
+                                    <li class="q3-a">
+                                        <input type="radio" name="q3" checked>
+                                        <label>(A) 255</label>
+                                        <div class="check"></div>
+                                    </li>
+                                    <li class="q3-b">
+                                        <input type="radio" name="q3">
+                                        <label>(B) 128</label>
+                                        <div class="check"></div>
+                                    </li>
+                                    <li class="q3-c right-answer">
+                                        <input type="radio" name="q3">
+                                        <label>(C) -1</label>
+                                        <div class="check"></div>
+                                    </li>
+                                    <li class="q3-d">
+                                        <input type="radio" name="q3">
+                                        <label>(D) 1</label>
+                                        <div class="check"></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+</html>
+<script>
+$(function() {
+    $(".submit-button").click(function() {
+        let doc = new jsPDF("l","pt",[200,$(document).height()]);
+        doc.addHTML(document.body,function() {
+            doc.save("html.pdf");
+        });
+    });
+});
+</script>

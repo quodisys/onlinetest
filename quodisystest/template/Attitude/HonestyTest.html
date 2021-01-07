@@ -1,0 +1,35 @@
+﻿<div id="full-top">
+    <div class="top-content">
+        <img ng-show="language == 'vn'" src="{{globalConfig.rootImage}}option.png">
+        <img ng-show="language == 'en'" src="{{globalConfig.rootImage}}option_eng.png">
+    </div>
+</div>
+<div id="full-middle">
+    <div class="question-item" ng-repeat="q in questions">
+        <div class="question-content">
+            <div class="col-sm-9 padd-L0">{{q.question}}</div>
+            <div class="col-sm-3 padd-0">
+                <div class="col-sm-3 padd-0">
+                    <input type="radio" id="answer-{{$index}}-1" class="trigger-radio hidden" name="answer{{$index}}" ng-value="4" ng-model="q.answer" />
+                    <label class="radio-label" for="answer-{{$index}}-1" data-value="">1</label>
+                </div>
+                <div class="col-sm-3 padd-0">
+                    <input type="radio" id="answer-{{$index}}-2" class="trigger-radio hidden" name="answer{{$index}}" ng-value="3" ng-model="q.answer" />
+                    <label class="radio-label" for="answer-{{$index}}-2" data-value="">2</label>
+                </div>
+                <div class="col-sm-3 padd-0">
+                    <input type="radio" id="answer-{{$index}}-3" class="trigger-radio hidden" name="answer{{$index}}" ng-value="2" ng-model="q.answer" />
+                    <label class="radio-label" for="answer-{{$index}}-3" data-value="">3</label>
+                </div>
+                <div class="col-sm-3 padd-0">
+                    <input type="radio" id="answer-{{$index}}-4" class="trigger-radio hidden" name="answer{{$index}}" ng-value="1" ng-model="q.answer" />
+                    <label class="radio-label" for="answer-{{$index}}-4" data-value="">4</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="full-bottom">
+    <a href="#/Attitude" ng-show="language == 'vn'" ng-click="result()" class="btn btn-complete">Tiếp Tục</a>
+    <a href="#/Attitude" ng-show="language == 'en'" ng-click="result()" class="btn btn-complete">Next</a>
+</div>

@@ -1,0 +1,44 @@
+﻿<div>
+    <div class="main-box">
+        <div class="main-content">
+            <div class="main-question">
+                <p>Circle the answer(s), or write in the answer box provided.</p>
+                <img src="{{globalConfig.rootImage}}img_q1.png" class="mar-top-20 width-90">
+                <p class="mar-top-20">Which set of symbols should replace the question marks?</p>
+            </div>
+            <div class="main-answer text-left">
+                <div class="col-sm-12">
+                    <input type="radio" id="answer-1" class="trigger-radio hidden" name="answer" 
+                           ng-value="'A'"
+                           ng-model="questions[currentQuestion.index()].questionAnswer" />
+                    <label for="answer-1" class="radio-label" data-value=""><img src="{{globalConfig.rootImage}}answer_q1_01.png" class="scale-90"></label>
+                </div>
+                <div class="col-sm-12 mar-top-30">
+                    <input type="radio" id="answer-2" class="trigger-radio hidden" name="answer"
+                           ng-value="'B'"
+                           ng-model="questions[currentQuestion.index()].questionAnswer" />
+                    <label class="radio-label" for="answer-2" data-value=""><img src="{{globalConfig.rootImage}}answer_q1_02.png" class="scale-90"></label>
+                </div>
+                <div class="col-sm-12 mar-top-30">
+                    <input type="radio" id="answer-3" class="trigger-radio hidden" name="answer"
+                           ng-value="'C'"
+                           ng-model="questions[currentQuestion.index()].questionAnswer" />
+                    <label class="radio-label" for="answer-3" data-value=""><img src="{{globalConfig.rootImage}}answer_q1_03.png" class="scale-90"></label>
+                </div>
+                <div class="col-sm-12 mar-top-30">
+                    <input type="radio" id="answer-4" class="trigger-radio hidden" name="answer"
+                           ng-value="'D'"
+                           ng-model="questions[currentQuestion.index()].questionAnswer" />
+                    <label class="radio-label" for="answer-4" data-value=""><img src="{{globalConfig.rootImage}}answer_q1_04.png" class="scale-90"></label>
+                </div>
+                <div class="col-sm-12 mar-top-30">
+                    <input type="radio" id="answer-5" class="trigger-radio hidden" name="answer" 
+                           ng-value="'E'"
+                           ng-model="questions[currentQuestion.index()].questionAnswer"/>
+                    <label class="radio-label" for="answer-5" data-value=""><img src="{{globalConfig.rootImage}}answer_q1_05.png" class="scale-90"></label>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>

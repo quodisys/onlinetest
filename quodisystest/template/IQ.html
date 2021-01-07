@@ -1,0 +1,69 @@
+﻿<h3 class="cl-green">Interview Test</h3>
+<div id="left">
+    <span class="number" ng-repeat="question in questions">
+        <a ng-click="currentQuestion.number=question.questionNumber"
+           ng-class="{current : question.questionNumber == currentQuestion.number
+                    , visited : question.questionAnswer !== null && question.questionAnswer !== ''
+                    , missed : question.questionNumber < currentQuestion.number && question.result() === ' ---n/a--- ' }"            
+           ng-bind="question.questionNumber"></a>
+    </span>
+</div>
+<div id="main" style="position:relative;overflow:hidden;">
+    <div class="IQContainer">
+        <div ng-include="currentQuestion.path()" class="view-animate"></div>
+    </div>
+    <div class="main-nav">
+        <a ng-if="currentQuestion.number > 1" ng-click="prevQuestion()" class="btn prev">Back</a>
+        <a ng-if="currentQuestion.number < 30" ng-click="nextQuestion()" class="btn next">Next</a>
+        <a ng-if="currentQuestion.number == 30" ng-click="result()" class="btn next">Finish</a>
+    </div>
+</div>
+<div id="right">
+    <div class="timer clearfix">
+        <div class="timer-left" id="countdown">{{timer.time()}}</div>
+        <div class="timer-img">
+            <img src="{{globalConfig.rootImage}}lock.png">
+        </div>
+    </div>
+    <style>
+        .reminder {
+            position: absolute;
+            right: 105px;
+            margin-top: 30px;
+        }
+        
+        .reminder-note {
+            float: left;
+            margin-right: 5px;
+            font-family: 'Roboto', sans-serif;
+            font-weight: bold;
+            color: #F5A623;
+            font-size: 14px;
+        }
+        
+        .reminder-msg {
+            float: left;
+            color: #6D6E70;
+            font-family: 'Roboto', sans-serif;
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: -0.03px;
+            line-height: 16px;
+            text-align: left;
+        }
+    </style>
+    <div class="reminder">
+        <div class="reminder-note">*</div>
+        <div class="reminder-msg">Once you click Finish button.<br>You can’t go Back.</div>
+    </div>
+</div>
+
+<script>
+    history.pushState(null, null, location.href);
+    window.onpopstate = function(event) {
+        history.go(1);
+    };
+    window.onbeforeunload = function() {
+        return "If you close page , all data will lose";
+    }
+</script>

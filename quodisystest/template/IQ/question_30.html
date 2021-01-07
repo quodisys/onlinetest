@@ -1,0 +1,51 @@
+﻿<div class="main-box">
+    <div class="main-content">
+        <div class="main-question">
+            <p>Find the correct image for the top one:</p>
+            <img style="margin:auto;max-width:300px" src="{{globalConfig.rootImage}}img_q30.jpg"  />
+        </div>
+        <div class="main-answer">
+            <p class="textAnswer"></p>
+            <span class="answer">
+                <input type="radio" id="answer-1" class="trigger-radio hidden" name="answer"
+                       ng-value="'A'"
+                       ng-model="questions[currentQuestion.index()].questionAnswer" />
+                <label for="answer-1" class="radio-label" data-value="">
+                    <img src="{{globalConfig.rootImage}}answer_q30_01.jpg">
+                </label>
+            </span>
+            <span class="answer">
+                <input type="radio" id="answer-2" class="trigger-radio hidden" name="answer"
+                       ng-value="'B'"
+                       ng-model="questions[currentQuestion.index()].questionAnswer" />
+                <label for="answer-2" class="radio-label" data-value="">
+                    <img src="{{globalConfig.rootImage}}answer_q30_02.jpg">
+                </label>
+            </span>
+            <span class="answer">
+                <input type="radio" id="answer-3" class="trigger-radio hidden" name="answer"
+                       ng-value="'C'"
+                       ng-model="questions[currentQuestion.index()].questionAnswer" />
+                <label for="answer-3" class="radio-label" data-value="">
+                    <img src="{{globalConfig.rootImage}}answer_q30_03.jpg">
+                </label>
+            </span>
+            <span class="answer">
+                <input type="radio" id="answer-4" class="trigger-radio hidden" name="answer"
+                       ng-value="'D'"
+                       ng-model="questions[currentQuestion.index()].questionAnswer" />
+                <label for="answer-4" class="radio-label" data-value="">
+                    <img src="{{globalConfig.rootImage}}answer_q30_04.jpg">
+                </label>
+            </span>
+            <span class="answer">
+                <input type="radio" id="answer-5" class="trigger-radio hidden" name="answer"
+                       ng-value="'E'"
+                       ng-model="questions[currentQuestion.index()].questionAnswer" />
+                <label for="answer-5" class="radio-label" data-value="">
+                    <img src="{{globalConfig.rootImage}}answer_q30_05.jpg">
+                </label>
+            </span>
+        </div>
+    </div>
+</div>
