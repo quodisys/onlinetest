@@ -1,13 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
 $color-white: #fff;
 $backgroud-blue-color: #171F48;
+$white: #fff;
 
-*:focus {
+*:focus,
+.btn:focus, 
+.btn.focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.form-control:focus {
+    box-shadow: none;
     outline: none;
 }
 
 html, body {
     height: 100%;
+}
+
+.btn-main {
+    height: 72px;
+    background: linear-gradient(180deg, #29F4FF -46.11%, #5257FF 151.97%);
+    box-shadow: 0px 8px 18px rgba(69, 137, 255, 0.26);
+    border-radius: 50px;
+    width: 320px;
+    color: $white;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-family: 'SFProMedium', sans-serif;
+    &:hover {
+        color: $white;
+    }
 }
 
 .main {
@@ -40,6 +64,28 @@ html, body {
         & .content {
             border-radius: 40px;
             padding: 30px;
+            background-image: url(/assets/images/footer-bg.svg);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-position: bottom;
+            & .form-contain {
+                display: flex;
+                justify-content: center;
+                margin-top: 40px;
+                & form {
+                    width: 100%;
+                    max-width: 360px;
+                    & input {
+                        height: 50px;
+                        background: #ECECF2;
+                        border: 3px solid #ECECF2;
+                        border-radius: 5px;
+                        &:focus {
+                            background-color: $color-white;
+                        }
+                    }
+                }
+            }
         }
     }
 }
@@ -55,10 +101,26 @@ html, body {
     font-family: 'SFProDisplay', sans-serif;
     font-size: 16px;
     &.powered {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         margin-top: 10px;
         & span {
             font-family: 'SFProMedium', sans-serif;
-            
+            margin-right: 10px;
+        }
+        & img {
+            width: 240px;
+        }
+    }
+}
+
+@media (max-height: 800px) {
+    .main-center {
+        & .container {
+            & .branding {
+                margin-top: 0;
+            }
         }
     }
 }

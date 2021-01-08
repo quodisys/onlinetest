@@ -8,9 +8,20 @@
                 <div class="title">ONLINE TEST FLATFORM</div>
                 <div class="sub-title powered">
                     <span>POWERED BY</span>
-                    <img class="logo-1" src="" alt="">
-                    
-                    <img class="logo-2" src="" alt="">
+                    <img class="logo-1" src="/assets/images/elsaxqds.png" alt="">
+                </div>
+                <div class="form-contain">
+                    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                        <div class="form-group">
+                            <input type="email" id="email" class="form-control" name="email" formControlName="email" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <input type="passwrod" id="password" class="form-control" name="password" formControlName="password" placeholder="Password">
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" class="btn btn-main mt-2">Login</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
