@@ -10,13 +10,13 @@ $white: #fff;
     box-shadow: none;
 }
 
+html, body {
+    height: 100%;
+}
+
 .form-control:focus {
     box-shadow: none;
     outline: none;
-}
-
-html, body {
-    height: 100%;
 }
 
 .btn-main {
@@ -32,6 +32,15 @@ html, body {
     &:hover {
         color: $white;
     }
+}
+
+.is-invalid {
+    border: 3px solid #dc3545 !important; 
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
 }
 
 .main {

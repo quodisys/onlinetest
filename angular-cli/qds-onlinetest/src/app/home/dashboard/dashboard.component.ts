@@ -3,11 +3,11 @@ import { FormBuilder, FormGroup, Validators } from  '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class DashboardComponent implements OnInit {
 
 	loginForm: FormGroup;
 	isSubmitted = false;
