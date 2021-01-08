@@ -1,1 +1,64 @@
 /* You can add global styles to this file, and also import other style files */
+$color-white: #fff;
+$backgroud-blue-color: #171F48;
+
+*:focus {
+    outline: none;
+}
+
+html, body {
+    height: 100%;
+}
+
+.main {
+    height: 100%;
+}
+
+.bg-blue {
+    background-color: $backgroud-blue-color;
+}
+
+.content {
+    background-color: $color-white;
+    min-height: 600px;
+}
+
+.main-center {
+    & .container {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        & .branding {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            margin-top: -100px;
+            & img {
+                width: 100px;
+            }
+        }
+        & .content {
+            border-radius: 40px;
+            padding: 30px;
+        }
+    }
+}
+.title {
+    font-family: 'SFProMedium', sans-serif;
+    font-size: 40px;
+    line-height: 56px;
+    text-align: center;
+}
+
+.sub-title {
+    text-align: center;
+    font-family: 'SFProDisplay', sans-serif;
+    font-size: 16px;
+    &.powered {
+        margin-top: 10px;
+        & span {
+            font-family: 'SFProMedium', sans-serif;
+            
+        }
+    }
+}
