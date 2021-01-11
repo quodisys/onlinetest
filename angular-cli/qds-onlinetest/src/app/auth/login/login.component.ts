@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
 		if(this.loginForm.invalid){
 			return;
 		}
+		localStorage.setItem('adminAuth', JSON.stringify({login: true}));
 		this.router.navigate(['/home']);
 	}
 
