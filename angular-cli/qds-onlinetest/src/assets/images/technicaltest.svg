@@ -1,0 +1,19 @@
+<svg width="132" height="132" viewBox="0 0 132 132" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="65.7762" cy="65.7762" r="57.7762" stroke="#ECECEC" stroke-width="15"/>
+<path d="M65.37 112.74C91.5317 112.74 112.74 91.5317 112.74 65.37C112.74 39.2083 91.5317 18 65.37 18C39.2083 18 18 39.2083 18 65.37C18 91.5317 39.2083 112.74 65.37 112.74Z" fill="url(#paint0_linear)"/>
+<circle cx="65" cy="65" r="15" stroke="white" stroke-width="10"/>
+<rect x="60" y="39" width="10" height="12" rx="3" fill="white"/>
+<rect x="60" y="79" width="10" height="12" rx="3" fill="white"/>
+<rect x="91" y="60" width="10" height="12" rx="3" transform="rotate(90 91 60)" fill="white"/>
+<rect x="51" y="60" width="10" height="12" rx="3" transform="rotate(90 51 60)" fill="white"/>
+<rect x="79.5786" y="42.8989" width="10" height="12" rx="3" transform="rotate(44.2959 79.5786 42.8989)" fill="white"/>
+<rect x="51.644" y="71.5288" width="10" height="12" rx="3" transform="rotate(44.2959 51.644 71.5288)" fill="white"/>
+<rect x="86.9202" y="79.8491" width="10" height="12" rx="3" transform="rotate(135 86.9202 79.8491)" fill="white"/>
+<rect x="58.636" y="51.5649" width="10" height="12" rx="3" transform="rotate(135 58.636 51.5649)" fill="white"/>
+<defs>
+<linearGradient id="paint0_linear" x1="78.1213" y1="-4.89933" x2="112.703" y2="131.556" gradientUnits="userSpaceOnUse">
+<stop stop-color="#AC5AFF"/>
+<stop offset="0.999789" stop-color="#7659FF"/>
+</linearGradient>
+</defs>
+</svg>

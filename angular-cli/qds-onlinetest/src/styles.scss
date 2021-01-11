@@ -124,6 +124,31 @@ html, body {
     }
 }
 
+.content-test {
+    cursor: pointer;
+    transition: transform 1s;
+    &:hover {
+        & img {
+            transform: scale(1.1);
+        }
+    }
+    & img {
+        transition: transform 0.2s;
+    }
+    & .test-title {
+        font-size: 18px;
+        font-family: 'SFProMedium', sans-serif;
+        text-transform: uppercase;
+        text-align: center;
+        margin-top: 10px;
+    }
+    & .test-time {
+        text-align: center;
+        font-family: 'SFProDisplay', sans-serif;
+        font-size: 16px;
+    }
+}
+
 @media (max-height: 800px) {
     .main-center {
         & .container {
