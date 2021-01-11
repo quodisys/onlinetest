@@ -8,7 +8,8 @@ import { AuthComponent } from './auth/auth.component';
 import { LoginComponent } from './auth/login/login.component';
 import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './home/dashboard/dashboard.component';
-import { AuthGuard } from './guards/auth.guard'
+import { AuthGuard } from './guards/auth.guard';
+import { EnglishTestComponent } from './home/english-test/english-test.component'
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { AuthGuard } from './guards/auth.guard'
     AuthComponent,
     LoginComponent,
     HomeComponent,
-    DashboardComponent
+    DashboardComponent,
+    EnglishTestComponent
   ],
   imports: [
     BrowserModule,
