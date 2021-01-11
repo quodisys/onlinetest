@@ -1,0 +1,20 @@
+<svg width="224" height="220" viewBox="0 0 224 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="110.928" cy="112.11" r="57.7762" stroke="#ECECEC" stroke-width="15"/>
+<circle cx="110.688" cy="110.688" r="108.084" stroke="#ECECEC" stroke-width="1.97544"/>
+<circle cx="110.172" cy="111.972" r="83.5495" stroke="#ECECEC" stroke-width="2.02705"/>
+<circle cx="4.44366" cy="131.29" r="4.44366" fill="#ECECEC"/>
+<circle cx="206.428" cy="60.7679" r="4.44366" fill="#ECECEC"/>
+<circle cx="73.1182" cy="8.4837" r="4.44366" fill="#ECECEC"/>
+<circle cx="113.112" cy="2.42382" r="2.42382" fill="#ECECEC"/>
+<rect x="29.3035" y="123.22" width="11.9145" height="11.9145" rx="5.95727" transform="rotate(45 29.3035 123.22)" fill="#FFCF5D"/>
+<path d="M217.577 118.403C221.124 118.403 224 115.528 224 111.98C224 108.433 221.124 105.558 217.577 105.558C214.03 105.558 211.154 108.433 211.154 111.98C211.154 115.528 214.03 118.403 217.577 118.403Z" fill="#FE8C7A"/>
+<path opacity="0.4" d="M89.1211 196.279C90.8947 196.279 92.3325 195.021 92.3325 193.469C92.3325 191.917 90.8947 190.659 89.1211 190.659C87.3475 190.659 85.9097 191.917 85.9097 193.469C85.9097 195.021 87.3475 196.279 89.1211 196.279Z" fill="#DB6BFF"/>
+<circle cx="110.798" cy="111.981" r="47.3682" fill="url(#paint0_linear)"/>
+<path d="M88 112.87L103.931 132L132 92" stroke="white" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<defs>
+<linearGradient id="paint0_linear" x1="110.798" y1="64.6123" x2="110.798" y2="159.349" gradientUnits="userSpaceOnUse">
+<stop stop-color="#25E6FF"/>
+<stop offset="1" stop-color="#33B2FF"/>
+</linearGradient>
+</defs>
+</svg>

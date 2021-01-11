@@ -7,6 +7,7 @@ import { IqTestRoutingModule } from './iq-test-routing.module';
 import { IqStartComponent } from "./iq-start/iq-start.component";
 import { IqResultComponent } from './iq-result/iq-result.component';
 import { IqMainComponent } from './iq-main/iq-main.component'
+import { CountdownModule } from 'ngx-countdown';
 
 @NgModule({
 declarations: [
@@ -18,7 +19,8 @@ imports: [
     CommonModule,
     IqTestRoutingModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    CountdownModule
 ]
 })
-export class DocManagerModule { }
+export class IqTestModule { }

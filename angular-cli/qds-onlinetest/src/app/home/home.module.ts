@@ -8,7 +8,7 @@ import { RouterModule } from '@angular/router';
 imports: [
 	CommonModule,  
 	RouterModule,
-	FormsModule,
+	FormsModule
 ],
 declarations: [
 	HomeComponent

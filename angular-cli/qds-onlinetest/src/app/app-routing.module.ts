@@ -29,6 +29,9 @@ const routes: Routes = [
 			},{
 				path: 'home',
 				loadChildren: () => import('./home/dashboard/dashboard.module').then(m => m.DashboardModule)
+			},{
+				path: 'iq-test',
+				loadChildren: () => import('./home/iq-test/iq-test.module').then(m => m.IqTestModule)
 			},
 			{
 				path: 'english-test',

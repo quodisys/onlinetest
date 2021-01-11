@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { DocManagerComponent } from './doc-manager-list/doc-manager.component';
-import { CraFormComponent } from './cra-form/cra-form.component';
-import { WorkflowComponent } from './workflow/workflow.component';
+import { IqStartComponent } from './iq-start/iq-start.component'
+import { IqMainComponent } from './iq-main/iq-main.component'
+import { IqResultComponent } from './iq-result/iq-result.component'
 
 const routes: Routes = [
 	{ 	
 		path: '',
-		component: DocManagerComponent
+		component: IqStartComponent
 	},{ 	
-		path: ':uuid',
-		component: CraFormComponent
+		path: 'start-test',
+		component: IqMainComponent
 	},{ 	
-		path: 'workflow/:uuid',
-		component: WorkflowComponent
+		path: 'result',
+		component: IqResultComponent
 	}
 ];
 
@@ -22,4 +22,4 @@ const routes: Routes = [
 	imports: [RouterModule.forChild(routes)],
 	exports: [RouterModule]
 })
-export class DocManagerRoutingModule { }
+export class IqTestRoutingModule { }

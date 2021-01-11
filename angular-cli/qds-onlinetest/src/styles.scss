@@ -154,6 +154,13 @@ html, body {
     justify-content: flex-end;
 }
 
+.start-logo {
+    display: flex;
+    justify-content: center;
+    padding: 50px 30px;
+    padding-bottom: 30px;
+}
+
 @media (max-height: 800px) {
     .main-center {
         & .container {

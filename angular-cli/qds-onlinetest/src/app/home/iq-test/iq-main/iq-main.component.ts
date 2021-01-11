@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { CountdownComponent, CountdownConfig, CountdownEvent } from 'ngx-countdown';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-iq-main',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IqMainComponent implements OnInit {
 
-  constructor() { }
+	config = {}
 
-  ngOnInit(): void {
-  }
+	constructor(private elementRef: ElementRef, private router: Router) { }
 
+	ngOnInit(): void {
+		this.config = {
+			leftTime: 10,
+			format: 'mm:ss'
+		}
+	}
+	counterEvent(e: CountdownEvent) {
+		if(e.action == 'done') {
+			this.router.navigate(['/iq-test/result'])
+		}
+	}
 }

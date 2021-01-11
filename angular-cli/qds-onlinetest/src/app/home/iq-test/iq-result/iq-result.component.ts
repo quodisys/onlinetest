@@ -9,7 +9,8 @@ export class IqResultComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+	ngOnInit(): void {
+		
+	}
 
 }
