@@ -29,6 +29,7 @@ html, body {
     font-size: 16px;
     text-transform: uppercase;
     font-family: 'SFProMedium', sans-serif;
+    border: none;
     &:hover {
         color: $white;
     }
@@ -68,6 +69,30 @@ html, body {
             margin-top: -100px;
             & img {
                 width: 100px;
+            }
+            &.countdown {
+                display: block;
+                & .countdown-wrapper {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    & > span {
+                        margin-right: 10px;
+                        color: $color-white;
+                        font-size: 18px;
+                        font-family: 'SFProRegular', sans-serif;
+                    }
+                    & .timer {
+                        background: linear-gradient(101.03deg, #FF52E3 -17.52%, #A466EF 43.91%, #2980FF 126.32%);
+                        border-radius: 20px;
+                        padding: 6px 23px;
+                        color: $color-white;
+                        font-size: 18px;
+                        font-family: 'SFProRegular', sans-serif;
+                        min-width: 110px;
+                        text-align: center;
+                    }
+                }
             }
         }
         & .content {
@@ -161,6 +186,58 @@ html, body {
     padding-bottom: 30px;
 }
 
+.custom-tab {
+    & ul.nav-tabs {
+        display: flex;
+        justify-content: center;
+        border-bottom: 0;
+        & li.nav-item {
+            min-width: 110px;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 10px;
+            &:before {
+                content: "";
+                position: absolute;
+                height: 8px;
+                width: 100%;
+                top: 10px;
+                left: 24px;
+                background: linear-gradient(166.74deg, #4CD964 9.54%, #27AE60 149.18%);
+                z-index: -1;
+            }
+            & a.nav-link {
+                display: inline-flex;
+                position: relative;
+                border: 1px solid #EEEFF4;
+                border-radius: 50%;
+                background-color: #fff;
+                padding: 0;
+                width: 28px;
+                height: 28px;
+                justify-content: center;
+                align-items: center;
+                & span {
+                    font-size: 14px;
+                    color: #979797;
+                    font-family: 'SFProMedium', sans-serif;
+                }
+                &.active {
+                    // border: none;
+                }
+            }
+            &:last-child {
+                min-width: auto;
+                &::before {
+                    content: none;
+                }
+            }
+        }
+    }
+    & .tab-content {
+        margin-top: 30px;
+    }
+}
 @media (max-height: 800px) {
     .main-center {
         & .container {
