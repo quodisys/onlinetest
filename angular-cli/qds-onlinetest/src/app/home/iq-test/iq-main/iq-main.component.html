@@ -16,12 +16,12 @@
                 </div>
             </div>
             <div class="content">
-                <form (ngSubmit)="onSubmit()">
-                    <tabset class="custom-tab">
+                <form #testForm="ngForm" (ngSubmit)="onSubmit(testForm)">
+                    <tabset #staticTabs class="custom-tab">
                         <tab *ngFor="let question of questions; let key = index; let last = last"
                             [heading]="key + 1"
                             [active]="question.active"
-                            (selectTab)="question.active = true"
+                            (selectTab)="changeTab($event)"
                             (deselect)="question.active = false"
                             [disabled]="question.disabled"
                             [customClass]="question.customClass">
@@ -31,8 +31,8 @@
                                 </div>
                                 <div class="answer">
                                     <div class="row">
-                                        <div class="col-md-6" *ngFor="let choice of question.choices; let choiceKey = index;" >
-                                            <input id="question{{key}}-choice{{choiceKey}}" type="radio" [value]="choice" >
+                                        <div class="col-md-6 mb-3" *ngFor="let choice of question.choices; let choiceKey = index;" >
+                                            <input class="checkbox-mask" id="question{{key}}-choice{{choiceKey}}" type="radio" [value]="choice" [(ngModel)]="formAnswer.answers[key]" name="question-{{key + 1}}" (click)="showNextQuestion(key)">
                                             <label for="question{{key}}-choice{{choiceKey}}">{{choice}}</label>
                                         </div>
                                     </div>

@@ -235,7 +235,87 @@ html, body {
         }
     }
     & .tab-content {
-        margin-top: 30px;
+        margin-top: 50px;
+    }
+}
+.test-content {
+    & .question {
+        text-align: center;
+        font-size: 32px;
+        font-family: 'SFProMedium', sans-serif;
+        max-width: 800px;
+        margin: auto;
+    }
+    & .answer {
+        max-width: 500px;
+        margin: auto;
+        margin-top: 40px;
+        margin-bottom: 40px;
+        font-size: 32px;
+        font-family: 'SFProMedium', sans-serif;
+    }
+}
+
+//Mask Selectbox, checkbox, radio
+input[type=radio] {
+    position: absolute;
+    visibility: hidden;
+}
+
+.checkbox-mask {
+    position: relative;
+    margin-bottom: 0;
+    padding-left: 25px;
+    cursor: pointer;
+    height: 20px;
+    line-height: 20px;
+}
+
+input[type=radio] {
+    &+label {
+        position: relative;
+        padding-left: 35px;
+        cursor: pointer;
+        line-height: 20px;
+        // display: inline-block;
+        &:before {
+            content: '';
+            position: absolute;
+            left: 0px;
+            top: -3px;
+            width: 25px;
+            height: 25px;
+            border: 2.5px solid #171F48;
+            border-radius: 100%;
+            background: #fff;
+        }
+    }
+    &:checked+label {
+        &:after {
+            content: '';
+            width: 15px;
+            height: 15px;
+            background: #171F48;
+            position: absolute;
+            top: 2px;
+            left: 5px;
+            border-radius: 100%;
+            -webkit-transition: all 0.05s ease;
+            transition: all 0.05s ease;
+        }
+    }
+    &:checked+label {
+        opacity: 1;
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+input[type=checkbox] {
+    &:checked {
+        &+.checkbox-mask::after {
+            opacity: 1;
+        }
     }
 }
 @media (max-height: 800px) {

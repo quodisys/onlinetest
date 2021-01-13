@@ -1,6 +1,8 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { CountdownComponent, CountdownConfig, CountdownEvent } from 'ngx-countdown';
+import { IQTestForm } from '../../../interfaces/iq-test'
 import { FormBuilder, FormGroup, Validators } from  '@angular/forms';
+import { TabsetComponent } from 'ngx-bootstrap/tabs';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,8 +11,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./iq-main.component.scss']
 })
 export class IqMainComponent implements OnInit {
+	@ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
 
-	IQTestForm: FormGroup;
+	formAnswer: IQTestForm;
+
+
 	config = {}
 	questions: any[] = [
 		{ 
@@ -64,6 +69,14 @@ export class IqMainComponent implements OnInit {
 	constructor(private elementRef: ElementRef, private router: Router, private formBuilder: FormBuilder) { }
 
 	ngOnInit(): void {
+		this.formAnswer = {
+			answers: [
+				{
+					questionID: '',
+					questionAnswer: ''
+				}
+			]
+		}
 		this.config = {
 			leftTime: 1160,
 			format: 'mm : ss'
@@ -75,7 +88,24 @@ export class IqMainComponent implements OnInit {
 		}
 	}
 
-	onSubmit() {
-		console.log(this.IQTestForm.value);
+	showNextQuestion(key) {
+		let that = this;
+		let tabId = key + 1;
+		let questionCount = this.questions.length;
+		if(tabId < questionCount) {
+			setTimeout(function() {
+				that.staticTabs.tabs[tabId].active = true;
+			},500)
+		}
+	}
+
+	changeTab(e) {
+		console.log(e.heading)
+	}
+
+	onSubmit(formData) {
+		console.log(formData.value);
+		console.log(this.formAnswer)
+		this.router.navigate(['/iq-test/result'])
 	}
 }
