@@ -17,7 +17,7 @@
             </div>
             <div class="content">
                 <form #testForm="ngForm" (ngSubmit)="onSubmit(testForm)">
-                    <tabset #staticTabs class="custom-tab">
+                    <tabset #staticTabs class="custom-tab nav-disabled">
                         <tab *ngFor="let question of questions; let key = index; let last = last"
                             [heading]="key + 1"
                             [active]="question.active"
