@@ -32,6 +32,9 @@ const routes: Routes = [
 			},{
 				path: 'iq-test',
 				loadChildren: () => import('./home/iq-test/iq-test.module').then(m => m.IqTestModule)
+			},{
+				path: 'technical-test',
+				loadChildren: () => import('./home/technical-test/technical-test.module').then(m => m.TechnicalTestModule)
 			},
 			{
 				path: 'english-test',

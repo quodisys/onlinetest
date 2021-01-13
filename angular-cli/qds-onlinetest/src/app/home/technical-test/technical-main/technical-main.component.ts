@@ -6,13 +6,13 @@ import { TabsetComponent } from 'ngx-bootstrap/tabs';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-iq-main',
-  templateUrl: './iq-main.component.html',
-  styleUrls: ['./iq-main.component.scss']
+  selector: 'app-technical-main',
+  templateUrl: './technical-main.component.html',
+  styleUrls: ['./technical-main.component.scss']
 })
-export class IqMainComponent implements OnInit {
-	@ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
+export class TechnicalMainComponent implements OnInit {
 
+	@ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
 	formAnswer: IQTestForm;
 
 
@@ -88,7 +88,7 @@ export class IqMainComponent implements OnInit {
 	}
 	counterEvent(e: CountdownEvent) {
 		if(e.action == 'done') {
-			this.router.navigate(['/iq-test/result'])
+			this.router.navigate(['/technical-test/result'])
 		}
 	}
 
@@ -111,6 +111,7 @@ export class IqMainComponent implements OnInit {
 	onSubmit(formData) {
 		console.log(formData.value);
 		console.log(this.formAnswer)
-		this.router.navigate(['/iq-test/result'])
+		this.router.navigate(['/technical-test/result'])
 	}
+
 }
