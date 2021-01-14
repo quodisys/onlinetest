@@ -1,1 +1,36 @@
-<p>reading-main works!</p>
+<div class="main main-center bg-blue">
+    <div class="container">
+        <div class="col-md-12">
+            <div class="branding countdown">
+                <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4 flex-center">
+                        <img src="/assets/images/qds-logo.png" alt="company logo">
+                    </div>
+                    <div class="col-md-4 d-flex justify-content-end">
+                        <div class="countdown-wrapper">
+                            <span>Time remain</span>
+                            <countdown class="timer" [config]="config" (event)="counterEvent($event)"></countdown>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content reading">
+                <div class="reading-part" [innerHTML]="readingTest.reading | safeHtml">
+                    
+                </div>
+                <div class="title mt-4">QUESTIONS</div>
+                <form #testForm="ngForm" (ngSubmit)="onSubmit(testForm)">
+                    <div class="question">
+                        <div class="question-title" *ngFor="let question of readingTest.questions; let key = index;">
+                            <p>{{question.question}}</p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="footer-logo">
+                <img src="/assets/images/logox.svg" alt="footer logo">
+            </div>
+        </div>
+    </div>
+</div>

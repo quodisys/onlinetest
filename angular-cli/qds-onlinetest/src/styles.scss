@@ -102,6 +102,9 @@ html, body {
             background-size: 100%;
             background-repeat: no-repeat;
             background-position: bottom;
+            &.reading {
+                padding: 45px 70px;
+            }
             & .form-contain {
                 display: flex;
                 justify-content: center;
@@ -282,6 +285,12 @@ html, body {
         font-size: 32px;
         font-family: 'SFProMedium', sans-serif;
     }
+}
+
+.reading-part {
+    font-size: 18px;
+    line-height: 24px;
+    font-family: 'SFProDisplay', sans-serif;
 }
 
 //Mask Selectbox, checkbox, radio
