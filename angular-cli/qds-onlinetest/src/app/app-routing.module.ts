@@ -38,6 +38,9 @@ const routes: Routes = [
 			},{
 				path: 'aptitude-test',
 				loadChildren: () => import('./home/aptitude-test/aptitude-test.module').then(m => m.AptitudeTestModule)
+			},{
+				path: 'reading-test',
+				loadChildren: () => import('./home/reading-test/reading-test.module').then(m => m.ReadingTestModule)
 			},
 			{
 				path: 'english-test',
