@@ -38,8 +38,8 @@ export class LoginComponent implements OnInit {
 	getInfo() {
 		axios({
 			method: 'post',
-            headers: { 'Access-Control-Allow-Methods': 'GET,PUT,PATCH,POST,DELETE', 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' },
-            url: '/api/login',
+            headers: { 'Content-Type': 'application/json' },
+            url: 'https://onlinetest.quodisys.com/candidates/login.php',
             data: {
 				"cl": "4"
 			}
