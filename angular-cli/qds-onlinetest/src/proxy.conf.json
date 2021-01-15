@@ -1,0 +1,8 @@
+{
+    "/api/login": {
+        "target": "https://onlinetest.quodisys.com/candidates/login.php",
+        "secure": true,
+        "changeOrigin": true,
+        "logLevel": "debug"
+    }
+}
