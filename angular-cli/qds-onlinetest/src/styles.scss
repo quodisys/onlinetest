@@ -46,6 +46,17 @@ html, body {
 
 .main {
     height: 100%;
+    &.main-2 {
+        height: auto;
+        & .container {
+            & .branding {
+                margin-top: 70px;
+            }
+            & .footer-logo {
+                margin-bottom: 70px;
+            }
+        }
+    }
 }
 
 .bg-blue {
@@ -287,10 +298,33 @@ html, body {
     }
 }
 
-.reading-part {
-    font-size: 18px;
-    line-height: 24px;
-    font-family: 'SFProDisplay', sans-serif;
+.reading {
+    & .reading-part {
+        font-size: 18px;
+        line-height: 24px;
+        font-family: 'SFProDisplay', sans-serif;
+    }
+    & .question {
+        & .question-wrapper {
+            & p.question-title {
+                font-family: 'SFProMedium', sans-serif;
+                font-size: 18px;
+            }
+            & .question-choices {
+                & ul {
+                    list-style: none;
+                    padding-left: 20px;
+                    & li {
+                        font-size: 16px;
+                        font-family: 'SFProDisplay', sans-serif;
+                        & label {
+                            margin-bottom: 15px;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 //Mask Selectbox, checkbox, radio
@@ -328,11 +362,16 @@ input[type=radio] {
         }
     }
     &:checked+label {
+        color: #00BAE8;
+        font-weight: 600;
+        &::before {
+            border-color: #00BAE8;
+        }
         &:after {
             content: '';
             width: 15px;
             height: 15px;
-            background: #171F48;
+            background: #00BAE8;
             position: absolute;
             top: 2px;
             left: 5px;

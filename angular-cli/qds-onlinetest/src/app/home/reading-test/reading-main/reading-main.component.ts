@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 })
 export class ReadingMainComponent implements OnInit {
 
+	readingForm: any;
+
 	config = {}
 
 	readingTest: any = {
@@ -21,49 +23,54 @@ export class ReadingMainComponent implements OnInit {
 		questions: [
 			{ 
 				id: '001', 
-				question: 'What number is one quarter of one tenth of one fifth of 200?',
-				choices: ['25', '.5', '1', '10'],
+				question: 'Why people attend colleges or universities?',
+				choices: ['University degree nowadays is mandatory to apply for a good job.', 'This is the most common and perhaps the only method nowadays to enhance our knowledge and skills.', 'Becoming familiar with the latest technology, including computer, digital systems, or medicine.', 'To improve their social skills by meeting more educated people.'],
 				active: true 
 			},
 			{ 
 				id: '002', 
-				question: 'A palindrome is a word or phrase that is spelled the same written forward or backward, often used for I.Q. test questions. "Stets" is a palindrome.',
-				choices: ['True', 'False'],
+				question: 'Why the current society and its educational structures are far different than they had been a century back?',
+				choices: ['University degree nowadays is mandatory to apply for a good job.', 'This is the most common and perhaps the only method nowadays to enhance our knowledge and skills.', 'Becoming familiar with the latest technology, including computer, digital systems, or medicine.', 'To improve their social skills by meeting more educated people.'],
 			},
 			{ 
 				id: '003', 
-				question: 'Sequential reasoning is often tested in IQ exams. 3, 7, 13, 21, 31. What number comes next in the sequence?',
-				choices: ['37', '45', '43', '39', '49'],
+				question: 'Why the current society and its educational structures are far different than they had been a century back?',
+				choices: ['University degree nowadays is mandatory to apply for a good job.', 'This is the most common and perhaps the only method nowadays to enhance our knowledge and skills.', 'Becoming familiar with the latest technology, including computer, digital systems, or medicine.', 'To improve their social skills by meeting more educated people.'],
 			},
 			{ 
 				id: '004', 
-				question: 'Compare and contrast or classification problems are commonly used to measure intelligence. Which of the five is least like the other four?',
-				choices: ['Eel', 'Shark', 'Dolphin', 'Swordfish', 'Turtle'],
+				question: 'Why the current society and its educational structures are far different than they had been a century back?',
+				choices: ['University degree nowadays is mandatory to apply for a good job.', 'This is the most common and perhaps the only method nowadays to enhance our knowledge and skills.', 'Becoming familiar with the latest technology, including computer, digital systems, or medicine.', 'To improve their social skills by meeting more educated people.'],
 			},
 			{ 
 				id: '005', 
-				question: 'If you rearrange the letters of "ahret," you would have the name of a:',
-				choices: ['Ventricle', 'Fish', 'River', 'Planet', 'Country'],
+				question: 'Why the current society and its educational structures are far different than they had been a century back?',
+				choices: ['University degree nowadays is mandatory to apply for a good job.', 'This is the most common and perhaps the only method nowadays to enhance our knowledge and skills.', 'Becoming familiar with the latest technology, including computer, digital systems, or medicine.', 'To improve their social skills by meeting more educated people.'],
 			},
 			{ 
 				id: '006', 
-				question: 'Which is the largest number?',
-				choices: ['Awnser A', 'Awnser B', 'Awnser C', 'Awnser D'],
+				question: 'Why the current society and its educational structures are far different than they had been a century back?',
+				choices: ['University degree nowadays is mandatory to apply for a good job.', 'This is the most common and perhaps the only method nowadays to enhance our knowledge and skills.', 'Becoming familiar with the latest technology, including computer, digital systems, or medicine.', 'To improve their social skills by meeting more educated people.'],
 			},
 			{ 
 				id: '007', 
-				question: 'Which number has the smallest value?',
-				choices: ['Awnser A', 'Awnser B', 'Awnser C', 'Awnser D'],
+				question: 'Why the current society and its educational structures are far different than they had been a century back?',
+				choices: ['University degree nowadays is mandatory to apply for a good job.', 'This is the most common and perhaps the only method nowadays to enhance our knowledge and skills.', 'Becoming familiar with the latest technology, including computer, digital systems, or medicine.', 'To improve their social skills by meeting more educated people.'],
 			},
 			{ 
 				id: '008', 
-				question: 'What will you get if you reduce 14/35 to the lowest term?',
-				choices: ['Awnser A', 'Awnser B', 'Awnser C', 'Awnser D'],
+				question: 'Why the current society and its educational structures are far different than they had been a century back?',
+				choices: ['University degree nowadays is mandatory to apply for a good job.', 'This is the most common and perhaps the only method nowadays to enhance our knowledge and skills.', 'Becoming familiar with the latest technology, including computer, digital systems, or medicine.', 'To improve their social skills by meeting more educated people.'],
 			},
 			{ 
 				id: '009', 
-				question: 'Helpless and Legend have ____ meanings.',
-				choices: ['Awnser A', 'Awnser B', 'Awnser C', 'Awnser D'],
+				question: 'Why the current society and its educational structures are far different than they had been a century back?',
+				choices: ['University degree nowadays is mandatory to apply for a good job.', 'This is the most common and perhaps the only method nowadays to enhance our knowledge and skills.', 'Becoming familiar with the latest technology, including computer, digital systems, or medicine.', 'To improve their social skills by meeting more educated people.'],
+			},
+			{ 
+				id: '010', 
+				question: 'Why the current society and its educational structures are far different than they had been a century back?',
+				choices: ['University degree nowadays is mandatory to apply for a good job.', 'This is the most common and perhaps the only method nowadays to enhance our knowledge and skills.', 'Becoming familiar with the latest technology, including computer, digital systems, or medicine.', 'To improve their social skills by meeting more educated people.'],
 			}
 		]
 	}
@@ -74,8 +81,11 @@ export class ReadingMainComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.config = {
-			leftTime: 130,
+			leftTime: 360,
 			format: 'mm : ss'
+		}
+		this.readingForm = {
+			answers : []
 		}
 	}
 
@@ -86,7 +96,8 @@ export class ReadingMainComponent implements OnInit {
 	}
 
 	onSubmit(testForm) {
-		console.log(testForm)
+		console.log(testForm.value);
+		this.router.navigate(['/reading-test/result'])
 	}
 
 }

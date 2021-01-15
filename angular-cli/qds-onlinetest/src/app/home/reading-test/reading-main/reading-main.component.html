@@ -1,4 +1,4 @@
-<div class="main main-center bg-blue">
+<div class="main main-2 main-center bg-blue">
     <div class="container">
         <div class="col-md-12">
             <div class="branding countdown">
@@ -16,15 +16,25 @@
                 </div>
             </div>
             <div class="content reading">
-                <div class="reading-part" [innerHTML]="readingTest.reading | safeHtml">
-                    
-                </div>
-                <div class="title mt-4">QUESTIONS</div>
+                <div class="reading-part" [innerHTML]="readingTest.reading | safeHtml"></div>
+                <div class="title mt-5 mb-5">QUESTIONS</div>
                 <form #testForm="ngForm" (ngSubmit)="onSubmit(testForm)">
                     <div class="question">
-                        <div class="question-title" *ngFor="let question of readingTest.questions; let key = index;">
-                            <p>{{question.question}}</p>
+                        <div class="question-wrapper" *ngFor="let question of readingTest.questions; let key = index;">
+                            <p class="question-title">{{key + 1}}. {{question.question}}</p>
+                            <div class="question-choices">
+                                <ul>
+                                    <li *ngFor="let choice of question.choices; let choiceKey = index;">
+                                        <input class="checkbox-mask" id="question{{key}}-choice{{choiceKey}}" type="radio" [value]="choice" [(ngModel)]="readingForm.answers[key]" name="question-{{key + 1}}">
+                                        <label for="question{{key}}-choice{{choiceKey}}">{{choice}}</label>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
+                        
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-main mt-4 mb-3">Submit</button>
                     </div>
                 </form>
             </div>
