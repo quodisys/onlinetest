@@ -47,6 +47,9 @@ const routes: Routes = [
 			},{
 				path: 'speaking-test',
 				loadChildren: () => import('./home/speaking-test/speaking-test.module').then(m => m.SpeakingTestModule)
+			},{
+				path: 'listening-test',
+				loadChildren: () => import('./home/listening-test/listening-test.module').then(m => m.ListeningTestModule)
 			},
 			{
 				path: 'english-test',
