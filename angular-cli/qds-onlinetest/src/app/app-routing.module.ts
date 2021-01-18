@@ -44,6 +44,9 @@ const routes: Routes = [
 			},{
 				path: 'vocabulary-test',
 				loadChildren: () => import('./home/vocabulary-test/vocabulary-test.module').then(m => m.VocabularyTestModule)
+			},{
+				path: 'speaking-test',
+				loadChildren: () => import('./home/speaking-test/speaking-test.module').then(m => m.SpeakingTestModule)
 			},
 			{
 				path: 'english-test',
