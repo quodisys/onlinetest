@@ -38,11 +38,10 @@ export class LoginComponent implements OnInit {
 	getInfo() {
 		axios({
 			method: 'post',
-            headers: { 'Content-Type': 'application/json' },
-            url: 'https://onlinetest.quodisys.com/candidates/login.php',
-            data: {
-				"cl": "4"
-			}
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			url: 'https://onlinetest.quodisys.com/candidates/login.php',
+			  data: JSON.stringify({"cl": "4"})
+			  //data: {"cl": "4"}
 		})
 		.then(function (response) {
 			console.log(response);
