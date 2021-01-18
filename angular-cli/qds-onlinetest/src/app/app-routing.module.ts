@@ -54,20 +54,6 @@ const routes: Routes = [
 			}
 		]
 	}
-	
-	
-	
-	// ,
-	// {
-	// 	path: 'home',
-	// 	component: DashboardComponent,
-	// 	canActivate: [AuthGuard]
-	// },
-	// {
-	// 	path: 'english-test',
-	// 	component: EnglishTestComponent,
-	// 	canActivate: [AuthGuard]
-	// }
 ];
 
 @NgModule({

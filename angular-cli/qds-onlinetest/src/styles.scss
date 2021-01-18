@@ -394,6 +394,27 @@ input[type=checkbox] {
         }
     }
 }
+.speaking {
+    & .content {
+        & .question {
+            min-height: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}
+
+.btn-recording {
+    background-image: linear-gradient(to bottom, #31EC80, #2BBF6A);
+    border: none;
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+    & img {
+        width: 90px;
+    }
+}
 @media (max-height: 800px) {
     .main-center {
         & .container {
