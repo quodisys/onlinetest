@@ -9,6 +9,14 @@ import { ListeningResultComponent } from './listening-result/listening-result.co
 import { ListeningMainComponent } from './listening-main/listening-main.component'
 import { CountdownModule } from 'ngx-countdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { NgxAudioPlayerModule } from 'ngx-audio-player';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
 declarations: [
@@ -23,7 +31,15 @@ imports: [
     FormsModule,
     CountdownModule,
     ReactiveFormsModule,
-    TabsModule.forRoot()
+    TabsModule.forRoot(),
+    NgxAudioPlayerModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatRadioModule,
+    MatCheckboxModule,
+    MatSlideToggleModule,
+    MatCardModule,
+    MatButtonModule
 ]
 })
 export class ListeningTestModule { }
