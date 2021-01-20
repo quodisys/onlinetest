@@ -429,6 +429,9 @@ input[type=checkbox] {
         background-color: #ff4081;
     }
 }
+.error {
+    color: red;
+}
 @media (max-height: 800px) {
     .main-center {
         & .container {
