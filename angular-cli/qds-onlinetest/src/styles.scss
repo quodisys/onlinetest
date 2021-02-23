@@ -346,6 +346,22 @@ html, body {
     }
 }
 
+.listening {
+    & .title {
+        font-size: 32px;
+    }
+    & .test-divider {
+        display: block;
+        height: 3px;
+        width: 140%;
+        background-color: #171F48;
+        margin-bottom: 30px;
+        margin-top: 30px;
+        position: relative;
+        left: -20%;
+    }
+}
+
 //Mask Selectbox, checkbox, radio
 input[type=radio] {
     position: absolute;
@@ -473,6 +489,56 @@ input[type=checkbox] {
             margin-right: 15px;
         }
     }
+}
+.mat-card {
+    &.ngx-audio-player {
+        background-color: #ECECF2;
+        padding: 10px 30px !important;
+        & .mat-button {
+            border: none;
+            & .mat-icon {
+                fill: #00BAE8;
+                border-radius: 50%;
+                background: linear-gradient(180deg, #FCFCFC 0%, #D4D6E2 100%);
+                & svg {
+                    height: 26px;
+                    width: 26px;
+                    top: 3px;
+                    position: relative;
+                }
+            }
+        }
+        & .mat-slider-horizontal .mat-slider-wrapper,
+        & .mat-slider-horizontal .mat-slider-track-wrapper {
+            height: 10px;
+            border-radius: 5px;
+        }
+        & .mat-slider-horizontal .mat-slider-track-fill,
+        & .mat-slider-horizontal .mat-slider-track-background {
+            height: 10px;
+        }
+        & .mat-slider-horizontal .mat-slider-track-fill {
+            width: 120%;
+        }
+        & .mat-slider-horizontal .mat-slider-track-background {
+            background-color: #ffff;
+        }
+        & .mat-slider-thumb {
+            display: none;
+            width: 2px;
+            height: 15px;
+            border: none;
+            transform: scale(1);
+            border-radius: 3px;
+            bottom: -8px;
+            right: 0;
+        }
+    }
+}
+.player-wrapper .mat-accent .mat-slider-thumb, 
+.player-wrapper .mat-accent .mat-slider-thumb-label, 
+.player-wrapper .mat-accent .mat-slider-track-fill {
+    background: linear-gradient(180deg, #25E6FF 0%, #33B2FF 100%);
 }
 @media (max-height: 800px) {
     .main-center {

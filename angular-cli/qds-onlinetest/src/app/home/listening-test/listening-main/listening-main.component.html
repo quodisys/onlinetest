@@ -15,55 +15,45 @@
                     </div>
                 </div>
             </div>
-            <div class="content reading">
-                <div class="player-wrapper">
-                    <ngx-audio-player 
-                        [playlist]="msaapPlaylist" 
-                        [displayTitle]="msaapDisplayTitle" 
-                        [autoPlay]="false"
-                        muted="muted" 
-                        [displayPlaylist]="msaapDisplayPlayList" 
-                        [displayArtist]="msaapDisplayArtist" 
-                        [displayDuration]="msaapDisplayDuration"
-                        [expanded]="true" 
-                        [displayVolumeControls]="msaapDisplayVolumeControls" 
-                        [disablePositionSlider]="msaapDisablePositionSlider">
-                    </ngx-audio-player>  
-                    <ngx-audio-player 
-                        [playlist]="msaapPlaylist2" 
-                        [displayTitle]="msaapDisplayTitle"
-                        [autoPlay]="false"
-                        muted="muted" 
-                        [displayPlaylist]="msaapDisplayPlayList" 
-                        [displayArtist]="msaapDisplayArtist" 
-                        [displayDuration]="msaapDisplayDuration"
-                        [expanded]="true" 
-                        [displayVolumeControls]="msaapDisplayVolumeControls" 
-                        [disablePositionSlider]="msaapDisablePositionSlider">
-                    </ngx-audio-player>   
-                </div>
-                <div class="title mt-3 mb-3 text-uppercase">Questions</div>
-                <form #testForm="ngForm" (ngSubmit)="onSubmit(testForm)">
-                    <div class="question">
-                        <div class="question-wrapper" *ngFor="let question of vocabularyTest.questions; let key = index;">
-                            <p class="question-title">{{key + 1}}. {{question.question}}</p>
-                            <div class="question-choices" *ngIf="question.type == 'select'">
-                                <ul>
-                                    <li *ngFor="let choice of question.choices; let choiceKey = index;">
-                                        <input class="checkbox-mask" id="question{{key}}-choice{{choiceKey}}" type="radio" [value]="choice" [(ngModel)]="vocabularyForm.answers[key]" name="question-{{key + 1}}">
-                                        <label for="question{{key}}-choice{{choiceKey}}">{{choice}}</label>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="question-text text-type" *ngIf="question.type == 'text'">
-                                <label for="question{{key}}">Answer: </label>
-                                <input class="form-control question-type-text" id="question{{key}}" type="text" [(ngModel)]="vocabularyForm.answers[key]" name="question-{{key + 1}}">
+            <div class="content reading listening">
+                <form #testForm="ngForm">
+                    <div class="question-wrapper" *ngFor="let test of vocabularyTest; let i = index; let last = last;">
+                        <div class="player-wrapper">
+                            <ngx-audio-player 
+                            [playlist]="msaapPlaylist[i]" 
+                            [displayTitle]="msaapDisplayTitle" 
+                            [autoPlay]="false"
+                            muted="muted" 
+                            [displayPlaylist]="msaapDisplayPlayList" 
+                            [displayArtist]="msaapDisplayArtist" 
+                            [displayDuration]="msaapDisplayDuration"
+                            [expanded]="true" 
+                            [displayVolumeControls]="msaapDisplayVolumeControls" 
+                            [disablePositionSlider]="msaapDisablePositionSlider">
+                            </ngx-audio-player>
+                        </div>
+                        <div class="title mt-3 mb-3 text-uppercase">{{test.title}}</div>
+                        <div class="question">
+                            <div class="question-wrapper" *ngFor="let question of test.questions; let key = index;">
+                                <p class="question-title">{{key + 1}}. {{question.question}}</p>
+                                <div class="question-choices" *ngIf="question.type == 'select'">
+                                    <ul>
+                                        <li *ngFor="let choice of question.choices; let choiceKey = index;">
+                                            <input class="checkbox-mask" id="question{{key}}-choice{{choiceKey}}" type="radio" [value]="choice" [(ngModel)]="vocabularyForm.answers[key]" name="question-{{key + 1}}">
+                                            <label for="question{{key}}-choice{{choiceKey}}">{{choice}}</label>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="question-text text-type" *ngIf="question.type == 'text'">
+                                    <label for="question{{key}}">Answer: </label>
+                                    <input class="form-control question-type-text" id="question{{key}}" type="text" [(ngModel)]="vocabularyForm.answers[key]" name="question-{{key + 1}}">
+                                </div>
                             </div>
                         </div>
-                        
+                        <div *ngIf="!last" class="test-divider"></div>
                     </div>
                     <div class="d-flex justify-content-center">
-                        <button type="submit" class="btn btn-main mt-4 mb-3">Submit</button>
+                        <button type="submit" class="btn btn-main mt-4 mb-3" (click)="onSubmit(testForm)">Submit</button>
                     </div>
                 </form>
             </div>
