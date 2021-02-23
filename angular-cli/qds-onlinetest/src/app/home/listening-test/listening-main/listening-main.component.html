@@ -23,7 +23,18 @@
                         [autoPlay]="false"
                         muted="muted" 
                         [displayPlaylist]="msaapDisplayPlayList" 
-                        [pageSizeOptions]="msaapPageSizeOptions" 
+                        [displayArtist]="msaapDisplayArtist" 
+                        [displayDuration]="msaapDisplayDuration"
+                        [expanded]="true" 
+                        [displayVolumeControls]="msaapDisplayVolumeControls" 
+                        [disablePositionSlider]="msaapDisablePositionSlider">
+                    </ngx-audio-player>  
+                    <ngx-audio-player 
+                        [playlist]="msaapPlaylist2" 
+                        [displayTitle]="msaapDisplayTitle"
+                        [autoPlay]="false"
+                        muted="muted" 
+                        [displayPlaylist]="msaapDisplayPlayList" 
                         [displayArtist]="msaapDisplayArtist" 
                         [displayDuration]="msaapDisplayDuration"
                         [expanded]="true" 
@@ -36,13 +47,17 @@
                     <div class="question">
                         <div class="question-wrapper" *ngFor="let question of vocabularyTest.questions; let key = index;">
                             <p class="question-title">{{key + 1}}. {{question.question}}</p>
-                            <div class="question-choices">
+                            <div class="question-choices" *ngIf="question.type == 'select'">
                                 <ul>
                                     <li *ngFor="let choice of question.choices; let choiceKey = index;">
                                         <input class="checkbox-mask" id="question{{key}}-choice{{choiceKey}}" type="radio" [value]="choice" [(ngModel)]="vocabularyForm.answers[key]" name="question-{{key + 1}}">
                                         <label for="question{{key}}-choice{{choiceKey}}">{{choice}}</label>
                                     </li>
                                 </ul>
+                            </div>
+                            <div class="question-text text-type" *ngIf="question.type == 'text'">
+                                <label for="question{{key}}">Answer: </label>
+                                <input class="form-control question-type-text" id="question{{key}}" type="text" [(ngModel)]="vocabularyForm.answers[key]" name="question-{{key + 1}}">
                             </div>
                         </div>
                         

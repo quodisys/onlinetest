@@ -53,6 +53,9 @@ export class LoginComponent implements OnInit {
 			that.keyword = response.data[0].keyword;
 			localStorage.setItem('logoUrl', response.data[0].logo);
 			localStorage.setItem('keyword', response.data[0].keyword);
+			if(that.logo == undefined) {
+				that.logo = "https://qdsasia.com/wp-content/themes/qdstheme/assets/img/qds-logo-scaled.png"
+			}
 			console.log(response);
 		})
 		.catch(function (error) {

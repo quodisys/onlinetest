@@ -48,6 +48,7 @@ html, body {
     height: 100%;
     &.main-2 {
         height: auto;
+        min-height: 100%;
         & .container {
             & .branding {
                 margin-top: 70px;
@@ -161,6 +162,24 @@ html, body {
             width: 240px;
         }
     }
+}
+
+.sub-multiple-line {
+    margin: auto;
+    max-width: 450px;
+    & ul {
+        list-style: none;
+        padding-left: 0;
+        & li {
+            white-space: nowrap;
+            margin-bottom: 15px;
+        }
+    }
+}
+
+.footer-desc {
+    color: #4688FF;
+    font-size: 12px;
 }
 
 .content-test {
@@ -431,6 +450,29 @@ input[type=checkbox] {
 }
 .error {
     color: red;
+}
+
+.question-type-text {
+    border: 2px solid #ced4da;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+    max-width: 150px;
+    padding: 0;
+    height: 30px;
+}
+.question-text {
+    &.text-type {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        margin-left: 20px;
+        & label {
+            margin-bottom: 0;
+            margin-right: 15px;
+        }
+    }
 }
 @media (max-height: 800px) {
     .main-center {

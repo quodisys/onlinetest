@@ -23,49 +23,64 @@ export class SpeakingMainComponent implements OnInit {
 	questions: any[] = [
 		{ 
 			id: '001', 
-			question: 'Why do some people like to go to big shopping malls and some like small shops?',
-			choices: ['25', '.5', '1', '10'],
+			question: 'I have experience managing and leading a large team.',
 			active: true 
 		},
 		{ 
 			id: '002', 
-			question: 'She sells seashells by the seashore',
-			choices: ['True', 'False'],
+			question: 'This job is a good fit for what I’ve been doing throughout my career.',
 		},
 		{ 
 			id: '003', 
-			question: 'This summer I will visit a new country with two of my best friends.',
-			choices: ['37', '45', '43', '39', '49'],
+			question: 'A resume is a written document that includes work experience, education, and skills.',
 		},
 		{ 
 			id: '004', 
-			question: 'She sells seashells by the seashore',
-			choices: ['Eel', 'Shark', 'Dolphin', 'Swordfish', 'Turtle'],
+			question: 'Conflict resolution is an essential part of teamwork.',
 		},
 		{ 
 			id: '005', 
-			question: 'If you rearrange the letters of "ahret," you would have the name of a:',
-			choices: ['Ventricle', 'Fish', 'River', 'Planet', 'Country'],
+			question: 'We will get it resolved as quickly as possible.',
 		},
 		{ 
 			id: '006', 
-			question: 'Which is the largest number?',
-			choices: ['Awnser A', 'Awnser B', 'Awnser C', 'Awnser D'],
+			question: 'Unfortunately, I would need my manager’s approval for that request. May I transfer your call?',
 		},
 		{ 
 			id: '007', 
-			question: 'Which number has the smallest value?',
-			choices: ['Awnser A', 'Awnser B', 'Awnser C', 'Awnser D'],
+			question: 'We acquired five thousand new customers this quarter, which is 20% more than last quarter.',
 		},
 		{ 
 			id: '008', 
-			question: 'What will you get if you reduce 14/35 to the lowest term?',
-			choices: ['Awnser A', 'Awnser B', 'Awnser C', 'Awnser D'],
+			question: 'Your HR director mentioned that productivity is an area you want to focus on next year.',
 		},
 		{ 
 			id: '009', 
-			question: 'Helpless and Legend have ____ meanings.',
-			choices: ['Awnser A', 'Awnser B', 'Awnser C', 'Awnser D'],
+			question: 'We offer a real-time product management tool with automated alerts.'
+		},
+		{ 
+			id: '009', 
+			question: 'Most of our clients set up bank transfers, but we can accommodate any payment method.'
+		},
+		{ 
+			id: '009', 
+			question: 'Thanks for meeting us on short notice. We’re experiencing difficulties using your product.'
+		},
+		{ 
+			id: '009', 
+			question: 'Some companies have trouble finding qualified applicants for jobs that require technical skills.'
+		},
+		{ 
+			id: '009', 
+			question: 'I’m interested in selling your products at our authorized stores.'
+		},
+		{ 
+			id: '009', 
+			question: 'Being an entrepreneur requires a good idea, passion, and a willingness to work hard.'
+		},
+		{ 
+			id: '009', 
+			question: 'There are three types of business organizations: for-profit, non-profit, and hybrids.'
 		}
 	];
 

@@ -10,9 +10,8 @@ import { Track } from 'ngx-audio-player';
 })
 export class ListeningMainComponent implements OnInit {
 
-	msaapDisplayTitle = false;
-	msaapDisplayPlayList = true;
-	msaapPageSizeOptions = [2,4,6];
+	msaapDisplayTitle = true;
+	msaapDisplayPlayList = false;
 	msaapDisplayVolumeControls = false;
 	msaapDisplayArtist = false;
 	msaapDisplayDuration = true;
@@ -26,54 +25,124 @@ export class ListeningMainComponent implements OnInit {
 		questions: [
 			{ 
 				id: '001', 
-				question: 'Why people attend colleges or universities?',
+				question: 'The speaker will tell us what entrepreneurship is and will talk about vocabulary and ________ related to entrepreneurship.',
 				choices: ['University degree nowadays is mandatory to apply for a good job.', 'This is the most common and perhaps the only method nowadays to enhance our knowledge and skills.', 'Becoming familiar with the latest technology, including computer, digital systems, or medicine.', 'To improve their social skills by meeting more educated people.'],
-				active: true 
+				active: true,
+				type: 'text'
 			},
 			{ 
 				id: '002', 
-				question: 'Why the current society and its educational structures are far different than they had been a century back?',
+				question: 'Additionally, she’ll make a comparison between entrepreneurs and small business ________.',
 				choices: ['University degree nowadays is mandatory to apply for a good job.', 'This is the most common and perhaps the only method nowadays to enhance our knowledge and skills.', 'Becoming familiar with the latest technology, including computer, digital systems, or medicine.', 'To improve their social skills by meeting more educated people.'],
+				type: 'text'
 			},
 			{ 
 				id: '003', 
-				question: 'Why the current society and its educational structures are far different than they had been a century back?',
-				choices: ['University degree nowadays is mandatory to apply for a good job.', 'This is the most common and perhaps the only method nowadays to enhance our knowledge and skills.', 'Becoming familiar with the latest technology, including computer, digital systems, or medicine.', 'To improve their social skills by meeting more educated people.'],
+				question: 'What is entrepreneurship?',
+				choices: ['It is a startup business.', 'It is the activity of setting up a new business.', 'It is a purchase of a new business.'],
+				type: 'select'
 			},
 			{ 
 				id: '004', 
-				question: 'Why the current society and its educational structures are far different than they had been a century back?',
+				question: 'Entrepreneurs need to be passionate, be hard-working, and possess many business ________.',
 				choices: ['University degree nowadays is mandatory to apply for a good job.', 'This is the most common and perhaps the only method nowadays to enhance our knowledge and skills.', 'Becoming familiar with the latest technology, including computer, digital systems, or medicine.', 'To improve their social skills by meeting more educated people.'],
+				type: 'text'
 			},
 			{ 
 				id: '005', 
-				question: 'Why the current society and its educational structures are far different than they had been a century back?',
-				choices: ['University degree nowadays is mandatory to apply for a good job.', 'This is the most common and perhaps the only method nowadays to enhance our knowledge and skills.', 'Becoming familiar with the latest technology, including computer, digital systems, or medicine.', 'To improve their social skills by meeting more educated people.'],
+				question: 'In which order the speaker discusses the topics?',
+				choices: ['Investment, Initial idea, Implementation', 'Initial idea, Investment, Implementation', 'Implementation, Initial idea, Investment', 'Implementation, Investment, Initial idea', 'Investment, Implementation, Initial idea'],
+				type: 'select'
 			},
 			{ 
 				id: '006', 
-				question: 'Why the current society and its educational structures are far different than they had been a century back?',
+				question: 'Every entrepreneur has a different ________ style.',
 				choices: ['University degree nowadays is mandatory to apply for a good job.', 'This is the most common and perhaps the only method nowadays to enhance our knowledge and skills.', 'Becoming familiar with the latest technology, including computer, digital systems, or medicine.', 'To improve their social skills by meeting more educated people.'],
+				type: 'text'
 			},
 			{ 
 				id: '007', 
-				question: 'Why the current society and its educational structures are far different than they had been a century back?',
-				choices: ['University degree nowadays is mandatory to apply for a good job.', 'This is the most common and perhaps the only method nowadays to enhance our knowledge and skills.', 'Becoming familiar with the latest technology, including computer, digital systems, or medicine.', 'To improve their social skills by meeting more educated people.'],
+				question: 'What is a day-to-day operation?',
+				choices: ['Activities that are happening every day at a company to generate profit', 'Everyday activities and hobbies of employees', 'Daily work and life routines'],
+				type: 'select'
 			},
 			{ 
 				id: '008', 
-				question: 'Why the current society and its educational structures are far different than they had been a century back?',
-				choices: ['University degree nowadays is mandatory to apply for a good job.', 'This is the most common and perhaps the only method nowadays to enhance our knowledge and skills.', 'Becoming familiar with the latest technology, including computer, digital systems, or medicine.', 'To improve their social skills by meeting more educated people.'],
+				question: 'Which of the following is not one of Elon Musk’s strengths?',
+				choices: ['Strategic thinking', 'Sales and finance', 'Coming up with new ideas'],
+				type: 'select'
 			},
 			{ 
 				id: '009', 
-				question: 'Why the current society and its educational structures are far different than they had been a century back?',
-				choices: ['University degree nowadays is mandatory to apply for a good job.', 'This is the most common and perhaps the only method nowadays to enhance our knowledge and skills.', 'Becoming familiar with the latest technology, including computer, digital systems, or medicine.', 'To improve their social skills by meeting more educated people.'],
+				question: 'Small business owners ...',
+				choices: ['...work hard to make their businesses grow as fast as possible.', '...are focused on stability, rather than growth.', '...aren’t very good at day-to-day operations.'],
+				type: 'select'
 			},
 			{ 
 				id: '010', 
-				question: 'Why the current society and its educational structures are far different than they had been a century back?',
+				question: 'Both small business owners and entrepreneurs are equally important to ________ development.',
 				choices: ['University degree nowadays is mandatory to apply for a good job.', 'This is the most common and perhaps the only method nowadays to enhance our knowledge and skills.', 'Becoming familiar with the latest technology, including computer, digital systems, or medicine.', 'To improve their social skills by meeting more educated people.'],
+				type: 'text'
+			},
+			{ 
+				id: '011', 
+				question: 'According to the audio, what is the definition of economic development?',
+				choices: ['The act of gaining and spending money', 'Making sure every person has a job', 'The process of improving the quality of people’s lives'],
+				type: 'select'
+			},
+			{ 
+				id: '012', 
+				question: 'A startup is a business that didn’t ________ before.',
+				choices: ['University degree nowadays is mandatory to apply for a good job.', 'This is the most common and perhaps the only method nowadays to enhance our knowledge and skills.', 'Becoming familiar with the latest technology, including computer, digital systems, or medicine.', 'To improve their social skills by meeting more educated people.'],
+				type: 'text'
+			},
+			{ 
+				id: '013', 
+				question: 'Entrepreneurship is a good ________ to deal with the unemployment crisis.',
+				choices: ['University degree nowadays is mandatory to apply for a good job.', 'This is the most common and perhaps the only method nowadays to enhance our knowledge and skills.', 'Becoming familiar with the latest technology, including computer, digital systems, or medicine.', 'To improve their social skills by meeting more educated people.'],
+				type: 'text'
+			},
+			{ 
+				id: '014', 
+				question: 'The job of a supplier is to ________ products and services to another entity.',
+				choices: ['University degree nowadays is mandatory to apply for a good job.', 'This is the most common and perhaps the only method nowadays to enhance our knowledge and skills.', 'Becoming familiar with the latest technology, including computer, digital systems, or medicine.', 'To improve their social skills by meeting more educated people.'],
+				type: 'text'
+			},
+			{ 
+				id: '015', 
+				question: 'Which of the following statements is not true:',
+				choices: ['Entrepreneurship leads to innovation, which leads to access to resources.', 'Entrepreneurship only helps economic development by creating jobs.', 'Entrepreneurship, innovation, and economic growth are connected.'],
+				type: 'select'
+			},
+			{ 
+				id: '016', 
+				question: 'In rural Africa, people now have access to ________ thanks to their smartphones.',
+				choices: ['University degree nowadays is mandatory to apply for a good job.', 'This is the most common and perhaps the only method nowadays to enhance our knowledge and skills.', 'Becoming familiar with the latest technology, including computer, digital systems, or medicine.', 'To improve their social skills by meeting more educated people.'],
+				type: 'text'
+			},
+			{ 
+				id: '017', 
+				question: 'Thanks to smartphones, people can now make ________ and efficient money transfers.',
+				choices: ['University degree nowadays is mandatory to apply for a good job.', 'This is the most common and perhaps the only method nowadays to enhance our knowledge and skills.', 'Becoming familiar with the latest technology, including computer, digital systems, or medicine.', 'To improve their social skills by meeting more educated people.'],
+				type: 'text'
+			},
+			{ 
+				id: '018', 
+				question: 'Which of the following is another example of innovation that led to better use of resources?',
+				choices: ['Car engines', 'Petrol stations', 'Gas tanks'],
+				type: 'select'
+			},
+			{ 
+				id: '019', 
+				question: 'Apart from creating jobs and innovation, entrepreneurship also increases:',
+				choices: ['Poverty', 'Government activities', 'Private funding'],
+				type: 'select'
+			},
+			{ 
+				id: '020', 
+				question: 'What was the purpose of this passage?',
+				choices: ['To explain how entrepreneurship helps economic development.', 'To talk about the advantages of entrepreneurship.', 'To convince people to become entrepreneurs.'],
+				type: 'select'
 			}
 		]
 	}
@@ -82,11 +151,18 @@ export class ListeningMainComponent implements OnInit {
 	// Material Style Advance Audio Player Playlist
 	msaapPlaylist: Track[] = [
 		{
-		  title: 'Test 001',
+		  title: 'Audio 1',
 		  link:
-			'https://dl.dropboxusercontent.com/s/9v0psowra7ekhxo/A%20Himitsu%20-%20In%20Love%20%28feat.%20Nori%29.flac?dl=0',
-		  duration: 227,
-		  artist: 'A Himitsu feat. Nori'
+			'https://onlinetest.quodisys.com/questions/20210120050423-listening-1.mp3',
+		  artist: 'Elsa'
+		}
+	];
+	msaapPlaylist2: Track[] = [
+		{
+		  title: 'Audio 2',
+		  link:
+			'https://onlinetest.quodisys.com/questions/20210120050423-listening-2.mp3',
+		  artist: 'Elsa'
 		}
 	];
 
