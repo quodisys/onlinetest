@@ -18,6 +18,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 
+import { ShareModule } from '../../shared.module'
+
 @NgModule({
 declarations: [
     ListeningStartComponent,
@@ -39,7 +41,8 @@ imports: [
     MatCheckboxModule,
     MatSlideToggleModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    ShareModule
 ]
 })
 export class ListeningTestModule { }

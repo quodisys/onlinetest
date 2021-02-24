@@ -10,6 +10,7 @@ import { ReadingResultComponent } from './reading-result/reading-result.componen
 import { CountdownModule } from 'ngx-countdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { SafeHtmlPipe } from '../../pipe/safe-html.pipe';
+import { ShareModule } from '../../shared.module'
 
 @NgModule({
 declarations: [
@@ -25,7 +26,8 @@ imports: [
     FormsModule,
     CountdownModule,
     ReactiveFormsModule,
-    TabsModule.forRoot()
+    TabsModule.forRoot(),
+    ShareModule
 ]
 })
 export class ReadingTestModule { }

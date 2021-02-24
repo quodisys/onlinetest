@@ -9,6 +9,7 @@ import { SpeakingMainComponent } from './speaking-main/speaking-main.component';
 import { SpeakingResultComponent } from './speaking-result/speaking-result.component';
 import { CountdownModule } from 'ngx-countdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { ShareModule } from '../../shared.module'
 
 @NgModule({
 declarations: [
@@ -23,7 +24,8 @@ imports: [
     FormsModule,
     CountdownModule,
     ReactiveFormsModule,
-    TabsModule.forRoot()
+    TabsModule.forRoot(),
+    ShareModule
 ]
 })
 export class SpeakingTestModule { }

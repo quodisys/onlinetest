@@ -9,6 +9,7 @@ import { IqResultComponent } from './iq-result/iq-result.component';
 import { IqMainComponent } from './iq-main/iq-main.component'
 import { CountdownModule } from 'ngx-countdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { ShareModule } from '../../shared.module'
 
 @NgModule({
 declarations: [
@@ -23,6 +24,7 @@ imports: [
     FormsModule,
     CountdownModule,
     ReactiveFormsModule,
+    ShareModule,
     TabsModule.forRoot()
 ]
 })

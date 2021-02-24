@@ -9,6 +9,7 @@ import { VocabularyResultComponent } from './vocabulary-result/vocabulary-result
 import { VocabularyMainComponent } from './vocabulary-main/vocabulary-main.component'
 import { CountdownModule } from 'ngx-countdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { ShareModule } from '../../shared.module'
 
 @NgModule({
 declarations: [
@@ -23,7 +24,8 @@ imports: [
     FormsModule,
     CountdownModule,
     ReactiveFormsModule,
-    TabsModule.forRoot()
+    TabsModule.forRoot(),
+    ShareModule
 ]
 })
 export class VocabularyTestModule { }

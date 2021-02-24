@@ -9,6 +9,7 @@ import { AptitudeResultComponent } from './aptitude-result/aptitude-result.compo
 import { AptitudeMainComponent } from './aptitude-main/aptitude-main.component'
 import { CountdownModule } from 'ngx-countdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { ShareModule } from '../../shared.module'
 
 @NgModule({
 declarations: [
@@ -23,6 +24,7 @@ imports: [
     FormsModule,
     CountdownModule,
     ReactiveFormsModule,
+    ShareModule,
     TabsModule.forRoot()
 ]
 })
