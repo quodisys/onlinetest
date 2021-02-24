@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { CountdownEvent } from 'ngx-countdown';
+import { TabsetComponent } from 'ngx-bootstrap/tabs';
+import { IQTestForm } from '../../../interfaces/iq-test';
 
 @Component({
   selector: 'app-vocabulary-main',
@@ -9,6 +11,8 @@ import { CountdownEvent } from 'ngx-countdown';
 })
 export class VocabularyMainComponent implements OnInit {
 
+	@ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
+	formAnswer: IQTestForm;
 	vocabularyForm: any;
 
 	config = {}
@@ -183,12 +187,21 @@ export class VocabularyMainComponent implements OnInit {
 	constructor(private router: Router) { }
 
 	ngOnInit(): void {
+		this.formAnswer = {
+			answers: [
+				{
+					questionID: '',
+					questionAnswer: ''
+				}
+			]
+		}
+		this.vocabularyTest.questions.map(item => {
+			item['customClass'] = '';
+			console.log(item)
+		})
 		this.config = {
 			leftTime: 360,
 			format: 'mm : ss'
-		}
-		this.vocabularyForm = {
-			answers : []
 		}
 	}
 	  
@@ -196,6 +209,22 @@ export class VocabularyMainComponent implements OnInit {
 		if(e.action == 'done') {
 			this.router.navigate(['/vocabulary-test/result'])
 		}
+	}
+
+	showNextQuestion(key) {
+		let that = this;
+		let tabId = key + 1;
+		let questionCount = this.vocabularyTest.questions.length;
+		that.vocabularyTest.questions[key].customClass = 'done'
+		if(tabId < questionCount) {
+			setTimeout(function() {
+				that.staticTabs.tabs[tabId].active = true;
+			},500)
+		}
+	}
+
+	changeTab(e) {
+		console.log(e.heading)
 	}
 
 	onSubmit(testForm) {

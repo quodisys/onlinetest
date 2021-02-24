@@ -382,13 +382,13 @@ input[type=radio] {
         position: relative;
         padding-left: 35px;
         cursor: pointer;
-        line-height: 20px;
+        // line-height: 20px;
         // display: inline-block;
         &:before {
             content: '';
             position: absolute;
             left: 0px;
-            top: -3px;
+            top: 13px;
             width: 25px;
             height: 25px;
             border: 2.5px solid #171F48;
@@ -408,7 +408,7 @@ input[type=radio] {
             height: 15px;
             background: #00BAE8;
             position: absolute;
-            top: 2px;
+            top: 18px;
             left: 5px;
             border-radius: 100%;
             -webkit-transition: all 0.05s ease;
@@ -419,6 +419,52 @@ input[type=radio] {
         opacity: 1;
         -webkit-transform: scale(1);
         transform: scale(1);
+    }
+}
+
+.reading {
+    & input[type=radio] {
+        &+label {
+            position: relative;
+            padding-left: 35px;
+            cursor: pointer;
+            line-height: 20px;
+            &:before {
+                content: '';
+                position: absolute;
+                left: 0px;
+                top: -3px;
+                width: 25px;
+                height: 25px;
+                border: 2.5px solid #171F48;
+                border-radius: 100%;
+                background: #fff;
+            }
+        }
+        &:checked+label {
+            color: #00BAE8;
+            font-weight: 600;
+            &::before {
+                border-color: #00BAE8;
+            }
+            &:after {
+                content: '';
+                width: 15px;
+                height: 15px;
+                background: #00BAE8;
+                position: absolute;
+                top: 2px;
+                left: 5px;
+                border-radius: 100%;
+                -webkit-transition: all 0.05s ease;
+                transition: all 0.05s ease;
+            }
+        }
+        &:checked+label {
+            opacity: 1;
+            -webkit-transform: scale(1);
+            transform: scale(1);
+        }
     }
 }
 
