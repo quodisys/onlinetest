@@ -1,9 +1,11 @@
-<div appBlockCopyPaste class="main main-center bg-blue speaking">
+<div class="main main-center bg-blue speaking">
     <div class="container">
         <div class="col-md-12">
             <div class="branding countdown">
                 <div class="row">
-                    <div class="col-md-4"></div>
+                    <div class="col-md-4 d-flex align-items-center">
+                        <button type="button" class="btn btn-primary colorful" (click)="openModal()">Mic Test</button>
+                    </div>
                     <div class="col-md-4 flex-center">
                         <img src="/assets/images/qds-logo.png" alt="company logo">
                     </div>
@@ -29,18 +31,12 @@
                                 <div class="question text-center pt-4 pb-4">
                                     {{question.question}}
                                 </div>
-                                <!-- <div class="answer">
-                                    <div class="row">
-                                        <div class="col-md-6 mb-3" *ngFor="let choice of question.choices; let choiceKey = index;" >
-                                            <input class="checkbox-mask" id="question{{key}}-choice{{choiceKey}}" type="radio" [value]="choice" [(ngModel)]="formAnswer.answers[key]" name="question-{{key + 1}}" (click)="showNextQuestion(key)">
-                                            <label for="question{{key}}-choice{{choiceKey}}">{{choice}}</label>
-                                        </div>
-                                    </div>
-                                </div> -->
-                                <div class="d-flex justify-content-center">
+                                <div class="d-flex justify-content-center align-items-center">
                                     <button type="button" class="btn p-0" (click)="startRecording()" *ngIf="!recording">
                                         <img src="/assets/images/mic.svg" />
                                     </button>
+                                    <a *ngIf="!recording && !last" class="btn-skip ml-3" (click)="showNextQuestion(key)">Skip</a>
+                                    <a *ngIf="!recording && last" class="btn-skip ml-3" (click)="showNextQuestion(key)">Complete</a>
                                     <button type="button" class="btn btn-recording" *ngIf="recording" (click)="stopRecording(key, last, testForm)">
                                         <img src="/assets/images/recording.svg" />
                                     </button>
@@ -56,3 +52,4 @@
         </div>
     </div>
 </div>
+<app-speaking-test-micro-modal></app-speaking-test-micro-modal>

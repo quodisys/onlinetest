@@ -4,6 +4,8 @@ import { IQTestForm } from '../../../interfaces/iq-test'
 import { FormBuilder} from  '@angular/forms';
 import { TabsetComponent } from 'ngx-bootstrap/tabs';
 import { Router } from '@angular/router';
+import { SpeakingTestMicroModalComponent } from '../speaking-test-micro-modal/speaking-test-micro-modal.component';
+
 
 @Component({
   selector: 'app-speaking-main',
@@ -13,6 +15,7 @@ import { Router } from '@angular/router';
 export class SpeakingMainComponent implements OnInit {
 
 	@ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
+	@ViewChild(SpeakingTestMicroModalComponent, {static: false}) private SpeakingTestMicroModalComponent: SpeakingTestMicroModalComponent;
 
 	formAnswer: IQTestForm;
 
@@ -86,6 +89,7 @@ export class SpeakingMainComponent implements OnInit {
 
 	constructor(private elementRef: ElementRef, private router: Router, private formBuilder: FormBuilder) { }
 
+
 	ngOnInit(): void {
 		this.formAnswer = {
 			answers: [
@@ -104,6 +108,11 @@ export class SpeakingMainComponent implements OnInit {
 			format: 'mm : ss'
 		}
 	}
+
+	openModal() {
+		this.SpeakingTestMicroModalComponent.showModal();
+	}
+
 	counterEvent(e: CountdownEvent) {
 		if(e.action == 'done') {
 			this.router.navigate(['/speaking-test/result'])
@@ -144,5 +153,4 @@ export class SpeakingMainComponent implements OnInit {
 		console.log(this.formAnswer)
 		this.router.navigate(['/speaking-test/result'])
 	}
-
 }

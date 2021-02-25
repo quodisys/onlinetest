@@ -35,6 +35,11 @@ html, body {
     }
 }
 
+.colorful {
+    background: linear-gradient(101.03deg, #FF52E3 -17.52%, #A466EF 43.91%, #2980FF 126.32%);
+    border: none;
+}
+
 .is-invalid {
     border: 3px solid #dc3545 !important; 
 }
@@ -43,6 +48,15 @@ html, body {
     display: flex;
     justify-content: center;
 }
+
+.modal {
+    & .modal-dialog {
+        pointer-events: inherit;
+        background-color: #fff;
+        border-radius: 6px;
+    }
+}
+
 
 .main {
     height: 100%;
@@ -483,6 +497,11 @@ input[type=checkbox] {
             align-items: center;
             justify-content: center;
         }
+    }
+    & .btn-skip {
+        text-decoration: underline;
+        font-size: 22px;
+        cursor: pointer;
     }
 }
 

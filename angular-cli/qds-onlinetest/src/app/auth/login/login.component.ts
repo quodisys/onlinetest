@@ -94,11 +94,12 @@ export class LoginComponent implements OnInit {
 				that.error = res.error;
 				console.log(res.error)
 			}
-			
 			console.log(response);
 		})
 		.catch(function (error) {
 			console.log(error);
 		});
+		// localStorage.setItem('adminAuth', 'true');
+		// that.router.navigate(['/home']);
 	}
 }
