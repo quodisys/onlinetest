@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { CountdownEvent } from 'ngx-countdown';
 import { Track } from 'ngx-audio-player';
@@ -18,6 +18,13 @@ export class ListeningMainComponent implements OnInit {
 	msaapDisablePositionSlider = false;
 
 	vocabularyForm: any;
+
+	isSticky: boolean = false;
+
+	@HostListener('window:scroll', ['$event'])
+	checkScroll() {
+		this.isSticky = window.pageYOffset >= 250;
+	}
 
 	config = {}
 

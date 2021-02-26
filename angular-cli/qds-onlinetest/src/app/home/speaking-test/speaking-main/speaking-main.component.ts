@@ -21,6 +21,7 @@ export class SpeakingMainComponent implements OnInit {
 
 	recording: Boolean = false;
 
+	finishRecord:boolean = false;
 
 	config = {}
 	questions: any[] = [
@@ -119,7 +120,7 @@ export class SpeakingMainComponent implements OnInit {
 		}
 	}
 
-	showNextQuestion(key) {
+	showNextQuestion(key, last, formData) {
 		let that = this;
 		let tabId = key + 1;
 		let questionCount = this.questions.length;
@@ -128,6 +129,10 @@ export class SpeakingMainComponent implements OnInit {
 			setTimeout(function() {
 				that.staticTabs.tabs[tabId].active = true;
 			},500)
+		}
+		this.finishRecord = false;
+		if(last) {
+			this.onSubmit(formData);
 		}
 	}
 
@@ -141,12 +146,18 @@ export class SpeakingMainComponent implements OnInit {
 	
 	stopRecording(key, last, formData) {
 		this.recording = false;
-		if(last) {
-			this.onSubmit(formData);
-		} else {
-			this.showNextQuestion(key);
-		}
+		this.finishRecord = true;
+		// if(last) {
+		// 	this.onSubmit(formData);
+		// } else {
+		// 	this.showNextQuestion(key);
+		// }
 	}
+
+	recordAgain() {
+		this.finishRecord = false;
+	}
+
 
 	onSubmit(formData) {
 		console.log(formData.value);

@@ -35,6 +35,10 @@ html, body {
     }
 }
 
+.btn-sub {
+    max-width: 220px;
+}
+
 .colorful {
     background: linear-gradient(101.03deg, #FF52E3 -17.52%, #A466EF 43.91%, #2980FF 126.32%);
     border: none;
@@ -76,6 +80,12 @@ html, body {
 
 .bg-blue {
     background-color: $backgroud-blue-color;
+}
+
+.sticky {
+    position: fixed;
+    top: 50px;
+    right: 50px;
 }
 
 .content {

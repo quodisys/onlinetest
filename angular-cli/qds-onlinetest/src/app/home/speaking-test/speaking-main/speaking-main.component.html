@@ -11,7 +11,7 @@
                     </div>
                     <div class="col-md-4 d-flex justify-content-end">
                         <div class="countdown-wrapper">
-                            <span>Time remain</span>
+                            <span>Time remaining</span>
                             <countdown class="timer" [config]="config" (event)="counterEvent($event)"></countdown>
                         </div>
                     </div>
@@ -32,14 +32,16 @@
                                     {{question.question}}
                                 </div>
                                 <div class="d-flex justify-content-center align-items-center">
-                                    <button type="button" class="btn p-0" (click)="startRecording()" *ngIf="!recording">
+                                    <button type="button" class="btn p-0 ml-5" (click)="startRecording()" *ngIf="!recording && !finishRecord">
                                         <img src="/assets/images/mic.svg" />
                                     </button>
-                                    <a *ngIf="!recording && !last" class="btn-skip ml-3" (click)="showNextQuestion(key)">Skip</a>
-                                    <a *ngIf="!recording && last" class="btn-skip ml-3" (click)="showNextQuestion(key)">Complete</a>
+                                    <a *ngIf="!recording && !last && !finishRecord" class="btn-skip ml-3" (click)="showNextQuestion(key, last, testForm)">Skip</a>
+                                    <!-- <a *ngIf="!recording && last" class="btn-skip ml-3" (click)="showNextQuestion(key)">Complete</a> -->
                                     <button type="button" class="btn btn-recording" *ngIf="recording" (click)="stopRecording(key, last, testForm)">
                                         <img src="/assets/images/recording.svg" />
                                     </button>
+                                    <button *ngIf="finishRecord" type="button" class="btn btn-main btn-sub mt-2 mr-4" (click)="showNextQuestion(key, last, testForm)">Continue</button>
+                                    <button *ngIf="finishRecord" type="button" class="btn btn-main btn-sub mt-2" (click)="recordAgain()">Record again</button>
                                 </div>
                             </div>
                         </tab>

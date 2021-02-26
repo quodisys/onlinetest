@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { CountdownEvent } from 'ngx-countdown';
 import { Router } from '@angular/router';
 
@@ -10,6 +10,12 @@ import { Router } from '@angular/router';
 export class ReadingMainComponent implements OnInit {
 
 	readingForm: any;
+	isSticky: boolean = false;
+
+	@HostListener('window:scroll', ['$event'])
+	checkScroll() {
+		this.isSticky = window.pageYOffset >= 250;
+	}
 
 	config = {}
 
