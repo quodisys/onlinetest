@@ -515,6 +515,40 @@ input[type=checkbox] {
     }
 }
 
+.select-group {
+    display: inline-flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.radio-text {
+    & input[type="radio"] {
+        display: none;
+        & + label {
+            padding: 8px 22px;
+            margin-right: 15px;
+            background: linear-gradient(#C57CFF, #755DFF);
+            color: #fff;
+            border-radius: 25px;
+            &:before {
+                content: none;
+            }
+        }
+        &:checked {
+            & + label {
+                background: #00BAE8;
+                font-weight: 400;
+                &:after {
+                    content: none;
+                }
+            }
+        }
+    }
+    
+    
+}
+
 .btn-recording {
     background-image: linear-gradient(to bottom, #31EC80, #2BBF6A);
     border: none;

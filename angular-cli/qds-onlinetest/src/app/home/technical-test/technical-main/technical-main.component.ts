@@ -4,6 +4,8 @@ import { IQTestForm } from '../../../interfaces/iq-test'
 import { FormBuilder} from  '@angular/forms';
 import { TabsetComponent } from 'ngx-bootstrap/tabs';
 import { Router } from '@angular/router';
+import axios from 'axios';
+import { environment } from './../../../../environments/environment';
 
 @Component({
   selector: 'app-technical-main',
@@ -69,6 +71,7 @@ export class TechnicalMainComponent implements OnInit {
 	constructor(private elementRef: ElementRef, private router: Router, private formBuilder: FormBuilder) { }
 
 	ngOnInit(): void {
+		this.getQuestion();
 		this.formAnswer = {
 			answers: [
 				{
@@ -79,13 +82,36 @@ export class TechnicalMainComponent implements OnInit {
 		}
 		this.questions.map(item => {
 			item['customClass'] = '';
-			console.log(item)
+			// console.log(item)
 		})
 		this.config = {
 			leftTime: 1160,
 			format: 'mm : ss'
 		}
 	}
+
+	getQuestion() {
+		let that =  this;
+		let data = {
+			token: localStorage.getItem('token'),
+			keyword: localStorage.getItem('keyword'),
+			sess: localStorage.getItem('sessionId'),
+			topic: 'PHP'
+		}
+		axios({
+			method: 'post',
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			url: environment.hostApi + '/candidates/gettests.php',
+			  data: JSON.stringify(data)
+		})
+		.then(function (response) {
+			console.log(response);
+		})
+		.catch(function (error) {
+			console.log(error);
+		});
+	}
+
 	counterEvent(e: CountdownEvent) {
 		if(e.action == 'done') {
 			this.router.navigate(['/technical-test/result'])
@@ -105,7 +131,7 @@ export class TechnicalMainComponent implements OnInit {
 	}
 
 	changeTab(e) {
-		console.log(e.heading)
+		// console.log(e.heading)
 	}
 
 	onSubmit(formData) {

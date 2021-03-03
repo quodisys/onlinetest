@@ -16,9 +16,18 @@
                         <li><span class="font-weight-bold">3.</span> Once you have completed the test, <span class="font-weight-bold">click submit to continue.</span></li>
                     </ul>
                 </div>
-                <div class="d-flex justify-content-center mt-4 mb-3" >
-                    <button type="submit" class="btn btn-main mt-2" routerLink="/technical-test/start-test">Start</button>
-                </div>
+                <h5 class="text-center">Please select a test:</h5>
+                <form #selectTest="ngForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group select-group">
+                        <div class="radio-text" *ngFor="let test of technicalTest; let key = index;">
+                            <input id="test-{{key}}" type="radio" value="{{test.topic}}" name="test" [(ngModel)]="testSelected">
+                            <label for="test-{{key}}">{{test.topic}}</label>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center mt-1 mb-3" >
+                        <button type="submit" class="btn btn-main mt-2">Start</button>
+                    </div>
+                </form>
             </div>
             <div class="footer-logo">
                 <img src="/assets/images/logox.svg" alt="footer logo">

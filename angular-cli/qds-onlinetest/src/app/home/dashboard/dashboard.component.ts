@@ -42,6 +42,7 @@ export class DashboardComponent implements OnInit {
 			that.moveInArray(that.dashboardTest, 2, 0)
 			that.moveInArray(that.dashboardTest, 3, 2)
 			that.moveInArray(that.dashboardTest, 2, 1)
+			console.log(that.dashboardTest);
 		})
 		.catch(function (error) {
 			console.log(error);
