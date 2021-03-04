@@ -16,7 +16,7 @@
                         <li><span class="font-weight-bold">3.</span> Once you have completed the test, <span class="font-weight-bold">click submit to continue.</span></li>
                     </ul>
                 </div>
-                <h5 class="text-center">Please select a test:</h5>
+                <h5 class="small-title text-center mt-5">Please select a test:</h5>
                 <form #selectTest="ngForm" (ngSubmit)="onSubmit()">
                     <div class="form-group select-group">
                         <div class="radio-text" *ngFor="let test of technicalTest; let key = index;">

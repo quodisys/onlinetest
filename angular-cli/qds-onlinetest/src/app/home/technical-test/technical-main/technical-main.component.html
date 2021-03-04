@@ -1,4 +1,4 @@
-<div appBlockCopyPaste class="main main-center bg-blue">
+<div appBlockCopyPaste class="main main-2 main-center bg-blue">
     <div class="container">
         <div class="col-md-12">
             <div class="branding countdown">
@@ -31,7 +31,7 @@
                                 </div>
                                 <div class="answer">
                                     <div class="row">
-                                        <div class="col-md-6 mb-3" *ngFor="let choice of question.choices; let choiceKey = index;" >
+                                        <div class="col-md-12 mb-3" *ngFor="let choice of question.answers; let choiceKey = index;" >
                                             <input class="checkbox-mask" id="question{{key}}-choice{{choiceKey}}" type="radio" [value]="choice" [(ngModel)]="formAnswer.answers[key]" name="question-{{key + 1}}" (click)="showNextQuestion(key)">
                                             <label for="question{{key}}-choice{{choiceKey}}">{{choice}}</label>
                                         </div>

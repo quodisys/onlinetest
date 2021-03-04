@@ -47,7 +47,7 @@ export class TechnicalStartComponent implements OnInit {
 
 	onSubmit() {
 		console.log(this.testSelected);
-		this.router.navigate(['/technical-test/start-test']);
+		this.router.navigate(['/technical-test/start-test'], { queryParams: {topic: this.testSelected}});
 	}
 
 }
