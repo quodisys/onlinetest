@@ -325,14 +325,14 @@ html, body {
 }
 .test-content {
     & .question {
-        text-align: center;
+        // text-align: center;
         font-size: 32px;
         font-family: 'SFProMedium', sans-serif;
         max-width: 800px;
         margin: auto;
     }
     & .answer {
-        max-width: 500px;
+        max-width: 800px;
         margin: auto;
         margin-top: 40px;
         margin-bottom: 40px;

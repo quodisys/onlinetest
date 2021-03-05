@@ -15,23 +15,29 @@ import { environment } from './../../../../environments/environment';
 export class TechnicalMainComponent implements OnInit {
 
 	@ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
-	formAnswer: IQTestForm;
 	topic:string
 	config = {}
 	questions:any = []
+	questionsOrinal:any = []
+
+	submitForm:any
 
 	constructor(private elementRef: ElementRef, private router: Router, private route: ActivatedRoute, private formBuilder: FormBuilder) { }
 
 	ngOnInit(): void {
-		this.getQuestion();
-		this.formAnswer = {
+		let topic = '';
+		this.route.queryParams.subscribe(params => {
+			topic = params['topic'];
+		});
+		this.submitForm = {
+			token: localStorage.getItem('token'),
+			keyword: localStorage.getItem('keyword'),
+			sess: localStorage.getItem('sessionId'),
+			topic: topic,
 			answers: [
-				{
-					questionID: '',
-					questionAnswer: ''
-				}
 			]
 		}
+		this.getQuestion(topic);
 		this.questions.map(item => {
 			item['customClass'] = '';
 			console.log(item)
@@ -42,12 +48,8 @@ export class TechnicalMainComponent implements OnInit {
 		}
 	}
 
-	getQuestion() {
+	getQuestion(topic) {
 		let that =  this;
-		let topic = '';
-		this.route.queryParams.subscribe(params => {
-			topic = params['topic'];
-		});
 		let data = {
 			token: localStorage.getItem('token'),
 			keyword: localStorage.getItem('keyword'),
@@ -61,13 +63,55 @@ export class TechnicalMainComponent implements OnInit {
 			  data: JSON.stringify(data)
 		})
 		.then(function (response) {
-			that.questions = response.data;
-			that.questions[0].active = true;
+			that.questionsOrinal = response.data;
+			that.questionsOrinal.map((item, index) => {
+				var d1 = {
+					id: item.id,
+					question: item.question,
+					type: item.type,
+					answers: []
+				}
+				var d2 = {
+					answerId: item.id,
+					answer: ''
+				}
+				that.questions.push(d1);
+				that.submitForm.answers.push(d2);
+				item.answers.map((el, i) => {
+					var alpha = (i+10).toString(36).toUpperCase();
+					var data = {
+						alphabet: alpha,
+						answer: el
+					}
+					that.questions[index].answers.push(data);
+				});	
+			});
+			that.questions[0]['active'] = true;
 			console.log(that.questions);
 		})
 		.catch(function (error) {
 			console.log(error);
 		});
+	}
+
+	questionSelect(question, choiceKey) {
+		var filterAnswer = question.answers.filter((item) => item.selected)
+		this.submitAnswer(question, filterAnswer)
+		
+	}
+
+	submitAnswer(question, answer) {
+		var index = this.submitForm.answers.findIndex( x => x.answerId == question.id);
+		if(question.type == 'radio') {
+			this.submitForm.answers[index].answer = answer;
+		} else if (question.type == 'checkbox') {
+			let answerString = [];
+			answer.map(item => {
+				answerString.push(item.alphabet);
+			})
+			this.submitForm.answers[index].answer = answerString.join();
+		}
+		console.log(this.submitForm)
 	}
 
 	counterEvent(e: CountdownEvent) {
@@ -92,9 +136,8 @@ export class TechnicalMainComponent implements OnInit {
 		// console.log(e.heading)
 	}
 
-	onSubmit(formData) {
-		console.log(formData.value);
-		console.log(this.formAnswer)
+	onSubmit() {
+		console.log(this.submitForm)
 		this.router.navigate(['/technical-test/result'])
 	}
 
