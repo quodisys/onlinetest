@@ -17,6 +17,8 @@ export class TechnicalMainComponent implements OnInit {
 	@ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
 	topic:string
 	config = {}
+	technicalTest:any
+	testTime:number
 	questions:any = []
 	questionsOrinal:any = []
 
@@ -25,27 +27,59 @@ export class TechnicalMainComponent implements OnInit {
 	constructor(private elementRef: ElementRef, private router: Router, private route: ActivatedRoute, private formBuilder: FormBuilder) { }
 
 	ngOnInit(): void {
-		let topic = '';
+		this.topic = '';
 		this.route.queryParams.subscribe(params => {
-			topic = params['topic'];
+			this.topic = params['topic'];
 		});
 		this.submitForm = {
 			token: localStorage.getItem('token'),
 			keyword: localStorage.getItem('keyword'),
 			sess: localStorage.getItem('sessionId'),
-			topic: topic,
-			answers: [
-			]
+			topic: this.topic,
+			qa: []
 		}
-		this.getQuestion(topic);
+		this.config = {
+			leftTime: 1800,
+			format: 'mm : ss'
+		}
+		this.getTestInfo(this.topic)
+		this.getQuestion(this.topic);
 		this.questions.map(item => {
 			item['customClass'] = '';
 			console.log(item)
 		})
-		this.config = {
-			leftTime: 1160,
-			format: 'mm : ss'
+	}
+
+	getTestInfo(topic) {
+		let that =  this;
+		let data = {
+			token: localStorage.getItem('token'),
+			keyword: localStorage.getItem('keyword'),
+			sess: localStorage.getItem('sessionId')
 		}
+		axios({
+			method: 'post',
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			url: environment.hostApi + '/candidates/allocatedtests.php',
+			  data: JSON.stringify(data)
+		})
+		.then(function (response) {
+			var res = response.data;
+			var test = Object.keys(res).map((k) => res[k]);
+			that.technicalTest = test.find( x => x.topic == "Technical");
+			that.technicalTest = that.technicalTest.techtests;
+			that.technicalTest = Object.keys(that.technicalTest).map((k) => that.technicalTest[k]);
+			var topicaa = that.technicalTest.find(x => x.topic == topic);
+			that.testTime = topicaa.totaltime*60;
+			that.config = {
+				leftTime: that.testTime,
+				format: 'mm : ss'
+			}
+			console.log(that.testTime);
+		})
+		.catch(function (error) {
+			console.log(error);
+		});
 	}
 
 	getQuestion(topic) {
@@ -72,11 +106,11 @@ export class TechnicalMainComponent implements OnInit {
 					answers: []
 				}
 				var d2 = {
-					answerId: item.id,
+					id: item.id,
 					answer: ''
 				}
 				that.questions.push(d1);
-				that.submitForm.answers.push(d2);
+				that.submitForm.qa.push(d2);
 				item.answers.map((el, i) => {
 					var alpha = (i+10).toString(36).toUpperCase();
 					var data = {
@@ -97,19 +131,18 @@ export class TechnicalMainComponent implements OnInit {
 	questionSelect(question, choiceKey) {
 		var filterAnswer = question.answers.filter((item) => item.selected)
 		this.submitAnswer(question, filterAnswer)
-		
 	}
 
 	submitAnswer(question, answer) {
-		var index = this.submitForm.answers.findIndex( x => x.answerId == question.id);
+		var index = this.submitForm.qa.findIndex( x => x.id == question.id);
 		if(question.type == 'radio') {
-			this.submitForm.answers[index].answer = answer;
+			this.submitForm.qa[index].answer = answer;
 		} else if (question.type == 'checkbox') {
 			let answerString = [];
 			answer.map(item => {
 				answerString.push(item.alphabet);
 			})
-			this.submitForm.answers[index].answer = answerString.join();
+			this.submitForm.qa[index].answer = answerString.join();
 		}
 		console.log(this.submitForm)
 	}
@@ -137,8 +170,20 @@ export class TechnicalMainComponent implements OnInit {
 	}
 
 	onSubmit() {
-		console.log(this.submitForm)
-		this.router.navigate(['/technical-test/result'])
+		let that =  this;
+		axios({
+			method: 'post',
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			url: environment.hostApi + '/candidates/processtests.php',
+			  data: JSON.stringify(this.submitForm)
+		})
+		.then(function (response) {
+			console.log(this.submitForm)
+			this.router.navigate(['/technical-test/result'])
+		})
+		.catch(function (error) {
+			console.log(error);
+			alert("Something wrong when submitting test!")
+		});
 	}
-
 }
