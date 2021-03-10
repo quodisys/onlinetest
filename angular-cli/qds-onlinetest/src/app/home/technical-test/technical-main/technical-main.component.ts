@@ -106,7 +106,7 @@ export class TechnicalMainComponent implements OnInit {
 					answers: []
 				}
 				var d2 = {
-					id: item.id,
+					id: parseInt(item.id),
 					answer: ''
 				}
 				that.questions.push(d1);
@@ -149,7 +149,7 @@ export class TechnicalMainComponent implements OnInit {
 
 	counterEvent(e: CountdownEvent) {
 		if(e.action == 'done') {
-			this.router.navigate(['/technical-test/result'])
+			this.onSubmit();
 		}
 	}
 
@@ -171,15 +171,16 @@ export class TechnicalMainComponent implements OnInit {
 
 	onSubmit() {
 		let that =  this;
+		console.log(that.submitForm)
 		axios({
 			method: 'post',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 			url: environment.hostApi + '/candidates/processtests.php',
-			  data: JSON.stringify(this.submitForm)
+			data: JSON.stringify(this.submitForm)
 		})
 		.then(function (response) {
-			console.log(this.submitForm)
-			this.router.navigate(['/technical-test/result'])
+			console.log(that.submitForm)
+			that.router.navigate(['/technical-test/result'])
 		})
 		.catch(function (error) {
 			console.log(error);

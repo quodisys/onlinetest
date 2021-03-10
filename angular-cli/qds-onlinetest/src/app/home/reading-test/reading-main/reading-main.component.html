@@ -16,27 +16,27 @@
                 </div>
             </div>
             <div class="content reading">
-                <div class="reading-part" [innerHTML]="readingTest.reading | safeHtml"></div>
+                <div class="reading-part" [innerHTML]="mainQuestion | safeHtml"></div>
                 <div class="title mt-5 mb-5">QUESTIONS</div>
-                <form #testForm="ngForm" (ngSubmit)="onSubmit(testForm)">
-                    <div class="question">
-                        <div class="question-wrapper" *ngFor="let question of readingTest.questions; let key = index;">
-                            <p class="question-title">{{key + 1}}. {{question.question}}</p>
-                            <div class="question-choices">
-                                <ul>
-                                    <li *ngFor="let choice of question.choices; let choiceKey = index;">
-                                        <input class="checkbox-mask" id="question{{key}}-choice{{choiceKey}}" type="radio" [value]="choice" [(ngModel)]="readingForm.answers[key]" name="question-{{key + 1}}">
-                                        <label for="question{{key}}-choice{{choiceKey}}">{{choice}}</label>
-                                    </li>
-                                </ul>
-                            </div>
+                <div class="question">
+                    <div class="question-wrapper" *ngFor="let question of questions; let key = index;">
+                        <p class="question-title">{{key + 1}}. {{question.question}}</p>
+                        <div class="question-choices">
+                            <ul *ngIf="question.type == 'radio'">
+                                <li *ngFor="let choice of question.answers; let choiceKey = index;">
+                                    <!-- <input class="checkbox-mask" id="question{{key}}-choice{{choiceKey}}" type="radio" [value]="choice" [(ngModel)]="readingForm.answers[key]" name="question-{{key + 1}}">
+                                    <label for="question{{key}}-choice{{choiceKey}}">{{choice.answer}}</label> -->
+                                    <input class="checkbox-mask" id="question{{key}}-choice{{choiceKey}}" type="radio" [value]="choice" name="{{question.id}}" (change)="submitAnswer(question, choice.alphabet)">
+                                    <label for="question{{key}}-choice{{choiceKey}}">{{choice.answer}}</label>
+                                </li>
+                            </ul>
                         </div>
-                        
                     </div>
-                    <div class="d-flex justify-content-center">
-                        <button type="submit" class="btn btn-main mt-4 mb-3">Submit</button>
-                    </div>
-                </form>
+                    
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-main mt-4 mb-3" (click)="onSubmit()">Submit</button>
+                </div>
             </div>
             <div class="footer-logo">
                 <img src="/assets/images/logox.svg" alt="footer logo">
