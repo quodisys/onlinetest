@@ -16,34 +16,46 @@
                 </div>
             </div>
             <div class="content">
-                <form #testForm="ngForm" (ngSubmit)="onSubmit(testForm)">
-                    <tabset #staticTabs class="custom-tab nav-disabled">
-                        <tab *ngFor="let question of vocabularyTest.questions; let key = index; let last = last"
-                            [heading]="key + 1"
-                            [active]="question.active"
-                            (selectTab)="changeTab($event)"
-                            (deselect)="question.active = false"
-                            [disabled]="question.disabled"
-                            [customClass]="question.customClass">
-                            <div class="test-content" >
-                                <div class="question">
-                                    {{question.question}}
-                                </div>
-                                <div class="answer" style="max-width: 580px;">
-                                    <div class="row">
-                                        <div class="col-md-6 mb-3" *ngFor="let choice of question.choices; let choiceKey = index;" >
-                                            <input class="checkbox-mask" id="question{{key}}-choice{{choiceKey}}" type="radio" [value]="choice" [(ngModel)]="formAnswer.answers[key]" name="question-{{key + 1}}" (click)="showNextQuestion(key)">
-                                            <label for="question{{key}}-choice{{choiceKey}}">{{choice}}</label>
+                <tabset #staticTabs class="custom-tab nav-disabled">
+                    <tab *ngFor="let question of questions; let key = index; let last = last"
+                        [heading]="key + 1"
+                        [active]="question.active"
+                        (selectTab)="changeTab($event)"
+                        (deselect)="question.active = false"
+                        [disabled]="question.disabled"
+                        [customClass]="question.customClass">
+                        <div class="test-content" >
+                            <div class="question">
+                                {{question.question}}
+                            </div>
+                            <div class="answer">
+                                <div class="row">
+                                    <div *ngIf="question.type != 'text'">
+                                        <div class="col-md-12 mb-3" *ngFor="let choice of question.answers; let choiceKey = index;" >
+                                            <div *ngIf="question.type == 'radio'" class="radio">
+                                                <input class="checkbox-mask" id="question{{key}}-choice{{choiceKey}}" type="radio" [value]="choice" name="{{question.id}}" (click)="showNextQuestion(key)" (change)="submitAnswer(question, choice.alphabet)">
+                                                <label for="question{{key}}-choice{{choiceKey}}">{{choice.answer}}</label>
+                                            </div>
+                                            <div *ngIf="question.type == 'checkbox'" class="md-checkbox">
+                                                <input class="checkbox-mask" id="question{{key}}-choice{{choiceKey}}" type="checkbox" [value]="choice.alphabet" [name]="choice[choiceKey]" [(ngModel)]="choice.selected" [ngModelOptions]="{standalone: true}" (change)="questionSelect(question, $event.target.value)">
+                                                <label for="question{{key}}-choice{{choiceKey}}">{{choice.answer}}</label>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="d-flex justify-content-center" *ngIf="last">
-                                    <button type="submit" class="btn btn-main mt-2">Finish</button>
+                                    <div *ngIf="question.type == 'text'" class="question-text form-group">
+                                        <input class="form-control" id="question{{key}}" type="text" [(ngModel)]="submitForm.qa[key].answer" name="question{{key}}">
+                                    </div>
                                 </div>
                             </div>
-                        </tab>
-                    </tabset>
-                </form>
+                            <div class="d-flex justify-content-center w-100" *ngIf="(question.type == 'checkbox' || question.type == 'text')  && !last">
+                                <button type="button" class="btn btn-main mt-2" (click)="showNextQuestion(key)">Next</button>
+                            </div>
+                            <div class="d-flex justify-content-center" *ngIf="last">
+                                <button type="submit" class="btn btn-main mt-2" (click)="onSubmit()">Finish</button>
+                            </div>
+                        </div>
+                    </tab>
+                </tabset>
             </div>
             <div class="footer-logo">
                 <img src="/assets/images/logox.svg" alt="footer logo">
