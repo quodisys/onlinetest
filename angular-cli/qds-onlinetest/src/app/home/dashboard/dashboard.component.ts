@@ -42,6 +42,9 @@ export class DashboardComponent implements OnInit {
 			that.moveInArray(that.dashboardTest, 2, 0)
 			that.moveInArray(that.dashboardTest, 3, 2)
 			that.moveInArray(that.dashboardTest, 2, 1)
+			if(res[0].error) {
+				that.router.navigate(['/login'])
+			}
 			console.log(res);
 		})
 		.catch(function (error) {

@@ -2,6 +2,8 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { CountdownEvent } from 'ngx-countdown';
 import { Track } from 'ngx-audio-player';
+import axios from 'axios';
+import { environment } from './../../../../environments/environment';
 
 @Component({
   selector: 'app-listening-main',
@@ -25,8 +27,6 @@ export class ListeningMainComponent implements OnInit {
 	checkScroll() {
 		this.isSticky = window.pageYOffset >= 250;
 	}
-
-	config = {}
 
 	vocabularyTest:any = [
 		{
@@ -298,9 +298,25 @@ export class ListeningMainComponent implements OnInit {
 
 	msaapPlaylist = []
 
+	topic:string
+	config = {}
+	testTime:number
+	questions:any = []
+	questionsOrinal:any = []
+	submitForm:any
+
 	constructor(private router: Router) { }
 
 	ngOnInit(): void {
+		this.topic = 'Listening';
+		this.submitForm = {
+			token: localStorage.getItem('token'),
+			keyword: localStorage.getItem('keyword'),
+			sess: localStorage.getItem('sessionId'),
+			topic: this.topic,
+			qa: []
+		}
+		this.getQuestion(this.topic);
 		this.config = {
 			leftTime: 360,
 			format: 'mm : ss'
@@ -317,6 +333,52 @@ export class ListeningMainComponent implements OnInit {
 			this.msaapPlaylist.push(main);
 		});
 		console.log(this.msaapPlaylist)
+	}
+
+	getQuestion(topic) {
+		let that =  this;
+		let data = {
+			token: localStorage.getItem('token'),
+			keyword: localStorage.getItem('keyword'),
+			sess: localStorage.getItem('sessionId'),
+			topic: topic
+		}
+		axios({
+			method: 'post',
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			url: environment.hostApi + '/candidates/gettests.php',
+			  data: JSON.stringify(data)
+		})
+		.then(function (response) {
+			that.questionsOrinal = response.data;
+			console.log(that.questionsOrinal)
+			// that.questionsOrinal.map((item, index) => {
+			// 	var d1 = {
+			// 		id: item.id,
+			// 		question: item.question,
+			// 		type: item.type,
+			// 		answers: []
+			// 	}
+			// 	var d2 = {
+			// 		id: parseInt(item.id),
+			// 		answer: ''
+			// 	}
+			// 	that.questions.push(d1);
+			// 	that.submitForm.qa.push(d2);
+			// 	item.answers.map((el, i) => {
+			// 		var alpha = (i+10).toString(36).toUpperCase();
+			// 		var data = {
+			// 			alphabet: alpha,
+			// 			answer: el
+			// 		}
+			// 		that.questions[index].answers.push(data);
+			// 	});	
+			// });
+			// that.questions[0]['active'] = true;
+		})
+		.catch(function (error) {
+			console.log(error);
+		});
 	}
 	  
 	counterEvent(e: CountdownEvent) {

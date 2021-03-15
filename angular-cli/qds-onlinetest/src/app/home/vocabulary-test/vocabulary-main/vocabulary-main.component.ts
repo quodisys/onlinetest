@@ -126,7 +126,7 @@ export class VocabularyMainComponent implements OnInit {
 	  
 	counterEvent(e: CountdownEvent) {
 		if(e.action == 'done') {
-			this.router.navigate(['/vocabulary-test/result'])
+			this.onSubmit();
 		}
 	}
 
