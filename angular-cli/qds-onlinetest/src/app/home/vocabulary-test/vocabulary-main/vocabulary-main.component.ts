@@ -20,6 +20,7 @@ export class VocabularyMainComponent implements OnInit {
 	questions:any = []
 	questionsOrinal:any = []
 	vocabularyForm: any;
+	submitDisable = true;
 	vocabularyTestInfo = {
 		totaltime: 0
 	}
@@ -157,6 +158,9 @@ export class VocabularyMainComponent implements OnInit {
 				answerString.push(item.alphabet);
 			})
 			this.submitForm.qa[index].answer = answerString.join();
+		}
+		if(this.submitForm.qa.slice(-1)[0].answer != '') {
+			this.submitDisable = false;
 		}
 		console.log(this.submitForm)
 	}

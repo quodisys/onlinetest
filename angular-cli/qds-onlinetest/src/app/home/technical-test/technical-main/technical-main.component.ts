@@ -21,6 +21,7 @@ export class TechnicalMainComponent implements OnInit {
 	testTime:number
 	questions:any = []
 	questionsOrinal:any = []
+	submitDisable = true;
 
 	submitForm:any
 
@@ -143,6 +144,9 @@ export class TechnicalMainComponent implements OnInit {
 				answerString.push(item.alphabet);
 			})
 			this.submitForm.qa[index].answer = answerString.join();
+		}
+		if(this.submitForm.qa.slice(-1)[0].answer != '') {
+			this.submitDisable = false;
 		}
 		console.log(this.submitForm)
 	}

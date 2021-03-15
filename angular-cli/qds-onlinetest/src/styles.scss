@@ -76,6 +76,16 @@ html, body {
             }
         }
     }
+    &.inside-logo {
+        &.main-2 {
+            & .content {
+                margin-top: 70px;
+            }
+        }
+        & .branding {
+            margin-top: 0 !important;
+        }
+    }
 }
 
 .bg-blue {
