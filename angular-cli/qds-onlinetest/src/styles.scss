@@ -545,6 +545,10 @@ input[type=checkbox] {
             &:before {
                 content: none;
             }
+            &.disabled {
+                background: #747474;
+                pointer-events: none;
+            }
         }
         &:checked {
             & + label {
