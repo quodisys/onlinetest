@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { SpeakingTestMicroModalComponent } from '../speaking-test-micro-modal/speaking-test-micro-modal.component';
 
 @Component({
   selector: 'app-speaking-start',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SpeakingStartComponent implements OnInit {
 
+  @ViewChild(SpeakingTestMicroModalComponent, {static: false}) private SpeakingTestMicroModalComponent: SpeakingTestMicroModalComponent;
+
   constructor() { }
 
   ngOnInit(): void {
+
   }
+  openModal() {
+		this.SpeakingTestMicroModalComponent.showModal();
+	}
 
 }

@@ -4,7 +4,6 @@ import { IQTestForm } from '../../../interfaces/iq-test'
 import { FormBuilder} from  '@angular/forms';
 import { TabsetComponent } from 'ngx-bootstrap/tabs';
 import { Router } from '@angular/router';
-import { SpeakingTestMicroModalComponent } from '../speaking-test-micro-modal/speaking-test-micro-modal.component';
 
 
 @Component({
@@ -15,7 +14,6 @@ import { SpeakingTestMicroModalComponent } from '../speaking-test-micro-modal/sp
 export class SpeakingMainComponent implements OnInit {
 
 	@ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
-	@ViewChild(SpeakingTestMicroModalComponent, {static: false}) private SpeakingTestMicroModalComponent: SpeakingTestMicroModalComponent;
 
 	formAnswer: IQTestForm;
 
@@ -108,10 +106,6 @@ export class SpeakingMainComponent implements OnInit {
 			leftTime: 1160,
 			format: 'mm : ss'
 		}
-	}
-
-	openModal() {
-		this.SpeakingTestMicroModalComponent.showModal();
 	}
 
 	counterEvent(e: CountdownEvent) {

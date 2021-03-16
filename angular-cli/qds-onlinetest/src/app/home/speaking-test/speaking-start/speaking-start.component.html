@@ -12,7 +12,8 @@
                 <div class="sub-title sub-multiple-line text-left">
                     <ul class="pl-3">
                         <li><span class="font-weight-bold">1.</span> The time limit for this test can be found at the top right corner.</li>
-                        <li><span class="font-weight-bold">2.</span> Make sure you have: <span class="font-weight-bold">good internet, quiet place, headphones.</span></li>
+                        <li><span class="font-weight-bold">2.</span> Make sure you have: <span class="font-weight-bold">good internet, quiet place, headphones.</span><br> Press “Mic Check” button below to test your microphone.</li>
+                        <li><button type="button" class="btn btn-primary colorful" (click)="openModal()">Mic Check</button></li>
                         <li><span class="font-weight-bold">3.</span> Tap the microphone and record the following 15 sentences.<br> You can record each sentence twice.</li>
                         <li><span class="font-weight-bold">4.</span> Once you have completed the test, <span class="font-weight-bold">click submit to continue.</span></li>
                     </ul>
@@ -30,3 +31,4 @@
         </div>
     </div>
 </div>
+<app-speaking-test-micro-modal></app-speaking-test-micro-modal>
