@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IqStartComponent } from './iq-start/iq-start.component'
 import { IqMainComponent } from './iq-main/iq-main.component'
 import { IqResultComponent } from './iq-result/iq-result.component'
+import { CanDeactivateGuard } from '../../guards/can-deactive.guard'
 
 const routes: Routes = [
 	{ 	
@@ -11,7 +12,8 @@ const routes: Routes = [
 		component: IqStartComponent
 	},{ 	
 		path: 'start-test',
-		component: IqMainComponent
+		component: IqMainComponent,
+		canDeactivate: [CanDeactivateGuard]
 	},{ 	
 		path: 'result',
 		component: IqResultComponent

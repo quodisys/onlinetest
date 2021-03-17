@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ListeningResultComponent } from './listening-result/listening-result.component';
 import { ListeningStartComponent } from './listening-start/listening-start.component';
 import { ListeningMainComponent } from './listening-main/listening-main.component';
+import { CanDeactivateGuard } from '../../guards/can-deactive.guard'
 
 const routes: Routes = [
 	{ 	
@@ -11,7 +12,8 @@ const routes: Routes = [
 		component: ListeningStartComponent
 	},{ 	
 		path: 'start-test',
-		component: ListeningMainComponent
+		component: ListeningMainComponent,
+		canDeactivate: [CanDeactivateGuard]
 	},{ 	
 		path: 'result',
 		component: ListeningResultComponent

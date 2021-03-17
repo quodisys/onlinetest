@@ -86,6 +86,9 @@ export class IqMainComponent implements OnInit {
 			format: 'mm : ss'
 		}
 	}
+	canDeactivate() {
+		return confirm('Are you sure you want to leave this test ?');
+	}
 	counterEvent(e: CountdownEvent) {
 		if(e.action == 'done') {
 			this.router.navigate(['/iq-test/result'])

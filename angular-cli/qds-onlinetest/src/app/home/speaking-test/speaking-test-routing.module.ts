@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { SpeakingStartComponent } from './speaking-start/speaking-start.component'
 import { SpeakingMainComponent } from './speaking-main/speaking-main.component'
 import { SpeakingResultComponent } from './speaking-result/speaking-result.component'
+import { CanDeactivateGuard } from '../../guards/can-deactive.guard'
 
 const routes: Routes = [
 	{ 	
@@ -11,7 +12,8 @@ const routes: Routes = [
 		component: SpeakingStartComponent
 	},{ 	
 		path: 'start-test',
-		component: SpeakingMainComponent
+		component: SpeakingMainComponent,
+		canDeactivate: [CanDeactivateGuard]
 	},{ 	
 		path: 'result',
 		component: SpeakingResultComponent

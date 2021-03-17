@@ -67,6 +67,10 @@ export class ListeningMainComponent implements OnInit {
 		}
 	}
 
+	canDeactivate() {
+		return confirm('Are you sure you want to leave this test ?');
+	}
+
 	getTestInfo() {
 		let that =  this;
 		let data = {

@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { VocabularyStartComponent } from './vocabulary-start/vocabulary-start.component';
 import { VocabularyMainComponent } from './vocabulary-main/vocabulary-main.component';
 import { VocabularyResultComponent } from './vocabulary-result/vocabulary-result.component';
+import { CanDeactivateGuard } from '../../guards/can-deactive.guard'
 
 const routes: Routes = [
 	{ 	
@@ -11,7 +12,8 @@ const routes: Routes = [
 		component: VocabularyStartComponent
 	},{ 	
 		path: 'start-test',
-		component: VocabularyMainComponent
+		component: VocabularyMainComponent,
+		canDeactivate: [CanDeactivateGuard]
 	},{ 	
 		path: 'result',
 		component: VocabularyResultComponent
