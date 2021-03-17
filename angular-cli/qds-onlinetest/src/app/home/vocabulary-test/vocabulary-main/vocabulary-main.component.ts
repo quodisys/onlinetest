@@ -25,6 +25,7 @@ export class VocabularyMainComponent implements OnInit {
 		totaltime: 0
 	}
 	submitForm:any
+	formIsSubmit = false;
 
 	constructor(private router: Router) { }
 
@@ -50,7 +51,11 @@ export class VocabularyMainComponent implements OnInit {
 	}
 
 	canDeactivate() {
-		return confirm('Are you sure you want to leave this test ?');
+		if(!this.formIsSubmit) {
+			return confirm('Are you sure you want to leave this test ?');
+		} else {
+			return true
+		}
 	}
 
 	getTestInfo() {
@@ -184,6 +189,7 @@ export class VocabularyMainComponent implements OnInit {
 		})
 		.then(function (response) {
 			console.log(that.submitForm)
+			that.formIsSubmit = true;
 			that.router.navigate(['/vocabulary-test/result'])
 		})
 		.catch(function (error) {

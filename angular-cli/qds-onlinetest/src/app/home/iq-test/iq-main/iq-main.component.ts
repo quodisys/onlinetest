@@ -65,6 +65,7 @@ export class IqMainComponent implements OnInit {
 			choices: ['Awnser A', 'Awnser B', 'Awnser C', 'Awnser D'],
 		}
 	];
+	formIsSubmit = false;
 
 	constructor(private elementRef: ElementRef, private router: Router, private formBuilder: FormBuilder) { }
 
@@ -87,7 +88,11 @@ export class IqMainComponent implements OnInit {
 		}
 	}
 	canDeactivate() {
-		return confirm('Are you sure you want to leave this test ?');
+		if(!this.formIsSubmit) {
+			return confirm('Are you sure you want to leave this test ?');
+		} else {
+			return true
+		}
 	}
 	counterEvent(e: CountdownEvent) {
 		if(e.action == 'done') {
@@ -114,6 +119,7 @@ export class IqMainComponent implements OnInit {
 	onSubmit(formData) {
 		console.log(formData.value);
 		console.log(this.formAnswer)
+		this.formIsSubmit = true;
 		this.router.navigate(['/iq-test/result'])
 	}
 }

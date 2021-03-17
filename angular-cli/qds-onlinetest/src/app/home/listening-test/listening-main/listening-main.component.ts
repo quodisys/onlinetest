@@ -30,6 +30,7 @@ export class ListeningMainComponent implements OnInit {
 	vocabularyForm: any;
 
 	isSticky: boolean = false;
+	formIsSubmit = false;
 
 	@HostListener('window:scroll', ['$event'])
 	checkScroll() {
@@ -68,7 +69,11 @@ export class ListeningMainComponent implements OnInit {
 	}
 
 	canDeactivate() {
-		return confirm('Are you sure you want to leave this test ?');
+		if(!this.formIsSubmit) {
+			return confirm('Are you sure you want to leave this test ?');
+		} else {
+			return true
+		}
 	}
 
 	getTestInfo() {
@@ -249,6 +254,7 @@ export class ListeningMainComponent implements OnInit {
 		})
 		.then(function (response) {
 			console.log(that.submitForm)
+			that.formIsSubmit = true;
 			that.router.navigate(['/listening-test/result'])
 		})
 		.catch(function (error) {

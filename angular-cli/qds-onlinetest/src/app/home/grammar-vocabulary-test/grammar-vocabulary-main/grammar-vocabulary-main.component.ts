@@ -25,6 +25,7 @@ export class GrammarVocabularyMainComponent implements OnInit {
 		totaltime: 0
 	}
 	submitForm:any
+	formIsSubmit = false;
 
 	constructor(private router: Router) { }
 
@@ -50,7 +51,11 @@ export class GrammarVocabularyMainComponent implements OnInit {
 	}
 
 	canDeactivate() {
-		return confirm('Are you sure you want to leave this test ?');
+		if(!this.formIsSubmit) {
+			return confirm('Are you sure you want to leave this test ?');
+		} else {
+			return true
+		}
 	}
 
 	getTestInfo() {
@@ -182,7 +187,7 @@ export class GrammarVocabularyMainComponent implements OnInit {
 			data: JSON.stringify(this.submitForm)
 		})
 		.then(function (response) {
-			console.log(that.submitForm)
+			that.formIsSubmit = true;
 			that.router.navigate(['/grammar-vocabulary-test/result'])
 		})
 		.catch(function (error) {

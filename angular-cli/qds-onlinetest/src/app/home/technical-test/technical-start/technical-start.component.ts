@@ -19,6 +19,29 @@ export class TechnicalStartComponent implements OnInit {
 		this.getTestTopic();
     }
 
+	initiateTest() {
+		let that =  this;
+		let data = {
+			token: localStorage.getItem('token'),
+			keyword: localStorage.getItem('keyword'),
+			sess: localStorage.getItem('sessionId'),
+			topic: this.testSelected
+		}
+		axios({
+			method: 'post',
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			url: environment.hostApi + '/candidates/initiatetests.php',
+			  data: JSON.stringify(data)
+		})
+		.then(function (response) {
+			var res = response.data;
+			console.log(res);
+		})
+		.catch(function (error) {
+			console.log(error);
+		});
+	}
+
 	getTestTopic() {
 		let that =  this;
 		let data = {
@@ -47,6 +70,7 @@ export class TechnicalStartComponent implements OnInit {
 
 	onSubmit() {
 		console.log(this.testSelected);
+		this.initiateTest();
 		this.router.navigate(['/technical-test/start-test'], { queryParams: {topic: this.testSelected}});
 	}
 

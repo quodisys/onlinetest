@@ -35,6 +35,7 @@ export class ReadingMainComponent implements OnInit {
 	}
 	questionsOrinal:any = []
 	submitForm:any
+	formIsSubmit = false;
 
 	constructor(private router: Router) { }
 
@@ -60,7 +61,11 @@ export class ReadingMainComponent implements OnInit {
 	}
 
 	canDeactivate() {
-		return confirm('Are you sure you want to leave this test ?');
+		if(!this.formIsSubmit) {
+			return confirm('Are you sure you want to leave this test ?');
+		} else {
+			return true
+		}
 	}
 
 	getTestInfo() {
@@ -174,13 +179,13 @@ export class ReadingMainComponent implements OnInit {
 		})
 		.then(function (response) {
 			console.log(that.submitForm)
+			that.formIsSubmit = true;
 			that.router.navigate(['/reading-test/result'])
 		})
 		.catch(function (error) {
 			console.log(error);
 			alert("Something wrong when submitting test!")
 		});
-		// this.router.navigate(['/reading-test/result'])
 	}
 
 }

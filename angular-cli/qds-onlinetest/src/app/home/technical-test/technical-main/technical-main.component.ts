@@ -26,6 +26,7 @@ export class TechnicalMainComponent implements OnInit {
 	submitDisable = true;
 
 	submitForm:any
+	formIsSubmit = false;
 
 	constructor(private elementRef: ElementRef, private router: Router, private route: ActivatedRoute, private formBuilder: FormBuilder) {
 		
@@ -55,7 +56,11 @@ export class TechnicalMainComponent implements OnInit {
 		})
 	}
 	canDeactivate() {
-		return confirm('Are you sure you want to leave this test ?');
+		if(!this.formIsSubmit) {
+			return confirm('Are you sure you want to leave this test ?');
+		} else {
+			return true
+		}
 	}
 
 	openModal() {
@@ -195,7 +200,8 @@ export class TechnicalMainComponent implements OnInit {
 			data: JSON.stringify(this.submitForm)
 		})
 		.then(function (response) {
-			console.log(that.submitForm)
+			console.log(that.submitForm);
+			that.formIsSubmit = true;
 			that.router.navigate(['/technical-test/result'])
 		})
 		.catch(function (error) {

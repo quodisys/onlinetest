@@ -85,6 +85,7 @@ export class SpeakingMainComponent implements OnInit {
 			question: 'There are three types of business organizations: for-profit, non-profit, and hybrids.'
 		}
 	];
+	formIsSubmit: any = false;
 
 	constructor(private elementRef: ElementRef, private router: Router, private formBuilder: FormBuilder) { }
 
@@ -109,7 +110,11 @@ export class SpeakingMainComponent implements OnInit {
 	}
 
 	canDeactivate() {
-		return confirm('Are you sure you want to leave this test ?');
+		if(!this.formIsSubmit) {
+			return confirm('Are you sure you want to leave this test ?');
+		} else {
+			return true
+		}
 	}
 
 	counterEvent(e: CountdownEvent) {
@@ -160,6 +165,7 @@ export class SpeakingMainComponent implements OnInit {
 	onSubmit(formData) {
 		console.log(formData.value);
 		console.log(this.formAnswer)
+		this.formIsSubmit = true;
 		this.router.navigate(['/speaking-test/result'])
 	}
 }
