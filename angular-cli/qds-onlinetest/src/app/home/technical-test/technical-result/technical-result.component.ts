@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
 import axios from 'axios';
 import { environment } from './../../../../environments/environment';
 
@@ -12,7 +11,7 @@ export class TechnicalResultComponent implements OnInit {
 
 	url:string
 
-	constructor(private router: Router, private route: ActivatedRoute) { }
+	constructor() { }
 
 	ngOnInit(): void {
 		this.checkRouter();

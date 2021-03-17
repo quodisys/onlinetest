@@ -9,6 +9,7 @@ import { TechnicalResultComponent } from './technical-result/technical-result.co
 import { TechnicalMainComponent } from './technical-main/technical-main.component'
 import { CountdownModule } from 'ngx-countdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { ModalModule } from 'ngx-bootstrap/modal';
 import { ShareModule } from '../../shared.module'
 
 @NgModule({

@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { TechnicalStartComponent } from './technical-start/technical-start.component'
 import { TechnicalMainComponent } from './technical-main/technical-main.component'
 import { TechnicalResultComponent } from './technical-result/technical-result.component'
+import { CanDeactivateGuard } from '../../guards/can-deactive.guard'
 
 const routes: Routes = [
 	{ 	
@@ -11,7 +12,8 @@ const routes: Routes = [
 		component: TechnicalStartComponent
 	},{ 	
 		path: 'start-test',
-		component: TechnicalMainComponent
+		component: TechnicalMainComponent,
+		canDeactivate: [CanDeactivateGuard]
 	},{ 	
 		path: 'result',
 		component: TechnicalResultComponent

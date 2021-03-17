@@ -7,11 +7,11 @@ import axios from 'axios';
 import { environment } from './../../../../environments/environment';
 
 @Component({
-  selector: 'app-vocabulary-main',
-  templateUrl: './vocabulary-main.component.html',
-  styleUrls: ['./vocabulary-main.component.scss']
+  selector: 'app-grammar-vocabulary-main',
+  templateUrl: './grammar-vocabulary-main.component.html',
+  styleUrls: ['./grammar-vocabulary-main.component.scss']
 })
-export class VocabularyMainComponent implements OnInit {
+export class GrammarVocabularyMainComponent implements OnInit {
 
 	@ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
 	topic:string
@@ -29,7 +29,7 @@ export class VocabularyMainComponent implements OnInit {
 	constructor(private router: Router) { }
 
 	ngOnInit(): void {
-		this.topic = 'Vocabulary';
+		this.topic = 'Grammar & Vocabulary';
 		this.submitForm = {
 			token: localStorage.getItem('token'),
 			keyword: localStorage.getItem('keyword'),
@@ -67,7 +67,7 @@ export class VocabularyMainComponent implements OnInit {
 			var test = Object.keys(res).map((k) => res[k]);
 			var engtest = test.find(x => x.category == "English Test").engtests;
 			engtest = Object.keys(engtest).map((k) => engtest[k]);
-			that.vocabularyTestInfo = engtest.find(x => x.topic == "Vocabulary Test");
+			that.vocabularyTestInfo = engtest.find(x => x.topic == "Grammar & Vocabulary Test");
 			that.testTime = that.vocabularyTestInfo.totaltime*60;
 			that.config = {
 				leftTime: that.testTime,
@@ -170,7 +170,6 @@ export class VocabularyMainComponent implements OnInit {
 	}
 
 	onSubmit() {
-		console.log('aaa');
 		let that =  this;
 		axios({
 			method: 'post',
@@ -180,7 +179,7 @@ export class VocabularyMainComponent implements OnInit {
 		})
 		.then(function (response) {
 			console.log(that.submitForm)
-			that.router.navigate(['/vocabulary-test/result'])
+			that.router.navigate(['/grammar-vocabulary-test/result'])
 		})
 		.catch(function (error) {
 			console.log(error);

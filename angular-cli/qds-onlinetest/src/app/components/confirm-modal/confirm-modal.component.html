@@ -1,0 +1,14 @@
+<div *ngIf="isModalShown" [config]="{ show: true, backdrop: 'static', keyboard: false }" (onHidden)="onHidden()" bsModal #autoShownModal="bs-modal"
+  class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-auto-name">
+    <div class="modal-dialog modal-sm" style="max-width: 450px;">
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">Mic Test</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="isModalShown = false">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body d-flex flex-column align-items-center pb-5 pt-3">
+            aaaaa
+        </div>
+    </div>
+</div>

@@ -3,9 +3,10 @@ import { CountdownEvent } from 'ngx-countdown';
 import { IQTestForm } from '../../../interfaces/iq-test'
 import { FormBuilder} from  '@angular/forms';
 import { TabsetComponent } from 'ngx-bootstrap/tabs';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationStart } from '@angular/router';
 import axios from 'axios';
 import { environment } from './../../../../environments/environment';
+import { ConfirmModalComponent } from '../../../components/confirm-modal/confirm-modal.component';
 
 @Component({
   selector: 'app-technical-main',
@@ -15,6 +16,7 @@ import { environment } from './../../../../environments/environment';
 export class TechnicalMainComponent implements OnInit {
 
 	@ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
+	@ViewChild(ConfirmModalComponent, {static: false}) private ConfirmModalComponent: ConfirmModalComponent;
 	topic:string
 	config = {}
 	technicalTest:any
@@ -25,7 +27,9 @@ export class TechnicalMainComponent implements OnInit {
 
 	submitForm:any
 
-	constructor(private elementRef: ElementRef, private router: Router, private route: ActivatedRoute, private formBuilder: FormBuilder) { }
+	constructor(private elementRef: ElementRef, private router: Router, private route: ActivatedRoute, private formBuilder: FormBuilder) {
+		
+	}
 
 	ngOnInit(): void {
 		this.topic = '';
@@ -49,6 +53,14 @@ export class TechnicalMainComponent implements OnInit {
 			item['customClass'] = '';
 			console.log(item)
 		})
+	}
+	canDeactivate() {
+		return confirm('Are you sure you want to leave this test ?');
+	}
+
+	openModal() {
+		this.ConfirmModalComponent.showModal();
+		return false;
 	}
 
 	getTestInfo(topic) {

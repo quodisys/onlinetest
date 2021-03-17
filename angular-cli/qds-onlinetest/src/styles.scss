@@ -217,8 +217,10 @@ html, body {
 }
 
 .content-test {
+    text-align: center;
     cursor: pointer;
     transition: transform 1s;
+    max-width: 210px;
     &:hover {
         & img {
             transform: scale(1.1);
