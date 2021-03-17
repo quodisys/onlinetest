@@ -20,7 +20,6 @@ export class TechnicalStartComponent implements OnInit {
     }
 
 	initiateTest() {
-		let that =  this;
 		let data = {
 			token: localStorage.getItem('token'),
 			keyword: localStorage.getItem('keyword'),
