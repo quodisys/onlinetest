@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AptitudeStartComponent } from './aptitude-start/aptitude-start.component'
 import { AptitudeMainComponent } from './aptitude-main/aptitude-main.component'
 import { AptitudeResultComponent } from './aptitude-result/aptitude-result.component'
+import { CanDeactivateGuard } from '../../guards/can-deactive.guard'
 
 const routes: Routes = [
 	{ 	
@@ -11,7 +12,8 @@ const routes: Routes = [
 		component: AptitudeStartComponent
 	},{ 	
 		path: 'start-test',
-		component: AptitudeMainComponent
+		component: AptitudeMainComponent,
+		canDeactivate: [CanDeactivateGuard]
 	},{ 	
 		path: 'result',
 		component: AptitudeResultComponent

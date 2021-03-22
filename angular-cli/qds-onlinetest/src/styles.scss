@@ -103,6 +103,15 @@ html, body {
     min-height: 600px;
 }
 
+.answer-list {
+    list-style: none;
+    padding-left: 0;
+    & li {
+        display: inline-flex;
+        margin-right: 50px;
+    }
+}
+
 .main-center {
     & .container {
         height: 100%;
@@ -331,9 +340,19 @@ html, body {
             pointer-events: none;
         }
     }
+    &.nav-hide {
+        & .nav-tabs {
+            display: none;
+        }
+    }
     & .tab-content {
         margin-top: 50px;
     }
+}
+.desc-content {
+    max-width: 800px;
+    margin: auto;
+    margin-bottom: 50px;
 }
 .test-content {
     & .question {

@@ -1,4 +1,4 @@
-<div appBlockCopyPaste class="main main-center bg-blue">
+<div class="main main-2 main-center bg-blue">
     <div class="container">
         <div class="col-md-12">
             <div class="branding countdown">
@@ -16,34 +16,87 @@
                 </div>
             </div>
             <div class="content">
-                <form #testForm="ngForm" (ngSubmit)="onSubmit(testForm)">
-                    <tabset #staticTabs class="custom-tab nav-disabled">
-                        <tab *ngFor="let question of questions; let key = index; let last = last"
-                            [heading]="key + 1"
-                            [active]="question.active"
-                            (selectTab)="changeTab($event)"
-                            (deselect)="question.active = false"
-                            [disabled]="question.disabled"
-                            [customClass]="question.customClass">
+                <tabset #staticTabs class="custom-tab nav-disabled nav-hide">
+                    <tab
+                        [heading]="1"
+                        [active]="true"
+                        (selectTab)="changeTab($event)">
+                        <div class="title mt-3 mb-3 text-uppercase">Attitude Test</div>
+                        <div class="desc-content">
+                            In each of the following, choose from a scale of 1 - 5 which of these statements you most agree with or is most applicable to yourself. Choose 5 for most agree=most applicable, down to 1 for least agree=least applicable.
+                        </div>
+                        <div *ngFor="let question of aptitudeQuestions; let key = index;">
                             <div class="test-content" >
                                 <div class="question">
-                                    {{question.question}}
+                                    {{key+1}}. {{question.question}}
                                 </div>
                                 <div class="answer">
-                                    <div class="row">
-                                        <div class="col-md-6 mb-3" *ngFor="let choice of question.choices; let choiceKey = index;" >
-                                            <input class="checkbox-mask" id="question{{key}}-choice{{choiceKey}}" type="radio" [value]="choice" [(ngModel)]="formAnswer.answers[key]" name="question-{{key + 1}}" (click)="showNextQuestion(key)">
+                                    <ul class="answer-list">
+                                        <li *ngFor="let choice of question.choices; let choiceKey = index;">
+                                            <input class="checkbox-mask" id="question{{key}}-choice{{choiceKey}}" type="radio" [value]="choice" [(ngModel)]="formAnswer.aptitude[key].questionAnswer" name="question-{{key + 1}}" (change)="answerSelect()">
                                             <label for="question{{key}}-choice{{choiceKey}}">{{choice}}</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="d-flex justify-content-center" *ngIf="last">
-                                    <button type="submit" class="btn btn-main mt-2">Finish</button>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
-                        </tab>
-                    </tabset>
-                </form>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <button type="button" class="btn btn-main mt-2" (click)="showNextQuestion(1)">Next</button>
+                        </div>
+                    </tab>
+                    <tab
+                        [heading]="2"
+                        (selectTab)="changeTab($event)">
+                        <div class="title mt-3 mb-3 text-uppercase">MI Test</div>
+                        <div class="desc-content">
+                            In each of the following, choose from a scale of 1 - 4 which of these statements you most agree with or is most applicable to yourself. Choose 4 for most agree=most applicable, down to 1 for least agree=least applicable.
+                        </div>
+                        <div *ngFor="let question of miQuestions; let key = index;">
+                            <div class="test-content" >
+                                <div class="question">
+                                    {{key+1}}. {{question.question}}
+                                </div>
+                                <div class="answer">
+                                    <ul class="answer-list">
+                                        <li *ngFor="let choice of question.choices; let choiceKey = index;">
+                                            <input class="checkbox-mask" id="mi-question{{key}}-choice{{choiceKey}}" type="radio" [value]="choice" [(ngModel)]="formAnswer.mi[key].questionAnswer" name="mi-question-{{key + 1}}" (change)="answerSelect()">
+                                            <label for="mi-question{{key}}-choice{{choiceKey}}">{{choice}}</label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <button type="button" class="btn btn-main mt-2" (click)="showNextQuestion(2)">Next</button>
+                        </div>
+                    </tab>
+                    <tab
+                        [heading]="3"
+                        (selectTab)="changeTab($event)">
+                        <div class="title mt-3 mb-3 text-uppercase">Honesty Test</div>
+                        <div class="desc-content">
+                            In each of the following, choose from a scale of 1 - 4 which of these statements you most agree with or is most applicable to yourself. Choose 4 for most agree=most applicable, down to 1 for least agree=least applicable.
+                        </div>
+                        <div *ngFor="let question of honestyQuestions; let key = index;">
+                            <div class="test-content" >
+                                <div class="question">
+                                    {{key+1}}. {{question.question}}
+                                </div>
+                                <div class="answer">
+                                    <ul class="answer-list">
+                                        <li *ngFor="let choice of question.choices; let choiceKey = index;">
+                                            <input class="checkbox-mask" id="ho-question{{key}}-choice{{choiceKey}}" type="radio" [value]="choice" [(ngModel)]="formAnswer.honesty[key].questionAnswer" name="ho-question-{{key + 1}}" (change)="answerSelect()">
+                                            <label for="ho-question{{key}}-choice{{choiceKey}}">{{choice}}</label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <button type="button" class="btn btn-main mt-2" (click)="showNextQuestion('submit')">Submit</button>
+                        </div>
+                    </tab>
+                </tabset>
             </div>
             <div class="footer-logo">
                 <img src="/assets/images/logox.svg" alt="footer logo">
