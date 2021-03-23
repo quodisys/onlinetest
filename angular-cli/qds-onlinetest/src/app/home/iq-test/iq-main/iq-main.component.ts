@@ -4,6 +4,8 @@ import { IQTestForm } from '../../../interfaces/iq-test'
 import { FormBuilder} from  '@angular/forms';
 import { TabsetComponent } from 'ngx-bootstrap/tabs';
 import { Router } from '@angular/router';
+import axios from 'axios';
+import { environment } from './../../../../environments/environment';
 
 @Component({
   selector: 'app-iq-main',
@@ -17,76 +19,105 @@ export class IqMainComponent implements OnInit {
 
 
 	config = {}
-	questions: any[] = [
-		{ 
-			id: '001', 
-			question: 'What number is one quarter of one tenth of one fifth of 200?',
-			choices: ['25', '.5', '1', '10'],
-			active: true 
-		},
-		{ 
-			id: '002', 
-			question: 'A palindrome is a word or phrase that is spelled the same written forward or backward, often used for I.Q. test questions. "Stets" is a palindrome.',
-			choices: ['True', 'False'],
-		},
-		{ 
-			id: '003', 
-			question: 'Sequential reasoning is often tested in IQ exams. 3, 7, 13, 21, 31. What number comes next in the sequence?',
-			choices: ['37', '45', '43', '39', '49'],
-		},
-		{ 
-			id: '004', 
-			question: 'Compare and contrast or classification problems are commonly used to measure intelligence. Which of the five is least like the other four?',
-			choices: ['Eel', 'Shark', 'Dolphin', 'Swordfish', 'Turtle'],
-		},
-		{ 
-			id: '005', 
-			question: 'If you rearrange the letters of "ahret," you would have the name of a:',
-			choices: ['Ventricle', 'Fish', 'River', 'Planet', 'Country'],
-		},
-		{ 
-			id: '006', 
-			question: 'Which is the largest number?',
-			choices: ['Awnser A', 'Awnser B', 'Awnser C', 'Awnser D'],
-		},
-		{ 
-			id: '007', 
-			question: 'Which number has the smallest value?',
-			choices: ['Awnser A', 'Awnser B', 'Awnser C', 'Awnser D'],
-		},
-		{ 
-			id: '008', 
-			question: 'What will you get if you reduce 14/35 to the lowest term?',
-			choices: ['Awnser A', 'Awnser B', 'Awnser C', 'Awnser D'],
-		},
-		{ 
-			id: '009', 
-			question: 'Helpless and Legend have ____ meanings.',
-			choices: ['Awnser A', 'Awnser B', 'Awnser C', 'Awnser D'],
-		}
-	];
 	formIsSubmit = false;
+	currentTab:number = 1;
+	currentTabIndex:number = 0;
+	score:number = 0;
+	topic:string;
+	testTime:number
+	iqTest:any
+	submitForm:any
+
+	collectAnswer:any = []
+	collectAnswerCopy:any = []
+	correctAnswer:any = [
+		{question: 1, answer: "A"},
+		{question: 2, answer: "6"},
+		{question: 3, answer: "22,24"},
+		{question: 4, answer: "E"},
+		{question: 5, answer: "27"},
+		{question: 6, answer: "D"},
+		{question: 7, answer: "C"},
+		{question: 8, answer: "48"},
+		{question: 9, answer: "A"},
+		{question: 10, answer: "69237"},
+		{question: 11, answer: "E"},
+		{question: 12, answer: "C"},
+		{question: 13, answer: "9,3,2,6,1,3,6,3,3,3,2,5,5"},
+		{question: 14, answer: "51"},
+		{question: 15, answer: "K,P"},
+		{question: 16, answer: "E"},
+		{question: 17, answer: "8"},
+		{question: 18, answer: "C"},
+		{question: 19, answer: "2.5,3"},
+		{question: 20, answer: "B"},
+		{question: 21, answer: "0"},
+		{question: 22, answer: "42"},
+		{question: 23, answer: "D"},
+		{question: 24, answer: "1a"},
+		{question: 25, answer: "31"},
+		{question: 26, answer: "D"},
+		{question: 27, answer: "0.18,0.14"},
+		{question: 28, answer: "C"},
+		{question: 29, answer: "A"},
+		{question: 30, answer: "E"}
+	]
+	
 
 	constructor(private elementRef: ElementRef, private router: Router, private formBuilder: FormBuilder) { }
 
 	ngOnInit(): void {
-		this.formAnswer = {
-			answers: [
-				{
-					questionID: '',
-					questionAnswer: ''
-				}
-			]
+		this.topic = 'IQ';
+		this.submitForm = {
+			token: localStorage.getItem('token'),
+			keyword: localStorage.getItem('keyword'),
+			sess: localStorage.getItem('sessionId'),
+			topic: this.topic,
+			qa: [{type: "IQ", score:''}]
 		}
-		this.questions.map(item => {
-			item['customClass'] = '';
-			console.log(item)
-		})
+		this.getTestInfo(this.topic)
 		this.config = {
 			leftTime: 1160,
 			format: 'mm : ss'
 		}
+		for(var i=1; i<=30; i++) {
+			let d1 = {
+				question: i,
+				answer: ''
+			}
+			this.collectAnswer.push(d1);
+		}
+		this.collectAnswer[12].answer = []
 	}
+
+	getTestInfo(topic) {
+		let that =  this;
+		let data = {
+			token: localStorage.getItem('token'),
+			keyword: localStorage.getItem('keyword'),
+			sess: localStorage.getItem('sessionId')
+		}
+		axios({
+			method: 'post',
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			url: environment.hostApi + '/candidates/allocatedtests.php',
+			  data: JSON.stringify(data)
+		})
+		.then(function (response) {
+			var res = response.data;
+			var test = Object.keys(res).map((k) => res[k]);
+			that.iqTest = test.find( x => x.topic == "Aptitude");
+			that.testTime = that.iqTest.totaltime*60;
+			that.config = {
+				leftTime: that.testTime,
+				format: 'mm : ss'
+			}
+		})
+		.catch(function (error) {
+			console.log(error);
+		});
+	}
+
 	canDeactivate() {
 		if(!this.formIsSubmit) {
 			return confirm('Are you sure you want to leave this test ?');
@@ -96,30 +127,48 @@ export class IqMainComponent implements OnInit {
 	}
 	counterEvent(e: CountdownEvent) {
 		if(e.action == 'done') {
-			this.router.navigate(['/iq-test/result'])
+			this.onSubmit();
 		}
 	}
 
 	showNextQuestion(key) {
-		let that = this;
-		let tabId = key + 1;
-		let questionCount = this.questions.length;
-		that.questions[key].customClass = 'done'
-		if(tabId < questionCount) {
-			setTimeout(function() {
-				that.staticTabs.tabs[tabId].active = true;
-			},500)
-		}
+		this.staticTabs.tabs[key].active = true;
 	}
 
 	changeTab(e) {
-		console.log(e.heading)
+		this.currentTab = e.heading;
+		this.currentTabIndex = e.heading - 1;
 	}
 
-	onSubmit(formData) {
-		console.log(formData.value);
-		console.log(this.formAnswer)
-		this.formIsSubmit = true;
-		this.router.navigate(['/iq-test/result'])
+	calculateScore() {
+		this.collectAnswerCopy = JSON.parse(JSON.stringify(this.collectAnswer));
+		this.collectAnswerCopy[12].answer = this.collectAnswerCopy[12].answer.toString();
+		this.collectAnswerCopy.map((q, i) => {
+			if(q.answer == this.correctAnswer[i].answer) {
+				this.score++
+			}
+		})
+		return this.score;
+	}
+
+	onSubmit() {
+		let that =  this;
+		let totalScore = this.calculateScore();
+		this.submitForm.qa[0].score = totalScore;
+		axios({
+			method: 'post',
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			url: environment.hostApi + '/candidates/processtests.php',
+			data: JSON.stringify(this.submitForm)
+		})
+		.then(function (response) {
+			that.formIsSubmit = true;
+			that.router.navigate(['/iq-test/result'])
+		})
+		.catch(function (error) {
+			console.log(error);
+			alert("Something wrong when submitting test!")
+		});
+		console.log(this.submitForm);
 	}
 }

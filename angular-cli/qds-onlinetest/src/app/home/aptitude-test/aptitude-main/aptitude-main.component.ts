@@ -148,7 +148,7 @@ export class AptitudeMainComponent implements OnInit {
 
 	counterEvent(e: CountdownEvent) {
 		if(e.action == 'done') {
-			this.router.navigate(['/aptitude-test/result'])
+			this.submit();
 		}
 	}
 

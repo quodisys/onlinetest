@@ -19,7 +19,8 @@
                 <tabset #staticTabs class="custom-tab">
                     <tab 
                         [heading]="1"
-                        (selectTab)="changeTab($event)">
+                        (selectTab)="changeTab($event)"
+                        (onInit)="changeTab($event)">
                         <div class="test-content" >
                             <div class="question">
                                 <p>Circle the answer(s), or write in the answer box provided.</p>
@@ -29,23 +30,23 @@
                             <div class="answer">
                                 <div class="row">
                                     <div class="col-md-12 mb-3">
-                                        <input class="checkbox-mask" id="answer-1" type="radio" [value]="'A'" name="answer" >
+                                        <input class="checkbox-mask" id="answer-1" type="radio" [value]="'A'" name="answer" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="answer-1"><img src="/assets/images/IQ/answer_q1_01.png"></label>
                                     </div>
                                     <div class="col-md-12 mb-3">
-                                        <input class="checkbox-mask" id="answer-2" type="radio" [value]="'B'" name="answer" >
+                                        <input class="checkbox-mask" id="answer-2" type="radio" [value]="'B'" name="answer" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="answer-2"><img src="/assets/images/IQ/answer_q1_02.png"></label>
                                     </div>
                                     <div class="col-md-12 mb-3">
-                                        <input class="checkbox-mask" id="answer-3" type="radio" [value]="'C'" name="answer" >
+                                        <input class="checkbox-mask" id="answer-3" type="radio" [value]="'C'" name="answer" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="answer-3"><img src="/assets/images/IQ/answer_q1_03.png"></label>
                                     </div>
                                     <div class="col-md-12 mb-3">
-                                        <input class="checkbox-mask" id="answer-4" type="radio" [value]="'D'" name="answer" >
+                                        <input class="checkbox-mask" id="answer-4" type="radio" [value]="'D'" name="answer" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="answer-4"><img src="/assets/images/IQ/answer_q1_04.png"></label>
                                     </div>
                                     <div class="col-md-12 mb-3">
-                                        <input class="checkbox-mask" id="answer-5" type="radio" [value]="'E'" name="answer" >
+                                        <input class="checkbox-mask" id="answer-5" type="radio" [value]="'E'" name="answer" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="answer-5"><img src="/assets/images/IQ/answer_q1_05.png"></label>
                                     </div>
                                 </div>
@@ -64,12 +65,9 @@
                                 <div class="row">
                                     <div class="question-text text-type">
                                         <label for="question-2">Answer: </label>
-                                        <input class="form-control question-type-text" id="question-2" type="text" name="question-2">
+                                        <input class="form-control question-type-text" id="question-2" type="text" name="question-2" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="d-flex justify-content-center">
-                                <button type="button" class="btn btn-main mt-2">Next</button>
                             </div>
                         </div>
                     </tab>
@@ -86,12 +84,9 @@
                                 <div class="row">
                                     <div class="question-text text-type">
                                         <label for="question-3">Answer: </label>
-                                        <input class="form-control question-type-text" id="question-3" type="text" name="question-3">
+                                        <input class="form-control question-type-text" id="question-3" type="text" name="question-3" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="d-flex justify-content-center">
-                                <button type="button" class="btn btn-main mt-2">Next</button>
                             </div>
                         </div>
                     </tab>
@@ -106,23 +101,23 @@
                             <div class="answer">
                                 <div class="row">
                                     <div class="col-md-4 mb-3 d-flex justify-content-center">
-                                        <input class="checkbox-mask" id="q4-answer-1" type="radio" [value]="'A'" name="answer4" >
+                                        <input class="checkbox-mask" id="q4-answer-1" type="radio" [value]="'A'" name="answer4" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q4-answer-1"><img style="max-width: 100px;" src="/assets/images/IQ/answer_q4_01.png"></label>
                                     </div>
                                     <div class="col-md-4 mb-3 d-flex justify-content-center">
-                                        <input class="checkbox-mask" id="q4-answer-2" type="radio" [value]="'B'" name="answer4" >
+                                        <input class="checkbox-mask" id="q4-answer-2" type="radio" [value]="'B'" name="answer4" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q4-answer-2"><img style="max-width: 100px;" src="/assets/images/IQ/answer_q4_02.png"></label>
                                     </div>
                                     <div class="col-md-4 mb-3 d-flex justify-content-center">
-                                        <input class="checkbox-mask" id="q4-answer-3" type="radio" [value]="'C'" name="answer4" >
+                                        <input class="checkbox-mask" id="q4-answer-3" type="radio" [value]="'C'" name="answer4" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q4-answer-3"><img style="max-width: 100px;" src="/assets/images/IQ/answer_q4_03.png"></label>
                                     </div>
                                     <div class="col-md-4 mb-3 d-flex justify-content-center">
-                                        <input class="checkbox-mask" id="q4-answer-4" type="radio" [value]="'D'" name="answer4" >
+                                        <input class="checkbox-mask" id="q4-answer-4" type="radio" [value]="'D'" name="answer4" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q4-answer-4"><img style="max-width: 100px;" src="/assets/images/IQ/answer_q4_04.png"></label>
                                     </div>
                                     <div class="col-md-4 mb-3 d-flex justify-content-center">
-                                        <input class="checkbox-mask" id="q4-answer-5" type="radio" [value]="'E'" name="answer4" >
+                                        <input class="checkbox-mask" id="q4-answer-5" type="radio" [value]="'E'" name="answer4" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q4-answer-5"><img style="max-width: 100px;" src="/assets/images/IQ/answer_q4_05.png"></label>
                                     </div>
                                 </div>
@@ -139,48 +134,8 @@
                             <div class="answer">
                                 <div class="row">
                                     <div class="question-text text-type">
-                                        <label for="question-3">Answer: </label>
-                                        <input class="form-control question-type-text" id="question-3" type="text" name="question-3">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mt-5 d-flex justify-content-center">
-                                <button type="button" class="btn btn-main mt-2">Next</button>
-                            </div>
-                        </div>
-                    </tab>
-                    <tab 
-                        [heading]="6"
-                        (selectTab)="changeTab($event)">
-                        <div class="test-content" >
-                            <div class="question">
-                                <p>Ω # – Ω Ω # # – ? Ω # – Ω Ω # # – = # Ω #</p>
-                                <p>– Ω Ω # # – ? Ω # – Ω Ω # # – = # Ω # – Ω</p>
-                                <p>Ω # # – ? Ω # – Ω Ω # # – Ω # – Ω Ω # # – ?</p>
-                                <p>Ω # – Ω Ω # # – = #</p>
-                                <p>Which two symbols are missing?</p>
-                            </div>
-                            <div class="answer">
-                                <div class="row">
-                                    <div class="col-md-2 mb-3 d-flex justify-content-center">
-                                        <input class="checkbox-mask" id="q6-answer-1" type="radio" [value]="'A'" name="answer6" >
-                                        <label for="q6-answer-1">Ω #</label>
-                                    </div>
-                                    <div class="col-md-2 mb-3 d-flex justify-content-center">
-                                        <input class="checkbox-mask" id="q6-answer-2" type="radio" [value]="'B'" name="answer6" >
-                                        <label for="q6-answer-2">– Ω</label>
-                                    </div>
-                                    <div class="col-md-2 mb-3 d-flex justify-content-center">
-                                        <input class="checkbox-mask" id="q6-answer-3" type="radio" [value]="'C'" name="answer6" >
-                                        <label for="q6-answer-3"># #</label>
-                                    </div>
-                                    <div class="col-md-2 mb-3 d-flex justify-content-center">
-                                        <input class="checkbox-mask" id="q6-answer-4" type="radio" [value]="'D'" name="answer6" >
-                                        <label for="q6-answer-4">= #</label>
-                                    </div>
-                                    <div class="col-md-2 mb-3 d-flex justify-content-center">
-                                        <input class="checkbox-mask" id="q6-answer-5" type="radio" [value]="'E'" name="answer6" >
-                                        <label for="q6-answer-5">– =</label>
+                                        <label for="question-5">Answer: </label>
+                                        <input class="form-control question-type-text" id="question-5" type="text" name="question-5" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                     </div>
                                 </div>
                             </div>
@@ -200,23 +155,23 @@
                             <div class="answer">
                                 <div class="row">
                                     <div class="col-md-2 mb-3 d-flex justify-content-center">
-                                        <input class="checkbox-mask" id="q6-answer-1" type="radio" [value]="'A'" name="answer6" >
+                                        <input class="checkbox-mask" id="q6-answer-1" type="radio" [value]="'A'" name="answer6" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q6-answer-1">Ω #</label>
                                     </div>
                                     <div class="col-md-2 mb-3 d-flex justify-content-center">
-                                        <input class="checkbox-mask" id="q6-answer-2" type="radio" [value]="'B'" name="answer6" >
+                                        <input class="checkbox-mask" id="q6-answer-2" type="radio" [value]="'B'" name="answer6" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q6-answer-2">– Ω</label>
                                     </div>
                                     <div class="col-md-2 mb-3 d-flex justify-content-center">
-                                        <input class="checkbox-mask" id="q6-answer-3" type="radio" [value]="'C'" name="answer6" >
+                                        <input class="checkbox-mask" id="q6-answer-3" type="radio" [value]="'C'" name="answer6" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q6-answer-3"># #</label>
                                     </div>
                                     <div class="col-md-2 mb-3 d-flex justify-content-center">
-                                        <input class="checkbox-mask" id="q6-answer-4" type="radio" [value]="'D'" name="answer6" >
+                                        <input class="checkbox-mask" id="q6-answer-4" type="radio" [value]="'D'" name="answer6" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q6-answer-4">= #</label>
                                     </div>
                                     <div class="col-md-2 mb-3 d-flex justify-content-center">
-                                        <input class="checkbox-mask" id="q6-answer-5" type="radio" [value]="'E'" name="answer6" >
+                                        <input class="checkbox-mask" id="q6-answer-5" type="radio" [value]="'E'" name="answer6" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q6-answer-5">– =</label>
                                     </div>
                                 </div>
@@ -233,27 +188,27 @@
                             <div class="answer">
                                 <div class="row">
                                     <div class="col-md-12 mb-3">
-                                        <input class="checkbox-mask" id="q7-answer-1" type="radio" [value]="'A'" name="answer7" >
+                                        <input class="checkbox-mask" id="q7-answer-1" type="radio" [value]="'A'" name="answer7" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q7-answer-1">84129</label>
                                     </div>
                                     <div class="col-md-12 mb-3">
-                                        <input class="checkbox-mask" id="q7-answer-2" type="radio" [value]="'B'" name="answer7" >
+                                        <input class="checkbox-mask" id="q7-answer-2" type="radio" [value]="'B'" name="answer7" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q7-answer-2">32418</label>
                                     </div>
                                     <div class="col-md-12 mb-3">
-                                        <input class="checkbox-mask" id="q7-answer-3" type="radio" [value]="'C'" name="answer7" >
+                                        <input class="checkbox-mask" id="q7-answer-3" type="radio" [value]="'C'" name="answer7" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q7-answer-3">47632</label>
                                     </div>
                                     <div class="col-md-12 mb-3">
-                                        <input class="checkbox-mask" id="q7-answer-4" type="radio" [value]="'D'" name="answer7" >
+                                        <input class="checkbox-mask" id="q7-answer-4" type="radio" [value]="'D'" name="answer7" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q7-answer-4">36119</label>
                                     </div>
                                     <div class="col-md-12 mb-3">
-                                        <input class="checkbox-mask" id="q7-answer-5" type="radio" [value]="'E'" name="answer7" >
+                                        <input class="checkbox-mask" id="q7-answer-5" type="radio" [value]="'E'" name="answer7" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q7-answer-5">67626</label>
                                     </div>
                                     <div class="col-md-12 mb-3">
-                                        <input class="checkbox-mask" id="q7-answer-6" type="radio" [value]="'F'" name="answer7" >
+                                        <input class="checkbox-mask" id="q7-answer-6" type="radio" [value]="'F'" name="answer7" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q7-answer-6">72927</label>
                                     </div>
                                 </div>
@@ -270,13 +225,10 @@
                             <div class="answer">
                                 <div class="row">
                                     <div class="question-text text-type">
-                                        <label for="question-3">Answer: </label>
-                                        <input class="form-control question-type-text" id="question-8" type="text" name="question-8" placeholder="km/hr">
+                                        <label for="question-8">Answer: </label>
+                                        <input class="form-control question-type-text" id="question-8" type="text" name="question-8" placeholder="km/hr" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="mt-5 d-flex justify-content-center">
-                                <button type="button" class="btn btn-main mt-2">Next</button>
                             </div>
                         </div>
                     </tab>
@@ -291,27 +243,27 @@
                             <div class="answer">
                                 <div class="row">
                                     <div class="col-md-4 mb-3 d-flex justify-content-center">
-                                        <input class="checkbox-mask" id="q9-answer-1" type="radio" [value]="'A'" name="answer9" >
+                                        <input class="checkbox-mask" id="q9-answer-1" type="radio" [value]="'A'" name="answer9" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q9-answer-1"><img style="max-width: 100px;" src="/assets/images/IQ/answer_q9_01.jpg"></label>
                                     </div>
                                     <div class="col-md-4 mb-3 d-flex justify-content-center">
-                                        <input class="checkbox-mask" id="q9-answer-2" type="radio" [value]="'B'" name="answer9" >
+                                        <input class="checkbox-mask" id="q9-answer-2" type="radio" [value]="'B'" name="answer9" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q9-answer-2"><img style="max-width: 100px;" src="/assets/images/IQ/answer_q9_02.jpg"></label>
                                     </div>
                                     <div class="col-md-4 mb-3 d-flex justify-content-center">
-                                        <input class="checkbox-mask" id="q9-answer-3" type="radio" [value]="'C'" name="answer9" >
+                                        <input class="checkbox-mask" id="q9-answer-3" type="radio" [value]="'C'" name="answer9" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q9-answer-3"><img style="max-width: 100px;" src="/assets/images/IQ/answer_q9_03.jpg"></label>
                                     </div>
                                     <div class="col-md-4 mb-3 d-flex justify-content-center">
-                                        <input class="checkbox-mask" id="q9-answer-4" type="radio" [value]="'D'" name="answer9" >
+                                        <input class="checkbox-mask" id="q9-answer-4" type="radio" [value]="'D'" name="answer9" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q9-answer-4"><img style="max-width: 100px;" src="/assets/images/IQ/answer_q9_04.jpg"></label>
                                     </div>
                                     <div class="col-md-4 mb-3 d-flex justify-content-center">
-                                        <input class="checkbox-mask" id="q9-answer-5" type="radio" [value]="'E'" name="answer9" >
+                                        <input class="checkbox-mask" id="q9-answer-5" type="radio" [value]="'E'" name="answer9" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q9-answer-5"><img style="max-width: 100px;" src="/assets/images/IQ/answer_q9_05.jpg"></label>
                                     </div>
                                     <div class="col-md-4 mb-3 d-flex justify-content-center">
-                                        <input class="checkbox-mask" id="q9-answer-6" type="radio" [value]="'F'" name="answer9" >
+                                        <input class="checkbox-mask" id="q9-answer-6" type="radio" [value]="'F'" name="answer9" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q9-answer-6"><img style="max-width: 100px;" src="/assets/images/IQ/answer_q9_06.jpg"></label>
                                     </div>
                                 </div>
@@ -352,12 +304,9 @@
                                 <div class="row">
                                     <div class="question-text text-type">
                                         <label for="question-10">Answer: </label>
-                                        <input class="form-control question-type-text" id="question-10" type="text" name="question-10">
+                                        <input class="form-control question-type-text" id="question-10" type="text" name="question-10" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="mt-5 d-flex justify-content-center">
-                                <button type="button" class="btn btn-main mt-2">Next</button>
                             </div>
                         </div>
                     </tab>
@@ -375,23 +324,23 @@
                             <div class="answer">
                                 <div class="row">
                                     <div class="col-md-12 mb-3">
-                                        <input class="checkbox-mask" id="q11-answer-1" type="radio" [value]="'A'" name="answer11" >
+                                        <input class="checkbox-mask" id="q11-answer-1" type="radio" [value]="'A'" name="answer11" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q11-answer-1">0.75</label>
                                     </div>
                                     <div class="col-md-12 mb-3">
-                                        <input class="checkbox-mask" id="q11-answer-2" type="radio" [value]="'B'" name="answer11" >
+                                        <input class="checkbox-mask" id="q11-answer-2" type="radio" [value]="'B'" name="answer11" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q11-answer-2">1.95-0.75</label>
                                     </div>
                                     <div class="col-md-12 mb-3">
-                                        <input class="checkbox-mask" id="q11-answer-3" type="radio" [value]="'C'" name="answer11" >
+                                        <input class="checkbox-mask" id="q11-answer-3" type="radio" [value]="'C'" name="answer11" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q11-answer-3">0.52</label>
                                     </div>
                                     <div class="col-md-12 mb-3">
-                                        <input class="checkbox-mask" id="q11-answer-4" type="radio" [value]="'D'" name="answer11" >
+                                        <input class="checkbox-mask" id="q11-answer-4" type="radio" [value]="'D'" name="answer11" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q11-answer-4">0.825</label>
                                     </div>
                                     <div class="col-md-12 mb-3">
-                                        <input class="checkbox-mask" id="q11-answer-5" type="radio" [value]="'E'" name="answer11" >
+                                        <input class="checkbox-mask" id="q11-answer-5" type="radio" [value]="'E'" name="answer11" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q11-answer-5">0.25</label>
                                     </div>
                                 </div>
@@ -409,23 +358,23 @@
                             <div class="answer">
                                 <div class="row">
                                     <div class="col-md-2 mb-3">
-                                        <input class="checkbox-mask" id="q12-answer-1" type="radio" [value]="'A'" name="answer12" >
+                                        <input class="checkbox-mask" id="q12-answer-1" type="radio" [value]="'A'" name="answer12" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q12-answer-1"><img class="w-100" src="assets/images/IQ/answer_q12_01.png"></label>
                                     </div>
                                     <div class="col-md-2 mb-3">
-                                        <input class="checkbox-mask" id="q12-answer-2" type="radio" [value]="'B'" name="answer12" >
+                                        <input class="checkbox-mask" id="q12-answer-2" type="radio" [value]="'B'" name="answer12" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q12-answer-2"><img class="w-100" src="assets/images/IQ/answer_q12_02.png"></label>
                                     </div>
                                     <div class="col-md-2 mb-3">
-                                        <input class="checkbox-mask" id="q12-answer-3" type="radio" [value]="'C'" name="answer12" >
+                                        <input class="checkbox-mask" id="q12-answer-3" type="radio" [value]="'C'" name="answer12" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q12-answer-3"><img class="w-100" src="assets/images/IQ/answer_q12_03.png"></label>
                                     </div>
                                     <div class="col-md-2 mb-3">
-                                        <input class="checkbox-mask" id="q12-answer-4" type="radio" [value]="'D'" name="answer12" >
+                                        <input class="checkbox-mask" id="q12-answer-4" type="radio" [value]="'D'" name="answer12" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q12-answer-4"><img class="w-100" src="assets/images/IQ/answer_q12_04.png"></label>
                                     </div>
                                     <div class="col-md-2 mb-3">
-                                        <input class="checkbox-mask" id="q12-answer-5" type="radio" [value]="'E'" name="answer12" >
+                                        <input class="checkbox-mask" id="q12-answer-5" type="radio" [value]="'E'" name="answer12" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q12-answer-5"><img class="w-100" src="assets/images/IQ/answer_q12_05.png"></label>
                                     </div>
                                 </div>
@@ -440,11 +389,11 @@
                                 <p>Insert numbers into the remaining blank squares so that the sums in each line and column are correct. All numbers to be inserted are less than 10.</p>
                                 <table class="sudoku">
                                     <tr>
-                                        <td class="inp"><input ng-model="questions[currentQuestion.index()].questionAnswer.a1"/></td>
+                                        <td class="inp"><input [(ngModel)]="collectAnswer[currentTabIndex].answer[0]"/></td>
                                         <td>%</td>
-                                        <td class="inp"><input ng-model="questions[currentQuestion.index()].questionAnswer.a2"/></td>
+                                        <td class="inp"><input [(ngModel)]="collectAnswer[currentTabIndex].answer[1]"/></td>
                                         <td>x</td>
-                                        <td class="inp"><input ng-model="questions[currentQuestion.index()].questionAnswer.a3"/></td>
+                                        <td class="inp"><input [(ngModel)]="collectAnswer[currentTabIndex].answer[2]"/></td>
                                         <td>=</td>
                                         <td>6</td>
                                     </tr>
@@ -458,13 +407,13 @@
                                         <td>+</td>
                                     </tr>
                                     <tr>
-                                        <td class="inp"><input ng-model="questions[currentQuestion.index()].questionAnswer.a4"/></td>
+                                        <td class="inp"><input [(ngModel)]="collectAnswer[currentTabIndex].answer[3]"/></td>
                                         <td>+</td>
-                                        <td class="inp"><input ng-model="questions[currentQuestion.index()].questionAnswer.a5"/></td>
+                                        <td class="inp"><input [(ngModel)]="collectAnswer[currentTabIndex].answer[4]"/></td>
                                         <td>-</td>
                                         <td>4</td>
                                         <td>=</td>
-                                        <td class="inp"><input ng-model="questions[currentQuestion.index()].questionAnswer.a6"/></td>
+                                        <td class="inp"><input [(ngModel)]="collectAnswer[currentTabIndex].answer[5]"/></td>
                                     </tr>
                                     <tr>
                                         <td>%</td>
@@ -476,13 +425,13 @@
                                         <td>%</td>
                                     </tr>
                                     <tr>
-                                        <td class="inp"><input ng-model="questions[currentQuestion.index()].questionAnswer.a7"/></td>
+                                        <td class="inp"><input [(ngModel)]="collectAnswer[currentTabIndex].answer[6]"/></td>
                                         <td>x</td>
                                         <td>3</td>
                                         <td>-</td>
-                                        <td class="inp"><input ng-model="questions[currentQuestion.index()].questionAnswer.a8"/></td>
+                                        <td class="inp"><input [(ngModel)]="collectAnswer[currentTabIndex].answer[7]"/></td>
                                         <td>=</td>
-                                        <td class="inp"><input ng-model="questions[currentQuestion.index()].questionAnswer.a9"/></td>
+                                        <td class="inp"><input [(ngModel)]="collectAnswer[currentTabIndex].answer[8]"/></td>
                                     </tr>
                                     <tr>
                                         <td>=</td>
@@ -494,18 +443,15 @@
                                         <td>=</td>
                                     </tr>
                                     <tr>
-                                        <td class="inp"><input ng-model="questions[currentQuestion.index()].questionAnswer.a10"/></td>
+                                        <td class="inp"><input [(ngModel)]="collectAnswer[currentTabIndex].answer[9]"/></td>
                                         <td>%</td>
-                                        <td class="inp"><input ng-model="questions[currentQuestion.index()].questionAnswer.a11"/></td>
+                                        <td class="inp"><input [(ngModel)]="collectAnswer[currentTabIndex].answer[10]"/></td>
                                         <td>+</td>
-                                        <td class="inp"><input ng-model="questions[currentQuestion.index()].questionAnswer.a12"/></td>
+                                        <td class="inp"><input [(ngModel)]="collectAnswer[currentTabIndex].answer[11]"/></td>
                                         <td>=</td>
-                                        <td class="inp"><input ng-model="questions[currentQuestion.index()].questionAnswer.a13"/></td>
+                                        <td class="inp"><input [(ngModel)]="collectAnswer[currentTabIndex].answer[12]"/></td>
                                     </tr>
                                 </table>
-                            </div>
-                            <div class="mt-5 d-flex justify-content-center">
-                                <button type="button" class="btn btn-main mt-2">Next</button>
                             </div>
                         </div>
                     </tab>
@@ -523,12 +469,9 @@
                                 <div class="row">
                                     <div class="question-text text-type">
                                         <label for="question-14">Answer: </label>
-                                        <input class="form-control question-type-text" id="question-14" type="text" name="question-14">
+                                        <input class="form-control question-type-text" id="question-14" type="text" name="question-14" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="mt-5 d-flex justify-content-center">
-                                <button type="button" class="btn btn-main mt-2">Next</button>
                             </div>
                         </div>
                     </tab>
@@ -548,12 +491,9 @@
                                 <div class="row">
                                     <div class="question-text text-type">
                                         <label for="question-15">Answer: </label>
-                                        <input class="form-control question-type-text" id="question-15" type="text" name="question-15">
+                                        <input class="form-control question-type-text" id="question-15" type="text" name="question-15" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="mt-5 d-flex justify-content-center">
-                                <button type="button" class="btn btn-main mt-2">Next</button>
                             </div>
                         </div>
                     </tab>
@@ -568,29 +508,26 @@
                             <div class="answer">
                                 <div class="row">
                                     <div class="col-md-12 mb-3">
-                                        <input class="checkbox-mask" id="q16-answer-1" type="radio" [value]="'A'" name="answer16" >
+                                        <input class="checkbox-mask" id="q16-answer-1" type="radio" [value]="'A'" name="answer16" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q16-answer-1"><img src="/assets/images/IQ/answer_q15_01.png"></label>
                                     </div>
                                     <div class="col-md-12 mb-3">
-                                        <input class="checkbox-mask" id="q16-answer-2" type="radio" [value]="'B'" name="answer16" >
+                                        <input class="checkbox-mask" id="q16-answer-2" type="radio" [value]="'B'" name="answer16" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q16-answer-2"><img src="/assets/images/IQ/answer_q15_02.png"></label>
                                     </div>
                                     <div class="col-md-12 mb-3">
-                                        <input class="checkbox-mask" id="q16-answer-3" type="radio" [value]="'C'" name="answer16" >
+                                        <input class="checkbox-mask" id="q16-answer-3" type="radio" [value]="'C'" name="answer16" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q16-answer-3"><img src="/assets/images/IQ/answer_q15_03.png"></label>
                                     </div>
                                     <div class="col-md-12 mb-3">
-                                        <input class="checkbox-mask" id="q16-answer-4" type="radio" [value]="'D'" name="answer16" >
+                                        <input class="checkbox-mask" id="q16-answer-4" type="radio" [value]="'D'" name="answer16" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q16-answer-4"><img src="/assets/images/IQ/answer_q15_04.png"></label>
                                     </div>
                                     <div class="col-md-12 mb-3">
-                                        <input class="checkbox-mask" id="q16-answer-5" type="radio" [value]="'E'" name="answer16" >
+                                        <input class="checkbox-mask" id="q16-answer-5" type="radio" [value]="'E'" name="answer16" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q16-answer-5"><img src="/assets/images/IQ/answer_q15_05.png"></label>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="mt-5 d-flex justify-content-center">
-                                <button type="button" class="btn btn-main mt-2">Next</button>
                             </div>
                         </div>
                     </tab>
@@ -606,12 +543,9 @@
                                     <div class="row">
                                         <div class="question-text text-type">
                                             <label for="question-17">Answer: </label>
-                                            <input class="form-control question-type-text" id="question-17" type="text" name="question-17">
+                                            <input class="form-control question-type-text" id="question-17" type="text" name="question-17" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         </div>
                                     </div>
-                                </div>
-                                <div class="mt-5 d-flex justify-content-center">
-                                    <button type="button" class="btn btn-main mt-2">Next</button>
                                 </div>
                             </div>
                         </div>
@@ -627,29 +561,26 @@
                                 <div class="answer">
                                     <div class="row">
                                         <div class="col-md-12 mb-3">
-                                            <input class="checkbox-mask" id="q18-answer-1" type="radio" [value]="'A'" name="answer18" >
+                                            <input class="checkbox-mask" id="q18-answer-1" type="radio" [value]="'A'" name="answer18" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                             <label for="q18-answer-1"><img src="/assets/images/IQ/answer_q17_01.png"></label>
                                         </div>
                                         <div class="col-md-12 mb-3">
-                                            <input class="checkbox-mask" id="q18-answer-2" type="radio" [value]="'B'" name="answer18" >
+                                            <input class="checkbox-mask" id="q18-answer-2" type="radio" [value]="'B'" name="answer18" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                             <label for="q18-answer-2"><img src="/assets/images/IQ/answer_q17_02.png"></label>
                                         </div>
                                         <div class="col-md-12 mb-3">
-                                            <input class="checkbox-mask" id="q18-answer-3" type="radio" [value]="'C'" name="answer18" >
+                                            <input class="checkbox-mask" id="q18-answer-3" type="radio" [value]="'C'" name="answer18" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                             <label for="q18-answer-3"><img src="/assets/images/IQ/answer_q17_03.png"></label>
                                         </div>
                                         <div class="col-md-12 mb-3">
-                                            <input class="checkbox-mask" id="q18-answer-4" type="radio" [value]="'D'" name="answer18" >
+                                            <input class="checkbox-mask" id="q18-answer-4" type="radio" [value]="'D'" name="answer18" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                             <label for="q18-answer-4"><img src="/assets/images/IQ/answer_q17_04.png"></label>
                                         </div>
                                         <div class="col-md-12 mb-3">
-                                            <input class="checkbox-mask" id="q18-answer-5" type="radio" [value]="'E'" name="answer18" >
+                                            <input class="checkbox-mask" id="q18-answer-5" type="radio" [value]="'E'" name="answer18" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                             <label for="q18-answer-5"><img src="/assets/images/IQ/answer_q17_05.png"></label>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="mt-5 d-flex justify-content-center">
-                                    <button type="button" class="btn btn-main mt-2">Next</button>
                                 </div>
                             </div>
                         </div>
@@ -671,12 +602,9 @@
                                     <div class="row">
                                         <div class="question-text text-type">
                                             <label for="question-19">Answer: </label>
-                                            <input class="form-control question-type-text" id="question-19" type="text" name="question-19">
+                                            <input class="form-control question-type-text" id="question-19" type="text" name="question-19" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         </div>
                                     </div>
-                                </div>
-                                <div class="mt-5 d-flex justify-content-center">
-                                    <button type="button" class="btn btn-main mt-2">Next</button>
                                 </div>
                             </div>
                         </div>
@@ -692,29 +620,26 @@
                             <div class="answer">
                                 <div class="row">
                                     <div class="col-md-4 mb-3">
-                                        <input class="checkbox-mask" id="q20-answer-1" type="radio" [value]="'A'" name="answer20" >
+                                        <input class="checkbox-mask" id="q20-answer-1" type="radio" [value]="'A'" name="answer20" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q20-answer-1"><img src="/assets/images/IQ/answer_q19_01.png"></label>
                                     </div>
                                     <div class="col-md-4 mb-3">
-                                        <input class="checkbox-mask" id="q20-answer-2" type="radio" [value]="'B'" name="answer20" >
+                                        <input class="checkbox-mask" id="q20-answer-2" type="radio" [value]="'B'" name="answer20" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q20-answer-2"><img src="/assets/images/IQ/answer_q19_02.png"></label>
                                     </div>
                                     <div class="col-md-4 mb-3">
-                                        <input class="checkbox-mask" id="q20-answer-3" type="radio" [value]="'C'" name="answer20" >
+                                        <input class="checkbox-mask" id="q20-answer-3" type="radio" [value]="'C'" name="answer20" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q20-answer-3"><img src="/assets/images/IQ/answer_q19_03.png"></label>
                                     </div>
                                     <div class="col-md-4 mb-3">
-                                        <input class="checkbox-mask" id="q20-answer-4" type="radio" [value]="'D'" name="answer20" >
+                                        <input class="checkbox-mask" id="q20-answer-4" type="radio" [value]="'D'" name="answer20" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q20-answer-4"><img src="/assets/images/IQ/answer_q19_04.png"></label>
                                     </div>
                                     <div class="col-md-4 mb-3">
-                                        <input class="checkbox-mask" id="q20-answer-5" type="radio" [value]="'E'" name="answer20" >
+                                        <input class="checkbox-mask" id="q20-answer-5" type="radio" [value]="'E'" name="answer20" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q20-answer-5"><img src="/assets/images/IQ/answer_q19_05.png"></label>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="mt-5 d-flex justify-content-center">
-                                <button type="button" class="btn btn-main mt-2">Next</button>
                             </div>
                         </div>
                     </tab>
@@ -730,12 +655,9 @@
                                 <div class="row">
                                     <div class="question-text text-type">
                                         <label for="question-21">Answer: </label>
-                                        <input class="form-control question-type-text" id="question-21" type="text" name="question-21">
+                                        <input class="form-control question-type-text" id="question-21" type="text" name="question-21" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="mt-5 d-flex justify-content-center">
-                                <button type="button" class="btn btn-main mt-2">Next</button>
                             </div>
                         </div>
                     </tab>
@@ -751,12 +673,9 @@
                                 <div class="row">
                                     <div class="question-text text-type">
                                         <label for="question-22">Answer: </label>
-                                        <input class="form-control question-type-text" id="question-22" type="text" name="question-22">
+                                        <input class="form-control question-type-text" id="question-22" type="text" name="question-22" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="mt-5 d-flex justify-content-center">
-                                <button type="button" class="btn btn-main mt-2">Next</button>
                             </div>
                         </div>
                     </tab>
@@ -771,29 +690,26 @@
                             <div class="answer">
                                 <div class="row">
                                     <div class="col-md-4 mb-3">
-                                        <input class="checkbox-mask" id="q23-answer-1" type="radio" [value]="'A'" name="answer23" >
+                                        <input class="checkbox-mask" id="q23-answer-1" type="radio" [value]="'A'" name="answer23" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q23-answer-1"><img src="/assets/images/IQ/answer_q23_01.png"></label>
                                     </div>
                                     <div class="col-md-4 mb-3">
-                                        <input class="checkbox-mask" id="q23-answer-2" type="radio" [value]="'B'" name="answer23" >
+                                        <input class="checkbox-mask" id="q23-answer-2" type="radio" [value]="'B'" name="answer23" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q23-answer-2"><img src="/assets/images/IQ/answer_q23_02.png"></label>
                                     </div>
                                     <div class="col-md-4 mb-3">
-                                        <input class="checkbox-mask" id="q23-answer-3" type="radio" [value]="'C'" name="answer23" >
+                                        <input class="checkbox-mask" id="q23-answer-3" type="radio" [value]="'C'" name="answer23" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q23-answer-3"><img src="/assets/images/IQ/answer_q23_03.png"></label>
                                     </div>
                                     <div class="col-md-4 mb-3">
-                                        <input class="checkbox-mask" id="q23-answer-4" type="radio" [value]="'D'" name="answer23" >
+                                        <input class="checkbox-mask" id="q23-answer-4" type="radio" [value]="'D'" name="answer23" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q23-answer-4"><img src="/assets/images/IQ/answer_q23_04.png"></label>
                                     </div>
                                     <div class="col-md-4 mb-3">
-                                        <input class="checkbox-mask" id="q23-answer-5" type="radio" [value]="'E'" name="answer23" >
+                                        <input class="checkbox-mask" id="q23-answer-5" type="radio" [value]="'E'" name="answer23" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q23-answer-5"><img src="/assets/images/IQ/answer_q23_05.png"></label>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="mt-5 d-flex justify-content-center">
-                                <button type="button" class="btn btn-main mt-2">Next</button>
                             </div>
                         </div>
                     </tab>
@@ -810,12 +726,9 @@
                                 <div class="row">
                                     <div class="question-text text-type">
                                         <label for="question-24">Answer: </label>
-                                        <input class="form-control question-type-text" id="question-24" type="text" name="question-24">
+                                        <input class="form-control question-type-text" id="question-24" type="text" name="question-24" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="mt-5 d-flex justify-content-center">
-                                <button type="button" class="btn btn-main mt-2">Next</button>
                             </div>
                         </div>
                     </tab>
@@ -831,12 +744,9 @@
                                 <div class="row">
                                     <div class="question-text text-type">
                                         <label for="question-25">Answer: </label>
-                                        <input class="form-control question-type-text" id="question-25" type="text" name="question-25">
+                                        <input class="form-control question-type-text" id="question-25" type="text" name="question-25" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="mt-5 d-flex justify-content-center">
-                                <button type="button" class="btn btn-main mt-2">Next</button>
                             </div>
                         </div>
                     </tab>
@@ -850,29 +760,26 @@
                             <div class="answer">
                                 <div class="row">
                                     <div class="col-md-4 mb-3">
-                                        <input class="checkbox-mask" id="q26-answer-1" type="radio" [value]="'A'" name="answer26" >
+                                        <input class="checkbox-mask" id="q26-answer-1" type="radio" [value]="'A'" name="answer26" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q26-answer-1"><img src="/assets/images/IQ/answer_q26_01.png"></label>
                                     </div>
                                     <div class="col-md-4 mb-3">
-                                        <input class="checkbox-mask" id="q26-answer-2" type="radio" [value]="'B'" name="answer26" >
+                                        <input class="checkbox-mask" id="q26-answer-2" type="radio" [value]="'B'" name="answer26" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q26-answer-2"><img src="/assets/images/IQ/answer_q26_02.png"></label>
                                     </div>
                                     <div class="col-md-4 mb-3">
-                                        <input class="checkbox-mask" id="q26-answer-3" type="radio" [value]="'C'" name="answer26" >
+                                        <input class="checkbox-mask" id="q26-answer-3" type="radio" [value]="'C'" name="answer26" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q26-answer-3"><img src="/assets/images/IQ/answer_q26_03.png"></label>
                                     </div>
                                     <div class="col-md-4 mb-3">
-                                        <input class="checkbox-mask" id="q26-answer-4" type="radio" [value]="'D'" name="answer26" >
+                                        <input class="checkbox-mask" id="q26-answer-4" type="radio" [value]="'D'" name="answer26" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q26-answer-4"><img src="/assets/images/IQ/answer_q26_04.png"></label>
                                     </div>
                                     <div class="col-md-4 mb-3">
-                                        <input class="checkbox-mask" id="q26-answer-5" type="radio" [value]="'E'" name="answer26" >
+                                        <input class="checkbox-mask" id="q26-answer-5" type="radio" [value]="'E'" name="answer26" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q26-answer-5"><img src="/assets/images/IQ/answer_q26_05.png"></label>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="mt-5 d-flex justify-content-center">
-                                <button type="button" class="btn btn-main mt-2">Next</button>
                             </div>
                         </div>
                     </tab>
@@ -888,12 +795,9 @@
                                 <div class="row">
                                     <div class="question-text text-type">
                                         <label for="question-27">Answer: </label>
-                                        <input class="form-control question-type-text" id="question-27" type="text" name="question-27">
+                                        <input class="form-control question-type-text" id="question-27" type="text" name="question-27" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="mt-5 d-flex justify-content-center">
-                                <button type="button" class="btn btn-main mt-2">Next</button>
                             </div>
                         </div>
                     </tab>
@@ -925,25 +829,22 @@
                             <div class="answer">
                                 <div class="row">
                                     <div class="col-md-12 mb-3">
-                                        <input class="checkbox-mask" id="q28-answer-1" type="radio" [value]="'A'" name="answer28" >
+                                        <input class="checkbox-mask" id="q28-answer-1" type="radio" [value]="'A'" name="answer28" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q28-answer-1">Switch A</label>
                                     </div>
                                     <div class="col-md-12 mb-3">
-                                        <input class="checkbox-mask" id="q28-answer-2" type="radio" [value]="'B'" name="answer28" >
+                                        <input class="checkbox-mask" id="q28-answer-2" type="radio" [value]="'B'" name="answer28" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q28-answer-2">Switch B</label>
                                     </div>
                                     <div class="col-md-12 mb-3">
-                                        <input class="checkbox-mask" id="q28-answer-3" type="radio" [value]="'C'" name="answer28" >
+                                        <input class="checkbox-mask" id="q28-answer-3" type="radio" [value]="'C'" name="answer28" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q28-answer-3">Switch C</label>
                                     </div>
                                     <div class="col-md-12 mb-3">
-                                        <input class="checkbox-mask" id="q28-answer-4" type="radio" [value]="'D'" name="answer28" >
+                                        <input class="checkbox-mask" id="q28-answer-4" type="radio" [value]="'D'" name="answer28" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q28-answer-4">Switch D</label>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="mt-5 d-flex justify-content-center">
-                                <button type="button" class="btn btn-main mt-2">Next</button>
                             </div>
                         </div>
                     </tab>
@@ -958,25 +859,22 @@
                             <div class="answer">
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
-                                        <input class="checkbox-mask" id="q29-answer-1" type="radio" [value]="'A'" name="answer29" >
+                                        <input class="checkbox-mask" id="q29-answer-1" type="radio" [value]="'A'" name="answer29" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q29-answer-1"><img src="/assets/images/IQ/answer_q29_01.png"></label>
                                     </div>
                                     <div class="col-md-6 mb-3">
-                                        <input class="checkbox-mask" id="q29-answer-2" type="radio" [value]="'B'" name="answer29" >
+                                        <input class="checkbox-mask" id="q29-answer-2" type="radio" [value]="'B'" name="answer29" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q29-answer-2"><img src="/assets/images/IQ/answer_q29_02.png"></label>
                                     </div>
                                     <div class="col-md-6 mb-3">
-                                        <input class="checkbox-mask" id="q29-answer-3" type="radio" [value]="'C'" name="answer29" >
+                                        <input class="checkbox-mask" id="q29-answer-3" type="radio" [value]="'C'" name="answer29" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q29-answer-3"><img src="/assets/images/IQ/answer_q29_03.png"></label>
                                     </div>
                                     <div class="col-md-6 mb-3">
-                                        <input class="checkbox-mask" id="q29-answer-4" type="radio" [value]="'D'" name="answer29" >
+                                        <input class="checkbox-mask" id="q29-answer-4" type="radio" [value]="'D'" name="answer29" [(ngModel)]="collectAnswer[currentTabIndex].answer">
                                         <label for="q29-answer-4"><img src="/assets/images/IQ/answer_q29_04.png"></label>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="mt-5 d-flex justify-content-center">
-                                <button type="button" class="btn btn-main mt-2">Next</button>
                             </div>
                         </div>
                     </tab>
@@ -991,32 +889,33 @@
                             <div class="answer">
                                 <div class="row">
                                     <div class="col-md-4 mb-3">
-                                        <input class="checkbox-mask" id="q29-answer-1" type="radio" [value]="'A'" name="answer29" >
-                                        <label for="q29-answer-1"><img style="max-width: 100px;" src="/assets/images/IQ/answer_q30_01.jpg"></label>
+                                        <input class="checkbox-mask" id="q30-answer-1" type="radio" [value]="'A'" name="answer30" [(ngModel)]="collectAnswer[currentTabIndex].answer">
+                                        <label for="q30-answer-1"><img style="max-width: 100px;" src="/assets/images/IQ/answer_q30_01.jpg"></label>
                                     </div>
                                     <div class="col-md-4 mb-3">
-                                        <input class="checkbox-mask" id="q29-answer-2" type="radio" [value]="'B'" name="answer29" >
-                                        <label for="q29-answer-2"><img style="max-width: 100px;" src="/assets/images/IQ/answer_q30_02.jpg"></label>
+                                        <input class="checkbox-mask" id="q30-answer-2" type="radio" [value]="'B'" name="answer30" [(ngModel)]="collectAnswer[currentTabIndex].answer">
+                                        <label for="q30-answer-2"><img style="max-width: 100px;" src="/assets/images/IQ/answer_q30_02.jpg"></label>
                                     </div>
                                     <div class="col-md-4 mb-3">
-                                        <input class="checkbox-mask" id="q29-answer-3" type="radio" [value]="'C'" name="answer29" >
-                                        <label for="q29-answer-3"><img style="max-width: 100px;" src="/assets/images/IQ/answer_q30_03.jpg"></label>
+                                        <input class="checkbox-mask" id="q30-answer-3" type="radio" [value]="'C'" name="answer30" [(ngModel)]="collectAnswer[currentTabIndex].answer">
+                                        <label for="q30-answer-3"><img style="max-width: 100px;" src="/assets/images/IQ/answer_q30_03.jpg"></label>
                                     </div>
                                     <div class="col-md-4 mb-3">
-                                        <input class="checkbox-mask" id="q29-answer-4" type="radio" [value]="'D'" name="answer29" >
-                                        <label for="q29-answer-4"><img style="max-width: 100px;" src="/assets/images/IQ/answer_q30_04.jpg"></label>
+                                        <input class="checkbox-mask" id="q30-answer-4" type="radio" [value]="'D'" name="answer30" [(ngModel)]="collectAnswer[currentTabIndex].answer">
+                                        <label for="q30-answer-4"><img style="max-width: 100px;" src="/assets/images/IQ/answer_q30_04.jpg"></label>
                                     </div>
                                     <div class="col-md-4 mb-3">
-                                        <input class="checkbox-mask" id="q29-answer-4" type="radio" [value]="'E'" name="answer29" >
-                                        <label for="q29-answer-4"><img style="max-width: 100px;" src="/assets/images/IQ/answer_q30_04.jpg"></label>
+                                        <input class="checkbox-mask" id="q30-answer-5" type="radio" [value]="'E'" name="answer30" [(ngModel)]="collectAnswer[currentTabIndex].answer">
+                                        <label for="q30-answer-5"><img style="max-width: 100px;" src="/assets/images/IQ/answer_q30_04.jpg"></label>
                                     </div>
                                 </div>
                             </div>
-                            <div class="mt-5 d-flex justify-content-center">
-                                <button type="button" class="btn btn-main mt-2">Submit</button>
-                            </div>
                         </div>
                     </tab>
+                    <div class="mt-5 d-flex justify-content-center">
+                        <button *ngIf="currentTab != 30" type="button" class="btn btn-main mt-2" (click)="showNextQuestion(currentTab)">Next</button>
+                        <button *ngIf="currentTab == 30" type="button" class="btn btn-main mt-2" (click)="onSubmit()">Submit</button>
+                    </div>
                 </tabset>
             </div>
             <div class="footer-logo">
