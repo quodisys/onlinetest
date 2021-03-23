@@ -157,6 +157,9 @@ html, body {
             background-size: 100%;
             background-repeat: no-repeat;
             background-position: bottom;
+            &.no-bg {
+                background-image: none;
+            }
             &.reading {
                 padding: 45px 70px;
             }
@@ -794,7 +797,30 @@ $md-checkbox-label-padding: .75em;
         }
     }
 }
+// Sodoku
+.sudoku td{
+    width:50px;
+    height:50px;
+    border:1px solid black;
+    padding:0px;
+    text-align:center;
+    margin:0px;
+}
 
+.sudoku td.hard{
+    background-color:#58585a;
+}
+
+/*.sudoku td.inp{
+    border-color:blue;
+}*/
+
+.sudoku td input{
+    width:100%;
+    height:100%;
+    text-align:center;
+    border:none;
+}
 .question-text {
     &.form-group {
         width: 400px;
@@ -802,6 +828,12 @@ $md-checkbox-label-padding: .75em;
             font-size: 32px;
             color: #212529;
         }
+    }
+}
+.iq-test {
+    & input[type="text"] {
+        font-size: 30px;
+        color: #212529;
     }
 }
 @media (max-height: 800px) {

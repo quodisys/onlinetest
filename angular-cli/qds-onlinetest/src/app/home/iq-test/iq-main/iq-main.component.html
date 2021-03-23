@@ -1,4 +1,4 @@
-<div appBlockCopyPaste class="main main-center bg-blue">
+<div appBlockCopyPaste class="main main-2 iq-test main-center bg-blue">
     <div class="container">
         <div class="col-md-12">
             <div class="branding countdown">
@@ -15,35 +15,1009 @@
                     </div>
                 </div>
             </div>
-            <div class="content">
-                <form #testForm="ngForm" (ngSubmit)="onSubmit(testForm)">
-                    <tabset #staticTabs class="custom-tab nav-disabled">
-                        <tab *ngFor="let question of questions; let key = index; let last = last"
-                            [heading]="key + 1"
-                            [active]="question.active"
-                            (selectTab)="changeTab($event)"
-                            (deselect)="question.active = false"
-                            [disabled]="question.disabled"
-                            [customClass]="question.customClass">
-                            <div class="test-content" >
-                                <div class="question">
-                                    {{question.question}}
+            <div class="content no-bg">
+                <tabset #staticTabs class="custom-tab">
+                    <tab 
+                        [heading]="1"
+                        (selectTab)="changeTab($event)">
+                        <div class="test-content" >
+                            <div class="question">
+                                <p>Circle the answer(s), or write in the answer box provided.</p>
+                                <img src="/assets/images/IQ/img_q1.png" class="mt-2 mb-4 w-100">
+                                <p class="mar-top-20">Which set of symbols should replace the question marks?</p>
+                            </div>
+                            <div class="answer">
+                                <div class="row">
+                                    <div class="col-md-12 mb-3">
+                                        <input class="checkbox-mask" id="answer-1" type="radio" [value]="'A'" name="answer" >
+                                        <label for="answer-1"><img src="/assets/images/IQ/answer_q1_01.png"></label>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <input class="checkbox-mask" id="answer-2" type="radio" [value]="'B'" name="answer" >
+                                        <label for="answer-2"><img src="/assets/images/IQ/answer_q1_02.png"></label>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <input class="checkbox-mask" id="answer-3" type="radio" [value]="'C'" name="answer" >
+                                        <label for="answer-3"><img src="/assets/images/IQ/answer_q1_03.png"></label>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <input class="checkbox-mask" id="answer-4" type="radio" [value]="'D'" name="answer" >
+                                        <label for="answer-4"><img src="/assets/images/IQ/answer_q1_04.png"></label>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <input class="checkbox-mask" id="answer-5" type="radio" [value]="'E'" name="answer" >
+                                        <label for="answer-5"><img src="/assets/images/IQ/answer_q1_05.png"></label>
+                                    </div>
                                 </div>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab 
+                        [heading]="2"
+                        (selectTab)="changeTab($event)">
+                        <div class="test-content" >
+                            <div class="question">
+                                <p>Fill in the question mark</p>
+                                <img src="/assets/images/IQ/img_q2.png" class="mt-2 mb-4 w-100">
+                            </div>
+                            <div class="answer">
+                                <div class="row">
+                                    <div class="question-text text-type">
+                                        <label for="question-2">Answer: </label>
+                                        <input class="form-control question-type-text" id="question-2" type="text" name="question-2">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <button type="button" class="btn btn-main mt-2">Next</button>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab 
+                        [heading]="3"
+                        (selectTab)="changeTab($event)">
+                        <div class="test-content" >
+                            <div class="question">
+                                <p>19,&nbsp;&nbsp;20,&nbsp;&nbsp;2,&nbsp;&nbsp;?,&nbsp;&nbsp;?,&nbsp;&nbsp;26,&nbsp;&nbsp;28,&nbsp;&nbsp;32,&nbsp;&nbsp;33,&nbsp;&nbsp;40</p>
+                                <p class="mar-top-20">Which two numbers should replace the question marks?</p>
+                                <p class="mar-top-20">Answer example: 10,11</p>
+                            </div>
+                            <div class="answer">
+                                <div class="row">
+                                    <div class="question-text text-type">
+                                        <label for="question-3">Answer: </label>
+                                        <input class="form-control question-type-text" id="question-3" type="text" name="question-3">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <button type="button" class="btn btn-main mt-2">Next</button>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab 
+                        [heading]="4"
+                        (selectTab)="changeTab($event)">
+                        <div class="test-content" >
+                            <div class="question">
+                                <img src="/assets/images/IQ/img_q4.jpg" class="mt-2 mb-4 w-100">
+                                <p class="mar-top-20">Answer:</p>
+                            </div>
+                            <div class="answer">
+                                <div class="row">
+                                    <div class="col-md-4 mb-3 d-flex justify-content-center">
+                                        <input class="checkbox-mask" id="q4-answer-1" type="radio" [value]="'A'" name="answer4" >
+                                        <label for="q4-answer-1"><img style="max-width: 100px;" src="/assets/images/IQ/answer_q4_01.png"></label>
+                                    </div>
+                                    <div class="col-md-4 mb-3 d-flex justify-content-center">
+                                        <input class="checkbox-mask" id="q4-answer-2" type="radio" [value]="'B'" name="answer4" >
+                                        <label for="q4-answer-2"><img style="max-width: 100px;" src="/assets/images/IQ/answer_q4_02.png"></label>
+                                    </div>
+                                    <div class="col-md-4 mb-3 d-flex justify-content-center">
+                                        <input class="checkbox-mask" id="q4-answer-3" type="radio" [value]="'C'" name="answer4" >
+                                        <label for="q4-answer-3"><img style="max-width: 100px;" src="/assets/images/IQ/answer_q4_03.png"></label>
+                                    </div>
+                                    <div class="col-md-4 mb-3 d-flex justify-content-center">
+                                        <input class="checkbox-mask" id="q4-answer-4" type="radio" [value]="'D'" name="answer4" >
+                                        <label for="q4-answer-4"><img style="max-width: 100px;" src="/assets/images/IQ/answer_q4_04.png"></label>
+                                    </div>
+                                    <div class="col-md-4 mb-3 d-flex justify-content-center">
+                                        <input class="checkbox-mask" id="q4-answer-5" type="radio" [value]="'E'" name="answer4" >
+                                        <label for="q4-answer-5"><img style="max-width: 100px;" src="/assets/images/IQ/answer_q4_05.png"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab 
+                        [heading]="5"
+                        (selectTab)="changeTab($event)">
+                        <div class="test-content" >
+                            <div class="question">
+                                <p>What is the next number : 25 , 32, 27, 36, ?</p>
+                            </div>
+                            <div class="answer">
+                                <div class="row">
+                                    <div class="question-text text-type">
+                                        <label for="question-3">Answer: </label>
+                                        <input class="form-control question-type-text" id="question-3" type="text" name="question-3">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-5 d-flex justify-content-center">
+                                <button type="button" class="btn btn-main mt-2">Next</button>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab 
+                        [heading]="6"
+                        (selectTab)="changeTab($event)">
+                        <div class="test-content" >
+                            <div class="question">
+                                <p>Ω # – Ω Ω # # – ? Ω # – Ω Ω # # – = # Ω #</p>
+                                <p>– Ω Ω # # – ? Ω # – Ω Ω # # – = # Ω # – Ω</p>
+                                <p>Ω # # – ? Ω # – Ω Ω # # – Ω # – Ω Ω # # – ?</p>
+                                <p>Ω # – Ω Ω # # – = #</p>
+                                <p>Which two symbols are missing?</p>
+                            </div>
+                            <div class="answer">
+                                <div class="row">
+                                    <div class="col-md-2 mb-3 d-flex justify-content-center">
+                                        <input class="checkbox-mask" id="q6-answer-1" type="radio" [value]="'A'" name="answer6" >
+                                        <label for="q6-answer-1">Ω #</label>
+                                    </div>
+                                    <div class="col-md-2 mb-3 d-flex justify-content-center">
+                                        <input class="checkbox-mask" id="q6-answer-2" type="radio" [value]="'B'" name="answer6" >
+                                        <label for="q6-answer-2">– Ω</label>
+                                    </div>
+                                    <div class="col-md-2 mb-3 d-flex justify-content-center">
+                                        <input class="checkbox-mask" id="q6-answer-3" type="radio" [value]="'C'" name="answer6" >
+                                        <label for="q6-answer-3"># #</label>
+                                    </div>
+                                    <div class="col-md-2 mb-3 d-flex justify-content-center">
+                                        <input class="checkbox-mask" id="q6-answer-4" type="radio" [value]="'D'" name="answer6" >
+                                        <label for="q6-answer-4">= #</label>
+                                    </div>
+                                    <div class="col-md-2 mb-3 d-flex justify-content-center">
+                                        <input class="checkbox-mask" id="q6-answer-5" type="radio" [value]="'E'" name="answer6" >
+                                        <label for="q6-answer-5">– =</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab 
+                        [heading]="6"
+                        (selectTab)="changeTab($event)">
+                        <div class="test-content" >
+                            <div class="question">
+                                <p>Ω # – Ω Ω # # – ? Ω # – Ω Ω # # – = # Ω #</p>
+                                <p>– Ω Ω # # – ? Ω # – Ω Ω # # – = # Ω # – Ω</p>
+                                <p>Ω # # – ? Ω # – Ω Ω # # – Ω # – Ω Ω # # – ?</p>
+                                <p>Ω # – Ω Ω # # – = #</p>
+                                <p>Which two symbols are missing?</p>
+                            </div>
+                            <div class="answer">
+                                <div class="row">
+                                    <div class="col-md-2 mb-3 d-flex justify-content-center">
+                                        <input class="checkbox-mask" id="q6-answer-1" type="radio" [value]="'A'" name="answer6" >
+                                        <label for="q6-answer-1">Ω #</label>
+                                    </div>
+                                    <div class="col-md-2 mb-3 d-flex justify-content-center">
+                                        <input class="checkbox-mask" id="q6-answer-2" type="radio" [value]="'B'" name="answer6" >
+                                        <label for="q6-answer-2">– Ω</label>
+                                    </div>
+                                    <div class="col-md-2 mb-3 d-flex justify-content-center">
+                                        <input class="checkbox-mask" id="q6-answer-3" type="radio" [value]="'C'" name="answer6" >
+                                        <label for="q6-answer-3"># #</label>
+                                    </div>
+                                    <div class="col-md-2 mb-3 d-flex justify-content-center">
+                                        <input class="checkbox-mask" id="q6-answer-4" type="radio" [value]="'D'" name="answer6" >
+                                        <label for="q6-answer-4">= #</label>
+                                    </div>
+                                    <div class="col-md-2 mb-3 d-flex justify-content-center">
+                                        <input class="checkbox-mask" id="q6-answer-5" type="radio" [value]="'E'" name="answer6" >
+                                        <label for="q6-answer-5">– =</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab 
+                        [heading]="7"
+                        (selectTab)="changeTab($event)">
+                        <div class="test-content" >
+                            <div class="question">
+                                <p>Which is the odd one out?</p>
+                            </div>
+                            <div class="answer">
+                                <div class="row">
+                                    <div class="col-md-12 mb-3">
+                                        <input class="checkbox-mask" id="q7-answer-1" type="radio" [value]="'A'" name="answer7" >
+                                        <label for="q7-answer-1">84129</label>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <input class="checkbox-mask" id="q7-answer-2" type="radio" [value]="'B'" name="answer7" >
+                                        <label for="q7-answer-2">32418</label>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <input class="checkbox-mask" id="q7-answer-3" type="radio" [value]="'C'" name="answer7" >
+                                        <label for="q7-answer-3">47632</label>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <input class="checkbox-mask" id="q7-answer-4" type="radio" [value]="'D'" name="answer7" >
+                                        <label for="q7-answer-4">36119</label>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <input class="checkbox-mask" id="q7-answer-5" type="radio" [value]="'E'" name="answer7" >
+                                        <label for="q7-answer-5">67626</label>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <input class="checkbox-mask" id="q7-answer-6" type="radio" [value]="'F'" name="answer7" >
+                                        <label for="q7-answer-6">72927</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab 
+                        [heading]="8"
+                        (selectTab)="changeTab($event)">
+                        <div class="test-content" >
+                            <div class="question">
+                                <p>A car is driving at velocity of 40km/hr on a certain distance and then drive back  with 60km/hr. Find the average velocity.</p>
+                            </div>
+                            <div class="answer">
+                                <div class="row">
+                                    <div class="question-text text-type">
+                                        <label for="question-3">Answer: </label>
+                                        <input class="form-control question-type-text" id="question-8" type="text" name="question-8" placeholder="km/hr">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-5 d-flex justify-content-center">
+                                <button type="button" class="btn btn-main mt-2">Next</button>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab 
+                        [heading]="9"
+                        (selectTab)="changeTab($event)">
+                        <div class="test-content" >
+                            <div class="question">
+                                <img src="/assets/images/IQ/img_q9.jpg" width="400">
+                                <p class="mar-top-20">Answer:</p>
+                            </div>
+                            <div class="answer">
+                                <div class="row">
+                                    <div class="col-md-4 mb-3 d-flex justify-content-center">
+                                        <input class="checkbox-mask" id="q9-answer-1" type="radio" [value]="'A'" name="answer9" >
+                                        <label for="q9-answer-1"><img style="max-width: 100px;" src="/assets/images/IQ/answer_q9_01.jpg"></label>
+                                    </div>
+                                    <div class="col-md-4 mb-3 d-flex justify-content-center">
+                                        <input class="checkbox-mask" id="q9-answer-2" type="radio" [value]="'B'" name="answer9" >
+                                        <label for="q9-answer-2"><img style="max-width: 100px;" src="/assets/images/IQ/answer_q9_02.jpg"></label>
+                                    </div>
+                                    <div class="col-md-4 mb-3 d-flex justify-content-center">
+                                        <input class="checkbox-mask" id="q9-answer-3" type="radio" [value]="'C'" name="answer9" >
+                                        <label for="q9-answer-3"><img style="max-width: 100px;" src="/assets/images/IQ/answer_q9_03.jpg"></label>
+                                    </div>
+                                    <div class="col-md-4 mb-3 d-flex justify-content-center">
+                                        <input class="checkbox-mask" id="q9-answer-4" type="radio" [value]="'D'" name="answer9" >
+                                        <label for="q9-answer-4"><img style="max-width: 100px;" src="/assets/images/IQ/answer_q9_04.jpg"></label>
+                                    </div>
+                                    <div class="col-md-4 mb-3 d-flex justify-content-center">
+                                        <input class="checkbox-mask" id="q9-answer-5" type="radio" [value]="'E'" name="answer9" >
+                                        <label for="q9-answer-5"><img style="max-width: 100px;" src="/assets/images/IQ/answer_q9_05.jpg"></label>
+                                    </div>
+                                    <div class="col-md-4 mb-3 d-flex justify-content-center">
+                                        <input class="checkbox-mask" id="q9-answer-6" type="radio" [value]="'F'" name="answer9" >
+                                        <label for="q9-answer-6"><img style="max-width: 100px;" src="/assets/images/IQ/answer_q9_06.jpg"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab 
+                        [heading]="10"
+                        (selectTab)="changeTab($event)">
+                        <div class="test-content" >
+                            <div class="question">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3"></div>
+                                        <div class="col-md-2">12593</div>
+                                        <div class="col-md-2">is to</div>
+                                        <div class="col-md-2">35291</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-3">and</div>
+                                        <div class="col-sm-2">29684</div>
+                                        <div class="col-sm-2">is to</div>
+                                        <div class="col-sm-2">46982</div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-3">therefore</div>
+                                        <div class="col-sm-2">72936</div>
+                                        <div class="col-sm-2">is to</div>
+                                        <div class="col-sm-2">?</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="answer">
+                                <div class="row">
+                                    <div class="question-text text-type">
+                                        <label for="question-10">Answer: </label>
+                                        <input class="form-control question-type-text" id="question-10" type="text" name="question-10">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-5 d-flex justify-content-center">
+                                <button type="button" class="btn btn-main mt-2">Next</button>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab 
+                        [heading]="11"
+                        (selectTab)="changeTab($event)">
+                        <div class="test-content" >
+                            <div class="question">
+                                <p><img style="width: 200px;" src="/assets/images/IQ/img_q11.png"></p>
+                                <p>
+                                    Complete the equation by correctly identifying the missing<br />
+                                    part of the calculation from the list of options below.
+                                </p>
+                            </div>
+                            <div class="answer">
+                                <div class="row">
+                                    <div class="col-md-12 mb-3">
+                                        <input class="checkbox-mask" id="q11-answer-1" type="radio" [value]="'A'" name="answer11" >
+                                        <label for="q11-answer-1">0.75</label>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <input class="checkbox-mask" id="q11-answer-2" type="radio" [value]="'B'" name="answer11" >
+                                        <label for="q11-answer-2">1.95-0.75</label>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <input class="checkbox-mask" id="q11-answer-3" type="radio" [value]="'C'" name="answer11" >
+                                        <label for="q11-answer-3">0.52</label>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <input class="checkbox-mask" id="q11-answer-4" type="radio" [value]="'D'" name="answer11" >
+                                        <label for="q11-answer-4">0.825</label>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <input class="checkbox-mask" id="q11-answer-5" type="radio" [value]="'E'" name="answer11" >
+                                        <label for="q11-answer-5">0.25</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab 
+                        [heading]="12"
+                        (selectTab)="changeTab($event)">
+                        <div class="test-content" >
+                            <div class="question">
+                                <p>Draw the contents of the middle tile in accordance with the rules of logic already established.</p>
+                                <p class="text-center"><img class="w-50" src="assets/images/IQ/img_q12.png"></p>
+                            </div>
+                            <div class="answer">
+                                <div class="row">
+                                    <div class="col-md-2 mb-3">
+                                        <input class="checkbox-mask" id="q12-answer-1" type="radio" [value]="'A'" name="answer12" >
+                                        <label for="q12-answer-1"><img class="w-100" src="assets/images/IQ/answer_q12_01.png"></label>
+                                    </div>
+                                    <div class="col-md-2 mb-3">
+                                        <input class="checkbox-mask" id="q12-answer-2" type="radio" [value]="'B'" name="answer12" >
+                                        <label for="q12-answer-2"><img class="w-100" src="assets/images/IQ/answer_q12_02.png"></label>
+                                    </div>
+                                    <div class="col-md-2 mb-3">
+                                        <input class="checkbox-mask" id="q12-answer-3" type="radio" [value]="'C'" name="answer12" >
+                                        <label for="q12-answer-3"><img class="w-100" src="assets/images/IQ/answer_q12_03.png"></label>
+                                    </div>
+                                    <div class="col-md-2 mb-3">
+                                        <input class="checkbox-mask" id="q12-answer-4" type="radio" [value]="'D'" name="answer12" >
+                                        <label for="q12-answer-4"><img class="w-100" src="assets/images/IQ/answer_q12_04.png"></label>
+                                    </div>
+                                    <div class="col-md-2 mb-3">
+                                        <input class="checkbox-mask" id="q12-answer-5" type="radio" [value]="'E'" name="answer12" >
+                                        <label for="q12-answer-5"><img class="w-100" src="assets/images/IQ/answer_q12_05.png"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab 
+                        [heading]="13"
+                        (selectTab)="changeTab($event)">
+                        <div class="test-content" >
+                            <div class="question">
+                                <p>Insert numbers into the remaining blank squares so that the sums in each line and column are correct. All numbers to be inserted are less than 10.</p>
+                                <table class="sudoku">
+                                    <tr>
+                                        <td class="inp"><input ng-model="questions[currentQuestion.index()].questionAnswer.a1"/></td>
+                                        <td>%</td>
+                                        <td class="inp"><input ng-model="questions[currentQuestion.index()].questionAnswer.a2"/></td>
+                                        <td>x</td>
+                                        <td class="inp"><input ng-model="questions[currentQuestion.index()].questionAnswer.a3"/></td>
+                                        <td>=</td>
+                                        <td>6</td>
+                                    </tr>
+                                    <tr>
+                                        <td>+</td>
+                                        <td class="hard"></td>
+                                        <td>-</td>
+                                        <td class="hard"></td>
+                                        <td>x</td>
+                                        <td class="hard"></td>
+                                        <td>+</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="inp"><input ng-model="questions[currentQuestion.index()].questionAnswer.a4"/></td>
+                                        <td>+</td>
+                                        <td class="inp"><input ng-model="questions[currentQuestion.index()].questionAnswer.a5"/></td>
+                                        <td>-</td>
+                                        <td>4</td>
+                                        <td>=</td>
+                                        <td class="inp"><input ng-model="questions[currentQuestion.index()].questionAnswer.a6"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>%</td>
+                                        <td class="hard"></td>
+                                        <td>+</td>
+                                        <td class="hard"></td>
+                                        <td>-</td>
+                                        <td class="hard"></td>
+                                        <td>%</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="inp"><input ng-model="questions[currentQuestion.index()].questionAnswer.a7"/></td>
+                                        <td>x</td>
+                                        <td>3</td>
+                                        <td>-</td>
+                                        <td class="inp"><input ng-model="questions[currentQuestion.index()].questionAnswer.a8"/></td>
+                                        <td>=</td>
+                                        <td class="inp"><input ng-model="questions[currentQuestion.index()].questionAnswer.a9"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>=</td>
+                                        <td class="hard"></td>
+                                        <td>=</td>
+                                        <td class="hard"></td>
+                                        <td>=</td>
+                                        <td class="hard"></td>
+                                        <td>=</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="inp"><input ng-model="questions[currentQuestion.index()].questionAnswer.a10"/></td>
+                                        <td>%</td>
+                                        <td class="inp"><input ng-model="questions[currentQuestion.index()].questionAnswer.a11"/></td>
+                                        <td>+</td>
+                                        <td class="inp"><input ng-model="questions[currentQuestion.index()].questionAnswer.a12"/></td>
+                                        <td>=</td>
+                                        <td class="inp"><input ng-model="questions[currentQuestion.index()].questionAnswer.a13"/></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="mt-5 d-flex justify-content-center">
+                                <button type="button" class="btn btn-main mt-2">Next</button>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab 
+                        [heading]="14"
+                        (selectTab)="changeTab($event)">
+                        <div class="test-content" >
+                            <div class="question">
+                                <p>What is the correspondent for 956?</p>
+                                <p>926 : 24</p>
+                                <p>799 : 72</p>
+                                <p>956 : ?  </p>
+                            </div>
+                            <div class="answer">
+                                <div class="row">
+                                    <div class="question-text text-type">
+                                        <label for="question-14">Answer: </label>
+                                        <input class="form-control question-type-text" id="question-14" type="text" name="question-14">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-5 d-flex justify-content-center">
+                                <button type="button" class="btn btn-main mt-2">Next</button>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab 
+                        [heading]="15"
+                        (selectTab)="changeTab($event)">
+                        <div class="test-content" >
+                            <div class="question">
+                                <div class="form-group">
+                                    A Z B Y D W G T ? ?
+                                </div>
+                                <div class="form-group">
+                                    Which two letters come next?
+                                </div>
+                            </div>
+                            <div class="answer">
+                                <div class="row">
+                                    <div class="question-text text-type">
+                                        <label for="question-15">Answer: </label>
+                                        <input class="form-control question-type-text" id="question-15" type="text" name="question-15">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-5 d-flex justify-content-center">
+                                <button type="button" class="btn btn-main mt-2">Next</button>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab 
+                        [heading]="16"
+                        (selectTab)="changeTab($event)">
+                        <div class="test-content" >
+                            <div class="question">
+                                <img src="/assets/images/IQ/img_q15.png" class="mb-3 w-100">
+                                <p class="mar-top-20">The top set of six numbers has a relationship to the set of six numbers below. The two sets of six boxes on the left have the same relationship as the two sets of six boxes on the right. Which set of numbers should therefore replace the question marks?</p>
+                            </div>
+                            <div class="answer">
+                                <div class="row">
+                                    <div class="col-md-12 mb-3">
+                                        <input class="checkbox-mask" id="q16-answer-1" type="radio" [value]="'A'" name="answer16" >
+                                        <label for="q16-answer-1"><img src="/assets/images/IQ/answer_q15_01.png"></label>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <input class="checkbox-mask" id="q16-answer-2" type="radio" [value]="'B'" name="answer16" >
+                                        <label for="q16-answer-2"><img src="/assets/images/IQ/answer_q15_02.png"></label>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <input class="checkbox-mask" id="q16-answer-3" type="radio" [value]="'C'" name="answer16" >
+                                        <label for="q16-answer-3"><img src="/assets/images/IQ/answer_q15_03.png"></label>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <input class="checkbox-mask" id="q16-answer-4" type="radio" [value]="'D'" name="answer16" >
+                                        <label for="q16-answer-4"><img src="/assets/images/IQ/answer_q15_04.png"></label>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <input class="checkbox-mask" id="q16-answer-5" type="radio" [value]="'E'" name="answer16" >
+                                        <label for="q16-answer-5"><img src="/assets/images/IQ/answer_q15_05.png"></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-5 d-flex justify-content-center">
+                                <button type="button" class="btn btn-main mt-2">Next</button>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab 
+                        [heading]="17"
+                        (selectTab)="changeTab($event)">
+                        <div class="test-content" >
+                            <div class="question">
+                                <p>How many cases do you need if you have to pack 112 pairs <br />of shoes into cases that each hold 28 shoes? </p>
+                            </div>
+                            <div class="answer">
                                 <div class="answer">
                                     <div class="row">
-                                        <div class="col-md-6 mb-3" *ngFor="let choice of question.choices; let choiceKey = index;" >
-                                            <input class="checkbox-mask" id="question{{key}}-choice{{choiceKey}}" type="radio" [value]="choice" [(ngModel)]="formAnswer.answers[key]" name="question-{{key + 1}}" (click)="showNextQuestion(key)">
-                                            <label for="question{{key}}-choice{{choiceKey}}">{{choice}}</label>
+                                        <div class="question-text text-type">
+                                            <label for="question-17">Answer: </label>
+                                            <input class="form-control question-type-text" id="question-17" type="text" name="question-17">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="d-flex justify-content-center" *ngIf="last">
-                                    <button type="submit" class="btn btn-main mt-2">Finish</button>
+                                <div class="mt-5 d-flex justify-content-center">
+                                    <button type="button" class="btn btn-main mt-2">Next</button>
                                 </div>
                             </div>
-                        </tab>
-                    </tabset>
-                </form>
+                        </div>
+                    </tab>
+                    <tab 
+                        [heading]="18"
+                        (selectTab)="changeTab($event)">
+                        <div class="test-content" >
+                            <div class="question">
+                                <p>Which is the odd one out?</p>
+                            </div>
+                            <div class="answer">
+                                <div class="answer">
+                                    <div class="row">
+                                        <div class="col-md-12 mb-3">
+                                            <input class="checkbox-mask" id="q18-answer-1" type="radio" [value]="'A'" name="answer18" >
+                                            <label for="q18-answer-1"><img src="/assets/images/IQ/answer_q17_01.png"></label>
+                                        </div>
+                                        <div class="col-md-12 mb-3">
+                                            <input class="checkbox-mask" id="q18-answer-2" type="radio" [value]="'B'" name="answer18" >
+                                            <label for="q18-answer-2"><img src="/assets/images/IQ/answer_q17_02.png"></label>
+                                        </div>
+                                        <div class="col-md-12 mb-3">
+                                            <input class="checkbox-mask" id="q18-answer-3" type="radio" [value]="'C'" name="answer18" >
+                                            <label for="q18-answer-3"><img src="/assets/images/IQ/answer_q17_03.png"></label>
+                                        </div>
+                                        <div class="col-md-12 mb-3">
+                                            <input class="checkbox-mask" id="q18-answer-4" type="radio" [value]="'D'" name="answer18" >
+                                            <label for="q18-answer-4"><img src="/assets/images/IQ/answer_q17_04.png"></label>
+                                        </div>
+                                        <div class="col-md-12 mb-3">
+                                            <input class="checkbox-mask" id="q18-answer-5" type="radio" [value]="'E'" name="answer18" >
+                                            <label for="q18-answer-5"><img src="/assets/images/IQ/answer_q17_05.png"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-5 d-flex justify-content-center">
+                                    <button type="button" class="btn btn-main mt-2">Next</button>
+                                </div>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab 
+                        [heading]="19"
+                        (selectTab)="changeTab($event)">
+                        <div class="test-content" >
+                            <div class="question">
+                                <p>In the two numerical sequences below, one number that appears in the top sequence should appear in the bottom sequence and vice versa. Which two numbers should be changed round? </p>
+                                <div class="form-group">
+                                    <p>2, 2.5, 4.5, 6.75</p>
+                                    <p>1, 3, 6.25, 15.625</p>
+                                </div>
+                                <p>Answer example: 1.2,6</p>
+                            </div>
+                            <div class="answer">
+                                <div class="answer">
+                                    <div class="row">
+                                        <div class="question-text text-type">
+                                            <label for="question-19">Answer: </label>
+                                            <input class="form-control question-type-text" id="question-19" type="text" name="question-19">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-5 d-flex justify-content-center">
+                                    <button type="button" class="btn btn-main mt-2">Next</button>
+                                </div>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab 
+                        [heading]="20"
+                        (selectTab)="changeTab($event)">
+                        <div class="test-content" >
+                            <div class="question">
+                                <p class="text-center"><img src="/assets/images/IQ/img_q19.png" /></p>
+                                <p class="mar-top-20">Which two squares are missing?</p>
+                            </div>
+                            <div class="answer">
+                                <div class="row">
+                                    <div class="col-md-4 mb-3">
+                                        <input class="checkbox-mask" id="q20-answer-1" type="radio" [value]="'A'" name="answer20" >
+                                        <label for="q20-answer-1"><img src="/assets/images/IQ/answer_q19_01.png"></label>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <input class="checkbox-mask" id="q20-answer-2" type="radio" [value]="'B'" name="answer20" >
+                                        <label for="q20-answer-2"><img src="/assets/images/IQ/answer_q19_02.png"></label>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <input class="checkbox-mask" id="q20-answer-3" type="radio" [value]="'C'" name="answer20" >
+                                        <label for="q20-answer-3"><img src="/assets/images/IQ/answer_q19_03.png"></label>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <input class="checkbox-mask" id="q20-answer-4" type="radio" [value]="'D'" name="answer20" >
+                                        <label for="q20-answer-4"><img src="/assets/images/IQ/answer_q19_04.png"></label>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <input class="checkbox-mask" id="q20-answer-5" type="radio" [value]="'E'" name="answer20" >
+                                        <label for="q20-answer-5"><img src="/assets/images/IQ/answer_q19_05.png"></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-5 d-flex justify-content-center">
+                                <button type="button" class="btn btn-main mt-2">Next</button>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab 
+                        [heading]="21"
+                        (selectTab)="changeTab($event)">
+                        <div class="test-content" >
+                            <div class="question">
+                                <p>Fill in the question mark</p>
+                                <img style="margin:auto;max-width:300px" src="/assets/images/IQ/img_21.jpg"  />
+                            </div>
+                            <div class="answer">
+                                <div class="row">
+                                    <div class="question-text text-type">
+                                        <label for="question-21">Answer: </label>
+                                        <input class="form-control question-type-text" id="question-21" type="text" name="question-21">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-5 d-flex justify-content-center">
+                                <button type="button" class="btn btn-main mt-2">Next</button>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab 
+                        [heading]="22"
+                        (selectTab)="changeTab($event)">
+                        <div class="test-content" >
+                            <div class="question">
+                                <p>Find X:</p>
+                                <h3>64 - 12 x 2 + 6 &divide; 3 = X</h3>
+                            </div>
+                            <div class="answer">
+                                <div class="row">
+                                    <div class="question-text text-type">
+                                        <label for="question-22">Answer: </label>
+                                        <input class="form-control question-type-text" id="question-22" type="text" name="question-22">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-5 d-flex justify-content-center">
+                                <button type="button" class="btn btn-main mt-2">Next</button>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab 
+                        [heading]="23"
+                        (selectTab)="changeTab($event)">
+                        <div class="test-content" >
+                            <div class="question">
+                                <p><img style="width: 400px;" src="/assets/images/IQ/img_q23.png"></p>
+                                <p>Complete the equation by correctly identifying the missing part of the calculation from the list of options below.</p>
+                            </div>
+                            <div class="answer">
+                                <div class="row">
+                                    <div class="col-md-4 mb-3">
+                                        <input class="checkbox-mask" id="q23-answer-1" type="radio" [value]="'A'" name="answer23" >
+                                        <label for="q23-answer-1"><img src="/assets/images/IQ/answer_q23_01.png"></label>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <input class="checkbox-mask" id="q23-answer-2" type="radio" [value]="'B'" name="answer23" >
+                                        <label for="q23-answer-2"><img src="/assets/images/IQ/answer_q23_02.png"></label>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <input class="checkbox-mask" id="q23-answer-3" type="radio" [value]="'C'" name="answer23" >
+                                        <label for="q23-answer-3"><img src="/assets/images/IQ/answer_q23_03.png"></label>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <input class="checkbox-mask" id="q23-answer-4" type="radio" [value]="'D'" name="answer23" >
+                                        <label for="q23-answer-4"><img src="/assets/images/IQ/answer_q23_04.png"></label>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <input class="checkbox-mask" id="q23-answer-5" type="radio" [value]="'E'" name="answer23" >
+                                        <label for="q23-answer-5"><img src="/assets/images/IQ/answer_q23_05.png"></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-5 d-flex justify-content-center">
+                                <button type="button" class="btn btn-main mt-2">Next</button>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab 
+                        [heading]="24"
+                        (selectTab)="changeTab($event)">
+                        <div class="test-content" >
+                            <div class="question">
+                                <p>From 1A to 3C are the combination of A,B,C and 1,2,3,
+                                    however one of those are wrong combination. Find the odd one out.</p>
+                                <img style="margin:auto;max-width:300px" src="/assets/images/IQ/img_q24.jpg"  />  
+                            </div>
+                            <div class="answer">
+                                <div class="row">
+                                    <div class="question-text text-type">
+                                        <label for="question-24">Answer: </label>
+                                        <input class="form-control question-type-text" id="question-24" type="text" name="question-24">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-5 d-flex justify-content-center">
+                                <button type="button" class="btn btn-main mt-2">Next</button>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab 
+                        [heading]="25"
+                        (selectTab)="changeTab($event)">
+                        <div class="test-content" >
+                            <div class="question">
+                                <p>Find the value of the question mark</p>
+                                <img style="margin:auto;max-width:300px;display:inline-block" src="/assets/images/IQ/img_q25.jpg"  />  
+                            </div>
+                            <div class="answer">
+                                <div class="row">
+                                    <div class="question-text text-type">
+                                        <label for="question-25">Answer: </label>
+                                        <input class="form-control question-type-text" id="question-25" type="text" name="question-25">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-5 d-flex justify-content-center">
+                                <button type="button" class="btn btn-main mt-2">Next</button>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab 
+                        [heading]="26"
+                        (selectTab)="changeTab($event)">
+                        <div class="test-content" >
+                            <div class="question">
+                                <p class="mar-top-20">Which is the odd one out?</p>
+                            </div>
+                            <div class="answer">
+                                <div class="row">
+                                    <div class="col-md-4 mb-3">
+                                        <input class="checkbox-mask" id="q26-answer-1" type="radio" [value]="'A'" name="answer26" >
+                                        <label for="q26-answer-1"><img src="/assets/images/IQ/answer_q26_01.png"></label>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <input class="checkbox-mask" id="q26-answer-2" type="radio" [value]="'B'" name="answer26" >
+                                        <label for="q26-answer-2"><img src="/assets/images/IQ/answer_q26_02.png"></label>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <input class="checkbox-mask" id="q26-answer-3" type="radio" [value]="'C'" name="answer26" >
+                                        <label for="q26-answer-3"><img src="/assets/images/IQ/answer_q26_03.png"></label>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <input class="checkbox-mask" id="q26-answer-4" type="radio" [value]="'D'" name="answer26" >
+                                        <label for="q26-answer-4"><img src="/assets/images/IQ/answer_q26_04.png"></label>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <input class="checkbox-mask" id="q26-answer-5" type="radio" [value]="'E'" name="answer26" >
+                                        <label for="q26-answer-5"><img src="/assets/images/IQ/answer_q26_05.png"></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-5 d-flex justify-content-center">
+                                <button type="button" class="btn btn-main mt-2">Next</button>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab 
+                        [heading]="27"
+                        (selectTab)="changeTab($event)">
+                        <div class="test-content" >
+                            <div class="question">
+                                <p>If 4 apples and 6 bananas cost £1.56 and 9 apples and 7 bananas cost £2.60, what is the cost of one apple and one banana?</p>
+                                <p>Answer example: 5,7</p>
+                            </div>
+                            <div class="answer">
+                                <div class="row">
+                                    <div class="question-text text-type">
+                                        <label for="question-27">Answer: </label>
+                                        <input class="form-control question-type-text" id="question-27" type="text" name="question-27">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-5 d-flex justify-content-center">
+                                <button type="button" class="btn btn-main mt-2">Next</button>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab 
+                        [heading]="28"
+                        (selectTab)="changeTab($event)">
+                        <div class="test-content" >
+                            <div class="question">
+                                <p>An electrical circuit wiring a set of four lights depends on a system of switches A, B, C and D. Each switch when working has the following effect on the lights:</p>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-10">
+                                            <p>Switch A turns lights 1 and 2 on/off or off/on</p>
+                                            <p>Switch B turns lights 2 and 4 on/off or off/on</p>
+                                            <p>Switch C turns lights 1 and 3 on/off or off/on</p>
+                                            <p>Switch D turns lights 3 and 4 on/off or off/on</p>
+                                        </div>
+                                        <div class="col-sm-2"><img src="/assets/images/IQ/img_q28_01.png"></div>
+                                    </div>
+                                </div>
+                                <p>In the following, switches C B D A are thrown in turn, with the result that Figure 1 is transformed into Figure 2. One of the switches is therefore not working and has had no effect on the numbered lights.</p>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-sm-10">Identify which one of the switches is not working.</div>
+                                        <div class="col-sm-2"><img src="/assets/images/IQ/img_q28_02.png"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="answer">
+                                <div class="row">
+                                    <div class="col-md-12 mb-3">
+                                        <input class="checkbox-mask" id="q28-answer-1" type="radio" [value]="'A'" name="answer28" >
+                                        <label for="q28-answer-1">Switch A</label>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <input class="checkbox-mask" id="q28-answer-2" type="radio" [value]="'B'" name="answer28" >
+                                        <label for="q28-answer-2">Switch B</label>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <input class="checkbox-mask" id="q28-answer-3" type="radio" [value]="'C'" name="answer28" >
+                                        <label for="q28-answer-3">Switch C</label>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <input class="checkbox-mask" id="q28-answer-4" type="radio" [value]="'D'" name="answer28" >
+                                        <label for="q28-answer-4">Switch D</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-5 d-flex justify-content-center">
+                                <button type="button" class="btn btn-main mt-2">Next</button>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab 
+                        [heading]="29"
+                        (selectTab)="changeTab($event)">
+                        <div class="test-content" >
+                            <div class="question">
+                                <p class="text-center"><img src="/assets/images/IQ/img_q29.png"></p>
+                                <p>Which is the missing section?</p>
+                            </div>
+                            <div class="answer">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <input class="checkbox-mask" id="q29-answer-1" type="radio" [value]="'A'" name="answer29" >
+                                        <label for="q29-answer-1"><img src="/assets/images/IQ/answer_q29_01.png"></label>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <input class="checkbox-mask" id="q29-answer-2" type="radio" [value]="'B'" name="answer29" >
+                                        <label for="q29-answer-2"><img src="/assets/images/IQ/answer_q29_02.png"></label>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <input class="checkbox-mask" id="q29-answer-3" type="radio" [value]="'C'" name="answer29" >
+                                        <label for="q29-answer-3"><img src="/assets/images/IQ/answer_q29_03.png"></label>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <input class="checkbox-mask" id="q29-answer-4" type="radio" [value]="'D'" name="answer29" >
+                                        <label for="q29-answer-4"><img src="/assets/images/IQ/answer_q29_04.png"></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-5 d-flex justify-content-center">
+                                <button type="button" class="btn btn-main mt-2">Next</button>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab 
+                        [heading]="30"
+                        (selectTab)="changeTab($event)">
+                        <div class="test-content" >
+                            <div class="question">
+                                <p>Find the correct image for the top one:</p>
+                                <img style="margin:auto;max-width:300px" src="/assets/images/IQ/img_q30.jpg"  />
+                            </div>
+                            <div class="answer">
+                                <div class="row">
+                                    <div class="col-md-4 mb-3">
+                                        <input class="checkbox-mask" id="q29-answer-1" type="radio" [value]="'A'" name="answer29" >
+                                        <label for="q29-answer-1"><img style="max-width: 100px;" src="/assets/images/IQ/answer_q30_01.jpg"></label>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <input class="checkbox-mask" id="q29-answer-2" type="radio" [value]="'B'" name="answer29" >
+                                        <label for="q29-answer-2"><img style="max-width: 100px;" src="/assets/images/IQ/answer_q30_02.jpg"></label>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <input class="checkbox-mask" id="q29-answer-3" type="radio" [value]="'C'" name="answer29" >
+                                        <label for="q29-answer-3"><img style="max-width: 100px;" src="/assets/images/IQ/answer_q30_03.jpg"></label>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <input class="checkbox-mask" id="q29-answer-4" type="radio" [value]="'D'" name="answer29" >
+                                        <label for="q29-answer-4"><img style="max-width: 100px;" src="/assets/images/IQ/answer_q30_04.jpg"></label>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <input class="checkbox-mask" id="q29-answer-4" type="radio" [value]="'E'" name="answer29" >
+                                        <label for="q29-answer-4"><img style="max-width: 100px;" src="/assets/images/IQ/answer_q30_04.jpg"></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-5 d-flex justify-content-center">
+                                <button type="button" class="btn btn-main mt-2">Submit</button>
+                            </div>
+                        </div>
+                    </tab>
+                </tabset>
             </div>
             <div class="footer-logo">
                 <img src="/assets/images/logox.svg" alt="footer logo">
