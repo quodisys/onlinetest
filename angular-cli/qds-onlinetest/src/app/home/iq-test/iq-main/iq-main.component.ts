@@ -87,7 +87,8 @@ export class IqMainComponent implements OnInit {
 		for(var i=1; i<=30; i++) {
 			let d1 = {
 				question: i,
-				answer: ''
+				answer: '',
+				tabClass: ''
 			}
 			this.collectAnswer.push(d1);
 		}
@@ -137,7 +138,12 @@ export class IqMainComponent implements OnInit {
 	}
 
 	showNextQuestion(key) {
+		let prevTabIndex = key - 1; 
 		this.staticTabs.tabs[key].active = true;
+		console.log(this.collectAnswer[prevTabIndex])
+		if(this.collectAnswer[prevTabIndex].answer != '') {
+			this.collectAnswer[prevTabIndex].tabClass = "done";
+		}
 	}
 
 	changeTab(e) {
