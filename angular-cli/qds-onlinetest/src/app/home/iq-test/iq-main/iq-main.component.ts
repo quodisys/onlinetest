@@ -16,7 +16,7 @@ export class IqMainComponent implements OnInit {
 	@ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
 
 	formAnswer: IQTestForm;
-
+	logo:string = ''
 
 	config = {}
 	formIsSubmit = false;
@@ -67,6 +67,10 @@ export class IqMainComponent implements OnInit {
 	constructor(private elementRef: ElementRef, private router: Router, private formBuilder: FormBuilder) { }
 
 	ngOnInit(): void {
+		this.logo = localStorage.getItem('logoUrl');
+		if(this.logo == undefined || this.logo == '') {
+			this.logo = "https://qdsasia.com/wp-content/themes/qdstheme/assets/img/qds-logo-scaled.png"
+		}
 		this.topic = 'IQ';
 		this.submitForm = {
 			token: localStorage.getItem('token'),
@@ -88,6 +92,7 @@ export class IqMainComponent implements OnInit {
 			this.collectAnswer.push(d1);
 		}
 		this.collectAnswer[12].answer = []
+		console.log(this.collectAnswer);
 	}
 
 	getTestInfo(topic) {

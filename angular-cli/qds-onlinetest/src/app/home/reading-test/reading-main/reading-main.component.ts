@@ -10,7 +10,7 @@ import { environment } from './../../../../environments/environment';
   styleUrls: ['./reading-main.component.scss']
 })
 export class ReadingMainComponent implements OnInit {
-
+	logo:string = ''
 	readingForm: any;
 	isSticky: boolean = false;
 
@@ -40,6 +40,10 @@ export class ReadingMainComponent implements OnInit {
 	constructor(private router: Router) { }
 
 	ngOnInit(): void {
+		this.logo = localStorage.getItem('logoUrl');
+		if(this.logo == undefined || this.logo == '') {
+			this.logo = "https://qdsasia.com/wp-content/themes/qdstheme/assets/img/qds-logo-scaled.png"
+		}
 		this.topic = "Reading"
 		this.submitForm = {
 			token: localStorage.getItem('token'),

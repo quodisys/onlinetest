@@ -14,6 +14,7 @@ import { environment } from './../../../../environments/environment';
 export class GrammarVocabularyMainComponent implements OnInit {
 
 	@ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
+	logo:string = ''
 	topic:string
 	config = {}
 	testTime:number
@@ -30,6 +31,10 @@ export class GrammarVocabularyMainComponent implements OnInit {
 	constructor(private router: Router) { }
 
 	ngOnInit(): void {
+		this.logo = localStorage.getItem('logoUrl');
+		if(this.logo == undefined || this.logo == '') {
+			this.logo = "https://qdsasia.com/wp-content/themes/qdstheme/assets/img/qds-logo-scaled.png"
+		}
 		this.topic = 'Grammar & Vocabulary';
 		this.submitForm = {
 			token: localStorage.getItem('token'),

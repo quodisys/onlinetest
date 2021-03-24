@@ -11,7 +11,7 @@ import { environment } from './../../../../environments/environment';
   styleUrls: ['./listening-main.component.scss']
 })
 export class ListeningMainComponent implements OnInit {
-
+	logo:string = ''
 	audioLink1:string;
 	audioLink2:string;
 	vocabularyTest:any;
@@ -49,6 +49,10 @@ export class ListeningMainComponent implements OnInit {
 	constructor(private router: Router) { }
 
 	ngOnInit(): void {
+		this.logo = localStorage.getItem('logoUrl');
+		if(this.logo == undefined || this.logo == '') {
+			this.logo = "https://qdsasia.com/wp-content/themes/qdstheme/assets/img/qds-logo-scaled.png"
+		}
 		this.topic = 'Listening';
 		this.submitForm = {
 			token: localStorage.getItem('token'),

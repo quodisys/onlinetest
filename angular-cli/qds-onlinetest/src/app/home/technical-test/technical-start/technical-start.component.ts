@@ -9,13 +9,17 @@ import { environment } from './../../../../environments/environment';
   styleUrls: ['./technical-start.component.scss']
 })
 export class TechnicalStartComponent implements OnInit {
-
+	logo:string = ''
 	technicalTest:any
 	testSelected:string
 
     constructor(private router: Router) { }
 
     ngOnInit(): void {
+		this.logo = localStorage.getItem('logoUrl');
+		if(this.logo == undefined || this.logo == '') {
+			this.logo = "https://qdsasia.com/wp-content/themes/qdstheme/assets/img/qds-logo-scaled.png"
+		}
 		this.getTestTopic();
     }
 

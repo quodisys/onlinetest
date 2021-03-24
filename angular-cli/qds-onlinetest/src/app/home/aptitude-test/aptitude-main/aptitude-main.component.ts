@@ -18,7 +18,7 @@ import { HonestyQuestions } from './honesty-questions'
 export class AptitudeMainComponent implements OnInit {
 
 	@ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
-
+	logo:string = ''
 	formAnswer: any;
 	formAnswerCopy: any;
 	formScore: any = {
@@ -49,6 +49,10 @@ export class AptitudeMainComponent implements OnInit {
 	constructor(private elementRef: ElementRef, private router: Router, private formBuilder: FormBuilder) { }
 
 	ngOnInit(): void {
+		this.logo = localStorage.getItem('logoUrl');
+		if(this.logo == undefined || this.logo == '') {
+			this.logo = "https://qdsasia.com/wp-content/themes/qdstheme/assets/img/qds-logo-scaled.png"
+		}
 		this.topic = 'Aptitude';
 		let newMi = []
 		let newHonesty = []

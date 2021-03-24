@@ -9,10 +9,14 @@ import { environment } from './../../../../environments/environment';
   styleUrls: ['./vocabulary-start.component.scss']
 })
 export class VocabularyStartComponent implements OnInit {
-
+	logo:string = ''
 	constructor() { }
 
 	ngOnInit(): void {
+		this.logo = localStorage.getItem('logoUrl');
+		if(this.logo == undefined || this.logo == '') {
+			this.logo = "https://qdsasia.com/wp-content/themes/qdstheme/assets/img/qds-logo-scaled.png"
+		}
 	}
 
 	initiateTest() {

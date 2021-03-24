@@ -11,7 +11,7 @@ import { environment } from './../../../environments/environment';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-
+	logo:string = ''
 	dashboardTest = []
 	
 
@@ -20,6 +20,10 @@ export class DashboardComponent implements OnInit {
 	}
 
 	ngOnInit() {
+		this.logo = localStorage.getItem('logoUrl');
+		if(this.logo == undefined || this.logo == '') {
+			this.logo = "https://qdsasia.com/wp-content/themes/qdstheme/assets/img/qds-logo-scaled.png"
+		}
 		this.getTest();
 	}
 

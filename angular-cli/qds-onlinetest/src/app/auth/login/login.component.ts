@@ -89,7 +89,13 @@ export class LoginComponent implements OnInit {
 			if(res.msg == 'Success') {
 				localStorage.setItem('adminAuth', 'true');
 				localStorage.setItem('sessionId', res.sess);
-				that.router.navigate(['/home']);
+				localStorage.setItem('email', that.loginForm.value.email);
+				localStorage.setItem('fullname', res.fullname);
+				if(res.profile == '') {
+					that.router.navigate(['/profile']);
+				} else {
+					that.router.navigate(['/home']);
+				}
 			} else {
 				that.error = res.error;
 				console.log(res.error)

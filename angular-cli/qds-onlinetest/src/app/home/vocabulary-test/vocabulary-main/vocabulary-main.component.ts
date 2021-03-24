@@ -15,6 +15,7 @@ export class VocabularyMainComponent implements OnInit {
 
 	@ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
 	topic:string
+	logo:string=''
 	config = {}
 	testTime:number
 	questions:any = []
@@ -30,6 +31,10 @@ export class VocabularyMainComponent implements OnInit {
 	constructor(private router: Router) { }
 
 	ngOnInit(): void {
+		this.logo = localStorage.getItem('logoUrl');
+		if(this.logo == undefined || this.logo == '') {
+			this.logo = "https://qdsasia.com/wp-content/themes/qdstheme/assets/img/qds-logo-scaled.png"
+		}
 		this.topic = 'Vocabulary';
 		this.submitForm = {
 			token: localStorage.getItem('token'),

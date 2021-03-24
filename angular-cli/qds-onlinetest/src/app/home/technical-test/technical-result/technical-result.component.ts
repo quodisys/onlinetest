@@ -10,10 +10,15 @@ import { environment } from './../../../../environments/environment';
 export class TechnicalResultComponent implements OnInit {
 
 	url:string
+	logo:string = ''
 
 	constructor() { }
 
 	ngOnInit(): void {
+		this.logo = localStorage.getItem('logoUrl');
+		if(this.logo == undefined || this.logo == '') {
+			this.logo = "https://qdsasia.com/wp-content/themes/qdstheme/assets/img/qds-logo-scaled.png"
+		}
 		this.checkRouter();
 	}
 	

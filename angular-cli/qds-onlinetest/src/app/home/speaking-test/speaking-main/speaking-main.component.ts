@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 export class SpeakingMainComponent implements OnInit {
 
 	@ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
-
+	logo:string = ''
 	formAnswer: IQTestForm;
 
 	recording: Boolean = false;
@@ -91,6 +91,10 @@ export class SpeakingMainComponent implements OnInit {
 
 
 	ngOnInit(): void {
+		this.logo = localStorage.getItem('logoUrl');
+		if(this.logo == undefined || this.logo == '') {
+			this.logo = "https://qdsasia.com/wp-content/themes/qdstheme/assets/img/qds-logo-scaled.png"
+		}
 		this.formAnswer = {
 			answers: [
 				{
