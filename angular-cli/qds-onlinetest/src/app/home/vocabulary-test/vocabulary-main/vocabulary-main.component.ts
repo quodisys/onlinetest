@@ -90,6 +90,10 @@ export class VocabularyMainComponent implements OnInit {
 			console.log(that.vocabularyTestInfo);
 		})
 		.catch(function (error) {
+			if(error) {
+				that.formIsSubmit = true;
+				that.router.navigate(['/login'])
+			}
 			console.log(error);
 		});
 	}

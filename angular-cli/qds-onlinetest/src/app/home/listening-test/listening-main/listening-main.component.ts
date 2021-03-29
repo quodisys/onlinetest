@@ -106,6 +106,10 @@ export class ListeningMainComponent implements OnInit {
 			}
 		})
 		.catch(function (error) {
+			if(error) {
+				that.formIsSubmit = true;
+				that.router.navigate(['/login'])
+			}
 			console.log(error);
 		});
 	}

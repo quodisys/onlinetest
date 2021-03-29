@@ -1,9 +1,13 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { CountdownEvent } from 'ngx-countdown';
 import { IQTestForm } from '../../../interfaces/iq-test'
-import { FormBuilder} from  '@angular/forms';
 import { TabsetComponent } from 'ngx-bootstrap/tabs';
 import { Router } from '@angular/router';
+import axios from 'axios';
+import { environment } from './../../../../environments/environment';
+declare var $: any;
+import * as RecordRTC from 'recordrtc';
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 @Component({
@@ -15,79 +19,30 @@ export class SpeakingMainComponent implements OnInit {
 
 	@ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
 	logo:string = ''
+	topic:string
+	submitForm:any
 	formAnswer: IQTestForm;
+	speakingTestInfo:any
+	testTime:number
+	questionsOrinal:any = []
+	questions:any = []
+	questionType:string = 'first'
+	formData:any
 
 	recording: Boolean = false;
 
 	finishRecord:boolean = false;
 
 	config = {}
-	questions: any[] = [
-		{ 
-			id: '001', 
-			question: 'I have experience managing and leading a large team.',
-			active: true 
-		},
-		{ 
-			id: '002', 
-			question: 'This job is a good fit for what I’ve been doing throughout my career.',
-		},
-		{ 
-			id: '003', 
-			question: 'A resume is a written document that includes work experience, education, and skills.',
-		},
-		{ 
-			id: '004', 
-			question: 'Conflict resolution is an essential part of teamwork.',
-		},
-		{ 
-			id: '005', 
-			question: 'We will get it resolved as quickly as possible.',
-		},
-		{ 
-			id: '006', 
-			question: 'Unfortunately, I would need my manager’s approval for that request. May I transfer your call?',
-		},
-		{ 
-			id: '007', 
-			question: 'We acquired five thousand new customers this quarter, which is 20% more than last quarter.',
-		},
-		{ 
-			id: '008', 
-			question: 'Your HR director mentioned that productivity is an area you want to focus on next year.',
-		},
-		{ 
-			id: '009', 
-			question: 'We offer a real-time product management tool with automated alerts.'
-		},
-		{ 
-			id: '009', 
-			question: 'Most of our clients set up bank transfers, but we can accommodate any payment method.'
-		},
-		{ 
-			id: '009', 
-			question: 'Thanks for meeting us on short notice. We’re experiencing difficulties using your product.'
-		},
-		{ 
-			id: '009', 
-			question: 'Some companies have trouble finding qualified applicants for jobs that require technical skills.'
-		},
-		{ 
-			id: '009', 
-			question: 'I’m interested in selling your products at our authorized stores.'
-		},
-		{ 
-			id: '009', 
-			question: 'Being an entrepreneur requires a good idea, passion, and a willingness to work hard.'
-		},
-		{ 
-			id: '009', 
-			question: 'There are three types of business organizations: for-profit, non-profit, and hybrids.'
-		}
-	];
-	formIsSubmit: any = false;
-
-	constructor(private elementRef: ElementRef, private router: Router, private formBuilder: FormBuilder) { }
+	formIsSubmit:boolean = false;
+	currentQuestion:any
+	//Lets declare Record OBJ
+	record;
+	//URL of Blob
+	url;
+	trueUrl
+	error;
+	constructor(private elementRef: ElementRef, private router: Router, private domSanitizer: DomSanitizer) { }
 
 
 	ngOnInit(): void {
@@ -95,22 +50,91 @@ export class SpeakingMainComponent implements OnInit {
 		if(this.logo == undefined || this.logo == '') {
 			this.logo = "https://qdsasia.com/wp-content/themes/qdstheme/assets/img/qds-logo-scaled.png"
 		}
-		this.formAnswer = {
-			answers: [
-				{
-					questionID: '',
-					questionAnswer: ''
-				}
-			]
+		this.topic = 'Speaking';
+		this.submitForm = {
+			token: localStorage.getItem('token'),
+			keyword: localStorage.getItem('keyword'),
+			sess: localStorage.getItem('sessionId'),
+			topic: this.topic,
+			qa: []
+		}
+		this.getTestInfo();
+		this.getQuestion(this.topic)
+		this.config = {
+			leftTime: 1000,
+			format: 'mm : ss'
 		}
 		this.questions.map(item => {
 			item['customClass'] = '';
 			console.log(item)
 		})
-		this.config = {
-			leftTime: 1160,
-			format: 'mm : ss'
+	}
+
+	getTestInfo() {
+		let that =  this;
+		let data = {
+			token: localStorage.getItem('token'),
+			keyword: localStorage.getItem('keyword'),
+			sess: localStorage.getItem('sessionId')
 		}
+		axios({
+			method: 'post',
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			url: environment.hostApi + '/candidates/allocatedtests.php',
+			  data: JSON.stringify(data)
+		})
+		.then(function (response) {
+			var res = response.data;
+			var test = Object.keys(res).map((k) => res[k]);
+			var engtest = test.find(x => x.category == "English Test").engtests;
+			engtest = Object.keys(engtest).map((k) => engtest[k]);
+			that.speakingTestInfo = engtest.find(x => x.topic == "Speaking Test");
+			that.testTime = that.speakingTestInfo.totaltime*60;
+			that.config = {
+				leftTime: that.testTime,
+				format: 'mm : ss'
+			}
+			console.log(that.speakingTestInfo);
+		})
+		.catch(function (error) {
+			if(error) {
+				that.formIsSubmit = true;
+				that.router.navigate(['/login'])
+			}
+			console.log(error);
+		});
+	}
+
+	getQuestion(topic) {
+		let that =  this;
+		let data = {
+			token: localStorage.getItem('token'),
+			keyword: localStorage.getItem('keyword'),
+			sess: localStorage.getItem('sessionId'),
+			topic: topic
+		}
+		axios({
+			method: 'post',
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			url: environment.hostApi + '/candidates/gettests.php',
+			  data: JSON.stringify(data)
+		})
+		.then(function (response) {
+			that.questionsOrinal = response.data;
+			console.log(that.questionsOrinal)
+			that.questionsOrinal.map((item, index) => {
+				var d1 = {
+					id: item.id,
+					question: item.question,
+					type: item.type
+				}
+				that.questions.push(d1);
+			});
+			that.questions[0]['active'] = true;
+		})
+		.catch(function (error) {
+			console.log(error);
+		});
 	}
 
 	canDeactivate() {
@@ -123,53 +147,134 @@ export class SpeakingMainComponent implements OnInit {
 
 	counterEvent(e: CountdownEvent) {
 		if(e.action == 'done') {
+			this.formIsSubmit = true;
 			this.router.navigate(['/speaking-test/result'])
 		}
 	}
 
-	showNextQuestion(key, last, formData) {
+	showNextQuestion(key, last, isSkip) {
 		let that = this;
 		let tabId = key + 1;
 		let questionCount = this.questions.length;
-		that.questions[key].customClass = 'done'
-		if(tabId < questionCount) {
-			setTimeout(function() {
-				that.staticTabs.tabs[tabId].active = true;
-			},500)
-		}
+		this.questionType = 'first'
 		this.finishRecord = false;
-		if(last) {
-			this.onSubmit(formData);
+
+		if(isSkip) {
+			if(tabId < questionCount) {
+				setTimeout(function() {
+					that.staticTabs.tabs[tabId].active = true;
+				},500)
+			}
+		} else {
+			if(last) {
+				this.formData.set('questiontype', 'last');
+			}
+			axios({
+				method: 'post',
+				headers: { 'Content-Type': 'multipart/form-data' },
+				url: environment.hostApi + '/candidates/processspeakingtest.php',
+				data: this.formData
+			})
+			.then(function (response) {
+				console.log(response)
+				if(!response.data[0].error) {
+					if(last) {
+						that.formIsSubmit = true;
+						that.router.navigate(['/speaking-test/result'])
+					} else {
+						that.questions[key].customClass = 'done'
+						if(tabId < questionCount) {
+							setTimeout(function() {
+								that.staticTabs.tabs[tabId].active = true;
+							},500)
+						}
+					}
+				} else {
+					alert(response.data[0].error);
+					that.questionType = '';
+				}
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
 		}
 	}
 
 	changeTab(e) {
 		console.log(e.heading)
 	}
-
-	startRecording() {
-		this.recording = true;
-	}
 	
-	stopRecording(key, last, formData) {
+	stopRecording() {
 		this.recording = false;
 		this.finishRecord = true;
-		// if(last) {
-		// 	this.onSubmit(formData);
-		// } else {
-		// 	this.showNextQuestion(key);
-		// }
+		this.record.stop(this.processRecording.bind(this));
 	}
 
 	recordAgain() {
 		this.finishRecord = false;
+		this.questionType = 'last';
+	}
+
+	sanitize(url: string) {
+		return this.domSanitizer.bypassSecurityTrustUrl(url);
+	}
+	/**
+	 * Start recording.
+	 */
+	initiateRecording(questionIndex) {
+		this.recording = true;
+		this.currentQuestion = this.questions[questionIndex];
+		let mediaConstraints = {
+			video: false,
+			audio: true
+		};
+		navigator.mediaDevices.getUserMedia(mediaConstraints).then(this.successCallback.bind(this), this.errorCallback.bind(this));
+	}
+	/**
+	 * Will be called automatically.
+	 */
+	successCallback(stream) {
+		var options = {
+			mimeType: "audio/wav",
+			numberOfAudioChannels: 1,
+			sampleRate: 44100,
+		};
+		//Start Actuall Recording
+		var StereoAudioRecorder = RecordRTC.StereoAudioRecorder;
+		this.record = new StereoAudioRecorder(stream, options);
+		this.record.record();
+	}
+	
+	processRecording(blob) {
+		console.log(this.currentQuestion)
+		console.log("// Blob content")
+		console.log(blob)
+		this.url = URL.createObjectURL(blob);
+		
+		this.formData = new FormData();
+		this.formData.append('token', localStorage.getItem('token'));
+		this.formData.append('keyword', localStorage.getItem('keyword'));
+		this.formData.append('sess', localStorage.getItem('sessionId'));
+		this.formData.append('topic', "Speaking");
+		this.formData.append('id', this.currentQuestion.id);
+		this.formData.append('question', this.currentQuestion.question);
+		this.formData.append('questiontype', '');
+		this.formData.append('audio', blob);
+
+		for(var pair of this.formData.entries()) {
+			console.log(pair);
+		}
+	}
+	/**
+	 * Process Error.
+	 */
+	errorCallback(error) {
+		this.error = 'Can not play audio in your browser';
+		alert('Can not play audio in your browser');
 	}
 
 
-	onSubmit(formData) {
-		console.log(formData.value);
-		console.log(this.formAnswer)
-		this.formIsSubmit = true;
-		this.router.navigate(['/speaking-test/result'])
+	onSubmit() {
+		
 	}
 }

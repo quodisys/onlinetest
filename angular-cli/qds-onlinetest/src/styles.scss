@@ -537,6 +537,9 @@ input[type=checkbox] {
 }
 .speaking {
     & .content {
+        & .tab-content {
+            margin-top: 0;
+        }
         & .question {
             min-height: 280px;
             display: flex;

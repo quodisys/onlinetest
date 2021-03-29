@@ -101,6 +101,10 @@ export class TechnicalMainComponent implements OnInit {
 			console.log(that.testTime);
 		})
 		.catch(function (error) {
+			if(error) {
+				that.formIsSubmit = true;
+				that.router.navigate(['/login'])
+			}
 			console.log(error);
 		});
 	}

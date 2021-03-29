@@ -1,9 +1,11 @@
-<div appBlockCopyPaste class="main main-2 inside-logo main-center bg-blue">
+<div appBlockCopyPaste class="main inside-logo main-center bg-blue">
     <div class="container">
         <div class="col-md-12">
             <div class="content">
                 <div class="branding">
-                    <img src="{{logo}}" alt="company logo">
+                    <a href="/">
+                        <img src="{{logo}}" alt="company logo">
+                    </a>
                 </div>
                 <div class="title">ENGLISH TEST</div>
                 <div class="sub-title">
@@ -21,7 +23,7 @@
                                     Time: {{test.totaltime}} minutes
                                 </div>
                             </div>
-                            <div *ngIf="test.status == 'Done'" class="content-test" routerLink="/{{test.link}}">
+                            <div *ngIf="test.status == 'Done'" class="content-test">
                                 <img src="/assets/images/done.svg" alt="test">
                                 <div class="test-title">
                                     {{test.topic}}

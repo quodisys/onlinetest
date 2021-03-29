@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import axios from 'axios';
 import { environment } from './../../../environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-english-test',
@@ -12,7 +13,7 @@ export class EnglishTestComponent implements OnInit {
 	dashboardTest = []
 	englishDashboard = []
 
-	constructor() { }
+	constructor(private router: Router) { }
 
 	ngOnInit(): void {
 		this.logo = localStorage.getItem('logoUrl');
@@ -44,6 +45,10 @@ export class EnglishTestComponent implements OnInit {
 			that.englishDashboard = testList;
 			
 			console.log(testList);
+
+			if(res[0].error) {
+				that.router.navigate(['/login'])
+			}
 			
 			// that.moveInArray(that.dashboardTest, 2, 0)
 			// that.moveInArray(that.dashboardTest, 3, 2)
@@ -51,6 +56,9 @@ export class EnglishTestComponent implements OnInit {
 			// console.log(res);
 		})
 		.catch(function (error) {
+			if(error) {
+				that.router.navigate(['/login'])
+			}
 			console.log(error);
 		});
 	}

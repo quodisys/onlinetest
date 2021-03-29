@@ -99,6 +99,10 @@ export class ReadingMainComponent implements OnInit {
 			console.log(that.readingTestInfo);
 		})
 		.catch(function (error) {
+			if(error) {
+				that.formIsSubmit = true;
+				that.router.navigate(['/login'])
+			}
 			console.log(error);
 		});
 	}

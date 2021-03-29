@@ -43,15 +43,18 @@ export class DashboardComponent implements OnInit {
 		.then(function (response) {
 			var res = response.data;
 			that.dashboardTest = Object.keys(res).map((k) => res[k]);
-			that.moveInArray(that.dashboardTest, 2, 0)
-			that.moveInArray(that.dashboardTest, 3, 2)
-			that.moveInArray(that.dashboardTest, 2, 1)
+			// that.moveInArray(that.dashboardTest, 2, 0)
+			// that.moveInArray(that.dashboardTest, 3, 2)
+			// that.moveInArray(that.dashboardTest, 2, 1)
 			if(res[0].error) {
 				that.router.navigate(['/login'])
 			}
-			console.log(res);
+			console.log(that.dashboardTest);
 		})
 		.catch(function (error) {
+			if(error) {
+				that.router.navigate(['/login'])
+			}
 			console.log(error);
 		});
 	}
