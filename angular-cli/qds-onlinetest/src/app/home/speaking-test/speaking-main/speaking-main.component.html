@@ -6,7 +6,9 @@
                     <div class="col-md-4 d-flex align-items-center">
                     </div>
                     <div class="col-md-4 flex-center">
-                        <img src="{{logo}}" alt="company logo">
+                        <a routerLink="/english-test">
+                            <img src="{{logo}}" alt="company logo">
+                        </a>
                     </div>
                     <div class="col-md-4 d-flex justify-content-end">
                         <div class="countdown-wrapper">
@@ -37,7 +39,6 @@
                                     <img src="/assets/images/recording.svg" />
                                 </button>
                                 <a *ngIf="!recording && !last && !finishRecord" class="btn-skip ml-3" (click)="showNextQuestion(key, last, true)">Skip</a>
-                                <!-- <a *ngIf="!recording && last" class="btn-skip ml-3" (click)="showNextQuestion(key)">Complete</a> -->
                                 <button *ngIf="finishRecord" type="button" class="btn btn-main btn-sub mt-2 mr-4" (click)="showNextQuestion(key, last, false)">{{last ? 'Complete' : 'Continue'}}</button>
                                 <button *ngIf="finishRecord && questionType != 'last'" type="button" class="btn btn-main btn-sub mt-2" (click)="recordAgain()">Record again</button>
                             </div>
