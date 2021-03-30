@@ -12,6 +12,7 @@ export class EnglishTestComponent implements OnInit {
 	logo:string = ''
 	dashboardTest = []
 	englishDashboard = []
+	totalTime:number = 0
 
 	constructor(private router: Router) { }
 
@@ -45,7 +46,10 @@ export class EnglishTestComponent implements OnInit {
 			that.englishDashboard = testList;
 			
 			console.log(testList);
-
+			that.englishDashboard.map(test => {
+				test.totaltime = parseInt(test.totaltime);
+				that.totalTime += test.totaltime
+			})
 			if(res[0].error) {
 				that.router.navigate(['/login'])
 			}

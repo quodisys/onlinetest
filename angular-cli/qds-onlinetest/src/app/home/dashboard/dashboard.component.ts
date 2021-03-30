@@ -13,7 +13,7 @@ import { environment } from './../../../environments/environment';
 export class DashboardComponent implements OnInit {
 	logo:string = ''
 	dashboardTest = []
-	
+	totalTime:number = 0
 
 	constructor(private router: Router, private formBuilder: FormBuilder, public globals: Globals) { 
 		// console.log(localStorage.getItem('token'))
@@ -42,6 +42,7 @@ export class DashboardComponent implements OnInit {
 		})
 		.then(function (response) {
 			var res = response.data;
+			var totalTime = 0;
 			that.dashboardTest = Object.keys(res).map((k) => res[k]);
 			// that.moveInArray(that.dashboardTest, 2, 0)
 			// that.moveInArray(that.dashboardTest, 3, 2)
@@ -49,6 +50,10 @@ export class DashboardComponent implements OnInit {
 			if(res[0].error) {
 				that.router.navigate(['/login'])
 			}
+			that.dashboardTest.map(test => {
+				test.totaltime = parseInt(test.totaltime);
+				that.totalTime += test.totaltime
+			})
 			console.log(that.dashboardTest);
 		})
 		.catch(function (error) {

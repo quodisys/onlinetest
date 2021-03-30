@@ -13,7 +13,7 @@
                     <div class="col-md-4 d-flex justify-content-end">
                         <div class="countdown-wrapper">
                             <span>Time remaining</span>
-                            <countdown class="timer" [config]="config" (event)="counterEvent($event)"></countdown>
+                            <countdown #cd class="timer" [config]="config" (event)="counterEvent($event)"></countdown>
                         </div>
                     </div>
                 </div>
@@ -32,15 +32,18 @@
                                 {{question.question}}
                             </div>
                             <div class="d-flex justify-content-center align-items-center">
-                                <button type="button" class="btn p-0 ml-5" (click)="initiateRecording(key)" *ngIf="!recording && !finishRecord">
+                                <button type="button" class="btn p-0 ml-5" (click)="initiateRecording(key)" *ngIf="!recording && !finishRecord && !isLoading">
                                     <img src="/assets/images/mic.svg" />
                                 </button>
                                 <button type="button" class="btn btn-recording" *ngIf="recording" (click)="stopRecording()">
                                     <img src="/assets/images/recording.svg" />
                                 </button>
-                                <a *ngIf="!recording && !last && !finishRecord" class="btn-skip ml-3" (click)="showNextQuestion(key, last, true)">Skip</a>
-                                <button *ngIf="finishRecord" type="button" class="btn btn-main btn-sub mt-2 mr-4" (click)="showNextQuestion(key, last, false)">{{last ? 'Complete' : 'Continue'}}</button>
-                                <button *ngIf="finishRecord && questionType != 'last'" type="button" class="btn btn-main btn-sub mt-2" (click)="recordAgain()">Record again</button>
+                                <a *ngIf="!recording && !last && !finishRecord && !isLoading" class="btn-skip ml-3" (click)="showNextQuestion(key, last, true)">Skip</a>
+                                <button *ngIf="finishRecord && !isLoading" type="button" class="btn btn-main btn-sub mt-2 mr-4" (click)="showNextQuestion(key, last, false)">{{last ? 'Complete' : 'Continue'}}</button>
+                                <button *ngIf="isLoading" type="button" class="btn btn-main btn-sub mt-2 mr-4" [disabled]="isLoading">
+                                    <img style="width: 70px;" src="/assets/images/recording.svg" />
+                                </button>
+                                <button *ngIf="finishRecord && questionType != 'last'" type="button" class="btn btn-main btn-sub mt-2" (click)="recordAgain()" [disabled]="isLoading">Record again</button>
                             </div>
                         </div>
                     </tab>

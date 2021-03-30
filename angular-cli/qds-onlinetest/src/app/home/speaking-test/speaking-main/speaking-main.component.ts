@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { CountdownEvent } from 'ngx-countdown';
+import { CountdownEvent, CountdownComponent } from 'ngx-countdown';
 import { IQTestForm } from '../../../interfaces/iq-test'
 import { TabsetComponent } from 'ngx-bootstrap/tabs';
 import { Router } from '@angular/router';
@@ -18,8 +18,10 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class SpeakingMainComponent implements OnInit {
 
 	@ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
+	@ViewChild('cd', { static: false }) private countdown: CountdownComponent;
 	logo:string = ''
 	topic:string
+	isLoading:boolean = false;
 	submitForm:any
 	formAnswer: IQTestForm;
 	speakingTestInfo:any
@@ -157,7 +159,6 @@ export class SpeakingMainComponent implements OnInit {
 		let tabId = key + 1;
 		let questionCount = this.questions.length;
 		this.questionType = 'first'
-		this.finishRecord = false;
 
 		if(isSkip) {
 			if(tabId < questionCount) {
@@ -166,6 +167,8 @@ export class SpeakingMainComponent implements OnInit {
 				},500)
 			}
 		} else {
+			this.countdown.pause();
+			this.isLoading = true;
 			if(last) {
 				this.formData.set('questiontype', 'last');
 			}
@@ -182,6 +185,9 @@ export class SpeakingMainComponent implements OnInit {
 						that.formIsSubmit = true;
 						that.router.navigate(['/speaking-test/result'])
 					} else {
+						that.countdown.resume();
+						that.finishRecord = false;
+						that.isLoading = false;
 						that.questions[key].customClass = 'done'
 						if(tabId < questionCount) {
 							setTimeout(function() {
@@ -192,9 +198,13 @@ export class SpeakingMainComponent implements OnInit {
 				} else {
 					alert(response.data[0].error);
 					that.questionType = '';
+					that.countdown.resume();
+					that.finishRecord = false;
+					that.isLoading = false;
 				}
 			})
 			.catch(function (error) {
+				that.countdown.resume();
 				console.log(error);
 			});
 		}
