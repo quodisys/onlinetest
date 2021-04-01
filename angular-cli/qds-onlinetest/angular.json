@@ -31,6 +31,7 @@
               "src/assets/fonts/font-icomoon.scss",
               "node_modules/bootstrap/scss/bootstrap.scss",
               "node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
+              "node_modules/plyr/dist/plyr.css",
               "src/styles.scss",
               "src/assets/fonts/font-file.scss"
             ],

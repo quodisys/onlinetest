@@ -20,18 +20,7 @@
             <div class="content reading listening">
                 <div class="question-wrapper" *ngFor="let test of vocabularyTest; let i = index; let last = last;">
                     <div class="player-wrapper">
-                        <ngx-audio-player 
-                        [playlist]="msaapPlaylist[i]" 
-                        [displayTitle]="msaapDisplayTitle" 
-                        [autoPlay]="false"
-                        muted="muted" 
-                        [displayPlaylist]="msaapDisplayPlayList" 
-                        [displayArtist]="msaapDisplayArtist" 
-                        [displayDuration]="msaapDisplayDuration"
-                        [expanded]="true" 
-                        [displayVolumeControls]="msaapDisplayVolumeControls" 
-                        [disablePositionSlider]="msaapDisablePositionSlider">
-                        </ngx-audio-player>
+                        <plyr style="display: block; width: 340px;" plyrTitle="Video 1" [plyrPlaysInline]="true" [plyrSources]="msaapPlaylist[i]" (plyrInit)="player = $event" (plyrPlay)="played($event)" (plyrEnded)="ended($event, i)" plyrType="audio" [plyrOptions]="options" [ngClass]="{'disabled': msaapPlaylist[i][0].isDisabled}"></plyr>
                     </div>
                     <div class="title mt-3 mb-3 text-uppercase">{{test.title}}</div>
                     <div class="question">

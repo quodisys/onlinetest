@@ -17,6 +17,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { PlyrModule } from 'ngx-plyr';
 
 import { ShareModule } from '../../shared.module'
 
@@ -42,7 +43,8 @@ imports: [
     MatSlideToggleModule,
     MatCardModule,
     MatButtonModule,
-    ShareModule
+    ShareModule,
+    PlyrModule
 ]
 })
 export class ListeningTestModule { }

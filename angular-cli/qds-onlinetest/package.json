@@ -27,6 +27,8 @@
     "ngx-audio-player": "^11.0.2",
     "ngx-bootstrap": "^6.2.0",
     "ngx-countdown": "^11.0.1",
+    "ngx-plyr": "^4.0.0",
+    "plyr": "^3.6.4",
     "recordrtc": "^5.6.1",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",

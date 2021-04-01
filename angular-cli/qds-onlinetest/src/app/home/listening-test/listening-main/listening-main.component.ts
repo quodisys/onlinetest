@@ -1,9 +1,11 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { CountdownEvent } from 'ngx-countdown';
 import { Track } from 'ngx-audio-player';
 import axios from 'axios';
 import { environment } from './../../../../environments/environment';
+import { PlyrComponent } from 'ngx-plyr';
+import * as Plyr from 'plyr';
 
 @Component({
   selector: 'app-listening-main',
@@ -11,6 +13,9 @@ import { environment } from './../../../../environments/environment';
   styleUrls: ['./listening-main.component.scss']
 })
 export class ListeningMainComponent implements OnInit {
+	@ViewChild(PlyrComponent) plyr: PlyrComponent;
+	player: Plyr;
+	options:any
 	logo:string = ''
 	audioLink1:string;
 	audioLink2:string;
@@ -70,6 +75,10 @@ export class ListeningMainComponent implements OnInit {
 		this.vocabularyForm = {
 			answers : []
 		}
+		this.options = {
+			enabled: true,
+			controls: ['play', 'progress', 'current-time']
+		};
 	}
 
 	canDeactivate() {
@@ -199,15 +208,17 @@ export class ListeningMainComponent implements OnInit {
 			}
 
 			that.vocabularyTest.forEach(item => {
-				let main:Track[] = [
-					{title: item.title,
-					link: item.audioLink,
-					artist: 'Elsa'}
+				let main = [
+					{
+						src: item.audioLink,
+						type: 'audio/mp3',
+						allow: 2,
+						isDisabled: false
+					}
 				]
 				that.msaapPlaylist.push(main);
 			});
 
-			// console.log(that.vocabularyTest);
 			var vocabularyCopy = [...that.vocabularyTest]
 			console.log(vocabularyCopy);
 			vocabularyCopy.map((item, index) => {
@@ -251,6 +262,24 @@ export class ListeningMainComponent implements OnInit {
 			this.onSubmit();
 		}
 	}
+
+	//Audio Player
+	
+	played(event: Plyr.PlyrEvent) {
+		// console.log('played', event);
+	}
+
+	ended(event: Plyr.PlyrEvent, index) {
+		this.msaapPlaylist[index][0].allow = this.msaapPlaylist[index][0].allow - 1;
+		if(this.msaapPlaylist[index][0].allow <= 0) {
+			this.msaapPlaylist[index][0].isDisabled = true;
+		}
+	}
+	
+	play(): void {
+		this.player.play(); // or this.plyr.player.play()
+	}
+	
 
 	onSubmit() {
 		let that =  this;

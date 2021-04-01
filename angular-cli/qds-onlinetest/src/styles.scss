@@ -848,6 +848,31 @@ $md-checkbox-label-padding: .75em;
     max-width: 700px;
     margin: auto;
 }
+// Listening Audio 
+plyr.disabled {
+    pointer-events: none;
+}
+.plyr__progress {
+    pointer-events: none;
+}
+.plyr--audio .plyr__controls {
+    background: #ECECF2;
+    padding: 20px 30px;
+    border-radius: 3px;
+}
+.plyr__control {
+    padding: calc(var(--plyr-control-spacing,13px) * .7);
+}
+.plyr__controls .plyr__controls__item:first-child {
+    background: linear-gradient(180deg, #29F4FF -46.11%, #5257FF 151.97%);
+    border-radius: 50%;
+    margin-right: 15px;
+}
+.plyr__control svg {
+    fill: #fff;
+    height: var(--plyr-control-icon-size,14px);
+    width: var(--plyr-control-icon-size,14px);
+}
 @media (max-height: 800px) {
     .main-center {
         & .container {
