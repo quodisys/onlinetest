@@ -554,6 +554,33 @@ input[type=checkbox] {
     }
 }
 
+.toeic-test {
+    & .custom-tab {
+        & .tab-content {
+            margin-top: 10px;
+        }
+    }
+    & .part-section {
+        display: block;
+        text-align: center;
+        font-size: 25px;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #fff;
+        background-color: #6cccfd;
+        width: 300px;
+        padding: 10px;
+        border-radius: 30px;
+        margin: auto;
+        margin-bottom: 15px;
+        font-family: "SFProMedium", sans-serif;
+    }
+}
+
+.img-radius {
+    border-radius: 10px;
+}
+
 .select-group {
     display: inline-flex;
     width: 100%;
@@ -753,10 +780,6 @@ $md-checkbox-label-padding: .75em;
             cursor: pointer;
             transition: background .3s;
         }
-
-        &:after {
-        // checkmark
-        }
     }
 
     input[type="checkbox"] {
@@ -857,8 +880,8 @@ plyr.disabled {
 }
 .plyr--audio .plyr__controls {
     background: #ECECF2;
-    padding: 20px 30px;
-    border-radius: 3px;
+    padding: 13px 30px;
+    border-radius: 30px;
 }
 .plyr__control {
     padding: calc(var(--plyr-control-spacing,13px) * .7);
@@ -872,6 +895,16 @@ plyr.disabled {
     fill: #fff;
     height: var(--plyr-control-icon-size,14px);
     width: var(--plyr-control-icon-size,14px);
+}
+.plyr__volume {
+    width: auto;
+    max-width: inherit;
+    min-width: inherit;
+}
+.plyr__volume {
+    & .plyr__control svg {
+        fill: #3d3d3d;
+    }
 }
 @media (max-height: 800px) {
     .main-center {

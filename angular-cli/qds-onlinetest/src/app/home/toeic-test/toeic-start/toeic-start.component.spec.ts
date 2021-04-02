@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ToeicTestComponent } from './toeic-test.component';
+import { ToeicStartComponent } from './toeic-start.component';
 
-describe('ToeicTestComponent', () => {
-  let component: ToeicTestComponent;
-  let fixture: ComponentFixture<ToeicTestComponent>;
+describe('ToeicStartComponent', () => {
+  let component: ToeicStartComponent;
+  let fixture: ComponentFixture<ToeicStartComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ToeicTestComponent ]
+      declarations: [ ToeicStartComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ToeicTestComponent);
+    fixture = TestBed.createComponent(ToeicStartComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

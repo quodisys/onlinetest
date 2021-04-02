@@ -1,15 +1,13 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { SpeakingTestMicroModalComponent } from '../speaking-test-micro-modal/speaking-test-micro-modal.component';
+import { Component, OnInit } from '@angular/core';
 import axios from 'axios';
 import { environment } from './../../../../environments/environment';
-@Component({
-  selector: 'app-speaking-start',
-  templateUrl: './speaking-start.component.html',
-  styleUrls: ['./speaking-start.component.scss']
-})
-export class SpeakingStartComponent implements OnInit {
 
-	@ViewChild(SpeakingTestMicroModalComponent, {static: false}) private SpeakingTestMicroModalComponent: SpeakingTestMicroModalComponent;
+@Component({
+  selector: 'app-toeic-start',
+  templateUrl: './toeic-start.component.html',
+  styleUrls: ['./toeic-start.component.scss']
+})
+export class ToeicStartComponent implements OnInit {
 	logo:string = ''
 	constructor() { }
 
@@ -19,16 +17,13 @@ export class SpeakingStartComponent implements OnInit {
 			this.logo = "https://qdsasia.com/wp-content/themes/qdstheme/assets/img/qds-logo-scaled.png"
 		}
 	}
-	openModal() {
-		this.SpeakingTestMicroModalComponent.showModal();
-	}
 
 	initiateTest() {
 		let data = {
 			token: localStorage.getItem('token'),
 			keyword: localStorage.getItem('keyword'),
 			sess: localStorage.getItem('sessionId'),
-			topic: "Speaking"
+			topic: "Toeic"
 		}
 		axios({
 			method: 'post',
@@ -44,4 +39,5 @@ export class SpeakingStartComponent implements OnInit {
 			console.log(error);
 		});
 	}
+
 }

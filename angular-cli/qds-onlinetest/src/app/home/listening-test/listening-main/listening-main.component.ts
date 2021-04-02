@@ -1,7 +1,6 @@
 import { Component, OnInit, HostListener, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { CountdownEvent } from 'ngx-countdown';
-import { Track } from 'ngx-audio-player';
 import axios from 'axios';
 import { environment } from './../../../../environments/environment';
 import { PlyrComponent } from 'ngx-plyr';
@@ -24,13 +23,6 @@ export class ListeningMainComponent implements OnInit {
 	questionPart2: any;
 
 	listeningTestInfo:any;
-
-	msaapDisplayTitle = false;
-	msaapDisplayPlayList = false;
-	msaapDisplayVolumeControls = false;
-	msaapDisplayArtist = false;
-	msaapDisplayDuration = true;
-	msaapDisablePositionSlider = false;
 
 	vocabularyForm: any;
 
@@ -77,7 +69,7 @@ export class ListeningMainComponent implements OnInit {
 		}
 		this.options = {
 			enabled: true,
-			controls: ['play', 'progress', 'current-time']
+			controls: ['play', 'progress', 'current-time', 'mute']
 		};
 	}
 

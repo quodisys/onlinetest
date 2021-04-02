@@ -1,0 +1,43 @@
+<div appBlockCopyPaste class="main main-2 main-center bg-blue">
+    <div class="container">
+        <div class="col-md-12">
+            <div class="branding">
+                <a routerLink="/english-test">
+                    <img src="{{logo}}" alt="company logo">
+                </a>
+            </div>
+            <div class="content">
+                <div class="start-logo">
+                    <img src="/assets/images/speaking-start.svg" alt="">
+                </div>
+                <div class="title mb-4">TOEIC Listening and Reading Test</div>
+                <div class="sub-title sub-multiple-line text-left" style="max-width: 570px;">
+                    <div class="text-center">This test assesses English-language listening and reading skills. <br> The entire test is 200 questions long and will last 120 minutes. There are 4 <br> parts in the Listening Test section (100 questions) and 3 parts in the <br> Reading Test section (100 questions).</div>
+                    <div class="d-flex justify-content-center mt-3">
+                        <div class="test-item">
+                            <img style="width: 100px;" src="/assets/images/listen-icon.svg" alt="">
+                            <div class="item-title">LISTENING TEST</div>
+                            <div class="item-time">(45 minutes)</div>
+                        </div>
+                        <div class="test-item">
+                            <img style="width: 100px;" src="/assets/images/reading-icon.svg" alt="">
+                            <div class="item-title">READING TEST</div>
+                            <div class="item-time">(75 minutes)</div>
+                        </div>
+                    </div>
+                    <ul class="pl-3 mt-3">
+                        <li><span class="font-weight-bold">1.</span> Click on the <span class="font-weight-bold">NEXT</span> button at the bottom to move to the next question(s).</li>
+                        <li><span class="font-weight-bold">2.</span> You can click on the <span class="font-weight-bold">ANSWER SHEET</span> icon at the bottom left corner to go back to <br> previous questions</li>
+                        <li><span class="font-weight-bold">3.</span> There may be more than 1 question on the same screen. <span class="font-weight-bold">SCROLL DOWN</span> to answer <br> all questions on the screen.</li>
+                    </ul>
+                </div>
+                <div class="d-flex justify-content-center mt-4 mb-3" >
+                    <button type="submit" class="btn btn-main mt-2" routerLink="/toeic-test/listening-start" (click)="initiateTest()">Take the test</button>
+                </div>
+            </div>
+            <div class="footer-logo">
+                <img src="/assets/images/logox.svg" alt="footer logo">
+            </div>
+        </div>
+    </div>
+</div>

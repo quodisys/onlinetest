@@ -56,6 +56,9 @@ const routes: Routes = [
 			},{
 				path: 'listening-test',
 				loadChildren: () => import('./home/listening-test/listening-test.module').then(m => m.ListeningTestModule)
+			},{
+				path: 'toeic-test',
+				loadChildren: () => import('./home/toeic-test/toeic-test.module').then(m => m.ToeicTestModule)
 			},
 			{
 				path: 'english-test',
