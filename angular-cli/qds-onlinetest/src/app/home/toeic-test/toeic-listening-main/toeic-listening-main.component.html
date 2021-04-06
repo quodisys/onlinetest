@@ -26,12 +26,11 @@
                         (deselect)="question.active = false"
                         [disabled]="question.disabled"
                         [customClass]="question.customClass">
-                        <div class="test-content" >
+                        <div class="test-content" *ngIf="!resultPage">
                             <div class="part-section">Part {{question.part}}</div>
                             <div class="player-wrapper" *ngIf="currentTabIndex == key">
                                 <plyr style="display: block; width: 440px;" plyrTitle="Video 1" [plyrPlaysInline]="true" [plyrSources]="question.audio" plyrType="audio" (plyrPlay)="played($event)" (plyrReady)="ready($event)" (plyrInit)="player = $event" [plyrOptions]="options"></plyr>
                             </div>
-
                             <!-- Direction 1 -->
                             <div *ngIf="question.type == 'direction' && question.part == 1" class="answer">
                                 <div class="direction">
@@ -51,7 +50,7 @@
                                         <div class="col-md-12 mb-3" *ngFor="let choice of question.answers; let choiceKey = index;">
                                             <div class="radio">
                                                 <input class="checkbox-mask" id="question{{key}}-choice{{choiceKey}}" type="radio" [value]="choice" name="{{question.id}}" (change)="submitAnswer(question, choice.alphabet)">
-                                                <label for="question{{key}}-choice{{choiceKey}}">{{choice}}</label>
+                                                <label for="question{{key}}-choice{{choiceKey}}">{{choice.answer}}</label>
                                             </div>
                                         </div>
                                     </div>
@@ -67,14 +66,14 @@
                             <div *ngIf="question.type == 'single-question'" class="answer">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <div class="part-section d-block w-100 text-left pl-4">Question {{question.questionNumber}}</div>
+                                        <div class="part-section d-block w-100 text-left pl-4">Question {{question.questionNumber}}: {{question.question}}</div>
                                         <div class="question-wrapper pl-4 mt-4">
-                                            <div class="question">{{question.question}}</div>
+                                            <!-- <div class="question">{{question.question}}</div> -->
                                             <div class="answer" style="margin-top: 20px;">
                                                 <div class="mb-3" *ngFor="let choice of question.answers; let choiceKey = index;">
                                                     <div class="radio">
                                                         <input class="checkbox-mask" id="question{{key}}-choice{{choiceKey}}" type="radio" [value]="choice" name="{{question.id}}" (change)="submitAnswer(question, choice.alphabet)">
-                                                        <label for="question{{key}}-choice{{choiceKey}}">{{choice}}</label>
+                                                        <label for="question{{key}}-choice{{choiceKey}}">{{choice.answer}}</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -88,17 +87,70 @@
                                     <p class="avatar-icon"><span class="font-weight-bold">Directions: </span> You will hear some conversations between two people. You will be asked to answer three questions about what the speakers say in each conversation. Select the best response to each question and choose (A), (B), (C), or (D). The conversations will not be shown on the screen and will be spoken only one time.</p>
                                 </div>
                             </div>
+                            <!-- Question 32 - 100 -->
+                            <div *ngIf="question.type == 'multiple-question'" class="answer">
+                                <div class="d-flex justify-content-center mb-4" *ngIf="question.imageUrl != ''"><img src="{{question.imageUrl}}" alt=""></div>
+                                <div class="row" *ngFor="let child of question.questions">
+                                    <div class="col-md-12">
+                                        <div class="part-section d-block w-100 text-left pl-4">Question {{child.questionNumber}}: {{child.question}}</div>
+                                        <div class="question-wrapper pl-4 mt-4">
+                                            <div class="answer" style="margin-top: 20px;">
+                                                <div class="mb-3" *ngFor="let choice of child.answers; let choiceKey = index;">
+                                                    <div class="radio">
+                                                        <input class="checkbox-mask" id="child{{child.id}}-choice{{choiceKey}}" type="radio" [value]="choice" name="{{child.id}}" (change)="submitAnswer(child, choice.alphabet)">
+                                                        <label for="child{{child.id}}-choice{{choiceKey}}">{{choice.answer}}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Direction 4 -->
+                            <div *ngIf="question.type == 'direction' && question.part == 4" class="answer">
+                                <div class="direction">
+                                    <p class="avatar-icon"><span class="font-weight-bold">Directions: </span> You will hear some talks given by a single speaker. You will be asked to answer three questions about what the speaker says in each talk. Select the best response to each question and choose (A), (B), (C), or (D). The talks will not be shown on the screen and will be spoken only one time. </p>
+                                </div>
+                            </div>
+                            <!-- Button Group -->
                             <div class="d-flex justify-content-center w-100" *ngIf="!last">
                                 <button type="button" class="btn btn-main mt-2" (click)="showNextQuestion(key)">Next</button>
                             </div>
                             <div class="d-flex justify-content-center" *ngIf="last">
-                                <button type="submit" class="btn btn-main mt-2" (click)="onSubmit()" [disabled]="submitDisable">Finish</button>
+                                <button type="submit" class="btn btn-main mt-2" (click)="showNextQuestion(key)">Next</button>
+                            </div>
+                        </div>
+                        <!-- Result -->
+                        <div class="answer" *ngIf="resultPage">
+                            <div class="start-logo pt-3">
+                                <img src="/assets/images/listening-start.svg" alt="">
+                            </div>
+                            <div class="title mb-4">LISTENING TEST</div>
+                            <div class="sub-title sub-multiple-line text-left">
+                               <p class="text-center">
+                                This is the end of the test. If you finish before the time is up, you may go
+                                back to Parts 1, 2, 3, and 4 to check your work.</p>
+                            </div>
+                            <div class="d-flex justify-content-center" *ngIf="last">
+                                <button type="submit" class="btn btn-main mt-2" (click)="onSubmit()">Submit</button>
                             </div>
                         </div>
                     </tab>
                 </tabset>
             </div>
-            <div class="footer-logo">
+            <div class="footer-logo justify-content-between">
+                <div class="btn-group" dropdown [dropup]="isDropup">
+                    <button style="color: #fff;" id="button-dropup" dropdownToggle type="button" class="btn" aria-controls="dropdown-dropup">
+                        <img style="width: 30px;" src="/assets/images/vectorpaint.svg" alt=""> Answer Sheet
+                    </button>
+                    <ul id="dropdown-dropup" *dropdownMenu class="dropdown-menu dropdown-sheet" role="menu" aria-labelledby="button-dropup">
+                        <li class="font-weight-bold">Questions</li>
+                        <li *ngFor="let question of submitForm.qa; let key = index;" role="menuitem" (click)="goTab(question.id)">
+                            <span class="status" [ngClass]="{'active': question.answer != ''}"></span>
+                            <a class="dropdown-item">Question {{key + 1}}</a>
+                        </li>
+                    </ul>
+                </div>
                 <img src="/assets/images/logox.svg" alt="footer logo">
             </div>
         </div>

@@ -565,7 +565,7 @@ input[type=checkbox] {
         text-align: center;
         font-size: 25px;
         font-weight: bold;
-        text-transform: uppercase;
+        // text-transform: uppercase;
         color: #fff;
         background-color: #6cccfd;
         width: 300px;
@@ -904,6 +904,61 @@ plyr.disabled {
 .plyr__volume {
     & .plyr__control svg {
         fill: #3d3d3d;
+    }
+}
+
+//Dropdown
+.dropdown-sheet {
+    max-height: 400px;
+    overflow: auto;
+    min-width: 200px;
+    & li {
+        display: flex;
+        align-items: center;
+        padding: 10px 15px;
+        cursor: pointer;
+        &:hover {
+            background-color: #f8f9fa;
+        }
+        & .status {
+            position: relative;
+            display: inline-flex;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid red;
+            background-color: red;
+            &::before {
+                font-family: 'icomoon' !important;
+                content: "\e901";
+                position: absolute;
+                top: 1px;
+                left: 5px;
+                color: #fff;
+            }
+            &.active {
+                border: 1px solid #43CF64;
+                background-color: #43CF64;
+                &::before {
+                    font-family: 'icomoon' !important;
+                    content: "\e915";
+                    position: absolute;
+                    top: 1px;
+                    left: 5px;
+                    color: #fff;
+                }
+            }
+        }
+        & a {
+            width: auto;
+            display: inline-flex;
+            padding-left: 10px;
+            &:hover {
+                background-color: transparent;
+            }
+        }
     }
 }
 @media (max-height: 800px) {

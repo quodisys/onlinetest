@@ -12,6 +12,7 @@ import { ToeicStartComponent } from './toeic-start/toeic-start.component';
 import { ToeicListeningStartComponent } from './toeic-listening-start/toeic-listening-start.component';
 import { ToeicListeningMainComponent } from './toeic-listening-main/toeic-listening-main.component';
 import { PlyrModule } from 'ngx-plyr';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 @NgModule({
 declarations: [
@@ -27,6 +28,7 @@ imports: [
     ReactiveFormsModule,
     TabsModule.forRoot(),
     ModalModule.forRoot(),
+    BsDropdownModule.forRoot(),
     ShareModule,
     PlyrModule
 ]
