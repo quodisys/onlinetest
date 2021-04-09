@@ -6,6 +6,7 @@ import { ToeicListeningStartComponent } from './toeic-listening-start/toeic-list
 import { ToeicListeningMainComponent } from './toeic-listening-main/toeic-listening-main.component'
 import { ToeicReadingStartComponent } from './toeic-reading-start/toeic-reading-start.component'
 import { ToeicReadingMainComponent } from './toeic-reading-main/toeic-reading-main.component'
+import { ToeicResultComponent } from './toeic-result/toeic-result.component'
 import { CanDeactivateGuard } from '../../guards/can-deactive.guard'
 
 const routes: Routes = [
@@ -24,6 +25,9 @@ const routes: Routes = [
 	}, { 	
 		path: 'reading-test',
 		component: ToeicReadingMainComponent
+	}, { 	
+		path: 'result',
+		component: ToeicResultComponent
 	}
 ];
 

@@ -575,6 +575,171 @@ export const ReadingQuestions = [
                 answers: ['She is an experienced diver.', 'She published a photograph book in Vietnam.', 'She has not changed her camera for many years.', 'She will publish her new book next month.'],
             }
         ]
+    },{
+        type: 'multiple-question',
+        part: '7',
+        audioLink: "https://onlinetest.elsaspeak.com/questions/20210120050423-listening-2.mp3",
+        imageUrl: '',
+        mainQuestion: 'Questions 176-180 refer to the following e-mail and employee handbook.',
+        questions: [
+            {
+                id: 176,
+                question: 'What is the e-mail for?',
+                answers: ['Sending an invitation', 'Notifying a policy', 'Forwarding a document', 'Approving a vacation request'],
+            },
+            {
+                id: 177,
+                question: 'In the e-mail, the word “going” in paragraph 1, line 2 is closest in meaning to',
+                answers: ['starting', 'proceeding', 'visiting', 'purchasing'],
+            },
+            {
+                id: 178,
+                question: 'What is indicated about Mr. Holland?',
+                answers: ['He wrote the employee handbook.', 'He was in Tokyo.', 'He goes to work by public transportation.', 'He will be travelling in March.'],
+            },
+            {
+                id: 179,
+                question: 'Where does Mr. Holland most likely work?',
+                answers: ['In Tokyo', 'In Kyoto', 'In Osaka', 'In Kobe'],
+            },
+            {
+                id: 180,
+                question: 'According to the handbook, what do all the offices have in common?',
+                answers: ['Parking areas are available.', 'Parking permits are not required.', 'Employees must follow attire policies.', 'Employees must wear safety clothing.'],
+            }
+        ]
+    }, {
+        type: 'multiple-question',
+        part: '7',
+        audioLink: "https://onlinetest.elsaspeak.com/questions/20210120050423-listening-2.mp3",
+        imageUrl: '',
+        mainQuestion: 'Questions 181-185 refer to the following e-mail and invoice.',
+        questions: [
+            {
+                id: 181,
+                question: 'QQ Company is most likely what type of business?',
+                answers: ['An outsourcing service', 'A delivery service', 'A garment and clothing company', 'An export company'],
+            },
+            {
+                id: 182,
+                question: 'What is indicated about Ms. Rain Zhang?',
+                answers: ['She is expanding her business.', 'She likes the payment upon receipt method.', 'She has ordered from QQ Company before.', 'She wasn’t satisfied with her previous orders.'],
+            },
+            {
+                id: 183,
+                question: 'What does Ms. Rain request?',
+                answers: ['A new logo design', 'A return phone call or e-mail', 'Another shipment of the missing products', 'An updated catalog'],
+            },
+            {
+                id: 184,
+                question: 'What is indicated about the black jeans?',
+                answers: ['Their length is over the ankle.', 'They are billed at a discount.', 'Some of them will be shipped later.', 'Some of the jeans are in a different color.'],
+            },
+            {
+                id: 185,
+                question: 'What is one problem that Ms. Rain identifies?',
+                answers: ['The wrong amount was charged for T-shirts.', 'The wrong price was charged for the aprons.', 'The T-shirts do not fit well.', 'There were not enough aprons delivered.'],
+            }
+        ]
+    }, {
+        type: 'multiple-question',
+        part: '7',
+        audioLink: "https://onlinetest.elsaspeak.com/questions/20210120050423-listening-2.mp3",
+        imageUrl: '',
+        mainQuestion: 'Questions 186-190 refer to the following article, e-mail, and timeline.',
+        questions: [
+            {
+                id: 186,
+                question: 'What is true about the Toronto Film Festival?',
+                answers: ['It is a new film festival.', 'Many previous participants have become popular.', 'It introduces classic films from the past. ', 'Tickets for the event were sold out.'],
+            },
+            {
+                id: 187,
+                question: 'Why is Mr. Cumberbatch happy?',
+                answers: ['He has won an award.', 'He will introduce his film at the festival.', 'Mr. Handesson will show up at an event.', 'Mr. Handesson has asked him to have a speech.'],
+            },
+            {
+                id: 188,
+                question: 'What is indicated about tickets for the closing ceremony?',
+                answers: ['They cannot be booked.', 'They cannot be bought online.', 'They can be used for all movie screenings.', 'They will be available on December 10.'],
+            },
+            {
+                id: 189,
+                question: 'Who most likely is Britney Scott?',
+                answers: ['An award presenter', 'A singer', 'A festival operator', 'A host'],
+            },
+            {
+                id: 190,
+                question: 'What award will Mr. Handesson most likely win?',
+                answers: ['Achievement in Acting', 'Achievement in Directing', 'Actor of the Decade', 'Best Film'],
+            }
+        ]
+    }, {
+        type: 'multiple-question',
+        part: '7',
+        audioLink: "https://onlinetest.elsaspeak.com/questions/20210120050423-listening-2.mp3",
+        imageUrl: '',
+        mainQuestion: 'Questions 191-195 refer to the following emails and letter.',
+        questions: [
+            {
+                id: 191,
+                question: 'Why was Mr. Bansal turned down for a position at Forcam Tech?',
+                answers: ['The recruiter did not like his precious mobile app.', 'He did not meet the job’s requirements.', 'He did not come to the follow-up interview.', 'The position was no longer vacant.'],
+            },
+            {
+                id: 192,
+                question: 'What is indicated about Mr. Bansal?',
+                answers: ['He used to work with Mr. Ramesh.', 'He will work as a web developer at BNG Technology Ltd.', 'He built an app for Chennai Hospital for its booking system.', 'He switched careers several years ago.'],
+            },
+            {
+                id: 193,
+                question: 'Who most likely is Ms. Chana?',
+                answers: ['A payroll accountant', 'A recruiting manager', 'A budget director', 'A software developer'],
+            },
+            {
+                id: 194,
+                question: 'According to the letter, where will Mr.Goyal be in the morning on August 1?',
+                answers: ['On a business trip', 'At a job interview', 'At a coffee shop', 'In a B.O.D meeting'],
+            },
+            {
+                id: 195,
+                question: 'How was Mr. Bansal offered his new job?',
+                answers: ['In person', 'Over the phone', 'In an e-mail', 'In a letter'],
+            }
+        ]
+    }, {
+        type: 'multiple-question',
+        part: '7',
+        audioLink: "https://onlinetest.elsaspeak.com/questions/20210120050423-listening-2.mp3",
+        imageUrl: '',
+        mainQuestion: 'Questions 196-200 refer to the following e-mails and memo.',
+        questions: [
+            {
+                id: 196,
+                question: 'According to the first e-mail, what do some employees do to deal with the problem?',
+                answers: ['Print less documents', 'Work outside their regular hours', 'Buy new printers', 'Book a service'],
+            },
+            {
+                id: 197,
+                question: 'Which of Mr. Mansion’s suggestions did Mr. Park apply?',
+                answers: ['Giving each employee two ten-minute periods a day', 'Placing a booking sheet beside the printers', 'Using lunch time for emergency printing', 'Suspending the use of color printers'],
+            },
+            {
+                id: 198,
+                question: 'What is the issue with the color printers?',
+                answers: ['They will arrive next month.', 'They do not operate effectively.', 'They cannot be used for scanning.', 'They are being overused.'],
+            },
+            {
+                id: 199,
+                question: 'What is true about the new printers?',
+                answers: ['They will be ready at the end of the year.', 'They come with a two-year maintenance plan.', 'They will be serviced on February 2.', 'They include free remote-printing service.'],
+            },
+            {
+                id: 200,
+                question: 'What does Ms. McCarthy offer?',
+                answers: ['Delivery of printed documents', 'Free extended maintenance plan', 'User training for the employees', 'Solutions for overusing printers'],
+            }
+        ]
     }
     
 ]

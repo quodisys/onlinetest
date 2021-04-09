@@ -100,12 +100,12 @@ export class ToeicReadingMainComponent implements OnInit {
 				})
 			}
 		})
-		this.readingQuestions[45].active = true
+		this.readingQuestions[0].active = true
 		console.log(this.readingQuestions)
 	}
 	counterEvent(e: CountdownEvent) {
 		if(e.action == 'done') {
-			// this.onSubmit();
+			this.onSubmit();
 		}
 	}
 	changeTab(e) {
@@ -117,6 +117,7 @@ export class ToeicReadingMainComponent implements OnInit {
 		console.log(this.submitForm);
 	}
 	goTab(id) {
+		this.resultPage = false;
 		let singId = this.readingQuestions.findIndex(x => x.id == id);
 		if(singId == undefined || singId < 0) {
 			this.readingQuestions.map((d1, i1) => {
@@ -143,5 +144,9 @@ export class ToeicReadingMainComponent implements OnInit {
 		} else if (tabId == questionCount) {
 			that.resultPage = true;
 		}
+	}
+	onSubmit() {
+		console.log('submited')
+		this.router.navigate(['toeic-test/result'])
 	}
 }

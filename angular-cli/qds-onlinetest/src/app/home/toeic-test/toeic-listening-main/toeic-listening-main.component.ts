@@ -107,7 +107,7 @@ export class ToeicListeningMainComponent implements OnInit {
 	}
 	counterEvent(e: CountdownEvent) {
 		if(e.action == 'done') {
-			// this.onSubmit();
+			this.onSubmit();
 		}
 	}
 
@@ -128,6 +128,7 @@ export class ToeicListeningMainComponent implements OnInit {
 	}
 
 	goTab(id) {
+		this.resultPage = false;
 		let singId = this.listeningQuestions.findIndex(x => x.id == id);
 		if(singId == undefined || singId < 0) {
 			this.listeningQuestions.map((d1, i1) => {
@@ -164,6 +165,7 @@ export class ToeicListeningMainComponent implements OnInit {
 	}
 
 	onSubmit() {
+		this.router.navigate(['toeic-test/reading-start'])
 		// let that =  this;
 		// console.log(that.submitForm)
 		// axios({
