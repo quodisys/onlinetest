@@ -1,19 +1,20 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { PlyrComponent } from 'ngx-plyr';
+import * as Plyr from 'plyr'
 import { TabsetComponent } from 'ngx-bootstrap/tabs';
 import { CountdownEvent } from 'ngx-countdown';
-import { ListeningQuestions } from './example-questions';
+import { ReadingQuestions } from './example-questions';
 import { Router, ActivatedRoute } from '@angular/router';
 import axios from 'axios';
 import { environment } from './../../../../environments/environment';
-import { PlyrComponent } from 'ngx-plyr';
-import * as Plyr from 'plyr';
 
 @Component({
-  selector: 'app-toeic-listening-main',
-  templateUrl: './toeic-listening-main.component.html',
-  styleUrls: ['./toeic-listening-main.component.scss']
+  selector: 'app-toeic-reading-main',
+  templateUrl: './toeic-reading-main.component.html',
+  styleUrls: ['./toeic-reading-main.component.scss']
 })
-export class ToeicListeningMainComponent implements OnInit {
+export class ToeicReadingMainComponent implements OnInit {
+
 	@ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
 	@ViewChild(PlyrComponent) plyr: PlyrComponent;
 	player: Plyr;
@@ -21,7 +22,7 @@ export class ToeicListeningMainComponent implements OnInit {
 	logo:string=''
 	config = {}
 	submitDisable = true;
-	listeningQuestions:any = ListeningQuestions;
+	readingQuestions:any = ReadingQuestions;
 	options:any
 	currentTabIndex:number = 0;
 	resultPage: boolean = false;
@@ -29,7 +30,6 @@ export class ToeicListeningMainComponent implements OnInit {
 	questionsOrinal:any = []
 	submitForm:any
 	topic:string = "Toeic Listening"
-
 	constructor(private router: Router, private route: ActivatedRoute) { }
 
 	ngOnInit(): void {
@@ -38,8 +38,8 @@ export class ToeicListeningMainComponent implements OnInit {
 			this.logo = "https://qdsasia.com/wp-content/themes/qdstheme/assets/img/qds-logo-scaled.png"
 		}
 		this.config = {
-			leftTime: 2700,
-			format: 'mm : ss'
+			leftTime: 4500,
+			format: 'HH : mm : ss'
 		}
 		this.options = {
 			enabled: true,
@@ -54,7 +54,7 @@ export class ToeicListeningMainComponent implements OnInit {
 			qa: []
 		}
 		//Audio array
-		this.listeningQuestions.map(item => {
+		this.readingQuestions.map(item => {
 			item['audio'] = []
 			let audio = {
 				src: item.audioLink,
@@ -62,10 +62,8 @@ export class ToeicListeningMainComponent implements OnInit {
 			}
 			item['audio'].push(audio);
 		})
-		/////////////////////////////////////////////
-		console.log(this.listeningQuestions)
-		let questionNumber = 0;
-		this.listeningQuestions.map((item, key) => {
+		let questionNumber = 100;
+		this.readingQuestions.map((item, key) => {
 			item['active'] = false
 			if(item.type == 'image-question' || item.type == 'single-question') {
 				questionNumber++;
@@ -102,19 +100,43 @@ export class ToeicListeningMainComponent implements OnInit {
 				})
 			}
 		})
-		this.listeningQuestions[0].active = true
-		console.log(this.listeningQuestions)
+		this.readingQuestions[45].active = true
+		console.log(this.readingQuestions)
 	}
 	counterEvent(e: CountdownEvent) {
 		if(e.action == 'done') {
 			// this.onSubmit();
 		}
 	}
-
+	changeTab(e) {
+		this.currentTabIndex = e.heading - 1;
+	}
+	submitAnswer(question, alphabet) {
+		let index = this.submitForm.qa.findIndex( x => x.id == question.id);
+		this.submitForm.qa[index].answer = alphabet;
+		console.log(this.submitForm);
+	}
+	goTab(id) {
+		let singId = this.readingQuestions.findIndex(x => x.id == id);
+		if(singId == undefined || singId < 0) {
+			this.readingQuestions.map((d1, i1) => {
+				if(d1.type == 'multiple-question') {
+					d1.questions.map((d2) => {
+						if(d2.id == id) {
+							this.readingQuestions[i1].active = true
+						}
+					})
+				}
+			})
+		} else {
+			this.readingQuestions[singId].active = true
+		}
+		window.scroll(0,0);
+	}
 	showNextQuestion(key) {
 		let that = this;
 		let tabId = key + 1;
-		let questionCount = this.listeningQuestions.length;
+		let questionCount = this.readingQuestions.length;
 		if(tabId < questionCount) {
 			that.staticTabs.tabs[tabId].active = true;
 			window.scroll(0,0);
@@ -122,65 +144,4 @@ export class ToeicListeningMainComponent implements OnInit {
 			that.resultPage = true;
 		}
 	}
-
-	changeTab(e) {
-		this.currentTabIndex = e.heading - 1;
-	}
-
-	goTab(id) {
-		let singId = this.listeningQuestions.findIndex(x => x.id == id);
-		if(singId == undefined || singId < 0) {
-			this.listeningQuestions.map((d1, i1) => {
-				if(d1.type == 'multiple-question') {
-					d1.questions.map((d2) => {
-						if(d2.id == id) {
-							this.listeningQuestions[i1].active = true
-						}
-					})
-				}
-			})
-		} else {
-			this.listeningQuestions[singId].active = true
-		}
-		window.scroll(0,0);
-	}
-
-	getIndex(arr, id) {
-		var i, ii, len, elemlen;
-		for (i = 0, len = arr.length; i < len; i++) {
-			console.log(len);
-			let elements = arr[i].questions;
-			for (ii = 0, elemlen = elements.length; ii < elemlen; ii++) {
-				if (elements[ii].id === id) {
-					return i;
-				}
-			}
-		}
-	}
-
-	submitAnswer(question, alphabet) {
-		let index = this.submitForm.qa.findIndex( x => x.id == question.id);
-		this.submitForm.qa[index].answer = alphabet;
-	}
-
-	onSubmit() {
-		// let that =  this;
-		// console.log(that.submitForm)
-		// axios({
-		// 	method: 'post',
-		// 	headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-		// 	url: environment.hostApi + '/candidates/processtests.php',
-		// 	data: JSON.stringify(this.submitForm)
-		// })
-		// .then(function (response) {
-		// 	console.log(that.submitForm);
-		// 	that.formIsSubmit = true;
-		// 	that.router.navigate(['/technical-test/result'])
-		// })
-		// .catch(function (error) {
-		// 	console.log(error);
-		// 	alert("Something wrong when submitting test!")
-		// });
-	}
-
 }

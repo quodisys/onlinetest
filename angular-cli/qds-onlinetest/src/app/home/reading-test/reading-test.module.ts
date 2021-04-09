@@ -9,15 +9,13 @@ import { ReadingMainComponent } from './reading-main/reading-main.component';
 import { ReadingResultComponent } from './reading-result/reading-result.component';
 import { CountdownModule } from 'ngx-countdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
-import { SafeHtmlPipe } from '../../pipe/safe-html.pipe';
 import { ShareModule } from '../../shared.module'
 
 @NgModule({
 declarations: [
 	ReadingStartComponent,
 	ReadingMainComponent,
-    ReadingResultComponent,
-    SafeHtmlPipe
+    ReadingResultComponent
 ],
 imports: [
     CommonModule,

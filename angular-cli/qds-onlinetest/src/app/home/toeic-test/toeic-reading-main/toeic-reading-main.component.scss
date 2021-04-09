@@ -1,0 +1,26 @@
+.direction {
+    & img {
+        width: 500px;
+        height: 320px;
+        display: block;
+        margin: auto;
+        border-radius: 10px;
+    }
+    & .avatar-icon {
+        position: relative;
+        &:before {
+            position: absolute;
+            display: block;
+            content: "";
+            height: 50px;
+            width: 50px;
+            top: -10px;
+            left: -65px;
+            background-image: url('/assets/images/avatar.svg');
+            background-repeat: no-repeat;
+        }
+    }
+}
+.toeic-test .content .test-content p {
+    font-size: 22px;
+}
