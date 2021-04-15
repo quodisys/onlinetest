@@ -21,6 +21,7 @@ export class SpeakingMainComponent implements OnInit {
 	@ViewChild('cd', { static: false }) private countdown: CountdownComponent;
 	logo:string = ''
 	topic:string
+	subtopic:string = ''
 	isLoading:boolean = false;
 	submitForm:any
 	formAnswer: IQTestForm;
@@ -61,7 +62,7 @@ export class SpeakingMainComponent implements OnInit {
 			qa: []
 		}
 		this.getTestInfo();
-		this.getQuestion(this.topic)
+		// this.getQuestion(this.topic)
 		this.config = {
 			leftTime: 1000,
 			format: 'mm : ss'
@@ -91,11 +92,13 @@ export class SpeakingMainComponent implements OnInit {
 			var engtest = test.find(x => x.category == "English Test").engtests;
 			engtest = Object.keys(engtest).map((k) => engtest[k]);
 			that.speakingTestInfo = engtest.find(x => x.topic == "Speaking Test");
+			that.subtopic = that.speakingTestInfo.subtopic
 			that.testTime = that.speakingTestInfo.totaltime*60;
 			that.config = {
 				leftTime: that.testTime,
 				format: 'mm : ss'
 			}
+			that.getQuestion(that.topic)
 			console.log(that.speakingTestInfo);
 		})
 		.catch(function (error) {
@@ -113,7 +116,8 @@ export class SpeakingMainComponent implements OnInit {
 			token: localStorage.getItem('token'),
 			keyword: localStorage.getItem('keyword'),
 			sess: localStorage.getItem('sessionId'),
-			topic: topic
+			topic: topic,
+			subtopic: this.subtopic
 		}
 		axios({
 			method: 'post',

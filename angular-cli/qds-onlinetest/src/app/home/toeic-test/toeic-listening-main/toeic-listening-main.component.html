@@ -32,11 +32,9 @@
                                 <plyr style="display: block; width: 440px;" plyrTitle="Video 1" [plyrPlaysInline]="true" [plyrSources]="question.audio" plyrType="audio" (plyrInit)="player = $event" [plyrOptions]="options"></plyr>
                             </div>
                             <!-- Direction 1 -->
-                            <div *ngIf="question.type == 'direction' && question.part == 1" class="answer">
+                            <div *ngIf="question.type == 'direction'" class="answer">
                                 <div class="direction">
-                                    <p class="avatar-icon"><span class="font-weight-bold">Directions: </span> For each question in this part, you will hear four statements about a picture on the screen. When you hear the statements, you must select the one statement that best describes what you see in the picture. Select the correct answer. The statements will not be shown on the screen and will be spoken only one time.</p>
-                                    <img class="text-align mb-3" src="https://i.ibb.co/whqpMkh/image019.png" alt="">
-                                    <p>Statement (C), “They’re drinking coffee.” is the best description of the picture, so you should select answer (C).</p>
+                                    <p class="avatar-icon"><span [innerHTML]="question.instructions | safeHtml"></span></p>
                                 </div>
                             </div>
                             <!-- Question 1-6 -->
@@ -46,7 +44,7 @@
                                         <img class="img-fluid img-radius" src="{{question.imgUrl}}" alt="">
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="part-section d-block w-100">Question {{question.questionNumber}}</div>
+                                        <div class="part-section d-block w-100">{{question.questionNumber}}</div>
                                         <div class="col-md-12 mb-3" *ngFor="let choice of question.answers; let choiceKey = index;">
                                             <div class="radio">
                                                 <input class="checkbox-mask" id="question{{key}}-choice{{choiceKey}}" type="radio" [value]="choice" name="{{question.id}}" (change)="submitAnswer(question, choice.alphabet)">
@@ -57,16 +55,16 @@
                                 </div>
                             </div>
                             <!-- Direction 2 -->
-                            <div *ngIf="question.type == 'direction' && question.part == 2" class="answer">
+                            <!-- <div *ngIf="question.type == 'direction' && question.part == 2" class="answer">
                                 <div class="direction">
                                     <p class="avatar-icon"><span class="font-weight-bold">Directions: </span> You will hear a question or statement and three responses spoken in English. They will not be shown on the screen and will be spoken only one time. Select the best response to the question or statement and choose the (A), (B), or (C).</p>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- Question 7-31 -->
                             <div *ngIf="question.type == 'single-question'" class="answer">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <div class="part-section d-block w-100 text-left pl-4">Question {{question.questionNumber}}: {{question.question}}</div>
+                                        <div class="part-section d-block w-100 text-left pl-4">{{question.question}}</div>
                                         <div class="question-wrapper pl-4 mt-4">
                                             <!-- <div class="question">{{question.question}}</div> -->
                                             <div class="answer" style="margin-top: 20px;">
@@ -82,11 +80,11 @@
                                 </div>
                             </div>
                             <!-- Direction 3 -->
-                            <div *ngIf="question.type == 'direction' && question.part == 3" class="answer">
+                            <!-- <div *ngIf="question.type == 'direction' && question.part == 3" class="answer">
                                 <div class="direction">
                                     <p class="avatar-icon"><span class="font-weight-bold">Directions: </span> You will hear some conversations between two people. You will be asked to answer three questions about what the speakers say in each conversation. Select the best response to each question and choose (A), (B), (C), or (D). The conversations will not be shown on the screen and will be spoken only one time.</p>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- Question 32 - 100 -->
                             <div *ngIf="question.type == 'multiple-question'" class="answer">
                                 <div class="d-flex justify-content-center mb-4" *ngIf="question.imageUrl != ''"><img src="{{question.imageUrl}}" alt=""></div>
@@ -107,11 +105,11 @@
                                 </div>
                             </div>
                             <!-- Direction 4 -->
-                            <div *ngIf="question.type == 'direction' && question.part == 4" class="answer">
+                            <!-- <div *ngIf="question.type == 'direction' && question.part == 4" class="answer">
                                 <div class="direction">
                                     <p class="avatar-icon"><span class="font-weight-bold">Directions: </span> You will hear some talks given by a single speaker. You will be asked to answer three questions about what the speaker says in each talk. Select the best response to each question and choose (A), (B), (C), or (D). The talks will not be shown on the screen and will be spoken only one time. </p>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- Button Group -->
                             <div class="d-flex justify-content-center w-100" *ngIf="!last">
                                 <button type="button" class="btn btn-main mt-2" (click)="showNextQuestion(key)">Next</button>

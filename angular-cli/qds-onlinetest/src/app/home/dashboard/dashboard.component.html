@@ -13,7 +13,7 @@
                 </div>
                 <div class="home-content mt-5">
                     <div class="row">
-                        <div class="col-md-3 flex-center" *ngFor="let test of dashboardTest; let key = index;" >
+                        <div class="col-md-3 flex-center mb-5" *ngFor="let test of dashboardTest; let key = index;" >
                             <div *ngIf="test.status != 'Done'" class="content-test" routerLink="/{{test.link}}">
                                 <img src="{{test.icon}}" alt="test">
                                 <div class="test-title">

@@ -16,15 +16,14 @@ export class GrammarVocabularyMainComponent implements OnInit {
 	@ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
 	logo:string = ''
 	topic:string
+	subtopic:string = ''
 	config = {}
 	testTime:number
 	questions:any = []
 	questionsOrinal:any = []
 	vocabularyForm: any;
 	submitDisable = true;
-	vocabularyTestInfo = {
-		totaltime: 0
-	}
+	vocabularyTestInfo:any
 	submitForm:any
 	formIsSubmit = false;
 
@@ -48,7 +47,7 @@ export class GrammarVocabularyMainComponent implements OnInit {
 			format: 'mm : ss'
 		}
 		this.getTestInfo()
-		this.getQuestion(this.topic);
+		// this.getQuestion(this.topic);
 		this.questions.map(item => {
 			item['customClass'] = '';
 			console.log(item)
@@ -82,11 +81,14 @@ export class GrammarVocabularyMainComponent implements OnInit {
 			var engtest = test.find(x => x.category == "English Test").engtests;
 			engtest = Object.keys(engtest).map((k) => engtest[k]);
 			that.vocabularyTestInfo = engtest.find(x => x.topic == "Grammar & Vocabulary Test");
+			// that.topic = that.vocabularyTestInfo.topic
+			that.subtopic = that.vocabularyTestInfo.subtopic
 			that.testTime = that.vocabularyTestInfo.totaltime*60;
 			that.config = {
 				leftTime: that.testTime,
 				format: 'mm : ss'
 			}
+			that.getQuestion(that.topic)
 			console.log(that.vocabularyTestInfo);
 		})
 		.catch(function (error) {
@@ -104,7 +106,8 @@ export class GrammarVocabularyMainComponent implements OnInit {
 			token: localStorage.getItem('token'),
 			keyword: localStorage.getItem('keyword'),
 			sess: localStorage.getItem('sessionId'),
-			topic: topic
+			topic: topic,
+			subtopic: this.subtopic
 		}
 		axios({
 			method: 'post',

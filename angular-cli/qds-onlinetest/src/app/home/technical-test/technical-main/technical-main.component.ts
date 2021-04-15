@@ -19,6 +19,7 @@ export class TechnicalMainComponent implements OnInit {
 	@ViewChild(ConfirmModalComponent, {static: false}) private ConfirmModalComponent: ConfirmModalComponent;
 	logo:string=''
 	topic:string
+	subtopic:string
 	config = {}
 	technicalTest:any
 	testTime:number
@@ -39,6 +40,7 @@ export class TechnicalMainComponent implements OnInit {
 			this.logo = "https://qdsasia.com/wp-content/themes/qdstheme/assets/img/qds-logo-scaled.png"
 		}
 		this.topic = '';
+		this.subtopic = '';
 		this.route.queryParams.subscribe(params => {
 			this.topic = params['topic'];
 		});
@@ -54,7 +56,6 @@ export class TechnicalMainComponent implements OnInit {
 			format: 'mm : ss'
 		}
 		this.getTestInfo(this.topic)
-		this.getQuestion(this.topic);
 		this.questions.map(item => {
 			item['customClass'] = '';
 			console.log(item)
@@ -93,12 +94,15 @@ export class TechnicalMainComponent implements OnInit {
 			that.technicalTest = that.technicalTest.techtests;
 			that.technicalTest = Object.keys(that.technicalTest).map((k) => that.technicalTest[k]);
 			var topicaa = that.technicalTest.find(x => x.topic == topic);
+			that.topic = topicaa.topic
+			that.subtopic = topicaa.subtopic
 			that.testTime = topicaa.totaltime*60;
 			that.config = {
 				leftTime: that.testTime,
 				format: 'mm : ss'
 			}
-			console.log(that.testTime);
+			that.getQuestion(that.topic);
+			console.log(that.subtopic);
 		})
 		.catch(function (error) {
 			if(error) {
@@ -111,11 +115,13 @@ export class TechnicalMainComponent implements OnInit {
 
 	getQuestion(topic) {
 		let that =  this;
+		console.log(this.subtopic)
 		let data = {
 			token: localStorage.getItem('token'),
 			keyword: localStorage.getItem('keyword'),
 			sess: localStorage.getItem('sessionId'),
-			topic: topic
+			topic: topic,
+			subtopic: this.subtopic
 		}
 		axios({
 			method: 'post',

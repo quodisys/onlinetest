@@ -4,7 +4,7 @@
 
 export const environment = {
 	production		: false,
-	hostApi     	: "https://onlinetest.elsaspeak.com",
+	hostApi     	: "http://18.141.236.161",
 };
 
 /*

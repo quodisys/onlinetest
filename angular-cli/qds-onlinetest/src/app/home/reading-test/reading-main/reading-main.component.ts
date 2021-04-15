@@ -21,10 +21,9 @@ export class ReadingMainComponent implements OnInit {
 
 	config = {}
 	topic:string
+	subtopic:string = ''
 
-	readingTestInfo = {
-		totaltime: 0
-	}
+	readingTestInfo:any
 	mainQuestion:string
 	testTime:number
 	questions = []
@@ -57,7 +56,7 @@ export class ReadingMainComponent implements OnInit {
 			format: 'mm : ss'
 		}
 		this.getTestInfo();
-		this.getQuestion(this.topic)
+		// this.getQuestion(this.topic)
 		
 		this.readingForm = {
 			answers : []
@@ -92,10 +91,12 @@ export class ReadingMainComponent implements OnInit {
 			engtest = Object.keys(engtest).map((k) => engtest[k]);
 			that.readingTestInfo = engtest.find(x => x.topic == "Reading Test");
 			that.testTime = that.readingTestInfo.totaltime*60;
+			that.subtopic = that.readingTestInfo.subtopic
 			that.config = {
 				leftTime: that.testTime,
 				format: 'mm : ss'
 			}
+			that.getQuestion(that.topic)
 			console.log(that.readingTestInfo);
 		})
 		.catch(function (error) {
@@ -113,7 +114,8 @@ export class ReadingMainComponent implements OnInit {
 			token: localStorage.getItem('token'),
 			keyword: localStorage.getItem('keyword'),
 			sess: localStorage.getItem('sessionId'),
-			topic: topic
+			topic: topic,
+			subtopic: this.subtopic
 		}
 		axios({
 			method: 'post',

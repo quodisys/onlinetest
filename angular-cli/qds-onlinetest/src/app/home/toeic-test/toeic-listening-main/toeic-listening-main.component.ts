@@ -21,14 +21,16 @@ export class ToeicListeningMainComponent implements OnInit {
 	logo:string=''
 	config = {}
 	submitDisable = true;
-	listeningQuestions:any = ListeningQuestions;
+	listeningQuestions:any;
 	options:any
 	currentTabIndex:number = 0;
 	resultPage: boolean = false;
 	isDropup = true;
 	questionsOrinal:any = []
 	submitForm:any
-	topic:string = "Toeic Listening"
+	topic:string = "TOEIC Listening"
+	subtopic:string = ''
+	formIsSubmit:boolean = false;
 
 	constructor(private router: Router, private route: ActivatedRoute) { }
 
@@ -53,58 +55,130 @@ export class ToeicListeningMainComponent implements OnInit {
 			topic: this.topic,
 			qa: []
 		}
-		//Audio array
-		this.listeningQuestions.map(item => {
-			item['audio'] = []
-			let audio = {
-				src: item.audioLink,
-				type: 'audio/mp3'
-			}
-			item['audio'].push(audio);
+		this.getTestInfo()
+	}
+	
+	canDeactivate() {
+		if(!this.formIsSubmit) {
+			return confirm('Are you sure you want to leave this test ?');
+		} else {
+			return true
+		}
+	}
+
+	getTestInfo() {
+		let that =  this;
+		let data = {
+			token: localStorage.getItem('token'),
+			keyword: localStorage.getItem('keyword'),
+			sess: localStorage.getItem('sessionId')
+		}
+		axios({
+			method: 'post',
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			url: environment.hostApi + '/candidates/allocatedtests.php',
+			  data: JSON.stringify(data)
 		})
-		/////////////////////////////////////////////
-		console.log(this.listeningQuestions)
-		let questionNumber = 0;
-		this.listeningQuestions.map((item, key) => {
-			item['active'] = false
-			if(item.type == 'image-question' || item.type == 'single-question') {
-				questionNumber++;
-				item.answers.map((ans, i) => {
-					var alpha = (i+10).toString(36).toUpperCase();
-					let d1 = {
-						alphabet: alpha,
-						answer: ans
-					}
-					item.answers[i] = d1
-				})
-				let d2 = {
-					id: item.id,
-					answer: ""
+		.then(function (response) {
+			var res = response.data;
+			var test = Object.keys(res).map((k) => res[k]);
+			var mainTest = test.find( x => x.topic == "TOEIC")
+			mainTest = mainTest.toeictests
+			mainTest = Object.keys(mainTest).map((k) => mainTest[k]);
+			mainTest = mainTest.find( x => x.topic == "TOEIC Listening")
+			console.log(mainTest)
+			that.testTime = mainTest.totaltime*60;
+			that.subtopic = mainTest.subtopic
+			that.config = {
+				leftTime: that.testTime,
+				format: 'HH : mm : ss'
+			}
+			that.getQuestion(that.topic)
+		})
+		.catch(function (error) {
+			if(error) {
+				that.formIsSubmit = true;
+				that.router.navigate(['/login'])
+			}
+			console.log(error);
+		});
+	}
+
+	getQuestion(topic) {
+		let that =  this;
+		let data = {
+			token: localStorage.getItem('token'),
+			keyword: localStorage.getItem('keyword'),
+			sess: localStorage.getItem('sessionId'),
+			topic: topic,
+			subtopic: this.subtopic
+		}
+		axios({
+			method: 'post',
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			url: environment.hostApi + '/candidates/gettoeiclisteningtests.php',
+			  data: JSON.stringify(data)
+		})
+		.then(function (response) {
+			let data = response.data
+			that.listeningQuestions = data;
+			console.log(that.listeningQuestions)
+			//Audio array
+			that.listeningQuestions.map(item => {
+				item['audio'] = []
+				let audio = {
+					src: item.audioUrl,
+					type: 'audio/mp3'
 				}
-				this.submitForm.qa.push(d2)
-				item['questionNumber'] = questionNumber;
-			} else if (item.type == 'multiple-question') {
-				item.questions.map((question, index) => {
+				item['audio'].push(audio);
+			})
+			/////////////////////////////////////////////
+			let questionNumber = 0;
+			that.listeningQuestions.map((item, key) => {
+				item['active'] = false
+				if(item.type == 'image-question' || item.type == 'single-question') {
 					questionNumber++;
-					question['questionNumber'] = questionNumber;
-					question.answers.map((ans, i) => {
+					item.answers.map((ans, i) => {
 						var alpha = (i+10).toString(36).toUpperCase();
-						question.answers[i] = {
+						let d1 = {
 							alphabet: alpha,
 							answer: ans
 						}
+						item.answers[i] = d1
 					})
 					let d2 = {
-						id: question.id,
+						id: item.id,
 						answer: ""
 					}
-					this.submitForm.qa.push(d2)
-				})
-			}
+					that.submitForm.qa.push(d2)
+					item['questionNumber'] = questionNumber;
+				} else if (item.type == 'multiple-question') {
+					item.questions.map((question, index) => {
+						questionNumber++;
+						question['questionNumber'] = questionNumber;
+						question.answers.map((ans, i) => {
+							var alpha = (i+10).toString(36).toUpperCase();
+							question.answers[i] = {
+								alphabet: alpha,
+								answer: ans
+							}
+						})
+						let d2 = {
+							id: question.id,
+							answer: ""
+						}
+						that.submitForm.qa.push(d2)
+					})
+				}
+			})
+			that.listeningQuestions[0].active = true
+			console.log(that.listeningQuestions)
 		})
-		this.listeningQuestions[0].active = true
-		console.log(this.listeningQuestions)
+		.catch(function (error) {
+			console.log(error);
+		});
 	}
+
 	counterEvent(e: CountdownEvent) {
 		if(e.action == 'done') {
 			this.onSubmit();
@@ -162,27 +236,27 @@ export class ToeicListeningMainComponent implements OnInit {
 	submitAnswer(question, alphabet) {
 		let index = this.submitForm.qa.findIndex( x => x.id == question.id);
 		this.submitForm.qa[index].answer = alphabet;
+		console.log(this.submitForm)
 	}
 
 	onSubmit() {
-		this.router.navigate(['toeic-test/reading-start'])
-		// let that =  this;
-		// console.log(that.submitForm)
-		// axios({
-		// 	method: 'post',
-		// 	headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-		// 	url: environment.hostApi + '/candidates/processtests.php',
-		// 	data: JSON.stringify(this.submitForm)
-		// })
-		// .then(function (response) {
-		// 	console.log(that.submitForm);
-		// 	that.formIsSubmit = true;
-		// 	that.router.navigate(['/technical-test/result'])
-		// })
-		// .catch(function (error) {
-		// 	console.log(error);
-		// 	alert("Something wrong when submitting test!")
-		// });
+		let that =  this;
+		axios({
+			method: 'post',
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			url: environment.hostApi + '/candidates/processtoeictests.php',
+			data: JSON.stringify(this.submitForm)
+		})
+		.then(function (response) {
+			console.log(that.submitForm)
+			console.log(response)
+			that.formIsSubmit = true;
+			this.router.navigate(['toeic-test/reading-start'])
+		})
+		.catch(function (error) {
+			console.log(error);
+			alert("Something wrong when submitting test!")
+		});
 	}
 
 }

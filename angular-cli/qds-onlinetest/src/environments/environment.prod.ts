@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-	hostApi: "https://onlinetest.elsaspeak.com",
+	hostApi: "http://18.141.236.161",
 };

@@ -37,6 +37,7 @@ export class ListeningMainComponent implements OnInit {
 	msaapPlaylist = []
 
 	topic:string
+	subtopic:string = ''
 	config = {}
 	testTime:number
 	questions:any = []
@@ -58,7 +59,7 @@ export class ListeningMainComponent implements OnInit {
 			topic: this.topic,
 			qa: []
 		}
-		this.getQuestion(this.topic);
+		// this.getQuestion(this.topic);
 		this.getTestInfo();
 		this.config = {
 			leftTime: 1360,
@@ -101,10 +102,12 @@ export class ListeningMainComponent implements OnInit {
 			engtest = Object.keys(engtest).map((k) => engtest[k]);
 			that.listeningTestInfo = engtest.find(x => x.topic == "Listening Test");
 			that.testTime = that.listeningTestInfo.totaltime*60;
+			that.subtopic = that.listeningTestInfo.subtopic
 			that.config = {
 				leftTime: that.testTime,
 				format: 'mm : ss'
 			}
+			that.getQuestion(that.topic);
 		})
 		.catch(function (error) {
 			if(error) {
@@ -121,7 +124,8 @@ export class ListeningMainComponent implements OnInit {
 			token: localStorage.getItem('token'),
 			keyword: localStorage.getItem('keyword'),
 			sess: localStorage.getItem('sessionId'),
-			topic: topic
+			topic: topic,
+			subtopic: this.subtopic
 		}
 		axios({
 			method: 'post',
