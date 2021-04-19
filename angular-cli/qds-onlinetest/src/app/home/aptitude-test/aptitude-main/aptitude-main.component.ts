@@ -136,6 +136,8 @@ export class AptitudeMainComponent implements OnInit {
 			var test = Object.keys(res).map((k) => res[k]);
 			that.attitudeTest = test.find( x => x.topic == "Aptitude");
 			that.testTime = that.attitudeTest.totaltime*60;
+			that.submitForm['subtopic'] = that.attitudeTest.subtopic;
+			console.log(that.attitudeTest);
 			that.config = {
 				leftTime: that.testTime,
 				format: 'mm : ss'

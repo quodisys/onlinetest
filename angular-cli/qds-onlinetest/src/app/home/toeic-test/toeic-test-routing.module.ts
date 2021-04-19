@@ -18,13 +18,15 @@ const routes: Routes = [
 		component: ToeicListeningStartComponent
 	}, { 	
 		path: 'listening-test',
-		component: ToeicListeningMainComponent
+		component: ToeicListeningMainComponent,
+		canDeactivate: [CanDeactivateGuard]
 	}, { 	
 		path: 'reading-start',
 		component: ToeicReadingStartComponent
 	}, { 	
 		path: 'reading-test',
-		component: ToeicReadingMainComponent
+		component: ToeicReadingMainComponent,
+		canDeactivate: [CanDeactivateGuard]
 	}, { 	
 		path: 'result',
 		component: ToeicResultComponent

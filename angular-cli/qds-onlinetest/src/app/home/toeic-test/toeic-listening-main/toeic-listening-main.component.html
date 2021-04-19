@@ -29,7 +29,7 @@
                         <div class="test-content" *ngIf="!resultPage">
                             <div class="part-section">Part {{question.part}}</div>
                             <div class="player-wrapper" *ngIf="currentTabIndex == key">
-                                <plyr style="display: block; width: 440px;" plyrTitle="Video 1" [plyrPlaysInline]="true" [plyrSources]="question.audio" plyrType="audio" (plyrInit)="player = $event" [plyrOptions]="options"></plyr>
+                                <plyr style="display: block; width: 440px;" plyrTitle="Video 1" [plyrPlaysInline]="true" [plyrSources]="question.audio" plyrType="audio" (plyrInit)="player = $event" [plyrOptions]="options" class="disabled"></plyr>
                             </div>
                             <!-- Direction 1 -->
                             <div *ngIf="question.type == 'direction'" class="answer">
@@ -44,7 +44,7 @@
                                         <img class="img-fluid img-radius" src="{{question.imgUrl}}" alt="">
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="part-section d-block w-100">{{question.questionNumber}}</div>
+                                        <div class="part-section d-block w-100">Question {{question.questionNumber}}</div>
                                         <div class="col-md-12 mb-3" *ngFor="let choice of question.answers; let choiceKey = index;">
                                             <div class="radio">
                                                 <input class="checkbox-mask" id="question{{key}}-choice{{choiceKey}}" type="radio" [value]="choice" name="{{question.id}}" (change)="submitAnswer(question, choice.alphabet)">

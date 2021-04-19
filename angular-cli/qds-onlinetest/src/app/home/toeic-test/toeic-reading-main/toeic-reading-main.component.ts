@@ -96,6 +96,7 @@ export class ToeicReadingMainComponent implements OnInit {
 				format: 'HH : mm : ss'
 			}
 			that.getQuestion(that.topic)
+			that.submitForm['subtopic'] = that.subtopic
 		})
 		.catch(function (error) {
 			if(error) {

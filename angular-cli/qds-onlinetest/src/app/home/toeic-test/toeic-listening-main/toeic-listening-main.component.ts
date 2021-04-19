@@ -94,6 +94,7 @@ export class ToeicListeningMainComponent implements OnInit {
 				format: 'HH : mm : ss'
 			}
 			that.getQuestion(that.topic)
+			that.submitForm['subtopic'] = mainTest.subtopic
 		})
 		.catch(function (error) {
 			if(error) {
@@ -251,7 +252,7 @@ export class ToeicListeningMainComponent implements OnInit {
 			console.log(that.submitForm)
 			console.log(response)
 			that.formIsSubmit = true;
-			this.router.navigate(['toeic-test/reading-start'])
+			that.router.navigate(['toeic-test/reading-start'])
 		})
 		.catch(function (error) {
 			console.log(error);
