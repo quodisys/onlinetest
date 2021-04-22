@@ -44,7 +44,7 @@
                                                 <div class="mb-3" *ngFor="let choice of question.answers; let choiceKey = index;">
                                                     <div class="radio">
                                                         <input class="checkbox-mask" id="question{{key}}-choice{{choiceKey}}" type="radio" [value]="choice" name="{{question.id}}" (change)="submitAnswer(question, choice.alphabet)">
-                                                        <label for="question{{key}}-choice{{choiceKey}}">{{choice.answer}}</label>
+                                                        <label for="question{{key}}-choice{{choiceKey}}">({{choice.alphabet}}) {{choice.answer}}</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -64,7 +64,7 @@
                                                 <div class="mb-3" *ngFor="let choice of child.answers; let choiceKey = index;">
                                                     <div class="radio">
                                                         <input class="checkbox-mask" id="child{{child.id}}-choice{{choiceKey}}" type="radio" [value]="choice" name="{{child.id}}" (change)="submitAnswer(child, choice.alphabet)">
-                                                        <label for="child{{child.id}}-choice{{choiceKey}}">{{choice.answer}}</label>
+                                                        <label for="child{{child.id}}-choice{{choiceKey}}">({{choice.alphabet}}) {{choice.answer}}</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -104,10 +104,16 @@
                         <img style="width: 30px;" src="/assets/images/vectorpaint.svg" alt=""> Answer Sheet
                     </button>
                     <ul id="dropdown-dropup" *dropdownMenu class="dropdown-menu dropdown-sheet" role="menu" aria-labelledby="button-dropup">
-                        <li class="font-weight-bold">Questions</li>
-                        <li *ngFor="let question of submitForm.qa; let key = index;" role="menuitem" (click)="goTab(question.id)">
-                            <span class="status" [ngClass]="{'active': question.answer != ''}"></span>
-                            <a class="dropdown-item">Question {{key + 101}}</a>
+                        <li class="font-weight-bold"><div class="sheet-wrapper">Questions</div></li>
+                        <li *ngFor="let question of submitForm.qa; let key = index;" role="menuitem" >
+                            <div *ngIf="question.isViewed" class="sheet-wrapper" (click)="goTab(question.id)">
+                                <span class="status" [ngClass]="{'active': question.answer != ''}"></span>
+                                <a class="dropdown-item">Question {{key + 101}}</a>
+                            </div>
+                            <div *ngIf="!question.isViewed" class="sheet-wrapper">
+                                <span class="status" [ngClass]="{'active': question.answer != ''}"></span>
+                                <a class="dropdown-item">Question {{key + 101}}</a>
+                            </div>
                         </li>
                     </ul>
                 </div>

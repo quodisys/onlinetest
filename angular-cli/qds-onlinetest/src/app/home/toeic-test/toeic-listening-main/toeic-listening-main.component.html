@@ -48,7 +48,7 @@
                                         <div class="col-md-12 mb-3" *ngFor="let choice of question.answers; let choiceKey = index;">
                                             <div class="radio">
                                                 <input class="checkbox-mask" id="question{{key}}-choice{{choiceKey}}" type="radio" [value]="choice" name="{{question.id}}" (change)="submitAnswer(question, choice.alphabet)">
-                                                <label for="question{{key}}-choice{{choiceKey}}">{{choice.answer}}</label>
+                                                <label for="question{{key}}-choice{{choiceKey}}">({{choice.alphabet}}) {{choice.answer}}</label>
                                             </div>
                                         </div>
                                     </div>
@@ -65,7 +65,7 @@
                                                 <div class="mb-3" *ngFor="let choice of question.answers; let choiceKey = index;">
                                                     <div class="radio">
                                                         <input class="checkbox-mask" id="question{{key}}-choice{{choiceKey}}" type="radio" [value]="choice" name="{{question.id}}" (change)="submitAnswer(question, choice.alphabet)">
-                                                        <label for="question{{key}}-choice{{choiceKey}}">{{choice.answer}}</label>
+                                                        <label for="question{{key}}-choice{{choiceKey}}">({{choice.alphabet}}) {{choice.answer}}</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -84,7 +84,7 @@
                                                 <div class="mb-3" *ngFor="let choice of child.answers; let choiceKey = index;">
                                                     <div class="radio">
                                                         <input class="checkbox-mask" id="child{{child.id}}-choice{{choiceKey}}" type="radio" [value]="choice" name="{{child.id}}" (change)="submitAnswer(child, choice.alphabet)">
-                                                        <label for="child{{child.id}}-choice{{choiceKey}}">{{choice.answer}}</label>
+                                                        <label for="child{{child.id}}-choice{{choiceKey}}">({{choice.alphabet}}) {{choice.answer}}</label>
                                                     </div>
                                                 </div>
                                             </div>
