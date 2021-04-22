@@ -563,7 +563,7 @@ input[type=checkbox] {
     & .part-section {
         display: block;
         text-align: center;
-        font-size: 25px;
+        font-size: 22px;
         font-weight: bold;
         // text-transform: uppercase;
         color: #fff;
@@ -574,6 +574,15 @@ input[type=checkbox] {
         margin: auto;
         margin-bottom: 15px;
         font-family: "SFProMedium", sans-serif;
+    }
+    & .test-content .answer {
+        font-size: 26px;
+    }
+    & input[type=radio] + label:before {
+        top: 8px;
+    }
+    & input[type=radio]:checked + label:after {
+        top: 13px;
     }
 }
 
