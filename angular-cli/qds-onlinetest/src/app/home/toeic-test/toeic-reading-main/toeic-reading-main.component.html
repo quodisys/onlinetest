@@ -28,10 +28,6 @@
                         [customClass]="question.customClass">
                         <div class="test-content" *ngIf="!resultPage">
                             <div class="part-section" *ngIf="question.type == 'direction'">Part {{question.part}}</div>
-                            <!-- <div class="player-wrapper" *ngIf="currentTabIndex == key">
-                                <plyr style="display: block; width: 440px;" plyrTitle="Video 1" [plyrPlaysInline]="true" [plyrSources]="question.audio" plyrType="audio" (plyrInit)="player = $event" [plyrOptions]="options"></plyr>
-                            </div> -->
-                            <!-- Direction 5 -->
                             <div *ngIf="question.type == 'direction'" class="answer">
                                 <div class="direction">
                                     <p class="avatar-icon"><span [innerHTML]="question.instructions | safeHtml"></span></p>
@@ -56,12 +52,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Direction 6 -->
-                            <!-- <div *ngIf="question.type == 'direction' && question.part == 6" class="answer">
-                                <div class="direction">
-                                    <p class="avatar-icon"><span class="font-weight-bold">Directions: </span>Read the texts that follow. A word, phrase, or sentence is missing in parts of each text. Four answer choices for each question are given below the text. Select the best answer to complete the text. Choose (A), (B), (C), or (D).</p>
-                                </div>
-                            </div> -->
                             <!-- Question 131-200 -->
                             <div *ngIf="question.type == 'multiple-question'" class="answer">
                                 <div class="d-flex justify-content-center mb-4" *ngIf="question.imageUrl != ''"><img class="img-fluid" src="{{question.imageUrl}}" alt=""></div>
@@ -82,12 +72,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Direction 7 -->
-                            <!-- <div *ngIf="question.type == 'direction' && question.part == 7" class="answer">
-                                <div class="direction">
-                                    <p class="avatar-icon"><span class="font-weight-bold">Directions: </span>In this part you will read a selection of texts, such as magazine and newspaper articles, letters, and advertisements. Each text is followed by several questions. Select the best answer for each question and choose (A), (B), (C), or (D).</p>
-                                </div>
-                            </div> -->
                             <!-- Button Group -->
                             <div class="d-flex justify-content-center w-100" *ngIf="!last">
                                 <button type="button" class="btn btn-main mt-2" (click)="showNextQuestion(key)">Next</button>
