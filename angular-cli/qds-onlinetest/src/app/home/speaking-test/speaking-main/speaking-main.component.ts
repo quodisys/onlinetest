@@ -62,7 +62,6 @@ export class SpeakingMainComponent implements OnInit {
 			qa: []
 		}
 		this.getTestInfo();
-		// this.getQuestion(this.topic)
 		this.config = {
 			leftTime: 1000,
 			format: 'mm : ss'
@@ -84,7 +83,7 @@ export class SpeakingMainComponent implements OnInit {
 			method: 'post',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 			url: environment.hostApi + '/candidates/allocatedtests.php',
-			  data: JSON.stringify(data)
+			data: JSON.stringify(data)
 		})
 		.then(function (response) {
 			var res = response.data;
@@ -99,7 +98,6 @@ export class SpeakingMainComponent implements OnInit {
 				format: 'mm : ss'
 			}
 			that.getQuestion(that.topic)
-			console.log(that.speakingTestInfo);
 		})
 		.catch(function (error) {
 			if(error) {
@@ -215,7 +213,7 @@ export class SpeakingMainComponent implements OnInit {
 	}
 
 	changeTab(e) {
-		console.log(e.heading)
+		// console.log(e.heading)
 	}
 	
 	stopRecording() {
@@ -260,11 +258,7 @@ export class SpeakingMainComponent implements OnInit {
 	}
 	
 	processRecording(blob) {
-		console.log(this.currentQuestion)
-		console.log("// Blob content")
-		console.log(blob)
 		this.url = URL.createObjectURL(blob);
-		
 		this.formData = new FormData();
 		this.formData.append('token', localStorage.getItem('token'));
 		this.formData.append('keyword', localStorage.getItem('keyword'));
@@ -274,7 +268,6 @@ export class SpeakingMainComponent implements OnInit {
 		this.formData.append('question', this.currentQuestion.question);
 		this.formData.append('questiontype', '');
 		this.formData.append('audio', blob);
-
 		for(var pair of this.formData.entries()) {
 			console.log(pair);
 		}

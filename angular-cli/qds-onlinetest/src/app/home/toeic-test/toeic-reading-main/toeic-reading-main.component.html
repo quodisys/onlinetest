@@ -27,7 +27,7 @@
                         [disabled]="question.disabled"
                         [customClass]="question.customClass">
                         <div class="test-content" *ngIf="!resultPage">
-                            <div class="part-section">Part {{question.part}}</div>
+                            <div class="part-section" *ngIf="question.type == 'direction'">Part {{question.part}}</div>
                             <!-- <div class="player-wrapper" *ngIf="currentTabIndex == key">
                                 <plyr style="display: block; width: 440px;" plyrTitle="Video 1" [plyrPlaysInline]="true" [plyrSources]="question.audio" plyrType="audio" (plyrInit)="player = $event" [plyrOptions]="options"></plyr>
                             </div> -->

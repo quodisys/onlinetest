@@ -27,7 +27,7 @@
                         [disabled]="question.disabled"
                         [customClass]="question.customClass">
                         <div class="test-content" *ngIf="!resultPage">
-                            <div class="part-section">Part {{question.part}}</div>
+                            <div class="part-section" *ngIf="question.type == 'direction'">Part {{question.part}}</div>
                             <div class="player-wrapper" *ngIf="currentTabIndex == key">
                                 <plyr style="display: block; width: 440px;" plyrTitle="Video 1" [plyrPlaysInline]="true" [plyrSources]="question.audio" plyrType="audio" (plyrInit)="player = $event" [plyrOptions]="options" class="disabled"></plyr>
                             </div>
@@ -54,12 +54,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Direction 2 -->
-                            <!-- <div *ngIf="question.type == 'direction' && question.part == 2" class="answer">
-                                <div class="direction">
-                                    <p class="avatar-icon"><span class="font-weight-bold">Directions: </span> You will hear a question or statement and three responses spoken in English. They will not be shown on the screen and will be spoken only one time. Select the best response to the question or statement and choose the (A), (B), or (C).</p>
-                                </div>
-                            </div> -->
                             <!-- Question 7-31 -->
                             <div *ngIf="question.type == 'single-question'" class="answer">
                                 <div class="row">
@@ -79,12 +73,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Direction 3 -->
-                            <!-- <div *ngIf="question.type == 'direction' && question.part == 3" class="answer">
-                                <div class="direction">
-                                    <p class="avatar-icon"><span class="font-weight-bold">Directions: </span> You will hear some conversations between two people. You will be asked to answer three questions about what the speakers say in each conversation. Select the best response to each question and choose (A), (B), (C), or (D). The conversations will not be shown on the screen and will be spoken only one time.</p>
-                                </div>
-                            </div> -->
                             <!-- Question 32 - 100 -->
                             <div *ngIf="question.type == 'multiple-question'" class="answer">
                                 <div class="d-flex justify-content-center mb-4" *ngIf="question.imageUrl != ''"><img src="{{question.imageUrl}}" alt=""></div>
@@ -104,12 +92,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Direction 4 -->
-                            <!-- <div *ngIf="question.type == 'direction' && question.part == 4" class="answer">
-                                <div class="direction">
-                                    <p class="avatar-icon"><span class="font-weight-bold">Directions: </span> You will hear some talks given by a single speaker. You will be asked to answer three questions about what the speaker says in each talk. Select the best response to each question and choose (A), (B), (C), or (D). The talks will not be shown on the screen and will be spoken only one time. </p>
-                                </div>
-                            </div> -->
                             <!-- Button Group -->
                             <div class="d-flex justify-content-center w-100" *ngIf="!last">
                                 <button type="button" class="btn btn-main mt-2" (click)="showNextQuestion(key)">Next</button>
@@ -142,10 +124,16 @@
                         <img style="width: 30px;" src="/assets/images/vectorpaint.svg" alt=""> Answer Sheet
                     </button>
                     <ul id="dropdown-dropup" *dropdownMenu class="dropdown-menu dropdown-sheet" role="menu" aria-labelledby="button-dropup">
-                        <li class="font-weight-bold">Questions</li>
-                        <li *ngFor="let question of submitForm.qa; let key = index;" role="menuitem" (click)="goTab(question.id)">
-                            <span class="status" [ngClass]="{'active': question.answer != ''}"></span>
-                            <a class="dropdown-item">Question {{key + 1}}</a>
+                        <li class="font-weight-bold"><div class="sheet-wrapper">Questions</div></li>
+                        <li *ngFor="let question of submitForm.qa; let key = index;" role="menuitem" >
+                            <div *ngIf="question.isViewed" class="sheet-wrapper" (click)="goTab(question.id)">
+                                <span class="status" [ngClass]="{'active': question.answer != ''}"></span>
+                                <a class="dropdown-item">Question {{key + 1}}</a>
+                            </div>
+                            <div *ngIf="!question.isViewed" class="sheet-wrapper">
+                                <span class="status" [ngClass]="{'active': question.answer != ''}"></span>
+                                <a class="dropdown-item">Question {{key + 1}}</a>
+                            </div>
                         </li>
                     </ul>
                 </div>

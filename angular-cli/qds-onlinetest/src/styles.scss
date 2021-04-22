@@ -913,10 +913,12 @@ plyr.disabled {
     overflow: auto;
     min-width: 200px;
     & li {
-        display: flex;
-        align-items: center;
-        padding: 10px 15px;
-        cursor: pointer;
+        & .sheet-wrapper {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
         &:hover {
             background-color: #f8f9fa;
         }
@@ -957,6 +959,9 @@ plyr.disabled {
             padding-left: 10px;
             &:hover {
                 background-color: transparent;
+            }
+            &:active {
+                color: #16181b;
             }
         }
     }

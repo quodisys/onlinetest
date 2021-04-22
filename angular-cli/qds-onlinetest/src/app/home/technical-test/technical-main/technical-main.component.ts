@@ -85,7 +85,7 @@ export class TechnicalMainComponent implements OnInit {
 			method: 'post',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 			url: environment.hostApi + '/candidates/allocatedtests.php',
-			  data: JSON.stringify(data)
+			data: JSON.stringify(data)
 		})
 		.then(function (response) {
 			var res = response.data;
@@ -102,7 +102,6 @@ export class TechnicalMainComponent implements OnInit {
 				format: 'mm : ss'
 			}
 			that.getQuestion(that.topic);
-			console.log(that.subtopic);
 		})
 		.catch(function (error) {
 			if(error) {
@@ -115,7 +114,6 @@ export class TechnicalMainComponent implements OnInit {
 
 	getQuestion(topic) {
 		let that =  this;
-		console.log(this.subtopic)
 		let data = {
 			token: localStorage.getItem('token'),
 			keyword: localStorage.getItem('keyword'),
@@ -154,7 +152,6 @@ export class TechnicalMainComponent implements OnInit {
 				});	
 			});
 			that.questions[0]['active'] = true;
-			console.log(that.questions);
 		})
 		.catch(function (error) {
 			console.log(error);
@@ -180,7 +177,6 @@ export class TechnicalMainComponent implements OnInit {
 		if(this.submitForm.qa.slice(-1)[0].answer != '') {
 			this.submitDisable = false;
 		}
-		console.log(this.submitForm)
 	}
 
 	counterEvent(e: CountdownEvent) {
@@ -207,7 +203,6 @@ export class TechnicalMainComponent implements OnInit {
 
 	onSubmit() {
 		let that =  this;
-		console.log(that.submitForm)
 		axios({
 			method: 'post',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -215,7 +210,6 @@ export class TechnicalMainComponent implements OnInit {
 			data: JSON.stringify(this.submitForm)
 		})
 		.then(function (response) {
-			console.log(that.submitForm);
 			that.formIsSubmit = true;
 			that.router.navigate(['/technical-test/result'])
 		})

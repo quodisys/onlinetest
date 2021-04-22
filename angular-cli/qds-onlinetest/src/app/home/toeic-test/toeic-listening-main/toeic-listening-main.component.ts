@@ -149,7 +149,8 @@ export class ToeicListeningMainComponent implements OnInit {
 					})
 					let d2 = {
 						id: item.id,
-						answer: ""
+						answer: "",
+						isViewed: false
 					}
 					that.submitForm.qa.push(d2)
 					item['questionNumber'] = questionNumber;
@@ -166,14 +167,15 @@ export class ToeicListeningMainComponent implements OnInit {
 						})
 						let d2 = {
 							id: question.id,
-							answer: ""
+							answer: "",
+							isViewed: false
 						}
 						that.submitForm.qa.push(d2)
 					})
 				}
 			})
 			that.listeningQuestions[0].active = true
-			console.log(that.listeningQuestions)
+			console.log(that.submitForm.qa)
 		})
 		.catch(function (error) {
 			console.log(error);
@@ -189,8 +191,23 @@ export class ToeicListeningMainComponent implements OnInit {
 	showNextQuestion(key) {
 		let that = this;
 		let tabId = key + 1;
+		let question = this.listeningQuestions[tabId];
+		///////////////////////////////////////////////////
 		let questionCount = this.listeningQuestions.length;
 		if(tabId < questionCount) {
+			if(question.type == "multiple-question") {
+				question.questions.map(item => {
+					let answerIndex = this.submitForm.qa.findIndex(x => x.id == item.id);
+					if(answerIndex >= 0) {
+						this.submitForm.qa[answerIndex].isViewed = true
+					}
+				})
+			} else {
+				let answerIndex = this.submitForm.qa.findIndex(x => x.id == this.listeningQuestions[tabId].id);
+				if(answerIndex >= 0) {
+					this.submitForm.qa[answerIndex].isViewed = true
+				}
+			}
 			that.staticTabs.tabs[tabId].active = true;
 			window.scroll(0,0);
 		} else if (tabId == questionCount) {
@@ -242,6 +259,9 @@ export class ToeicListeningMainComponent implements OnInit {
 
 	onSubmit() {
 		let that =  this;
+		this.submitForm.qa.map(item => {
+			delete item.isViewed
+		})
 		axios({
 			method: 'post',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
