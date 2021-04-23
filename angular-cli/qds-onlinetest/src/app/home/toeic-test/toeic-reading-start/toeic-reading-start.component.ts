@@ -9,6 +9,8 @@ import { environment } from './../../../../environments/environment';
 })
 export class ToeicReadingStartComponent implements OnInit {
 	logo:string = ''
+	topic:string = ''
+	subtopic:string = ''
 	constructor() { }
 
 	ngOnInit(): void {
@@ -16,6 +18,35 @@ export class ToeicReadingStartComponent implements OnInit {
 		if(this.logo == undefined || this.logo == '') {
 			this.logo = "https://qdsasia.com/wp-content/themes/qdstheme/assets/img/qds-logo-scaled.png"
 		}
+		this.getTestInfo();
+	}
+
+	getTestInfo() {
+		let that =  this;
+		let data = {
+			token: localStorage.getItem('token'),
+			keyword: localStorage.getItem('keyword'),
+			sess: localStorage.getItem('sessionId')
+		}
+		axios({
+			method: 'post',
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			url: environment.hostApi + '/candidates/allocatedtests.php',
+			  data: JSON.stringify(data)
+		})
+		.then(function (response) {
+			var res = response.data;
+			var test = Object.keys(res).map((k) => res[k]);
+			var mainTest = test.find( x => x.topic == "TOEIC")
+			mainTest = mainTest.toeictests
+			mainTest = Object.keys(mainTest).map((k) => mainTest[k]);
+			mainTest = mainTest.find( x => x.topic == "TOEIC Reading")
+			that.topic = mainTest.topic
+			that.subtopic = mainTest.subtopic
+		})
+		.catch(function (error) {
+			console.log(error);
+		});
 	}
 
 	initiateTest() {
@@ -23,7 +54,8 @@ export class ToeicReadingStartComponent implements OnInit {
 			token: localStorage.getItem('token'),
 			keyword: localStorage.getItem('keyword'),
 			sess: localStorage.getItem('sessionId'),
-			topic: "TOEIC Reading"
+			topic: this.topic,
+			subtopic: this.subtopic
 		}
 		axios({
 			method: 'post',

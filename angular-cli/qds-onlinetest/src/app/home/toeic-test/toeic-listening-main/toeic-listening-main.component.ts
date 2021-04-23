@@ -86,7 +86,6 @@ export class ToeicListeningMainComponent implements OnInit {
 			mainTest = mainTest.toeictests
 			mainTest = Object.keys(mainTest).map((k) => mainTest[k]);
 			mainTest = mainTest.find( x => x.topic == "TOEIC Listening")
-			console.log(mainTest)
 			that.testTime = mainTest.totaltime*60;
 			that.subtopic = mainTest.subtopic
 			that.config = {
@@ -123,7 +122,6 @@ export class ToeicListeningMainComponent implements OnInit {
 		.then(function (response) {
 			let data = response.data
 			that.listeningQuestions = data;
-			console.log(that.listeningQuestions)
 			//Audio array
 			that.listeningQuestions.map(item => {
 				item['audio'] = []
@@ -175,7 +173,6 @@ export class ToeicListeningMainComponent implements OnInit {
 				}
 			})
 			that.listeningQuestions[0].active = true
-			console.log(that.submitForm.qa)
 		})
 		.catch(function (error) {
 			console.log(error);
@@ -199,12 +196,22 @@ export class ToeicListeningMainComponent implements OnInit {
 				question.questions.map(item => {
 					let answerIndex = this.submitForm.qa.findIndex(x => x.id == item.id);
 					if(answerIndex >= 0) {
+						if(this.submitForm.qa[answerIndex].isViewed) {
+							this.options.autoplay = false;
+						} else {
+							this.options.autoplay = true;
+						}
 						this.submitForm.qa[answerIndex].isViewed = true
 					}
 				})
 			} else {
 				let answerIndex = this.submitForm.qa.findIndex(x => x.id == this.listeningQuestions[tabId].id);
 				if(answerIndex >= 0) {
+					if(this.submitForm.qa[answerIndex].isViewed) {
+						this.options.autoplay = false;
+					} else {
+						this.options.autoplay = true;
+					}
 					this.submitForm.qa[answerIndex].isViewed = true
 				}
 			}
@@ -226,6 +233,10 @@ export class ToeicListeningMainComponent implements OnInit {
 			this.listeningQuestions.map((d1, i1) => {
 				if(d1.type == 'multiple-question') {
 					d1.questions.map((d2) => {
+						let answerIndex = this.submitForm.qa.findIndex(x => x.id == d2.id);
+						if(this.submitForm.qa[answerIndex].isViewed) {
+							this.options.autoplay = false;
+						}
 						if(d2.id == id) {
 							this.listeningQuestions[i1].active = true
 						}
@@ -233,6 +244,10 @@ export class ToeicListeningMainComponent implements OnInit {
 				}
 			})
 		} else {
+			let answerIndex = this.submitForm.qa.findIndex(x => x.id == id);
+			if(this.submitForm.qa[answerIndex].isViewed) {
+				this.options.autoplay = false;
+			}
 			this.listeningQuestions[singId].active = true
 		}
 		window.scroll(0,0);
@@ -241,7 +256,6 @@ export class ToeicListeningMainComponent implements OnInit {
 	getIndex(arr, id) {
 		var i, ii, len, elemlen;
 		for (i = 0, len = arr.length; i < len; i++) {
-			console.log(len);
 			let elements = arr[i].questions;
 			for (ii = 0, elemlen = elements.length; ii < elemlen; ii++) {
 				if (elements[ii].id === id) {
@@ -254,7 +268,6 @@ export class ToeicListeningMainComponent implements OnInit {
 	submitAnswer(question, alphabet) {
 		let index = this.submitForm.qa.findIndex( x => x.id == question.id);
 		this.submitForm.qa[index].answer = alphabet;
-		console.log(this.submitForm)
 	}
 
 	onSubmit() {
@@ -269,8 +282,6 @@ export class ToeicListeningMainComponent implements OnInit {
 			data: JSON.stringify(this.submitForm)
 		})
 		.then(function (response) {
-			console.log(that.submitForm)
-			console.log(response)
 			that.formIsSubmit = true;
 			that.router.navigate(['toeic-test/reading-start'])
 		})
