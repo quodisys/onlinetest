@@ -3,11 +3,13 @@
         <div class="col-md-12">
             <div class="branding countdown">
                 <div class="row">
-                    <div class="col-md-4"></div>
-                    <div class="col-md-4 flex-center">
-                        <a routerLink="/">
-                            <img src="{{logo}}" alt="company logo">
+                    <div class="col-md-4 d-flex justify-content-start align-items-center">
+                        <a class="btn btn-primary btn-exit colorful" routerLink="/">
+                            Exit
                         </a>
+                    </div>
+                    <div class="col-md-4 flex-center">
+                        <img src="{{logo}}" alt="company logo">
                     </div>
                     <div class="col-md-4 d-flex justify-content-end">
                         <div class="countdown-wrapper">
@@ -41,14 +43,14 @@
                             <div *ngIf="question.type == 'image-question'" class="answer" style="max-width: initial;">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <img class="img-fluid img-radius" src="{{question.imgUrl}}" alt="">
+                                        <img class="img-fluid img-radius" src="{{question.imageUrl}}" alt="">
                                     </div>
                                     <div class="col-md-6">
                                         <div class="part-section d-block w-100">Question {{question.questionNumber}}</div>
                                         <div class="col-md-12 mb-3" *ngFor="let choice of question.answers; let choiceKey = index;">
                                             <div class="radio">
                                                 <input class="checkbox-mask" id="question{{key}}-choice{{choiceKey}}" type="radio" [value]="choice" name="{{question.id}}" (change)="submitAnswer(question, choice.alphabet)">
-                                                <label for="question{{key}}-choice{{choiceKey}}">({{choice.alphabet}}) {{choice.answer}}</label>
+                                                <label for="question{{key}}-choice{{choiceKey}}">{{choice.answer}}</label>
                                             </div>
                                         </div>
                                     </div>
@@ -65,7 +67,7 @@
                                                 <div class="mb-3" *ngFor="let choice of question.answers; let choiceKey = index;">
                                                     <div class="radio">
                                                         <input class="checkbox-mask" id="question{{key}}-choice{{choiceKey}}" type="radio" [value]="choice" name="{{question.id}}" (change)="submitAnswer(question, choice.alphabet)">
-                                                        <label for="question{{key}}-choice{{choiceKey}}">({{choice.alphabet}}) {{choice.answer}}</label>
+                                                        <label for="question{{key}}-choice{{choiceKey}}">{{choice.answer}}</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -75,7 +77,7 @@
                             </div>
                             <!-- Question 32 - 100 -->
                             <div *ngIf="question.type == 'multiple-question'" class="answer">
-                                <div class="d-flex justify-content-center mb-4" *ngIf="question.imageUrl != ''"><img src="{{question.imageUrl}}" alt=""></div>
+                                <div class="d-flex justify-content-center mb-4" *ngIf="question.imageUrl != ''"><img class="img-fluid" src="{{question.imageUrl}}" alt=""></div>
                                 <div class="row" *ngFor="let child of question.questions">
                                     <div class="col-md-12">
                                         <div class="part-section d-block w-100 text-left pl-4">Question {{child.questionNumber}}: {{child.question}}</div>
@@ -84,7 +86,7 @@
                                                 <div class="mb-3" *ngFor="let choice of child.answers; let choiceKey = index;">
                                                     <div class="radio">
                                                         <input class="checkbox-mask" id="child{{child.id}}-choice{{choiceKey}}" type="radio" [value]="choice" name="{{child.id}}" (change)="submitAnswer(child, choice.alphabet)">
-                                                        <label for="child{{child.id}}-choice{{choiceKey}}">({{choice.alphabet}}) {{choice.answer}}</label>
+                                                        <label for="child{{child.id}}-choice{{choiceKey}}">{{choice.answer}}</label>
                                                     </div>
                                                 </div>
                                             </div>

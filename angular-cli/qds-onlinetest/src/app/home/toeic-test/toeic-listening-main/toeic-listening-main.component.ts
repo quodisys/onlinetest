@@ -45,7 +45,7 @@ export class ToeicListeningMainComponent implements OnInit {
 		}
 		this.options = {
 			enabled: true,
-			controls: ['play', 'progress', 'current-time', 'mute'],
+			controls: ['play', 'progress', 'current-time'],
 			autoplay: true
 		};
 		this.submitForm = {
