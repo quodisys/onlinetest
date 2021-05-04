@@ -14,7 +14,7 @@
                 <div class="home-content mt-5">
                     <div class="row">
                         <div class="col-md-3 flex-center mb-5" *ngFor="let test of dashboardTest; let key = index;" >
-                            <div *ngIf="test.status != 'Done'" class="content-test" routerLink="/{{test.link}}">
+                            <div *ngIf="test.status != 'Done' && test.status != 'Expired'" class="content-test" routerLink="/{{test.link}}">
                                 <img src="{{test.icon}}" alt="test">
                                 <div class="test-title">
                                     {{test.category}}
@@ -25,6 +25,15 @@
                             </div>
                             <div *ngIf="test.status == 'Done'" class="content-test">
                                 <img src="/assets/images/done.svg" alt="test">
+                                <div class="test-title">
+                                    {{test.category}}
+                                </div>
+                                <div class="test-time">
+                                    Time: {{test.totaltime}} minutes
+                                </div>
+                            </div>
+                            <div *ngIf="test.status == 'Expired'" class="content-test" popover="This test has expired" triggers="mouseenter:mouseleave">
+                                <img src="/assets/images/expired.svg" alt="test">
                                 <div class="test-title">
                                     {{test.category}}
                                 </div>

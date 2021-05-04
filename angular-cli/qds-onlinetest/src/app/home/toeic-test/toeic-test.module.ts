@@ -16,6 +16,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ToeicReadingStartComponent } from './toeic-reading-start/toeic-reading-start.component';
 import { ToeicReadingMainComponent } from './toeic-reading-main/toeic-reading-main.component';
 import { ToeicResultComponent } from './toeic-result/toeic-result.component';
+import {CrystalLightboxModule} from '@crystalui/angular-lightbox';
 
 @NgModule({
 declarations: [
@@ -37,7 +38,8 @@ imports: [
     ModalModule.forRoot(),
     BsDropdownModule.forRoot(),
     ShareModule,
-    PlyrModule
+    PlyrModule,
+    CrystalLightboxModule
 ]
 })
 export class ToeicTestModule { }

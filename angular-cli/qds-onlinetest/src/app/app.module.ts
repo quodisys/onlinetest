@@ -8,15 +8,13 @@ import { AuthComponent } from './auth/auth.component';
 import { LoginComponent } from './auth/login/login.component';
 import { HomeModule } from './home/home.module';
 import { AuthGuard } from './guards/auth.guard';
-import { EnglishTestComponent } from './home/english-test/english-test.component';
 import { Globals } from './home/globalsVar';
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthComponent,
-    LoginComponent,
-    EnglishTestComponent
+    LoginComponent
   ],
   imports: [
     BrowserAnimationsModule,

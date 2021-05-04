@@ -4,9 +4,9 @@
             <div class="branding countdown">
                 <div class="row">
                     <div class="col-md-4 d-flex justify-content-start align-items-center">
-                        <a class="btn btn-primary btn-exit colorful" routerLink="/">
+                        <!-- <a class="btn btn-primary btn-exit colorful" routerLink="/">
                             Exit
-                        </a>
+                        </a> -->
                     </div>
                     <div class="col-md-4 flex-center">
                         <img src="{{logo}}" alt="company logo">
@@ -21,14 +21,8 @@
             </div>
             <div class="content">
                 <tabset #staticTabs class="custom-tab nav-disabled nav-hide">
-                    <tab *ngFor="let question of readingQuestions; let key = index; let last = last"
-                        [heading]="key + 1"
-                        [active]="question.active"
-                        (selectTab)="changeTab($event)"
-                        (deselect)="question.active = false"
-                        [disabled]="question.disabled"
-                        [customClass]="question.customClass">
-                        <div class="test-content" *ngIf="!resultPage">
+                    <tab *ngFor="let question of readingQuestions; let key = index; let last = last" [heading]="key + 1" [active]="question.active" (selectTab)="changeTab($event)" (deselect)="question.active = false" [disabled]="question.disabled" [customClass]="question.customClass">
+                        <div class="test-content" [hidden]="resultPage">
                             <div class="part-section" *ngIf="question.type == 'direction'">Part {{question.part}}</div>
                             <div *ngIf="question.type == 'direction'" class="answer">
                                 <div class="direction">
@@ -55,18 +49,32 @@
                                 </div>
                             </div>
                             <!-- Question 131-200 -->
-                            <div *ngIf="question.type == 'multiple-question'" class="answer">
-                                <div class="d-flex justify-content-center mb-4" *ngIf="question.imageUrl != ''"><img class="img-fluid" src="{{question.imageUrl}}" alt=""></div>
-                                <div class="d-flex mb-4" style="font-size: 22px;" *ngIf="question.mainQuestion != '' && question.mainQuestion != undefined" [innerHTML]="question.mainQuestion | safeHtml"></div>
-                                <div class="row" *ngFor="let child of question.questions">
-                                    <div class="col-md-12">
-                                        <div class="part-section d-block w-100 text-left pl-4">Question {{child.questionNumber}}: {{child.question}}</div>
-                                        <div class="question-wrapper pl-4 mt-4">
-                                            <div class="answer" style="margin-top: 20px;">
-                                                <div class="mb-3" *ngFor="let choice of child.answers; let choiceKey = index;">
-                                                    <div class="radio">
-                                                        <input class="checkbox-mask" id="child{{child.id}}-choice{{choiceKey}}" type="radio" [value]="choice" name="{{child.id}}" (change)="submitAnswer(child, choice.alphabet)">
-                                                        <label for="child{{child.id}}-choice{{choiceKey}}">{{choice.answer}}</label>
+                            <div *ngIf="question.type == 'multiple-question'" class="split-column answer">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class=" mb-4 question-scroll" *ngIf="question.imageUrl != ''">
+                                            <!-- <img class="img-fluid" src="{{question.imageUrl}}" alt=""> -->
+                                            <img src="{{question.imageUrl}}" style="cursor: pointer;"
+                                                class="img-fluid"
+                                                lightbox
+                                                backgroundOpacity="0.5"
+                                                [hideThumbnail]="false" />
+                                            <div class="footer-desc text-center mt-3"><i>Click on image to view full size</i></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 question-scroll">
+                                        <div class="d-flex mb-4" style="font-size: 22px;" *ngIf="question.mainQuestion != '' && question.mainQuestion != undefined" [innerHTML]="question.mainQuestion | safeHtml"></div>
+                                        <div class="row" *ngFor="let child of question.questions">
+                                            <div class="col-md-12">
+                                                <div class="part-section d-block w-100 text-left pl-4">Question {{child.questionNumber}}: <span [innerHTML]="child.question | safeHtml"></span></div>
+                                                <div class="question-wrapper pl-4 mt-4">
+                                                    <div class="answer" style="margin-top: 20px;">
+                                                        <div class="mb-3" *ngFor="let choice of child.answers; let choiceKey = index;">
+                                                            <div class="radio">
+                                                                <input class="checkbox-mask" id="child{{child.id}}-choice{{choiceKey}}" type="radio" [value]="choice" name="{{child.id}}" (change)="submitAnswer(child, choice.alphabet)">
+                                                                <label for="child{{child.id}}-choice{{choiceKey}}">{{choice.answer}}</label>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -83,15 +91,14 @@
                             </div>
                         </div>
                         <!-- Result -->
-                        <div class="answer" *ngIf="resultPage">
+                        <div class="answer" [hidden]="!resultPage">
                             <div class="start-logo pt-3">
                                 <img src="/assets/images/reading-start.svg" alt="">
                             </div>
                             <div class="title mb-4">READING TEST</div>
                             <div class="sub-title sub-multiple-line text-left">
-                               <p class="text-center">
-                                This is the end of the test. If you finish before the time is up, you may go
-                                back to Parts 5, 6, and 7 and check your work. </p>
+                                <p class="text-center">
+                                    This is the end of the test. If you finish before the time is up, you may go back to Parts 5, 6, and 7 and check your work. </p>
                             </div>
                             <div class="d-flex justify-content-center" *ngIf="last">
                                 <button type="submit" class="btn btn-main mt-2" (click)="onSubmit()">Submit</button>
@@ -106,8 +113,10 @@
                         <img style="width: 30px;" src="/assets/images/vectorpaint.svg" alt=""> Answer Sheet
                     </button>
                     <ul id="dropdown-dropup" *dropdownMenu class="dropdown-menu dropdown-sheet" role="menu" aria-labelledby="button-dropup">
-                        <li class="font-weight-bold"><div class="sheet-wrapper">Questions</div></li>
-                        <li *ngFor="let question of submitForm.qa; let key = index;" role="menuitem" >
+                        <li class="font-weight-bold">
+                            <div class="sheet-wrapper">Questions</div>
+                        </li>
+                        <li *ngFor="let question of submitForm.qa; let key = index;" role="menuitem">
                             <div *ngIf="question.isViewed" class="sheet-wrapper" (click)="goTab(question.id)">
                                 <span class="status" [ngClass]="{'active': question.answer != ''}"></span>
                                 <a class="dropdown-item">Question {{key + 101}}</a>
@@ -124,4 +133,3 @@
         </div>
     </div>
 </div>
-

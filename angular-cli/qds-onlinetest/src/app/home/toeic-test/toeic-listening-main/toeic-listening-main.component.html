@@ -4,9 +4,9 @@
             <div class="branding countdown">
                 <div class="row">
                     <div class="col-md-4 d-flex justify-content-start align-items-center">
-                        <a class="btn btn-primary btn-exit colorful" routerLink="/">
+                        <!-- <a class="btn btn-primary btn-exit colorful" routerLink="/">
                             Exit
-                        </a>
+                        </a> -->
                     </div>
                     <div class="col-md-4 flex-center">
                         <img src="{{logo}}" alt="company logo">
@@ -28,7 +28,7 @@
                         (deselect)="question.active = false"
                         [disabled]="question.disabled"
                         [customClass]="question.customClass">
-                        <div class="test-content" *ngIf="!resultPage">
+                        <div class="test-content" [hidden]="resultPage">
                             <div class="part-section" *ngIf="question.type == 'direction'">Part {{question.part}}</div>
                             <div class="player-wrapper" *ngIf="currentTabIndex == key">
                                 <plyr style="display: block; width: 440px;" plyrTitle="Video 1" [plyrPlaysInline]="true" [plyrSources]="question.audio" plyrType="audio" (plyrInit)="player = $event" [plyrOptions]="options" class="disabled"></plyr>
@@ -103,7 +103,7 @@
                             </div>
                         </div>
                         <!-- Result -->
-                        <div class="answer" *ngIf="resultPage">
+                        <div class="answer" [hidden]="!resultPage">
                             <div class="start-logo pt-3">
                                 <img src="/assets/images/listening-start.svg" alt="">
                             </div>

@@ -53,7 +53,6 @@ export class EnglishTestComponent implements OnInit {
 			if(res[0].error) {
 				that.router.navigate(['/login'])
 			}
-			
 			// that.moveInArray(that.dashboardTest, 2, 0)
 			// that.moveInArray(that.dashboardTest, 3, 2)
 			// that.moveInArray(that.dashboardTest, 2, 1)

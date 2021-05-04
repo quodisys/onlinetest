@@ -88,7 +88,6 @@ export class ToeicReadingMainComponent implements OnInit {
 			mainTest = mainTest.toeictests
 			mainTest = Object.keys(mainTest).map((k) => mainTest[k]);
 			mainTest = mainTest.find( x => x.topic == "TOEIC Reading")
-			console.log(mainTest)
 			that.testTime = mainTest.totaltime*60;
 			that.subtopic = mainTest.subtopic
 			that.config = {
@@ -125,7 +124,6 @@ export class ToeicReadingMainComponent implements OnInit {
 		.then(function (response) {
 			let data = response.data
 			that.readingQuestions = data;
-			console.log(that.readingQuestions);
 			//Audio array
 			that.readingQuestions.map(item => {
 				item['audio'] = []
@@ -176,7 +174,6 @@ export class ToeicReadingMainComponent implements OnInit {
 				}
 			})
 			that.readingQuestions[0].active = true
-			console.log(that.submitForm);
 		})
 		.catch(function (error) {
 			console.log(error);
@@ -251,8 +248,6 @@ export class ToeicReadingMainComponent implements OnInit {
 			data: JSON.stringify(this.submitForm)
 		})
 		.then(function (response) {
-			console.log(that.submitForm)
-			console.log(response)
 			that.formIsSubmit = true;
 			that.router.navigate(['toeic-test/result'])
 		})

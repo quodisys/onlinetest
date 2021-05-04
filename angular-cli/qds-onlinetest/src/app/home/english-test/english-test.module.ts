@@ -2,23 +2,23 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
-import { DashboardRoutingModule } from './dashboard-routing.module';
-import { DashboardComponent } from './dashboard.component';
+import { EnglishTestComponent } from './english-test.component';
+import { EnglishTestRoutingModule } from './english-test-routing.module'
 import { FormsModule } from '@angular/forms';
 import { ShareModule } from '../../shared.module'
 import { PopoverModule } from 'ngx-bootstrap/popover';
 
 @NgModule({
   declarations: [
-    DashboardComponent,
+    EnglishTestComponent,
   ],
   imports: [
     CommonModule,
-    DashboardRoutingModule, 
+    EnglishTestRoutingModule,
     RouterModule,
     FormsModule,
     ShareModule,
     PopoverModule.forRoot()
   ]
 })
-export class DashboardModule { }
+export class EnglishTestModule { }

@@ -6,6 +6,7 @@ import { BlockCopyPasteDirective } from './directive/disable-copy.directive';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
 import { SafeHtmlPipe } from './pipe/safe-html.pipe';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 //Ng-select for selection
 @NgModule({
   	declarations: [
@@ -23,6 +24,7 @@ import { SafeHtmlPipe } from './pipe/safe-html.pipe';
 		RouterModule,
 		FormsModule,
 		ModalModule.forRoot(),
+		TooltipModule.forRoot()
 		// SafeHtmlPipe
 	]
 })
