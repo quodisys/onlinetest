@@ -180,7 +180,31 @@ export class ReadingMainComponent implements OnInit {
 
 	onSubmit() {
 		let that =  this;
-		console.log(that.submitForm)
+		let notComplete = false;
+		let count = 0;
+		that.submitForm.qa.map(item => {
+			if(item.answer == '') {
+				notComplete = true;
+				count++;
+			}
+		})
+		if(notComplete) {
+			if(count > 1) {
+				if(confirm('There are '+ count + ' unanswered questions! Are you sure you want to submit this test ?')) {
+					this.sendForm();
+				}
+			} else {
+				if(confirm('There is '+ count + ' unanswered question! Are you sure you want to submit this test ?')) {
+					this.sendForm();
+				}
+			}
+		} else {
+			this.sendForm();
+		}
+	}
+
+	sendForm() {
+		let that = this
 		axios({
 			method: 'post',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -197,5 +221,4 @@ export class ReadingMainComponent implements OnInit {
 			alert("Something wrong when submitting test!")
 		});
 	}
-
 }

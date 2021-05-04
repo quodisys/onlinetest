@@ -23,7 +23,7 @@
                     <div class="form-group select-group">
                         <div class="radio-text" *ngFor="let test of technicalTest; let key = index;">
                             <input id="test-{{key}}" type="radio" value="{{test.topic}}" name="test" [(ngModel)]="testSelected">
-                            <label for="test-{{key}}" [ngClass]="{'disabled': test.status == 'Done'}">{{test.topic}}</label>
+                            <label for="test-{{key}}" [ngClass]="{'disabled': test.status == 'Done' || test.status == 'Expired'}">{{test.topic}}</label>
                         </div>
                     </div>
                     <div class="d-flex justify-content-center mt-1 mb-3" >
