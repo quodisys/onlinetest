@@ -20,7 +20,7 @@
             </div>
             <div class="content">
                 <tabset #staticTabs class="custom-tab nav-disabled">
-                    <tab *ngFor="let question of questions; let key = index; let last = last"
+                    <tab *ngFor="let question of questions; let key = index; let last = last; let first = first;"
                         [heading]="key + 1"
                         [active]="question.active"
                         (selectTab)="changeTab($event)"
@@ -32,10 +32,19 @@
                                 {{question.question}}
                             </div>
                             <div class="d-flex justify-content-center align-items-center">
-                                <button type="button" class="btn p-0 ml-5" (click)="initiateRecording(key)" *ngIf="!recording && !finishRecord && !isLoading">
+                                <button type="button" class="btn p-0 ml-5" (click)="initiateRecording(key)" *ngIf="!recording && !finishRecord && !isLoading" popover="Please click on the microphone icon to record your voice"
+                                popoverTitle="Instruction"
+                                placement="left"
+                                [delay]="500"
+                                [isOpen]="first && isOpen && questionType != 'last'">
                                     <img src="/assets/images/mic.svg" />
                                 </button>
-                                <button type="button" class="btn btn-recording" *ngIf="recording" (click)="stopRecording()">
+                                <button type="button" class="btn btn-recording" *ngIf="recording" (click)="stopRecording()" 
+                                popover="Please click here to stop recording"
+                                popoverTitle="Instruction"
+                                placement="left"
+                                [delay]="100"
+                                [isOpen]="first && isStopOpen && questionType != 'last'">
                                     <img src="/assets/images/recording.svg" />
                                 </button>
                                 <a *ngIf="!recording && !last && !finishRecord && !isLoading" class="btn-skip ml-3" (click)="showNextQuestion(key, last, true)">Skip</a>

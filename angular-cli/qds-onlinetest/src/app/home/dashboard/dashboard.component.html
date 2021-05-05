@@ -13,6 +13,9 @@
                 </div>
                 <div class="home-content mt-5">
                     <div class="row">
+                        <div class="d-block w-100 text-center" *ngIf="noTest">
+                            <span style="font-size: 18px; text-transform: uppercase; font-weight: 600;">No tests allocated</span>
+                        </div> 
                         <div class="col-md-3 flex-center mb-5" *ngFor="let test of dashboardTest; let key = index;" >
                             <div *ngIf="test.status != 'Done' && test.status != 'Expired'" class="content-test" routerLink="/{{test.link}}">
                                 <img src="{{test.icon}}" alt="test">

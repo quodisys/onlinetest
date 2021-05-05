@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, HostListener } from '@angular/core';
 import { CountdownEvent, CountdownComponent } from 'ngx-countdown';
 import { IQTestForm } from '../../../interfaces/iq-test'
 import { TabsetComponent } from 'ngx-bootstrap/tabs';
@@ -31,6 +31,8 @@ export class SpeakingMainComponent implements OnInit {
 	questions:any = []
 	questionType:string = 'first'
 	formData:any
+	isOpen: boolean = false
+	isStopOpen: boolean = false
 
 	recording: Boolean = false;
 
@@ -70,6 +72,15 @@ export class SpeakingMainComponent implements OnInit {
 			item['customClass'] = '';
 			console.log(item)
 		})
+		this.isOpen = true
+	}
+
+	@HostListener("window:beforeunload", ["$event"]) unloadHandler(event: Event) {
+		let result = confirm("Changes you made may not be saved.");
+		if (result) {
+		  // Do more processing...
+		}
+		event.returnValue = false; // stay on same page
 	}
 
 	getTestInfo() {
@@ -235,6 +246,7 @@ export class SpeakingMainComponent implements OnInit {
 	 */
 	initiateRecording(questionIndex) {
 		this.recording = true;
+		this.isStopOpen = true;
 		this.currentQuestion = this.questions[questionIndex];
 		let mediaConstraints = {
 			video: false,
@@ -269,7 +281,7 @@ export class SpeakingMainComponent implements OnInit {
 		this.formData.append('questiontype', '');
 		this.formData.append('audio', blob);
 		for(var pair of this.formData.entries()) {
-			console.log(pair);
+			// console.log(pair);
 		}
 	}
 	/**

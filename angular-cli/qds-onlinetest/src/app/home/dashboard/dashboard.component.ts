@@ -14,6 +14,7 @@ export class DashboardComponent implements OnInit {
 	logo:string = ''
 	dashboardTest = []
 	totalTime:number = 0
+	noTest: boolean = false;
 
 	constructor(private router: Router, private formBuilder: FormBuilder, public globals: Globals) { 
 		// console.log(localStorage.getItem('token'))
@@ -42,12 +43,13 @@ export class DashboardComponent implements OnInit {
 		})
 		.then(function (response) {
 			var res = response.data;
-			var totalTime = 0;
+			console.log(response);
 			that.dashboardTest = Object.keys(res).map((k) => res[k]);
-			// that.moveInArray(that.dashboardTest, 2, 0)
-			// that.moveInArray(that.dashboardTest, 3, 2)
-			// that.moveInArray(that.dashboardTest, 2, 1)
+			if(res.length == 0) {
+				that.noTest = true;
+			}
 			if(res[0].error) {
+				alert(res[0].error);
 				that.router.navigate(['/login'])
 			}
 			that.dashboardTest.map(test => {

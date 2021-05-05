@@ -12,6 +12,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ShareModule } from '../../shared.module';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { SpeakingTestMicroModalComponent } from './speaking-test-micro-modal/speaking-test-micro-modal.component';
+import { PopoverModule } from 'ngx-bootstrap/popover';
 
 @NgModule({
 declarations: [
@@ -29,7 +30,8 @@ imports: [
     ReactiveFormsModule,
     TabsModule.forRoot(),
     ModalModule.forRoot(),
-    ShareModule
+    ShareModule,
+    PopoverModule.forRoot()
 ]
 })
 export class SpeakingTestModule { }
