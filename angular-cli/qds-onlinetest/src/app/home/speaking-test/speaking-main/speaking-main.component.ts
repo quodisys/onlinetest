@@ -8,6 +8,7 @@ import { environment } from './../../../../environments/environment';
 declare var $: any;
 import * as RecordRTC from 'recordrtc';
 import { DomSanitizer } from '@angular/platform-browser';
+import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class SpeakingMainComponent implements OnInit {
 
 	@ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
 	@ViewChild('cd', { static: false }) private countdown: CountdownComponent;
+	@ViewChild('confirmSwal') private confirmSwal: SwalComponent;
 	logo:string = ''
 	topic:string
 	subtopic:string = ''
@@ -76,11 +78,19 @@ export class SpeakingMainComponent implements OnInit {
 	}
 
 	@HostListener("window:beforeunload", ["$event"]) unloadHandler(event: Event) {
-		let result = confirm("Changes you made may not be saved.");
+		let result = confirm("Are you sure you want to leave this test ?");
 		if (result) {
-		  // Do more processing...
+		  // Do more processing... 
 		}
 		event.returnValue = false; // stay on same page
+	}
+	
+	canDeactivate() {
+		if(!this.formIsSubmit) {
+			return confirm('Are you sure you want to leave this test ?');
+		} else {
+			return true
+		}
 	}
 
 	getTestInfo() {
@@ -152,14 +162,6 @@ export class SpeakingMainComponent implements OnInit {
 		});
 	}
 
-	canDeactivate() {
-		if(!this.formIsSubmit) {
-			return confirm('Are you sure you want to leave this test ?');
-		} else {
-			return true
-		}
-	}
-
 	counterEvent(e: CountdownEvent) {
 		if(e.action == 'done') {
 			this.formIsSubmit = true;
@@ -221,6 +223,7 @@ export class SpeakingMainComponent implements OnInit {
 				console.log(error);
 			});
 		}
+		console.log(that.questions);
 	}
 
 	changeTab(e) {

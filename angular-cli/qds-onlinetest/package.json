@@ -23,6 +23,7 @@
     "@angular/router": "~9.0.7",
     "@crystalui/angular-lightbox": "^1.1.8",
     "@ng-select/ng-select": "^6.1.0",
+    "@sweetalert2/ngx-sweetalert2": "^9.0.0",
     "axios": "^0.21.1",
     "bootstrap": "^4.5.3",
     "ngx-audio-player": "^11.0.2",
@@ -32,6 +33,7 @@
     "plyr": "^3.6.4",
     "recordrtc": "^5.6.1",
     "rxjs": "~6.5.4",
+    "sweetalert2": "^10.16.7",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
   },

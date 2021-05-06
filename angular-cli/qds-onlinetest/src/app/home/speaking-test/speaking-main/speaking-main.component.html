@@ -6,7 +6,7 @@
                     <div class="col-md-4 d-flex align-items-center">
                     </div>
                     <div class="col-md-4 flex-center">
-                        <a routerLink="/english-test">
+                        <a>
                             <img src="{{logo}}" alt="company logo">
                         </a>
                     </div>
@@ -53,6 +53,15 @@
                                     <img style="width: 70px;" src="/assets/images/recording.svg" />
                                 </button>
                                 <button *ngIf="finishRecord && questionType != 'last'" type="button" class="btn btn-main btn-sub mt-2" (click)="recordAgain()" [disabled]="isLoading">Record again</button>
+                                <swal
+                                    #confirmSwal
+                                    title="Delete?"
+                                    text="This cannot be undone"
+                                    icon="question"
+                                    [showCancelButton]="true"
+                                    [focusCancel]="true"
+                                    (confirm)="onSubmit()">
+                                </swal>
                             </div>
                         </div>
                     </tab>
