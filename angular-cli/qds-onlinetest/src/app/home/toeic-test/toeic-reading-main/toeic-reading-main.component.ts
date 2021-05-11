@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef  } from '@angular/core';
 import { PlyrComponent } from 'ngx-plyr';
 import * as Plyr from 'plyr'
 import { TabsetComponent } from 'ngx-bootstrap/tabs';
@@ -7,6 +7,7 @@ import { ReadingQuestions } from './example-questions';
 import { Router, ActivatedRoute } from '@angular/router';
 import axios from 'axios';
 import { environment } from './../../../../environments/environment';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-toeic-reading-main',
@@ -14,7 +15,7 @@ import { environment } from './../../../../environments/environment';
   styleUrls: ['./toeic-reading-main.component.scss']
 })
 export class ToeicReadingMainComponent implements OnInit {
-
+	modalRef: BsModalRef | null;
 	@ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
 	@ViewChild(PlyrComponent) plyr: PlyrComponent;
 	player: Plyr;
@@ -32,7 +33,7 @@ export class ToeicReadingMainComponent implements OnInit {
 	topic:string = "TOEIC Reading"
 	subtopic:string = ''
 	formIsSubmit:boolean = false;
-	constructor(private router: Router, private route: ActivatedRoute) { }
+	constructor(private router: Router, private route: ActivatedRoute, private modalService: BsModalService) { }
 
 	ngOnInit(): void {
 		this.logo = localStorage.getItem('logoUrl');
@@ -57,7 +58,9 @@ export class ToeicReadingMainComponent implements OnInit {
 		}
 		this.getTestInfo()
 	}
-
+	openModal(template: TemplateRef<any>) {
+		this.modalRef = this.modalService.show(template, { id: 1, class: 'modal-lg' });
+	}
 	canDeactivate() {
 		if(!this.formIsSubmit) {
 			return confirm('Are you sure you want to leave this test ?');
@@ -86,6 +89,10 @@ export class ToeicReadingMainComponent implements OnInit {
 			mainTest = mainTest.toeictests
 			mainTest = Object.keys(mainTest).map((k) => mainTest[k]);
 			mainTest = mainTest.find( x => x.topic == "TOEIC Reading")
+			if(mainTest.status == 'Done') {
+				that.formIsSubmit = true;
+				that.router.navigate(['toeic-test'])
+			}
 			that.testTime = mainTest.totaltime*60;
 			that.subtopic = mainTest.subtopic
 			that.config = {

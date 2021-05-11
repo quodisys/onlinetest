@@ -3,15 +3,15 @@
         <div class="col-md-12">
             <div class="branding countdown">
                 <div class="row">
-                    <div class="col-md-4 d-flex justify-content-start align-items-center">
+                    <div class="col-md-12 col-lg-4 d-flex justify-content-start align-items-center">
                         <!-- <a class="btn btn-primary btn-exit colorful" routerLink="/">
                             Exit
                         </a> -->
                     </div>
-                    <div class="col-md-4 flex-center">
+                    <div class="col-md-12 col-lg-4 flex-center">
                         <img src="{{logo}}" alt="company logo">
                     </div>
-                    <div class="col-md-4 d-flex justify-content-end">
+                    <div class="col-md-12 col-lg-4 d-flex justify-content-end">
                         <div class="countdown-wrapper">
                             <span>Time remaining</span>
                             <countdown class="timer" [config]="config" (event)="counterEvent($event)"></countdown>
@@ -56,9 +56,10 @@
                                             <!-- <img class="img-fluid" src="{{question.imageUrl}}" alt=""> -->
                                             <img src="{{question.imageUrl}}" style="cursor: pointer;"
                                                 class="img-fluid"
-                                                lightbox
-                                                backgroundOpacity="0.5"
-                                                [hideThumbnail]="false" />
+                                                (click)="openModal(template)" />
+                                            <ng-template #template>
+                                                <img src="{{question.imageUrl}}" class="img-fluid" />
+                                            </ng-template>
                                             <div class="footer-desc text-center mt-3"><i>Click on image to view full size</i></div>
                                         </div>
                                     </div>

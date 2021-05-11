@@ -3,15 +3,15 @@
         <div class="col-md-12">
             <div class="branding countdown">
                 <div class="row">
-                    <div class="col-md-4 d-flex justify-content-start align-items-center">
+                    <div class="col-md-12 col-lg-4 d-flex justify-content-start align-items-center">
                         <!-- <a class="btn btn-primary btn-exit colorful" routerLink="/">
                             Exit
                         </a> -->
                     </div>
-                    <div class="col-md-4 flex-center">
+                    <div class="col-md-12 col-lg-4 flex-center">
                         <img src="{{logo}}" alt="company logo">
                     </div>
-                    <div class="col-md-4 d-flex justify-content-end">
+                    <div class="col-md-12 col-lg-4 d-flex justify-content-end">
                         <div class="countdown-wrapper">
                             <span>Time remaining</span>
                             <countdown class="timer" [config]="config" (event)="counterEvent($event)"></countdown>
@@ -30,7 +30,7 @@
                         [customClass]="question.customClass">
                         <div class="test-content" [hidden]="resultPage">
                             <div class="part-section" *ngIf="question.type == 'direction'">Part {{question.part}}</div>
-                            <div class="player-wrapper" *ngIf="currentTabIndex == key">
+                            <div class="player-wrapper" *ngIf="currentTabIndex == key && !resultPage">
                                 <plyr style="display: block; width: 440px;" plyrTitle="Video 1" [plyrPlaysInline]="true" [plyrSources]="question.audio" plyrType="audio" (plyrInit)="player = $event" [plyrOptions]="options" class="disabled"></plyr>
                             </div>
                             <!-- Direction 1 -->
@@ -62,7 +62,6 @@
                                     <div class="col-md-12">
                                         <div class="part-section d-block w-100 text-left pl-4">{{question.question}}</div>
                                         <div class="question-wrapper pl-4 mt-4">
-                                            <!-- <div class="question">{{question.question}}</div> -->
                                             <div class="answer" style="margin-top: 20px;">
                                                 <div class="mb-3" *ngFor="let choice of question.answers; let choiceKey = index;">
                                                     <div class="radio">

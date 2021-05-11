@@ -577,6 +577,11 @@ input[type=checkbox] {
     }
     & .test-content .answer {
         font-size: 26px;
+        & .direction {
+            & img {
+                width: 100%;
+            }
+        }
     }
     & input[type=radio] + label:before {
         top: 8px;
@@ -991,6 +996,15 @@ plyr.disabled {
 html body.swal2-height-auto {
     height: 100% !important;
 }
+.lightbox-shown {
+    overflow: auto;
+    & .lightbox-container {
+        & img {
+            position: absolute;
+            top: 0;
+        }
+    }
+}
 @media (max-height: 800px) {
     .main-center {
         & .container {
@@ -998,5 +1012,30 @@ html body.swal2-height-auto {
                 margin-top: 0;
             }
         }
+    }
+}
+@media (max-width: 992px) {
+    .direction {
+        padding: 0 65px;
+    }
+}
+@media (max-width: 768px) {
+    .toeic-test .part-section {
+        margin-top: 15px;
+    }
+}
+@media (min-width: 992px) {
+    .container-lg, .container-md, .container-sm, .container {
+        max-width: 100%;
+    }
+}
+@media (min-width: 768px) {
+    .container-md, .container-sm, .container {
+        max-width: 100%;
+    }
+}
+@media (min-width: 1200px) {
+    .container-xl, .container-lg, .container-md, .container-sm, .container {
+        max-width: 1140px;
     }
 }

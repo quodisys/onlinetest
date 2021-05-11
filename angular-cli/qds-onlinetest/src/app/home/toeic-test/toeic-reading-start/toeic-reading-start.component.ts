@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import axios from 'axios';
 import { environment } from './../../../../environments/environment';
-
+import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-toeic-reading-start',
   templateUrl: './toeic-reading-start.component.html',
@@ -11,7 +11,7 @@ export class ToeicReadingStartComponent implements OnInit {
 	logo:string = ''
 	topic:string = ''
 	subtopic:string = ''
-	constructor() { }
+	constructor(private router: Router, private route: ActivatedRoute) { }
 
 	ngOnInit(): void {
 		this.logo = localStorage.getItem('logoUrl');
@@ -41,6 +41,10 @@ export class ToeicReadingStartComponent implements OnInit {
 			mainTest = mainTest.toeictests
 			mainTest = Object.keys(mainTest).map((k) => mainTest[k]);
 			mainTest = mainTest.find( x => x.topic == "TOEIC Reading")
+			//mainTest.status = ''
+			if(mainTest.status == 'Done') {
+				that.router.navigate(['toeic-test']);
+			}
 			that.topic = mainTest.topic
 			that.subtopic = mainTest.subtopic
 		})
