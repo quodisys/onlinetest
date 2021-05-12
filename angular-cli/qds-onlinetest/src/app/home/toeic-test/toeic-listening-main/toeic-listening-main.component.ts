@@ -95,7 +95,16 @@ export class ToeicListeningMainComponent implements OnInit {
 			that.subtopic = mainTest.subtopic
 			that.config = {
 				leftTime: that.testTime,
-				format: 'HH : mm : ss'
+				format: 'HH : mm : ss',
+				notify: 0
+			}
+			let storeListeningTime:any = localStorage.getItem('listeningTime');
+			if(localStorage.getItem('listeningTime') != null) {
+				that.config = {
+					leftTime: storeListeningTime / 1000,
+					format: 'HH : mm : ss',
+					notify: 0
+				}
 			}
 			that.getQuestion(that.topic)
 			that.submitForm['subtopic'] = mainTest.subtopic
@@ -177,7 +186,33 @@ export class ToeicListeningMainComponent implements OnInit {
 					})
 				}
 			})
+			let storeListeningAnswer = JSON.parse(localStorage.getItem('listeningAnswer'));
+			
+			if(localStorage.getItem('listeningAnswer') != null) {
+				that.submitForm = {...storeListeningAnswer};
+				that.submitForm.qa.map(item => {
+					if(item.answer != '') {
+						let index = that.listeningQuestions.findIndex(i => i.id == item.id)
+						console.log(index);
+						if(index < 0) {
+							that.listeningQuestions.map(rd => {
+								if(rd.type == "multiple-question") {
+									rd.questions.map(d1 => {
+										if(d1.id == item.id) {
+											d1.choice = item.answer
+										}
+									})
+								}
+							})
+						} else {
+							that.listeningQuestions[index].choice = item.answer
+						}
+					}
+				})
+			}
 			that.listeningQuestions[0].active = true
+			console.log(that.submitForm)
+			console.log(that.listeningQuestions)
 		})
 		.catch(function (error) {
 			console.log(error);
@@ -185,6 +220,10 @@ export class ToeicListeningMainComponent implements OnInit {
 	}
 
 	counterEvent(e: CountdownEvent) {
+		let timeleft:any = e.left
+		if(e.action == 'notify') {
+			localStorage.setItem('listeningTime', timeleft)
+		}
 		if(e.action == 'done') {
 			this.onSubmit();
 		}
@@ -273,6 +312,9 @@ export class ToeicListeningMainComponent implements OnInit {
 	submitAnswer(question, alphabet) {
 		let index = this.submitForm.qa.findIndex( x => x.id == question.id);
 		this.submitForm.qa[index].answer = alphabet;
+		localStorage.setItem('listeningAnswer', JSON.stringify(this.submitForm))
+		console.log(this.listeningQuestions);
+		console.log(this.submitForm);
 	}
 
 	onSubmit() {
@@ -287,6 +329,8 @@ export class ToeicListeningMainComponent implements OnInit {
 			data: JSON.stringify(this.submitForm)
 		})
 		.then(function (response) {
+			localStorage.removeItem('listeningTime')
+			localStorage.removeItem('listeningAnswer')
 			that.formIsSubmit = true;
 			that.router.navigate(['toeic-test/reading-start'])
 		})
