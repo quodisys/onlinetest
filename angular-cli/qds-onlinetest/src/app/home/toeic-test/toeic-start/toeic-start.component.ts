@@ -43,6 +43,7 @@ export class ToeicStartComponent implements OnInit {
 			console.log(mainTest);
 			// mainTest[0].status = '';
 			// mainTest[1].status = '';
+			mainTest.sort(function(x,y){ return x.topic == "TOEIC Reading" ? -1 : y.topic == "TOEIC Reading" ? 1 : 0; });
 			mainTest.map(item => {
 				if(item.topic == "TOEIC Listening" && item.status != 'Done') {
 					that.url = '/toeic-test/listening-start'

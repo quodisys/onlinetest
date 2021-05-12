@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, TemplateRef  } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef, HostListener  } from '@angular/core';
 import { PlyrComponent } from 'ngx-plyr';
 import * as Plyr from 'plyr'
 import { TabsetComponent } from 'ngx-bootstrap/tabs';
@@ -56,7 +56,7 @@ export class ToeicReadingMainComponent implements OnInit {
 			topic: this.topic,
 			qa: []
 		}
-		this.getTestInfo()
+		this.getTestInfo();
 	}
 	openModal(template: TemplateRef<any>) {
 		this.modalRef = this.modalService.show(template, { id: 1, class: 'modal-lg' });
@@ -89,15 +89,24 @@ export class ToeicReadingMainComponent implements OnInit {
 			mainTest = mainTest.toeictests
 			mainTest = Object.keys(mainTest).map((k) => mainTest[k]);
 			mainTest = mainTest.find( x => x.topic == "TOEIC Reading")
-			if(mainTest.status == 'Done') {
-				that.formIsSubmit = true;
-				that.router.navigate(['toeic-test'])
-			}
+			// if(mainTest.status == 'Done') {
+			// 	that.formIsSubmit = true;
+			// 	that.router.navigate(['toeic-test'])
+			// }
 			that.testTime = mainTest.totaltime*60;
 			that.subtopic = mainTest.subtopic
 			that.config = {
 				leftTime: that.testTime,
-				format: 'HH : mm : ss'
+				format: 'HH : mm : ss',
+				notify: 0
+			}
+			let storeReadingTime:any = localStorage.getItem('readingTime');
+			if(localStorage.getItem('readingTime') != null) {
+				that.config = {
+					leftTime: storeReadingTime / 1000,
+					format: 'HH : mm : ss',
+					notify: 0
+				}
 			}
 			that.getQuestion(that.topic)
 			that.submitForm['subtopic'] = that.subtopic
@@ -178,7 +187,32 @@ export class ToeicReadingMainComponent implements OnInit {
 					})
 				}
 			})
+			let storeReadingAnswer = JSON.parse(localStorage.getItem('readingAnswer'));
+			
+			if(localStorage.getItem('readingAnswer') != null) {
+				that.submitForm = {...storeReadingAnswer};
+				that.submitForm.qa.map(item => {
+					if(item.answer != '') {
+						let index = that.readingQuestions.findIndex(i => i.id == item.id)
+						if(index < 0) {
+							that.readingQuestions.map(rd => {
+								if(rd.type == "multiple-question") {
+									rd.questions.map(d1 => {
+										if(d1.id == item.id) {
+											d1.choice = item.answer
+										}
+									})
+								}
+							})
+						} else {
+							that.readingQuestions[index].choice = item.answer
+						}
+					}
+				})
+			}
 			that.readingQuestions[0].active = true
+			console.log(that.readingQuestions)
+			console.log(that.submitForm);
 		})
 		.catch(function (error) {
 			console.log(error);
@@ -186,6 +220,10 @@ export class ToeicReadingMainComponent implements OnInit {
 	}
 
 	counterEvent(e: CountdownEvent) {
+		let timeleft:any = e.left
+		if(e.action == 'notify') {
+			localStorage.setItem('readingTime', timeleft)
+		}
 		if(e.action == 'done') {
 			this.onSubmit();
 		}
@@ -196,6 +234,8 @@ export class ToeicReadingMainComponent implements OnInit {
 	submitAnswer(question, alphabet) {
 		let index = this.submitForm.qa.findIndex( x => x.id == question.id);
 		this.submitForm.qa[index].answer = alphabet;
+		localStorage.setItem('readingAnswer', JSON.stringify(this.submitForm))
+		// console.log(this.readingQuestions);
 		console.log(this.submitForm);
 	}
 	goTab(id) {
@@ -253,6 +293,8 @@ export class ToeicReadingMainComponent implements OnInit {
 			data: JSON.stringify(this.submitForm)
 		})
 		.then(function (response) {
+			localStorage.removeItem('readingTime')
+			localStorage.removeItem('readingAnswer')
 			that.formIsSubmit = true;
 			that.router.navigate(['toeic-test/result'])
 		})

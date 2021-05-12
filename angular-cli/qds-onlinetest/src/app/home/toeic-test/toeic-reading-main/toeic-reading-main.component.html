@@ -39,7 +39,7 @@
                                             <div class="answer" style="margin-top: 20px;">
                                                 <div class="mb-3" *ngFor="let choice of question.answers; let choiceKey = index;">
                                                     <div class="radio">
-                                                        <input class="checkbox-mask" id="question{{key}}-choice{{choiceKey}}" type="radio" [value]="choice" name="{{question.id}}" (change)="submitAnswer(question, choice.alphabet)">
+                                                        <input class="checkbox-mask" id="question{{key}}-choice{{choiceKey}}" type="radio" [value]="choice.alphabet" name="{{question.id}}" (change)="submitAnswer(question, choice.alphabet)" [(ngModel)]="question.choice">
                                                         <label for="question{{key}}-choice{{choiceKey}}">{{choice.answer}}</label>
                                                     </div>
                                                 </div>
@@ -72,7 +72,7 @@
                                                     <div class="answer" style="margin-top: 20px;">
                                                         <div class="mb-3" *ngFor="let choice of child.answers; let choiceKey = index;">
                                                             <div class="radio">
-                                                                <input class="checkbox-mask" id="child{{child.id}}-choice{{choiceKey}}" type="radio" [value]="choice" name="{{child.id}}" (change)="submitAnswer(child, choice.alphabet)">
+                                                                <input class="checkbox-mask" id="child{{child.id}}-choice{{choiceKey}}" type="radio" [value]="choice.alphabet" name="{{child.id}}" (change)="submitAnswer(child, choice.alphabet)" [(ngModel)]="child.choice">
                                                                 <label for="child{{child.id}}-choice{{choiceKey}}">{{choice.answer}}</label>
                                                             </div>
                                                         </div>
