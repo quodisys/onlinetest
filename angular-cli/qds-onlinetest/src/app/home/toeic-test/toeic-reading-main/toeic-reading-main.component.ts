@@ -89,10 +89,10 @@ export class ToeicReadingMainComponent implements OnInit {
 			mainTest = mainTest.toeictests
 			mainTest = Object.keys(mainTest).map((k) => mainTest[k]);
 			mainTest = mainTest.find( x => x.topic == "TOEIC Reading")
-			// if(mainTest.status == 'Done') {
-			// 	that.formIsSubmit = true;
-			// 	that.router.navigate(['toeic-test'])
-			// }
+			if(mainTest.status == 'Done') {
+				that.formIsSubmit = true;
+				that.router.navigate(['toeic-test'])
+			}
 			that.testTime = mainTest.totaltime*60;
 			that.subtopic = mainTest.subtopic
 			that.config = {
