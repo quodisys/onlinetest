@@ -1024,9 +1024,21 @@ html body.swal2-height-auto {
         margin-top: 15px;
     }
 }
+@media (min-width: 576px) {
+    .modal-dialog {
+        max-width: 90%;
+    }
+}
 @media (min-width: 992px) {
     .container-lg, .container-md, .container-sm, .container {
         max-width: 100%;
+    }
+    .modal-lg, .modal-xl {
+        max-width: 1200px;
+    }
+    .modal-content .reading-image {
+        max-width: 900px;
+        margin: auto;
     }
 }
 @media (min-width: 768px) {
