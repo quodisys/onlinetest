@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import axios from 'axios';
 import { environment } from './../../../../environments/environment';
 import { Router, ActivatedRoute } from '@angular/router';
+import { PlyrComponent } from 'ngx-plyr';
+import * as Plyr from 'plyr';
 
 @Component({
   selector: 'app-toeic-listening-start',
@@ -9,16 +11,31 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./toeic-listening-start.component.scss']
 })
 export class ToeicListeningStartComponent implements OnInit {
+	@ViewChild(PlyrComponent) plyr: PlyrComponent;
+	player: Plyr;
 	logo:string = ''
 	topic:string = ''
 	subtopic:string = ''
+	options:any
+	audio:any
 	constructor(private router: Router, private route: ActivatedRoute) { }
-
+	
 	ngOnInit(): void {
 		this.logo = localStorage.getItem('logoUrl');
 		if(this.logo == undefined || this.logo == '') {
 			this.logo = "https://qdsasia.com/wp-content/themes/qdstheme/assets/img/qds-logo-scaled.png"
 		}
+		this.audio = [
+			{
+				src: 'https://onlinetest.elsaspeak.com/questions/Listening-Test-Directions.mp3',
+				type: 'audio/mp3'
+			}
+		]
+		this.options = {
+			enabled: true,
+			controls: ['play', 'progress', 'current-time'],
+			autoplay: true
+		};
 		this.getTestInfo();
 	}
 
