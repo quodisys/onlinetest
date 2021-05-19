@@ -50,7 +50,7 @@ export class ToeicListeningStartComponent implements OnInit {
 			method: 'post',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 			url: environment.hostApi + '/candidates/allocatedtests.php',
-			  data: JSON.stringify(data)
+			data: JSON.stringify(data)
 		})
 		.then(function (response) {
 			var res = response.data;

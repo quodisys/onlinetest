@@ -1,4 +1,5 @@
 @import "~@ng-select/ng-select/themes/default.theme.css";
+@import '~highlight.js/styles/googlecode.css';
 /* You can add global styles to this file, and also import other style files */
 $color-white: #fff;
 $backgroud-blue-color: #171F48;
@@ -374,6 +375,10 @@ html, body {
         font-size: 32px;
         font-family: 'SFProMedium', sans-serif;
     }
+}
+
+[class^='hljs'], [class*='hljs']{
+    color: #000;
 }
 
 .reading {
@@ -1004,6 +1009,65 @@ html body.swal2-height-auto {
             top: 0;
         }
     }
+}
+pre {
+	display: flex;
+	margin-top: 0;
+	margin-bottom: 0;
+	word-wrap: break-word;
+	overflow: visible;
+	white-space: break-spaces;
+	code {
+		flex: 1;
+		line-height: 1.5em;
+		min-height: 100%;
+		padding: 1em 1.2em;
+		font-family: "SFProMedium", sans-serif;
+		&.hljs-line-numbers {
+			padding: 0;
+		}
+	}
+}
+
+
+/** Line numbers styles */
+.hljs {
+	// margin: 0 1em;
+	// padding: 10px;
+	// border: 1px solid gray;
+	padding: 0.1em 0;
+	border-radius: 4px;
+	transition: border ease 1s;
+	overflow: inherit;
+	background-color: transparent;
+}
+
+.hljs-ln {
+	padding: 8px 0;
+	tr {
+		&:first-child td {
+		padding-top: 8px !important;
+		}
+
+		&:last-child td {
+		padding-bottom: 8px !important;
+		}
+	}
+}
+
+/* for block of numbers */
+td.hljs-ln-numbers {
+	user-select: none;
+	text-align: center;
+	border-right: 1px solid gray;
+	vertical-align: top;
+	padding-right: 8px !important;
+	padding-left: 8px !important;
+}
+
+/* for block of code */
+td.hljs-ln-code {
+  	padding-left: 8px !important;
 }
 @media (max-height: 800px) {
     .main-center {

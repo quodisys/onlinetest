@@ -56,8 +56,6 @@ export class ReadingMainComponent implements OnInit {
 			format: 'mm : ss'
 		}
 		this.getTestInfo();
-		// this.getQuestion(this.topic)
-		
 		this.readingForm = {
 			answers : []
 		}

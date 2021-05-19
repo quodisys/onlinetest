@@ -152,6 +152,7 @@ export class TechnicalMainComponent implements OnInit {
 				});	
 			});
 			that.questions[0]['active'] = true;
+			console.log(that.questions);
 		})
 		.catch(function (error) {
 			console.log(error);
