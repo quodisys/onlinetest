@@ -28,7 +28,9 @@
                         [customClass]="question.customClass">
                         <div class="test-content" >
                             <div class="question">
-                                {{question.question}}
+                                <pre>
+                                    <code [highlight]="question.question" ></code>
+                                </pre>
                             </div>
                             <div class="answer">
                                 <div class="row">
