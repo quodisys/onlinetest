@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
 	error: string;
 
 	constructor(private router: Router, private activatedRoute: ActivatedRoute, private formBuilder: FormBuilder, public globals: Globals) { 
-		localStorage.clear();
+		//localStorage.clear();
 	}
 
 	ngOnInit() {

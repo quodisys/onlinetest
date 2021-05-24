@@ -1082,6 +1082,9 @@ td.hljs-ln-code {
     .direction {
         padding: 0 65px;
     }
+    .modal-content {
+        padding: 20px;
+    }
 }
 @media (max-width: 768px) {
     .toeic-test .part-section {
@@ -1099,6 +1102,9 @@ td.hljs-ln-code {
     }
     .modal-lg, .modal-xl {
         max-width: 1200px;
+    }
+    .modal-content {
+        padding: 35px 0;
     }
     .modal-content .reading-image {
         max-width: 900px;
