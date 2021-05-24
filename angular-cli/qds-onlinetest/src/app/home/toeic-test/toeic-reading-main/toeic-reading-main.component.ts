@@ -21,6 +21,7 @@ export class ToeicReadingMainComponent implements OnInit {
 	player: Plyr;
 	testTime:number
 	logo:string=''
+	email:string=''
 	config = {}
 	submitDisable = true;
 	readingQuestions:any = ReadingQuestions;
@@ -37,6 +38,7 @@ export class ToeicReadingMainComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.logo = localStorage.getItem('logoUrl');
+		this.email = localStorage.getItem('email');
 		if(this.logo == undefined || this.logo == '') {
 			this.logo = "https://qdsasia.com/wp-content/themes/qdstheme/assets/img/qds-logo-scaled.png"
 		}
@@ -100,7 +102,7 @@ export class ToeicReadingMainComponent implements OnInit {
 				format: 'HH : mm : ss',
 				notify: 0
 			}
-			let storeReadingTime:any = localStorage.getItem('readingTime');
+			let storeReadingTime:any = localStorage.getItem('readingTime_' + that.email);
 			if(localStorage.getItem('readingTime') != null) {
 				that.config = {
 					leftTime: storeReadingTime / 1000,
@@ -187,9 +189,9 @@ export class ToeicReadingMainComponent implements OnInit {
 					})
 				}
 			})
-			let storeReadingAnswer = JSON.parse(localStorage.getItem('readingAnswer'));
+			let storeReadingAnswer = JSON.parse(localStorage.getItem('readingAnswer_' + that.email));
 			
-			if(localStorage.getItem('readingAnswer') != null) {
+			if(localStorage.getItem('readingAnswer_' + that.email) != null) {
 				that.submitForm = {...storeReadingAnswer};
 				that.submitForm.qa.map(item => {
 					if(item.answer != '') {
@@ -222,7 +224,7 @@ export class ToeicReadingMainComponent implements OnInit {
 	counterEvent(e: CountdownEvent) {
 		let timeleft:any = e.left
 		if(e.action == 'notify') {
-			localStorage.setItem('readingTime', timeleft)
+			localStorage.setItem('readingTime_' + this.email, timeleft)
 		}
 		if(e.action == 'done') {
 			this.onSubmit();
@@ -234,7 +236,7 @@ export class ToeicReadingMainComponent implements OnInit {
 	submitAnswer(question, alphabet) {
 		let index = this.submitForm.qa.findIndex( x => x.id == question.id);
 		this.submitForm.qa[index].answer = alphabet;
-		localStorage.setItem('readingAnswer', JSON.stringify(this.submitForm))
+		localStorage.setItem('readingAnswer_' + this.email, JSON.stringify(this.submitForm))
 		// console.log(this.readingQuestions);
 		console.log(this.submitForm);
 	}
@@ -293,8 +295,8 @@ export class ToeicReadingMainComponent implements OnInit {
 			data: JSON.stringify(this.submitForm)
 		})
 		.then(function (response) {
-			localStorage.removeItem('readingTime')
-			localStorage.removeItem('readingAnswer')
+			localStorage.removeItem('readingTime_' + that.email)
+			localStorage.removeItem('readingAnswer_' + that.email)
 			that.formIsSubmit = true;
 			that.router.navigate(['toeic-test/result'])
 		})
