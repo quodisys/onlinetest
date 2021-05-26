@@ -88,7 +88,7 @@ export class ToeicListeningMainComponent implements OnInit {
 			mainTest = mainTest.toeictests
 			mainTest = Object.keys(mainTest).map((k) => mainTest[k]);
 			mainTest = mainTest.find( x => x.topic == "TOEIC Listening")
-			console.log(mainTest);
+			// console.log(mainTest);
 			if(mainTest.status == 'Done') {
 				that.formIsSubmit = true;
 				that.router.navigate(['toeic-test']);
@@ -195,7 +195,6 @@ export class ToeicListeningMainComponent implements OnInit {
 				that.submitForm.qa.map(item => {
 					if(item.answer != '') {
 						let index = that.listeningQuestions.findIndex(i => i.id == item.id)
-						console.log(index);
 						if(index < 0) {
 							that.listeningQuestions.map(rd => {
 								if(rd.type == "multiple-question") {
@@ -213,8 +212,8 @@ export class ToeicListeningMainComponent implements OnInit {
 				})
 			}
 			that.listeningQuestions[0].active = true
-			console.log(that.submitForm)
-			console.log(that.listeningQuestions)
+			// console.log(that.submitForm)
+			// console.log(that.listeningQuestions)
 		})
 		.catch(function (error) {
 			console.log(error);
@@ -266,6 +265,7 @@ export class ToeicListeningMainComponent implements OnInit {
 		} else if (tabId == questionCount) {
 			that.resultPage = true;
 		}
+		localStorage.setItem('listeningAnswer_' + this.email, JSON.stringify(this.submitForm))
 	}
 
 	changeTab(e) {
@@ -315,8 +315,8 @@ export class ToeicListeningMainComponent implements OnInit {
 		let index = this.submitForm.qa.findIndex( x => x.id == question.id);
 		this.submitForm.qa[index].answer = alphabet;
 		localStorage.setItem('listeningAnswer_' + this.email, JSON.stringify(this.submitForm))
-		console.log(this.listeningQuestions);
-		console.log(this.submitForm);
+		// console.log(this.listeningQuestions);
+		// console.log(this.submitForm);
 	}
 
 	onSubmit() {

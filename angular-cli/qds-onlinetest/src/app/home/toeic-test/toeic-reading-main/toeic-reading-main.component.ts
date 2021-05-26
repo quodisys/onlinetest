@@ -103,7 +103,7 @@ export class ToeicReadingMainComponent implements OnInit {
 				notify: 0
 			}
 			let storeReadingTime:any = localStorage.getItem('readingTime_' + that.email);
-			if(localStorage.getItem('readingTime') != null) {
+			if(localStorage.getItem('readingTime_' + that.email) != null) {
 				that.config = {
 					leftTime: storeReadingTime / 1000,
 					format: 'HH : mm : ss',
@@ -213,8 +213,8 @@ export class ToeicReadingMainComponent implements OnInit {
 				})
 			}
 			that.readingQuestions[0].active = true
-			console.log(that.readingQuestions)
-			console.log(that.submitForm);
+			// console.log(that.readingQuestions)
+			// console.log(that.submitForm);
 		})
 		.catch(function (error) {
 			console.log(error);
@@ -238,7 +238,7 @@ export class ToeicReadingMainComponent implements OnInit {
 		this.submitForm.qa[index].answer = alphabet;
 		localStorage.setItem('readingAnswer_' + this.email, JSON.stringify(this.submitForm))
 		// console.log(this.readingQuestions);
-		console.log(this.submitForm);
+		// console.log(this.submitForm);
 	}
 	goTab(id) {
 		this.resultPage = false;
@@ -282,6 +282,7 @@ export class ToeicReadingMainComponent implements OnInit {
 		} else if (tabId == questionCount) {
 			that.resultPage = true;
 		}
+		localStorage.setItem('readingAnswer_' + this.email, JSON.stringify(this.submitForm))
 	}
 	onSubmit() {
 		let that =  this;
