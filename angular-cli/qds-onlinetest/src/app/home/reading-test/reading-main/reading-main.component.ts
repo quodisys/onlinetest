@@ -88,6 +88,11 @@ export class ReadingMainComponent implements OnInit {
 			var engtest = test.find(x => x.category == "English Test").engtests;
 			engtest = Object.keys(engtest).map((k) => engtest[k]);
 			that.readingTestInfo = engtest.find(x => x.topic == "Reading Test");
+			if(that.readingTestInfo.staus = 'Done') {
+				that.formIsSubmit = true;
+				that.router.navigate(['/english-test'])
+			}
+			console.log(that.readingTestInfo)
 			that.testTime = that.readingTestInfo.totaltime*60;
 			that.subtopic = that.readingTestInfo.subtopic
 			that.config = {
