@@ -24,6 +24,7 @@ export class SpeakingMainComponent implements OnInit {
 	logo:string = ''
 	topic:string
 	subtopic:string = ''
+	email:string = ''
 	isLoading:boolean = false;
 	submitForm:any
 	formAnswer: IQTestForm;
@@ -54,6 +55,7 @@ export class SpeakingMainComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.logo = localStorage.getItem('logoUrl');
+		this.email = localStorage.getItem('email');
 		if(this.logo == undefined || this.logo == '') {
 			this.logo = "https://qdsasia.com/wp-content/themes/qdstheme/assets/img/qds-logo-scaled.png"
 		}
@@ -112,13 +114,31 @@ export class SpeakingMainComponent implements OnInit {
 			var engtest = test.find(x => x.category == "English Test").engtests;
 			engtest = Object.keys(engtest).map((k) => engtest[k]);
 			that.speakingTestInfo = engtest.find(x => x.topic == "Speaking Test");
+			if(that.speakingTestInfo.status = 'Done') {
+				that.formIsSubmit = true;
+				that.router.navigate(['/english-test'])
+			}
+			console.log(that.speakingTestInfo);
 			that.subtopic = that.speakingTestInfo.subtopic
 			that.testTime = that.speakingTestInfo.totaltime*60;
 			that.config = {
 				leftTime: that.testTime,
-				format: 'mm : ss'
+				format: 'mm : ss',
+				notify: 0
 			}
-			that.getQuestion(that.topic)
+			let storeSpeakingTime:any = localStorage.getItem('speakingTime_'+ that.email);
+			if(localStorage.getItem('speakingTime_'+ that.email) != null) {
+				that.config = {
+					leftTime: storeSpeakingTime / 1000,
+					format: 'HH : mm : ss',
+					notify: 0
+				}
+			}
+			if(localStorage.getItem('speakingTestQuestion_'+ that.email) == null) {
+				that.getQuestion(that.topic)
+			} else {
+				that.questions = JSON.parse(localStorage.getItem('speakingTestQuestion_'+ that.email));
+			}
 		})
 		.catch(function (error) {
 			if(error) {
@@ -156,6 +176,7 @@ export class SpeakingMainComponent implements OnInit {
 				that.questions.push(d1);
 			});
 			that.questions[0]['active'] = true;
+			localStorage.setItem('speakingTestQuestion_'+ that.email, JSON.stringify(that.questions))
 		})
 		.catch(function (error) {
 			console.log(error);
@@ -163,9 +184,12 @@ export class SpeakingMainComponent implements OnInit {
 	}
 
 	counterEvent(e: CountdownEvent) {
+		let timeleft:any = e.left
+		if(e.action == 'notify') {
+			localStorage.setItem('speakingTime_' + this.email, timeleft)
+		}
 		if(e.action == 'done') {
-			this.formIsSubmit = true;
-			this.router.navigate(['/speaking-test/result'])
+			this.onSubmit();
 		}
 	}
 
@@ -179,6 +203,8 @@ export class SpeakingMainComponent implements OnInit {
 			if(tabId < questionCount) {
 				setTimeout(function() {
 					that.staticTabs.tabs[tabId].active = true;
+					that.questions[key + 1].active = true;
+					localStorage.setItem('speakingTestQuestion_'+ that.email, JSON.stringify(that.questions))
 				},500)
 			}
 		} else {
@@ -199,6 +225,8 @@ export class SpeakingMainComponent implements OnInit {
 					if(last) {
 						that.formIsSubmit = true;
 						that.router.navigate(['/speaking-test/result'])
+						localStorage.removeItem('speakingTime_' + that.email)
+						localStorage.removeItem('speakingTestQuestion_' + that.email)
 					} else {
 						that.countdown.resume();
 						that.finishRecord = false;
@@ -207,6 +235,8 @@ export class SpeakingMainComponent implements OnInit {
 						if(tabId < questionCount) {
 							setTimeout(function() {
 								that.staticTabs.tabs[tabId].active = true;
+								that.questions[key + 1].active = true;
+								localStorage.setItem('speakingTestQuestion_'+ that.email, JSON.stringify(that.questions))
 							},500)
 						}
 					}
@@ -223,7 +253,7 @@ export class SpeakingMainComponent implements OnInit {
 				console.log(error);
 			});
 		}
-		console.log(that.questions);
+		localStorage.setItem('speakingTestQuestion_'+ that.email, JSON.stringify(that.questions))
 	}
 
 	changeTab(e) {
