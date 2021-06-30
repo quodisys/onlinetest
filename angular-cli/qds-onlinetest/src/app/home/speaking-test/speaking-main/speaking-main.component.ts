@@ -114,7 +114,8 @@ export class SpeakingMainComponent implements OnInit {
 			var engtest = test.find(x => x.category == "English Test").engtests;
 			engtest = Object.keys(engtest).map((k) => engtest[k]);
 			that.speakingTestInfo = engtest.find(x => x.topic == "Speaking Test");
-			if(that.speakingTestInfo.status = 'Done') {
+
+			if(that.speakingTestInfo.status === 'Done') {
 				that.formIsSubmit = true;
 				that.router.navigate(['/english-test'])
 			}
