@@ -29,14 +29,14 @@
                             <div class="question-choices" *ngIf="question.type == 'radio'">
                                 <ul>
                                     <li *ngFor="let choice of question.answers; let choiceKey = index;">
-                                        <input class="checkbox-mask" id="question{{i}}-{{key}}-choice{{choiceKey}}" type="radio" [value]="choice" name="{{question.id}}" (click)="submitAnswer(question, choice.alphabet)">
+                                        <input class="checkbox-mask" id="question{{i}}-{{key}}-choice{{choiceKey}}" type="radio" [value]="choice.alphabet" name="{{question.id}}" (click)="submitAnswer(question, choice.alphabet)" [(ngModel)]="question.choice">
                                         <label for="question{{i}}-{{key}}-choice{{choiceKey}}">{{choice.answer}}</label>
                                     </li>
                                 </ul>
                             </div>
                             <div class="question-text text-type" *ngIf="question.type == 'textbox'">
                                 <label for="question-{{i}}-{{key}}">Answer: </label>
-                                <input class="form-control question-type-text" id="question-{{i}}-{{key}}" type="text" (change)="submitAnswer(question, $event.target.value)" name="question-{{key + 1}}">
+                                <input class="form-control question-type-text" id="question-{{i}}-{{key}}" type="text" (change)="submitAnswer(question, $event.target.value)" name="question-{{key + 1}}" [(ngModel)]="question.choice">
                             </div>
                         </div>
                     </div>

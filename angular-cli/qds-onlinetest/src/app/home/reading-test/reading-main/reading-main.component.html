@@ -28,7 +28,7 @@
                                 <li *ngFor="let choice of question.answers; let choiceKey = index;">
                                     <!-- <input class="checkbox-mask" id="question{{key}}-choice{{choiceKey}}" type="radio" [value]="choice" [(ngModel)]="readingForm.answers[key]" name="question-{{key + 1}}">
                                     <label for="question{{key}}-choice{{choiceKey}}">{{choice.answer}}</label> -->
-                                    <input class="checkbox-mask" id="question{{key}}-choice{{choiceKey}}" type="radio" [value]="choice" name="{{question.id}}" (change)="submitAnswer(question, choice.alphabet)">
+                                    <input class="checkbox-mask" id="question{{key}}-choice{{choiceKey}}" type="radio" [value]="choice.alphabet" name="{{question.id}}" (change)="submitAnswer(question, choice.alphabet)" [(ngModel)]="question.choice">
                                     <label for="question{{key}}-choice{{choiceKey}}">{{choice.answer}}</label>
                                 </li>
                             </ul>

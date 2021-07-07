@@ -28,6 +28,7 @@ export class ListeningMainComponent implements OnInit {
 
 	isSticky: boolean = false;
 	formIsSubmit = false;
+	email: string;
 
 	@HostListener('window:scroll', ['$event'])
 	checkScroll() {
@@ -48,6 +49,7 @@ export class ListeningMainComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.logo = localStorage.getItem('logoUrl');
+		this.email = localStorage.getItem('email');
 		if(this.logo == undefined || this.logo == '') {
 			this.logo = "https://qdsasia.com/wp-content/themes/qdstheme/assets/img/qds-logo-scaled.png"
 		}
@@ -105,9 +107,22 @@ export class ListeningMainComponent implements OnInit {
 			that.subtopic = that.listeningTestInfo.subtopic
 			that.config = {
 				leftTime: that.testTime,
-				format: 'mm : ss'
+				format: 'mm : ss',
+				notify: 0
 			}
-			that.getQuestion(that.topic);
+			if(that.listeningTestInfo.status === 'Done') {
+				that.formIsSubmit = true;
+				that.router.navigate(['/english-test'])
+			}
+			let storeListeningTimeEng:any = localStorage.getItem('listeningTimeEng_'+ that.email);
+			if(localStorage.getItem('listeningTimeEng_'+ that.email) != null) {
+				that.config = {
+					leftTime: storeListeningTimeEng / 1000,
+					format: 'mm : ss',
+					notify: 0
+				}
+			}
+			that.getQuestion(that.topic)
 		})
 		.catch(function (error) {
 			if(error) {
@@ -149,7 +164,8 @@ export class ListeningMainComponent implements OnInit {
 						id: question.id,
 						question: question.question,
 						answers: [],
-						type: question.type
+						type: question.type,
+						choice: ''
 					}
 					questionPart1Orinal[i].answers.map((a, i) => {
 						var alpha = (i+10).toString(36).toUpperCase();
@@ -171,7 +187,8 @@ export class ListeningMainComponent implements OnInit {
 						id: question.id,
 						question: question.question,
 						answers: [],
-						type: question.type
+						type: question.type,
+						choice: ''
 					}
 					questionPart2Orinal[i].answers.map((a, i) => {
 						var alpha = (i+10).toString(36).toUpperCase();
@@ -226,6 +243,18 @@ export class ListeningMainComponent implements OnInit {
 					that.submitForm.qa.push(d2);
 				})
 			})
+			if(localStorage.getItem('listeningTestQuestionEng_'+that.email) != null) {
+				that.submitForm = JSON.parse(localStorage.getItem('listeningTestQuestionEng_'+that.email))
+				that.vocabularyTest.map(testSection => {
+					testSection.questions.map(question => {
+						that.submitForm.qa.map(item => {
+							if(item.id == question.id) {
+								question.choice = item.answer;
+							}
+						})
+					})
+				})
+			}
 		})
 		.catch(function (error) {
 			console.log(error);
@@ -250,10 +279,14 @@ export class ListeningMainComponent implements OnInit {
 		} else {
 			this.submitForm.qa[index].answer = answer;
 		}
-		console.log(this.submitForm);
+		localStorage.setItem('listeningTestQuestionEng_'+this.email, JSON.stringify(this.submitForm))
 	}
 	  
 	counterEvent(e: CountdownEvent) {
+		let timeleft:any = e.left
+		if(e.action == 'notify') {
+			localStorage.setItem('listeningTimeEng_' + this.email, timeleft)
+		}
 		if(e.action == 'done') {
 			this.onSubmit();
 		}
@@ -288,6 +321,8 @@ export class ListeningMainComponent implements OnInit {
 		.then(function (response) {
 			console.log(that.submitForm)
 			that.formIsSubmit = true;
+			localStorage.removeItem('listeningTimeEng_' + that.email)
+			localStorage.removeItem('listeningTestQuestionEng_' + that.email)
 			that.router.navigate(['/listening-test/result'])
 		})
 		.catch(function (error) {
