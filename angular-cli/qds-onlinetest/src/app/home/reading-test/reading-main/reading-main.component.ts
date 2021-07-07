@@ -13,6 +13,7 @@ export class ReadingMainComponent implements OnInit {
 	logo:string = ''
 	readingForm: any;
 	isSticky: boolean = false;
+	email: string;
 
 	@HostListener('window:scroll', ['$event'])
 	checkScroll() {
@@ -40,6 +41,7 @@ export class ReadingMainComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.logo = localStorage.getItem('logoUrl');
+		this.email = localStorage.getItem('email');
 		if(this.logo == undefined || this.logo == '') {
 			this.logo = "https://qdsasia.com/wp-content/themes/qdstheme/assets/img/qds-logo-scaled.png"
 		}
@@ -92,12 +94,20 @@ export class ReadingMainComponent implements OnInit {
 				that.formIsSubmit = true;
 				that.router.navigate(['/english-test'])
 			}
-			console.log(that.readingTestInfo)
 			that.testTime = that.readingTestInfo.totaltime*60;
 			that.subtopic = that.readingTestInfo.subtopic
 			that.config = {
 				leftTime: that.testTime,
-				format: 'mm : ss'
+				format: 'mm : ss',
+				notify: 0
+			}
+			let storeReadingTimeEng:any = localStorage.getItem('readingTimeEng_'+ that.email);
+			if(localStorage.getItem('readingTimeEng_'+ that.email) != null) {
+				that.config = {
+					leftTime: storeReadingTimeEng / 1000,
+					format: 'mm : ss',
+					notify: 0
+				}
 			}
 			that.getQuestion(that.topic)
 			console.log(that.readingTestInfo);
@@ -137,6 +147,7 @@ export class ReadingMainComponent implements OnInit {
 					id: item.id,
 					question: item.question,
 					type: item.type,
+					choice: '',
 					answers: []
 				}
 				var d2 = {
@@ -154,6 +165,18 @@ export class ReadingMainComponent implements OnInit {
 					that.questions[index].answers.push(data);
 				});	
 			});
+			if(localStorage.getItem('readingTestQuestionEng_'+that.email) != null) {
+				that.submitForm = JSON.parse(localStorage.getItem('readingTestQuestionEng_'+that.email))
+				console.log(that.questions);
+				console.log(that.submitForm);
+				that.submitForm.qa.map(item => {
+					that.questions.map(q => {
+						if(q.id == item.id) {
+							q.choice = item.answer
+						}
+					})
+				})
+			}
 			console.log(that.questions);
 		})
 		.catch(function (error) {
@@ -172,10 +195,16 @@ export class ReadingMainComponent implements OnInit {
 			})
 			this.submitForm.qa[index].answer = answerString.join();
 		}
+		localStorage.setItem('readingTestQuestionEng_'+this.email, JSON.stringify(this.submitForm))
 		console.log(this.submitForm)
+		console.log(this.questions)
 	}
 
 	counterEvent(e: CountdownEvent) {
+		let timeleft:any = e.left
+		if(e.action == 'notify') {
+			localStorage.setItem('readingTimeEng_' + this.email, timeleft)
+		}
 		if(e.action == 'done') {
 			this.onSubmit();
 		}
@@ -217,6 +246,8 @@ export class ReadingMainComponent implements OnInit {
 		.then(function (response) {
 			console.log(that.submitForm)
 			that.formIsSubmit = true;
+			localStorage.removeItem('readingTimeEng_' + that.email)
+			localStorage.removeItem('readingTestQuestionEng_' + that.email)
 			that.router.navigate(['/reading-test/result'])
 		})
 		.catch(function (error) {
