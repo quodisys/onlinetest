@@ -35,7 +35,7 @@
                                     <div *ngIf="question.type != 'text'">
                                         <div class="col-md-12 mb-3" *ngFor="let choice of question.answers; let choiceKey = index;" >
                                             <div *ngIf="question.type == 'radio'" class="radio">
-                                                <input class="checkbox-mask" id="question{{key}}-choice{{choiceKey}}" type="radio" [value]="choice" name="{{question.id}}" (click)="showNextQuestion(key)" (change)="submitAnswer(question, choice.alphabet)">
+                                                <input class="checkbox-mask" id="question{{key}}-choice{{choiceKey}}" type="radio" [value]="choice.alphabet" name="{{question.id}}" (click)="showNextQuestion(key)" (change)="submitAnswer(question, choice.alphabet)" [(ngModel)]="question.choice">
                                                 <label for="question{{key}}-choice{{choiceKey}}">{{choice.answer}}</label>
                                             </div>
                                             <div *ngIf="question.type == 'checkbox'" class="md-checkbox">

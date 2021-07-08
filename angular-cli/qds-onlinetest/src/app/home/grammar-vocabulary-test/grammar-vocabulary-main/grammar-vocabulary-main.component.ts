@@ -26,10 +26,12 @@ export class GrammarVocabularyMainComponent implements OnInit {
 	vocabularyTestInfo:any
 	submitForm:any
 	formIsSubmit = false;
+	email: string;
 
 	constructor(private router: Router) { }
 
 	ngOnInit(): void {
+		this.email = localStorage.getItem('email');
 		this.logo = localStorage.getItem('logoUrl');
 		if(this.logo == undefined || this.logo == '') {
 			this.logo = "https://qdsasia.com/wp-content/themes/qdstheme/assets/img/qds-logo-scaled.png"
@@ -86,10 +88,32 @@ export class GrammarVocabularyMainComponent implements OnInit {
 			that.testTime = that.vocabularyTestInfo.totaltime*60;
 			that.config = {
 				leftTime: that.testTime,
-				format: 'mm : ss'
+				format: 'mm : ss',
+				notify: 0
 			}
-			that.getQuestion(that.topic)
-			console.log(that.vocabularyTestInfo);
+			let storeGrammaTime:any = localStorage.getItem('grammaTime_'+ that.email);
+			if(storeGrammaTime != null) {
+				that.config = {
+					leftTime: storeGrammaTime / 1000,
+					format: 'mm : ss',
+					notify: 0
+				}
+			}
+			let grammaQuestion = JSON.parse(localStorage.getItem('grammaQuestions_'+ that.email))
+			if(grammaQuestion != null) {
+				that.questions = grammaQuestion;
+				
+				let storedGrammaAnswer = JSON.parse(localStorage.getItem('grammaAnswer_' + that.email));
+				if(storedGrammaAnswer != null) {
+					that.submitForm = {...storedGrammaAnswer};
+					that.submitForm.qa.map(item => {
+						let index = that.questions.findIndex(i => i.id == item.id)
+						that.questions[index].choice = item.answer;
+					})
+				}
+			} else {
+				that.getQuestion(that.topic)
+			}
 		})
 		.catch(function (error) {
 			if(error) {
@@ -122,7 +146,8 @@ export class GrammarVocabularyMainComponent implements OnInit {
 					id: item.id,
 					question: item.question,
 					type: item.type,
-					answers: []
+					answers: [],
+					choice: ''
 				}
 				var d2 = {
 					id: parseInt(item.id),
@@ -140,6 +165,8 @@ export class GrammarVocabularyMainComponent implements OnInit {
 				});	
 			});
 			that.questions[0]['active'] = true;
+			localStorage.setItem('grammaQuestions_'+ that.email, JSON.stringify(that.questions));
+			console.log(that.questions);
 		})
 		.catch(function (error) {
 			console.log(error);
@@ -147,6 +174,10 @@ export class GrammarVocabularyMainComponent implements OnInit {
 	}
 	  
 	counterEvent(e: CountdownEvent) {
+		let timeleft:any = e.left
+		if(e.action == 'notify') {
+			localStorage.setItem('grammaTime_' + this.email, timeleft)
+		}
 		if(e.action == 'done') {
 			this.onSubmit();
 		}
@@ -160,13 +191,18 @@ export class GrammarVocabularyMainComponent implements OnInit {
 		if(tabId < questionCount) {
 			setTimeout(function() {
 				that.staticTabs.tabs[tabId].active = true;
+				that.questions[key + 1].active = true;
+				localStorage.setItem('grammaQuestions_'+ that.email, JSON.stringify(that.questions));
 			},500)
 		}
+		localStorage.setItem('grammaAnswer_' + this.email, JSON.stringify(this.submitForm))
+		localStorage.setItem('grammaQuestions_'+ this.email, JSON.stringify(this.questions));
 	}
 
 	questionSelect(question, choiceKey) {
 		var filterAnswer = question.answers.filter((item) => item.selected)
 		this.submitAnswer(question, filterAnswer)
+		
 	}
 
 	submitAnswer(question, answer) {
@@ -183,7 +219,9 @@ export class GrammarVocabularyMainComponent implements OnInit {
 		if(this.submitForm.qa.slice(-1)[0].answer != '') {
 			this.submitDisable = false;
 		}
-		console.log(this.submitForm)
+		localStorage.setItem('grammaAnswer_' + this.email, JSON.stringify(this.submitForm))
+		
+		console.log(this.questions);
 	}
 
 	changeTab(e) {
@@ -200,6 +238,9 @@ export class GrammarVocabularyMainComponent implements OnInit {
 		})
 		.then(function (response) {
 			that.formIsSubmit = true;
+			localStorage.removeItem('grammaAnswer_' + that.email)
+			localStorage.removeItem('grammaQuestions_' + that.email)
+			localStorage.removeItem('grammaTime_' + that.email)
 			that.router.navigate(['/grammar-vocabulary-test/result'])
 		})
 		.catch(function (error) {
