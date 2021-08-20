@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import axios from 'axios';
 import { environment } from './../../../../environments/environment';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-technical-start',
@@ -13,7 +14,9 @@ export class TechnicalStartComponent implements OnInit {
 	technicalTest:any
 	testSelected:string
 
-    constructor(private router: Router) { }
+    constructor(private router: Router, private translate: TranslateService) { 
+		translate.use("EN");
+	}
 
     ngOnInit(): void {
 		this.logo = localStorage.getItem('logoUrl');
@@ -21,7 +24,17 @@ export class TechnicalStartComponent implements OnInit {
 			this.logo = "https://qdsasia.com/wp-content/themes/qdstheme/assets/img/qds-logo-scaled.png"
 		}
 		this.getTestTopic();
+		this.checkLanguage();
     }
+
+	checkLanguage() {
+		let languageStore = localStorage.getItem('language');
+		if(languageStore) {
+			this.translate.use(languageStore);
+		} else {
+			this.translate.use("EN");
+		}
+	}
 
 	initiateTest() {
 		let data = {

@@ -1,7 +1,19 @@
 {
     "APP": {
         "save": "SAVE",
-        "password": "Password"
+        "password": "Password",
+        "start": "Start",
+        "next": "Next",
+        "title": "ONLINE TEST PLATFORM",
+        "time": "Time",
+        "Minute": "Minute",
+        "minutes": "minutes",
+        "aptitudeTest": "APTITUDE TEST",
+        "iqTest": "IQ TEST",
+        "englishTest": "ENGLISH TEST",
+        "technicalTest": "TECHNICAL TEST",
+        "toeicTest": "TOEIC TEST",
+        "answerSheet": "ANSWER SHEET"
     },
     "LOGIN": {
         "title": "ONLINE TEST PLATFORM",
@@ -18,5 +30,37 @@
         "jobPostLink": "Job Post Link",
         "linkedInProfile": "LinkedIn Profile",
         "skills": "Skills"
+    },
+    "DASHBOARD": {
+        "clickIcon1": "Click the icon to take your test, you have absolutely",
+        "clickIcon2": "minutes to do all of the tests below",
+        "noTest": "No tests allocated",
+        "backHome": "BACK TO HOMEPAGE"
+    },
+    "INSTRUCTION": {
+        "timeLimit": "The time limit for this test can be found at the top right corner.",
+        "readQuestion": "Read the following questions and select the best answer.",
+        "haveComplete": "Once you have completed the test, ",
+        "haveComplete2": "click submit to continue.",
+        "chooseTest": "Please select a test"
+    },
+    "TOEIC": {
+        "title": "TOEIC Listening and Reading Test",
+        "desc1": "This test assesses English-language listening and reading skills.",
+        "desc2": "The entire test is 200 questions long and will last 129 minutes. There are 4",
+        "desc3": "parts in the Listening Test section (100 questions) and 3 parts in the",
+        "desc4": "Reading Test section (100 questions).",
+        "listeningTest": "LISTENING TEST",
+        "readingTest": "READING TEST",
+        "takeTest": "Take the test",
+        "instruction1-1": "Click on the",
+        "instruction1-2": "button at the bottom to move to the next question(s).",
+        "instruction2-1": "You can click on the",
+        "instruction2-2": "icon at the bottom left corner to go back to",
+        "instruction2-3": "previous questions.",
+        "instruction3-1": "There may be more than 1 question on the same screen.",
+        "instruction3-2": "SCROLL DOWN",
+        "instruction3-3": "to answer",
+        "instruction3-4": "all questions on the screen."
     }
 }
