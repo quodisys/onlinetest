@@ -4,13 +4,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AuthComponent } from './auth.component';
 import { LoginComponent } from './login/login.component';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
 
 @NgModule({
 imports: [
 	CommonModule, 
 	RouterModule, 
 	FormsModule, 
-	ReactiveFormsModule
+	ReactiveFormsModule,
+	ButtonsModule.forRoot()
 ],
 declarations: [
 	AuthComponent,

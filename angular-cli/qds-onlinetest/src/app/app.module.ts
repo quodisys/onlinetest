@@ -10,6 +10,15 @@ import { HomeModule } from './home/home.module';
 import { AuthGuard } from './guards/auth.guard';
 import { Globals } from './home/globalsVar';
 import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
+// import ngx-translate and the http loader
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
+// AoT requires an exported function for factories
+export function HttpLoaderFactory(httpClient: HttpClient) {
+  return new TranslateHttpLoader(httpClient);
+}
 
 @NgModule({
   declarations: [
@@ -23,7 +32,17 @@ import { HighlightModule, HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
     FormsModule,
     ReactiveFormsModule,
     HomeModule,
-    HighlightModule
+    HighlightModule,
+    ButtonsModule.forRoot(),
+    // ngx-translate and the loader module
+    HttpClientModule,
+    TranslateModule.forRoot({
+        loader: {
+            provide: TranslateLoader,
+            useFactory: HttpLoaderFactory,
+            deps: [HttpClient]
+        }
+    })
   ],
   providers: [AuthGuard,Globals,[
     {

@@ -4,6 +4,7 @@ import { environment } from './../../../environments/environment';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Globals } from "./../../home/globalsVar";
 import axios from 'axios';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
@@ -19,9 +20,10 @@ export class LoginComponent implements OnInit {
 	cl: string;
 	ca: string;
 	error: string;
+	languages;
 
-	constructor(private router: Router, private activatedRoute: ActivatedRoute, private formBuilder: FormBuilder, public globals: Globals) { 
-		//localStorage.clear();
+	constructor(private router: Router, private activatedRoute: ActivatedRoute, private formBuilder: FormBuilder, public globals: Globals, private translate: TranslateService) { 
+		
 	}
 
 	ngOnInit() {
@@ -33,9 +35,12 @@ export class LoginComponent implements OnInit {
 		localStorage.setItem('cl', this.cl);
 		this.loginForm = this.formBuilder.group({
             email: ['', [Validators.required, Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$")]],
-            password: ['', [Validators.required, Validators.minLength(6)]]
+            password: ['', [Validators.required, Validators.minLength(6)]],
+			lang: ['EN', [Validators.required]]
 		})
+		this.checkLanguage()
 		this.getInfo()
+		this.getLang()
 	}
 
 	get f() { return this.loginForm.controls; }
@@ -63,6 +68,42 @@ export class LoginComponent implements OnInit {
 		});
 	}
 
+	getLang() {
+		let that = this
+		axios({
+			method: 'get',
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			url: environment.hostApi + '/candidates/getavailablelang.php'
+		})
+		.then(function (response) {
+			that.languages = response.data
+			that.languages.map(item => {
+				item['icon'] = environment.hostApi + item.icon
+			})
+			console.log(that.languages);
+		})
+		.catch(function (error) {
+			console.log(error);
+		});
+	}
+
+	checkLanguage() {
+		let languageStore = localStorage.getItem('language');
+		if(languageStore) {
+			this.translate.use(languageStore);
+			this.loginForm.patchValue({
+				lang: languageStore
+			})
+		} else {
+			this.translate.use("EN");
+		}
+	}
+
+	useLanguage(language) {
+		this.translate.use(language);
+		localStorage.setItem('language', language)
+	}
+
 
 	onSubmit() {
 		let that = this;
@@ -73,7 +114,6 @@ export class LoginComponent implements OnInit {
 			email: this.loginForm.value.email,
 			password: this.loginForm.value.password
 		}
-		console.log(data)
 		this.isSubmitted = true;
 		if(this.loginForm.invalid){
 			return;
@@ -91,6 +131,7 @@ export class LoginComponent implements OnInit {
 				localStorage.setItem('sessionId', res.sess);
 				localStorage.setItem('email', that.loginForm.value.email);
 				localStorage.setItem('fullname', res.fullname);
+				localStorage.setItem('language', that.loginForm.value.lang);
 				if(res.profile == '') {
 					that.router.navigate(['/profile']);
 				} else {
@@ -105,7 +146,5 @@ export class LoginComponent implements OnInit {
 		.catch(function (error) {
 			console.log(error);
 		});
-		// localStorage.setItem('adminAuth', 'true');
-		// that.router.navigate(['/home']);
 	}
 }

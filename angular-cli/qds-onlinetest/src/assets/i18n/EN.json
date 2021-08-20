@@ -1,0 +1,22 @@
+{
+    "APP": {
+        "save": "SAVE",
+        "password": "Password"
+    },
+    "LOGIN": {
+        "title": "ONLINE TEST PLATFORM",
+        "loginButton": "Login",
+        "requiredEmail": "Email is required",
+        "requiredPassword": "Password is required"
+    },
+    "PROFILE": {
+        "profile": "Profile",
+        "fullName": "Full Name",
+        "dob": "DOB",
+        "position": "Position",
+        "yearOfExp": "Year of Experience",
+        "jobPostLink": "Job Post Link",
+        "linkedInProfile": "LinkedIn Profile",
+        "skills": "Skills"
+    }
+}

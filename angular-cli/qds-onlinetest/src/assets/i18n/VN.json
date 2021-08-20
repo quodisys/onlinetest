@@ -1,0 +1,22 @@
+{
+    "APP": {
+        "save": "Lưu",
+        "password": "Mật khẩu"
+    },
+    "LOGIN": {
+        "title": "HỆ THỐNG KIỂM TRA NĂNG LỰC TOÀN DIỆN",
+        "loginButton": "Đăng nhập",
+        "requiredEmail": "Email không thể bỏ trống",
+        "requiredPassword": "Mật khẩu không thể bỏ trống"
+    },
+    "PROFILE": {
+        "profile": "HỒ SƠ",
+        "fullName": "Họ tên đầy đủ",
+        "dob": "Ngày sinh",
+        "position": "Vị trí",
+        "yearOfExp": "Số năm kinh nghiệm",
+        "jobPostLink": "Link tuyển dụng",
+        "linkedInProfile": "Hồ sơ LinkedIn",
+        "skills": "Kỹ năng"
+    }
+}
