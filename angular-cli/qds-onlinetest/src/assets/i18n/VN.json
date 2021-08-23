@@ -4,6 +4,7 @@
         "password": "Mật khẩu",
         "start": "Bắt đầu",
         "next": "Tiếp theo",
+        "answer": "Đáp án",
         "title": "HỆ THỐNG KIỂM TRA NĂNG LỰC TOÀN DIỆN",
         "time": "Thời lượng",
         "Minute": "Phút",
@@ -13,7 +14,11 @@
         "englishTest": "BÀI KIỂM TRA TIẾNG ANH",
         "technicalTest": "BÀI KIỂM TRA KỸ THUẬT",
         "toeicTest": "BÀI KIỂM TRA TOEIC",
-        "answerSheet": "BẢNG TRẢ LỜI"
+        "answerSheet": "BẢNG TRẢ LỜI",
+        "submit": "GỬI KẾT QUẢ",
+        "timeRemain": "Thời lượng còn lại",
+        "listeningTest": "KỸ NĂNG NGHE",
+        "credit": "Bài English for Career Development này được trích xuất từ nội dung “English for Career Development” của Đại học Pennsylvania, được sử dụng theo CC BY 4.0 bởi ELSA Corp."
     },
     "LOGIN": {
         "title": "HỆ THỐNG KIỂM TRA NĂNG LỰC TOÀN DIỆN",
@@ -42,7 +47,10 @@
         "readQuestion": "Đọc các đoạn văn thật kỹ và lựa chọn câu trả lời bạn cho là đúng nhất.",
         "haveComplete": "Khi hoàn tất bài kiểm tra,",
         "haveComplete2": "nhấp vào nút GỬI KẾT QUẢ để tiếp tục",
-        "chooseTest": "Chọn bài kiểm tra"
+        "chooseTest": "Chọn bài kiểm tra",
+        "reviewListening": "Hãy đọc các câu hỏi trước, sau đó mở các file nghe.",
+        "listenCarefully": "Nghe kỹ các nội dung, và lựa chọn câu trả lời bạn cho là đúng nhất.",
+        "eachAudio": "Mỗi file nghe chỉ có thể nghe được 2 lần."
     },
     "TOEIC": {
         "title": "BÀI KIỂM TRA NGHE - ĐỌC TOEIC",
@@ -62,5 +70,9 @@
         "instruction3-2": "KÉO XUỐNG DƯỚI",
         "instruction3-3": "để trả lời tất cả",
         "instruction3-4": "các câu trên màn hình."
+    },
+    "APTITUDE": {
+        "instruction": "Trong mỗi điều sau đây, hãy chọn từ thang điểm 1 - 5 câu nào bạn đồng ý nhất hoặc có thể áp dụng nhất cho bản thân. Chọn 5 cho hầu hết đồng ý = áp dụng nhất, xuống 1 cho ít đồng ý nhất = ít áp dụng nhất.",
+        "multipleIntel": "Kiểm tra trí thông minh"
     }
 }

@@ -4,6 +4,7 @@
         "password": "Password",
         "start": "Start",
         "next": "Next",
+        "answer": "Answer",
         "title": "ONLINE TEST PLATFORM",
         "time": "Time",
         "Minute": "Minute",
@@ -13,7 +14,11 @@
         "englishTest": "ENGLISH TEST",
         "technicalTest": "TECHNICAL TEST",
         "toeicTest": "TOEIC TEST",
-        "answerSheet": "ANSWER SHEET"
+        "answerSheet": "ANSWER SHEET",
+        "submit": "Submit",
+        "timeRemain": "Time remaining",
+        "listeningTest": "LISTENING TEST",
+        "credit": "This work, English for Career Development is a derivative of “English for Career Development” by the University of Pennsylvania, used under CC BY 4.0 by ESLA Corp."
     },
     "LOGIN": {
         "title": "ONLINE TEST PLATFORM",
@@ -42,7 +47,10 @@
         "readQuestion": "Read the following questions and select the best answer.",
         "haveComplete": "Once you have completed the test, ",
         "haveComplete2": "click submit to continue.",
-        "chooseTest": "Please select a test"
+        "chooseTest": "Please select a test",
+        "reviewListening": "Review the questions before listening to the audio file(s).",
+        "listenCarefully": "Listen carefully to the audio file(s) and select the best answer.",
+        "eachAudio": "Each audio recording can be played only twice."
     },
     "TOEIC": {
         "title": "TOEIC Listening and Reading Test",
@@ -62,5 +70,9 @@
         "instruction3-2": "SCROLL DOWN",
         "instruction3-3": "to answer",
         "instruction3-4": "all questions on the screen."
+    },
+    "APTITUDE": {
+        "instruction": " In each of the following, choose from a scale of 1 - 5 which of these statements you most agree with or is most applicable to yourself. Choose 5 for most agree=most applicable, down to 1 for least agree=least applicable. ",
+        "multipleIntel": "Multiple Intelligence Test"
     }
 }
