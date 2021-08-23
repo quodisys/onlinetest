@@ -13,12 +13,17 @@
         "iqTest": "IQ TEST",
         "englishTest": "ENGLISH TEST",
         "technicalTest": "TECHNICAL TEST",
+        "listeningTest": "LISTENING TEST",
         "toeicTest": "TOEIC TEST",
+        "speakingTest": "SPEAKING TEST",
         "answerSheet": "ANSWER SHEET",
         "submit": "Submit",
         "timeRemain": "Time remaining",
-        "listeningTest": "LISTENING TEST",
-        "credit": "This work, English for Career Development is a derivative of “English for Career Development” by the University of Pennsylvania, used under CC BY 4.0 by ESLA Corp."
+        "credit": "This work, English for Career Development is a derivative of “English for Career Development” by the University of Pennsylvania, used under CC BY 4.0 by ESLA Corp.",
+        "micCheck": "Mic Check",
+        "skip": "Skip",
+        "continue":"Continue",
+        "recordAgain":"Record again"
     },
     "LOGIN": {
         "title": "ONLINE TEST PLATFORM",
@@ -43,6 +48,7 @@
         "backHome": "BACK TO HOMEPAGE"
     },
     "INSTRUCTION": {
+        "title": "Instruction",
         "timeLimit": "The time limit for this test can be found at the top right corner.",
         "readQuestion": "Read the following questions and select the best answer.",
         "haveComplete": "Once you have completed the test, ",
@@ -50,7 +56,14 @@
         "chooseTest": "Please select a test",
         "reviewListening": "Review the questions before listening to the audio file(s).",
         "listenCarefully": "Listen carefully to the audio file(s) and select the best answer.",
-        "eachAudio": "Each audio recording can be played only twice."
+        "eachAudio": "Each audio recording can be played only twice.",
+        "makeSure1": "Make sure you have: ",
+        "makeSure2": "good internet, quiet place, headphones.",
+        "makeSure3": "Press “Mic Check” button below to test your microphone.",
+        "tap1": "Tap the microphone and record the following 15 sentences.",
+        "tap2": "You can record each sentence twice.",
+        "speakingInstruction": "Please click on the microphone icon to record your voice",
+        "speakingInstruction2": "Please click here to stop recording"
     },
     "TOEIC": {
         "title": "TOEIC Listening and Reading Test",
