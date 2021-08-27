@@ -27,6 +27,7 @@ export class IqMainComponent implements OnInit {
 	testTime:number
 	iqTest:any
 	submitForm:any
+	loading:boolean = false
 
 	collectAnswer:any = []
 	collectAnswerCopy:any = []
@@ -170,6 +171,7 @@ export class IqMainComponent implements OnInit {
 	onSubmit() {
 		let that =  this;
 		let totalScore = this.calculateScore();
+		this.loading = true
 		this.submitForm.qa[0].score = totalScore;
 		axios({
 			method: 'post',
@@ -179,6 +181,7 @@ export class IqMainComponent implements OnInit {
 		})
 		.then(function (response) {
 			that.formIsSubmit = true;
+			that.loading = false
 			that.router.navigate(['/iq-test/result'])
 		})
 		.catch(function (error) {

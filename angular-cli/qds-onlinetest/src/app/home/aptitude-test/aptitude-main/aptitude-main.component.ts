@@ -39,6 +39,7 @@ export class AptitudeMainComponent implements OnInit {
 	submitForm:any;
 	formIsSubmit = false;
 	testTime:number
+	loading:boolean = false
 
 	config = {}
 
@@ -299,6 +300,7 @@ export class AptitudeMainComponent implements OnInit {
 
 	submit() {
 		let that =  this;
+		this.loading = true
 		this.submitForm.qa = this.formScore.qa;
 		axios({
 			method: 'post',
@@ -309,6 +311,7 @@ export class AptitudeMainComponent implements OnInit {
 		.then(function (response) {
 			console.log(response)
 			that.formIsSubmit = true;
+			that.loading = false
 			that.router.navigate(['/aptitude-test/result'])
 		})
 		.catch(function (error) {
