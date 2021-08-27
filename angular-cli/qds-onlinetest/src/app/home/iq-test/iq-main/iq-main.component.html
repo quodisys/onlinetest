@@ -946,7 +946,7 @@
                     </tab>
                     <div class="mt-5 d-flex justify-content-center">
                         <button *ngIf="currentTab != 30" type="button" class="btn btn-main mt-2" (click)="showNextQuestion(currentTab)">{{'APP.next' | translate}}</button>
-                        <button *ngIf="currentTab == 30" type="button" class="btn btn-main mt-2" (click)="onSubmit()">{{'APP.submit' | translate}}</button>
+                        <button *ngIf="currentTab == 30" type="button" class="btn btn-main mt-2" (click)="onSubmit()" [disabled]="loading">{{'APP.submit' | translate}}</button>
                     </div>
                 </tabset>
             </div>

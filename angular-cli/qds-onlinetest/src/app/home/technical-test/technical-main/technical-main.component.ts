@@ -27,6 +27,7 @@ export class TechnicalMainComponent implements OnInit {
 	questions:any = []
 	questionsOrinal:any = []
 	submitDisable = true;
+	loading:boolean = false
 
 	submitForm:any
 	formIsSubmit = false;
@@ -214,6 +215,7 @@ export class TechnicalMainComponent implements OnInit {
 
 	onSubmit() {
 		let that =  this;
+		this.loading = true
 		axios({
 			method: 'post',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -222,6 +224,7 @@ export class TechnicalMainComponent implements OnInit {
 		})
 		.then(function (response) {
 			that.formIsSubmit = true;
+			that.loading = false
 			that.router.navigate(['/technical-test/result'])
 		})
 		.catch(function (error) {

@@ -95,7 +95,7 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-center">
-                            <button type="button" class="btn btn-main mt-2" (click)="showNextQuestion('submit')">{{'APP.submit' | translate}}</button>
+                            <button type="button" class="btn btn-main mt-2" (click)="showNextQuestion('submit')" [disabled]="loading">{{'APP.submit' | translate}}</button>
                         </div>
                     </tab>
                 </tabset>
