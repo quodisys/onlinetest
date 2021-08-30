@@ -3,6 +3,7 @@ import { CountdownEvent } from 'ngx-countdown';
 import { Router, ActivatedRoute } from '@angular/router';
 import axios from 'axios';
 import { environment } from './../../../../environments/environment';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-reading-main',
@@ -14,6 +15,7 @@ export class ReadingMainComponent implements OnInit {
 	readingForm: any;
 	isSticky: boolean = false;
 	email: string;
+	loading:boolean = false
 
 	@HostListener('window:scroll', ['$event'])
 	checkScroll() {
@@ -37,7 +39,7 @@ export class ReadingMainComponent implements OnInit {
 	submitForm:any
 	formIsSubmit = false;
 
-	constructor(private router: Router) { }
+	constructor(private router: Router, private translate: TranslateService) { }
 
 	ngOnInit(): void {
 		this.logo = localStorage.getItem('logoUrl');
@@ -60,6 +62,16 @@ export class ReadingMainComponent implements OnInit {
 		this.getTestInfo();
 		this.readingForm = {
 			answers : []
+		}
+		this.checkLanguage();
+	}
+
+	checkLanguage() {
+		let languageStore = localStorage.getItem('language');
+		if(languageStore) {
+			this.translate.use(languageStore);
+		} else {
+			this.translate.use("EN");
 		}
 	}
 
@@ -237,6 +249,7 @@ export class ReadingMainComponent implements OnInit {
 
 	sendForm() {
 		let that = this
+		this.loading = true
 		axios({
 			method: 'post',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -246,6 +259,7 @@ export class ReadingMainComponent implements OnInit {
 		.then(function (response) {
 			console.log(that.submitForm)
 			that.formIsSubmit = true;
+			that.loading = false
 			localStorage.removeItem('readingTimeEng_' + that.email)
 			localStorage.removeItem('readingTestQuestionEng_' + that.email)
 			that.router.navigate(['/reading-test/result'])

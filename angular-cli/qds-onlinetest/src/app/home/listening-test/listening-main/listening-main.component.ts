@@ -121,10 +121,10 @@ export class ListeningMainComponent implements OnInit {
 				format: 'mm : ss',
 				notify: 0
 			}
-			// if(that.listeningTestInfo.status === 'Done') {
-			// 	that.formIsSubmit = true;
-			// 	that.router.navigate(['/english-test'])
-			// }
+			if(that.listeningTestInfo.status === 'Done') {
+				that.formIsSubmit = true;
+				that.router.navigate(['/english-test'])
+			}
 			let storeListeningTimeEng:any = localStorage.getItem('listeningTimeEng_'+ that.email);
 			if(localStorage.getItem('listeningTimeEng_'+ that.email) != null) {
 				that.config = {

@@ -18,12 +18,15 @@
         "speakingTest": "SPEAKING TEST",
         "answerSheet": "ANSWER SHEET",
         "submit": "Submit",
+        "finish": "Finish",
         "timeRemain": "Time remaining",
         "credit": "This work, English for Career Development is a derivative of “English for Career Development” by the University of Pennsylvania, used under CC BY 4.0 by ESLA Corp.",
         "micCheck": "Mic Check",
         "skip": "Skip",
         "continue":"Continue",
-        "recordAgain":"Record again"
+        "recordAgain":"Record again",
+        "grammaVocaTest": "GRAMMAR & VOCABULARY TEST",
+        "readingTest": "READING TEST"
     },
     "LOGIN": {
         "title": "ONLINE TEST PLATFORM",
@@ -56,6 +59,7 @@
         "chooseTest": "Please select a test",
         "reviewListening": "Review the questions before listening to the audio file(s).",
         "listenCarefully": "Listen carefully to the audio file(s) and select the best answer.",
+        "readingPassage": "Review the questions before reading the passage.",
         "eachAudio": "Each audio recording can be played only twice.",
         "makeSure1": "Make sure you have: ",
         "makeSure2": "good internet, quiet place, headphones.",
