@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { formatDate } from '@angular/common';
 import { environment } from './../../../environments/environment';
 import axios from 'axios';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-profile',
@@ -18,7 +19,15 @@ export class ProfileComponent implements OnInit {
 	skillsList:any = []
 	submitForm:any
 
-    constructor(private router: Router, private activatedRoute: ActivatedRoute, private formBuilder: FormBuilder) { }
+    constructor(private router: Router, private activatedRoute: ActivatedRoute, private formBuilder: FormBuilder,private translate: TranslateService) { 
+		let languageLocal = localStorage.getItem('language')
+		console.log(languageLocal);
+		if(languageLocal != undefined) {
+			translate.setDefaultLang(languageLocal);
+		} else {
+			translate.setDefaultLang("EN");
+		}
+	}
 
     ngOnInit(): void {
 		this.logo = localStorage.getItem('logoUrl');

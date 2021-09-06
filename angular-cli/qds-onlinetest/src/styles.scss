@@ -1069,6 +1069,16 @@ td.hljs-ln-numbers {
 td.hljs-ln-code {
   	padding-left: 8px !important;
 }
+
+.btn-group {
+    & label {
+        margin-right: 10px;
+        &.active {
+            border: 1px solid;
+            border-radius: 4px !important;
+        }
+    }
+}
 @media (max-height: 800px) {
     .main-center {
         & .container {

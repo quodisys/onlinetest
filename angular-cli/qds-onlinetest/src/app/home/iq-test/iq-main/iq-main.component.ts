@@ -6,6 +6,7 @@ import { TabsetComponent } from 'ngx-bootstrap/tabs';
 import { Router } from '@angular/router';
 import axios from 'axios';
 import { environment } from './../../../../environments/environment';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-iq-main',
@@ -65,7 +66,7 @@ export class IqMainComponent implements OnInit {
 	]
 	
 
-	constructor(private elementRef: ElementRef, private router: Router, private formBuilder: FormBuilder) { }
+	constructor(private elementRef: ElementRef, private router: Router, private formBuilder: FormBuilder, private translate: TranslateService) { }
 
 	ngOnInit(): void {
 		this.logo = localStorage.getItem('logoUrl');
@@ -94,7 +95,16 @@ export class IqMainComponent implements OnInit {
 			this.collectAnswer.push(d1);
 		}
 		this.collectAnswer[12].answer = []
-		console.log(this.collectAnswer);
+		this.checkLanguage()
+	}
+
+	checkLanguage() {
+		let languageStore = localStorage.getItem('language');
+		if(languageStore) {
+			this.translate.use(languageStore);
+		} else {
+			this.translate.use("EN");
+		}
 	}
 
 	getTestInfo(topic) {

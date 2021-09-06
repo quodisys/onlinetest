@@ -10,21 +10,21 @@
                 <div class="start-logo">
                     <img src="/assets/images/speaking-start.svg" alt="">
                 </div>
-                <div class="title mb-4">SPEAKING TEST</div>
+                <div class="title mb-4">{{'APP.speakingTest' | translate}}</div>
                 <div class="sub-title sub-multiple-line text-left">
                     <ul class="pl-3">
-                        <li><span class="font-weight-bold">1.</span> The time limit for this test can be found at the top right corner.</li>
-                        <li><span class="font-weight-bold">2.</span> Make sure you have: <span class="font-weight-bold">good internet, quiet place, headphones.</span><br> Press “Mic Check” button below to test your microphone.</li>
-                        <li><button type="button" class="btn btn-primary colorful" (click)="openModal()">Mic Check</button></li>
-                        <li><span class="font-weight-bold">3.</span> Tap the microphone and record the following 15 sentences.<br> You can record each sentence twice.</li>
-                        <li><span class="font-weight-bold">4.</span> Once you have completed the test, <span class="font-weight-bold">click submit to continue.</span></li>
+                        <li><span class="font-weight-bold">1.</span> {{'INSTRUCTION.timeLimit' | translate}}</li>
+                        <li><span class="font-weight-bold">2.</span> {{'INSTRUCTION.makeSure1' | translate}} <span class="font-weight-bold">{{'INSTRUCTION.makeSure2' | translate}}</span><br> {{'INSTRUCTION.makeSure3' | translate}}</li>
+                        <li><button type="button" class="btn btn-primary colorful" (click)="openModal()">{{'APP.micCheck' | translate}}</button></li>
+                        <li><span class="font-weight-bold">3.</span> {{'INSTRUCTION.tap1' | translate}}<br> {{'INSTRUCTION.tap2' | translate}}</li>
+                        <li><span class="font-weight-bold">4.</span> {{'INSTRUCTION.haveComplete' | translate}} <span class="font-weight-bold">{{'INSTRUCTION.haveComplete2' | translate}}</span></li>
                     </ul>
                 </div>
                 <div class="d-flex justify-content-center mt-4 mb-3" >
-                    <button type="submit" class="btn btn-main mt-2" routerLink="/speaking-test/start-test" (click)="initiateTest()">Start</button>
+                    <button type="submit" class="btn btn-main mt-2" routerLink="/speaking-test/start-test" (click)="initiateTest()">{{'APP.start' | translate}}</button>
                 </div>
                 <div class="d-flex justify-content-center mt-4 mb-3" >
-                    <span class="footer-desc">This work, English for Career Development is a derivative of “English for Career Development” by the University of Pennsylvania, used under CC BY 4.0 by ESLA Corp.</span>
+                    <span class="footer-desc">{{'APP.credit' | translate}}</span>
                 </div>
             </div>
             <div class="footer-logo">

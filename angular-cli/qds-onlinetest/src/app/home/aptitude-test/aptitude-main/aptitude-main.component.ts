@@ -9,6 +9,7 @@ import { environment } from './../../../../environments/environment';
 import { AptitudeQuestions } from './aptitude-questions'
 import { MiQuestions } from './mi-questions'
 import { HonestyQuestions } from './honesty-questions'
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-aptitude-main',
@@ -47,7 +48,7 @@ export class AptitudeMainComponent implements OnInit {
 	miQuestions: any[] = MiQuestions;
 	honestyQuestions: any[] = HonestyQuestions;
 
-	constructor(private elementRef: ElementRef, private router: Router, private formBuilder: FormBuilder) { }
+	constructor(private elementRef: ElementRef, private router: Router, private formBuilder: FormBuilder, private translate: TranslateService) { }
 
 	ngOnInit(): void {
 		this.logo = localStorage.getItem('logoUrl');
@@ -108,6 +109,16 @@ export class AptitudeMainComponent implements OnInit {
 		this.config = {
 			leftTime: 1800,
 			format: 'mm : ss'
+		}
+		this.checkLanguage();
+	}
+
+	checkLanguage() {
+		let languageStore = localStorage.getItem('language');
+		if(languageStore) {
+			this.translate.use(languageStore);
+		} else {
+			this.translate.use("EN");
 		}
 	}
 

@@ -7,6 +7,7 @@ import { Router, ActivatedRoute, NavigationStart } from '@angular/router';
 import axios from 'axios';
 import { environment } from './../../../../environments/environment';
 import { ConfirmModalComponent } from '../../../components/confirm-modal/confirm-modal.component';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-technical-main',
@@ -31,7 +32,7 @@ export class TechnicalMainComponent implements OnInit {
 	submitForm:any
 	formIsSubmit = false;
 
-	constructor(private elementRef: ElementRef, private router: Router, private route: ActivatedRoute, private formBuilder: FormBuilder) {
+	constructor(private elementRef: ElementRef, private router: Router, private route: ActivatedRoute, private formBuilder: FormBuilder, private translate: TranslateService) {
 		
 	}
 
@@ -61,6 +62,15 @@ export class TechnicalMainComponent implements OnInit {
 			item['customClass'] = '';
 			console.log(item)
 		})
+		this.checkLanguage();
+	}
+	checkLanguage() {
+		let languageStore = localStorage.getItem('language');
+		if(languageStore) {
+			this.translate.use(languageStore);
+		} else {
+			this.translate.use("EN");
+		}
 	}
 	canDeactivate() {
 		if(!this.formIsSubmit) {

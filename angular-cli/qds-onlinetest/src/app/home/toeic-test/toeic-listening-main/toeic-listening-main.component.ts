@@ -7,6 +7,7 @@ import axios from 'axios';
 import { environment } from './../../../../environments/environment';
 import { PlyrComponent } from 'ngx-plyr';
 import * as Plyr from 'plyr';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-toeic-listening-main',
@@ -33,7 +34,7 @@ export class ToeicListeningMainComponent implements OnInit {
 	subtopic:string = ''
 	formIsSubmit:boolean = false;
 
-	constructor(private router: Router, private route: ActivatedRoute) { }
+	constructor(private router: Router, private route: ActivatedRoute, private translate: TranslateService) { }
 
 	ngOnInit(): void {
 		this.logo = localStorage.getItem('logoUrl');
@@ -58,6 +59,16 @@ export class ToeicListeningMainComponent implements OnInit {
 			qa: []
 		}
 		this.getTestInfo()
+		this.checkLanguage()
+	}
+
+	checkLanguage() {
+		let languageStore = localStorage.getItem('language');
+		if(languageStore) {
+			this.translate.use(languageStore);
+		} else {
+			this.translate.use("EN");
+		}
 	}
 	
 	canDeactivate() {

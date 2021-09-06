@@ -23,6 +23,8 @@
     "@angular/router": "~9.0.7",
     "@crystalui/angular-lightbox": "^1.1.8",
     "@ng-select/ng-select": "^6.1.0",
+    "@ngx-translate/core": "^12.1.2",
+    "@ngx-translate/http-loader": "^5.0.0",
     "@sweetalert2/ngx-sweetalert2": "^9.0.0",
     "axios": "^0.21.1",
     "bootstrap": "^4.5.3",

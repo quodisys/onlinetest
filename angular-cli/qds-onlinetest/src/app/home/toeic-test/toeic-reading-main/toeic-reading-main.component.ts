@@ -8,6 +8,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import axios from 'axios';
 import { environment } from './../../../../environments/environment';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-toeic-reading-main',
@@ -34,7 +35,7 @@ export class ToeicReadingMainComponent implements OnInit {
 	topic:string = "TOEIC Reading"
 	subtopic:string = ''
 	formIsSubmit:boolean = false;
-	constructor(private router: Router, private route: ActivatedRoute, private modalService: BsModalService) { }
+	constructor(private router: Router, private route: ActivatedRoute, private modalService: BsModalService, private translate: TranslateService) { }
 
 	ngOnInit(): void {
 		this.logo = localStorage.getItem('logoUrl');
@@ -59,7 +60,18 @@ export class ToeicReadingMainComponent implements OnInit {
 			qa: []
 		}
 		this.getTestInfo();
+		this.checkLanguage()
 	}
+
+	checkLanguage() {
+		let languageStore = localStorage.getItem('language');
+		if(languageStore) {
+			this.translate.use(languageStore);
+		} else {
+			this.translate.use("EN");
+		}
+	}
+
 	openModal(template: TemplateRef<any>) {
 		this.modalRef = this.modalService.show(template, { id: 1, class: 'modal-lg' });
 	}

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import axios from 'axios';
 import { environment } from './../../../../environments/environment';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-technical-result',
@@ -12,7 +13,7 @@ export class TechnicalResultComponent implements OnInit {
 	url:string
 	logo:string = ''
 
-	constructor() { }
+	constructor(private translate: TranslateService) { }
 
 	ngOnInit(): void {
 		this.logo = localStorage.getItem('logoUrl');
@@ -20,6 +21,16 @@ export class TechnicalResultComponent implements OnInit {
 			this.logo = "https://qdsasia.com/wp-content/themes/qdstheme/assets/img/qds-logo-scaled.png"
 		}
 		this.checkRouter();
+		this.checkLanguage();
+	}
+
+	checkLanguage() {
+		let languageStore = localStorage.getItem('language');
+		if(languageStore) {
+			this.translate.use(languageStore);
+		} else {
+			this.translate.use("EN");
+		}
 	}
 	
 	checkRouter() {

@@ -4,6 +4,7 @@ import { environment } from './../../../../environments/environment';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PlyrComponent } from 'ngx-plyr';
 import * as Plyr from 'plyr';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-toeic-listening-start',
@@ -18,7 +19,7 @@ export class ToeicListeningStartComponent implements OnInit {
 	subtopic:string = ''
 	options:any
 	audio:any
-	constructor(private router: Router, private route: ActivatedRoute) { }
+	constructor(private router: Router, private route: ActivatedRoute, private translate: TranslateService) { }
 	
 	ngOnInit(): void {
 		this.logo = localStorage.getItem('logoUrl');
@@ -37,6 +38,16 @@ export class ToeicListeningStartComponent implements OnInit {
 			autoplay: true
 		};
 		this.getTestInfo();
+		this.checkLanguage()
+	}
+
+	checkLanguage() {
+		let languageStore = localStorage.getItem('language');
+		if(languageStore) {
+			this.translate.use(languageStore);
+		} else {
+			this.translate.use("EN");
+		}
 	}
 
 	getTestInfo() {

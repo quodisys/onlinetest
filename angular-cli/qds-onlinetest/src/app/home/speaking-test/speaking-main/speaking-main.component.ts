@@ -9,6 +9,7 @@ declare var $: any;
 import * as RecordRTC from 'recordrtc';
 import { DomSanitizer } from '@angular/platform-browser';
 import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
+import {TranslateService} from '@ngx-translate/core';
 
 
 @Component({
@@ -50,7 +51,7 @@ export class SpeakingMainComponent implements OnInit {
 	url;
 	trueUrl
 	error;
-	constructor(private elementRef: ElementRef, private router: Router, private domSanitizer: DomSanitizer) { }
+	constructor(private elementRef: ElementRef, private router: Router, private domSanitizer: DomSanitizer, private translate: TranslateService) { }
 
 
 	ngOnInit(): void {
@@ -77,6 +78,16 @@ export class SpeakingMainComponent implements OnInit {
 			console.log(item)
 		})
 		this.isOpen = true
+		this.checkLanguage();
+	}
+
+	checkLanguage() {
+		let languageStore = localStorage.getItem('language');
+		if(languageStore) {
+			this.translate.use(languageStore);
+		} else {
+			this.translate.use("EN");
+		}
 	}
 
 	@HostListener("window:beforeunload", ["$event"]) unloadHandler(event: Event) {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import axios from 'axios';
 import { environment } from './../../../../environments/environment';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-toeic-start',
@@ -11,7 +12,9 @@ export class ToeicStartComponent implements OnInit {
 	logo:string = ''
 	url:string = ''
 	noTest:boolean = true;
-	constructor() { }
+	constructor(private translate: TranslateService) { 
+		translate.use("EN");
+	}
 
 	ngOnInit(): void {
 		this.logo = localStorage.getItem('logoUrl');
@@ -19,6 +22,16 @@ export class ToeicStartComponent implements OnInit {
 			this.logo = "https://qdsasia.com/wp-content/themes/qdstheme/assets/img/qds-logo-scaled.png"
 		}
 		this.getTestInfo();
+		this.checkLanguage();
+	}
+
+	checkLanguage() {
+		let languageStore = localStorage.getItem('language');
+		if(languageStore) {
+			this.translate.use(languageStore);
+		} else {
+			this.translate.use("EN");
+		}
 	}
 
 	getTestInfo() {

@@ -5,6 +5,7 @@ import { TabsetComponent } from 'ngx-bootstrap/tabs';
 import { IQTestForm } from '../../../interfaces/iq-test';
 import axios from 'axios';
 import { environment } from './../../../../environments/environment';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-grammar-vocabulary-main',
@@ -27,8 +28,9 @@ export class GrammarVocabularyMainComponent implements OnInit {
 	submitForm:any
 	formIsSubmit = false;
 	email: string;
+	loading:boolean = false
 
-	constructor(private router: Router) { }
+	constructor(private router: Router, private translate: TranslateService) { }
 
 	ngOnInit(): void {
 		this.email = localStorage.getItem('email');
@@ -54,6 +56,16 @@ export class GrammarVocabularyMainComponent implements OnInit {
 			item['customClass'] = '';
 			console.log(item)
 		})
+		this.checkLanguage()
+	}
+
+	checkLanguage() {
+		let languageStore = localStorage.getItem('language');
+		if(languageStore) {
+			this.translate.use(languageStore);
+		} else {
+			this.translate.use("EN");
+		}
 	}
 
 	canDeactivate() {
@@ -216,6 +228,7 @@ export class GrammarVocabularyMainComponent implements OnInit {
 			})
 			this.submitForm.qa[index].answer = answerString.join();
 		}
+		console.log(this.submitForm);
 		if(this.submitForm.qa.slice(-1)[0].answer != '') {
 			this.submitDisable = false;
 		}
@@ -230,6 +243,7 @@ export class GrammarVocabularyMainComponent implements OnInit {
 
 	onSubmit() {
 		let that =  this;
+		this.loading = true
 		axios({
 			method: 'post',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -238,6 +252,7 @@ export class GrammarVocabularyMainComponent implements OnInit {
 		})
 		.then(function (response) {
 			that.formIsSubmit = true;
+			that.loading = false
 			localStorage.removeItem('grammaAnswer_' + that.email)
 			localStorage.removeItem('grammaQuestions_' + that.email)
 			localStorage.removeItem('grammaTime_' + that.email)

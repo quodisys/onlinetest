@@ -11,7 +11,7 @@
                     </div>
                     <div class="col-md-4 d-flex justify-content-end">
                         <div class="countdown-wrapper">
-                            <span>Time remaining</span>
+                            <span>{{'APP.timeRemain' | translate}}</span>
                             <countdown class="timer" [config]="config" (event)="counterEvent($event)"></countdown>
                         </div>
                     </div>
@@ -945,8 +945,8 @@
                         </div>
                     </tab>
                     <div class="mt-5 d-flex justify-content-center">
-                        <button *ngIf="currentTab != 30" type="button" class="btn btn-main mt-2" (click)="showNextQuestion(currentTab)">Next</button>
-                        <button *ngIf="currentTab == 30" type="button" class="btn btn-main mt-2" (click)="onSubmit()" [disabled]="loading">Submit</button>
+                        <button *ngIf="currentTab != 30" type="button" class="btn btn-main mt-2" (click)="showNextQuestion(currentTab)">{{'APP.next' | translate}}</button>
+                        <button *ngIf="currentTab == 30" type="button" class="btn btn-main mt-2" (click)="onSubmit()" [disabled]="loading">{{'APP.submit' | translate}}</button>
                     </div>
                 </tabset>
             </div>

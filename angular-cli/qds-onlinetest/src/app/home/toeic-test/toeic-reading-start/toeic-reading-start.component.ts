@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import axios from 'axios';
 import { environment } from './../../../../environments/environment';
 import { Router, ActivatedRoute } from '@angular/router';
+import {TranslateService} from '@ngx-translate/core';
+
 @Component({
   selector: 'app-toeic-reading-start',
   templateUrl: './toeic-reading-start.component.html',
@@ -11,7 +13,7 @@ export class ToeicReadingStartComponent implements OnInit {
 	logo:string = ''
 	topic:string = ''
 	subtopic:string = ''
-	constructor(private router: Router, private route: ActivatedRoute) { }
+	constructor(private router: Router, private route: ActivatedRoute, private translate: TranslateService) { }
 
 	ngOnInit(): void {
 		this.logo = localStorage.getItem('logoUrl');
@@ -19,6 +21,16 @@ export class ToeicReadingStartComponent implements OnInit {
 			this.logo = "https://qdsasia.com/wp-content/themes/qdstheme/assets/img/qds-logo-scaled.png"
 		}
 		this.getTestInfo();
+		this.checkLanguage()
+	}
+
+	checkLanguage() {
+		let languageStore = localStorage.getItem('language');
+		if(languageStore) {
+			this.translate.use(languageStore);
+		} else {
+			this.translate.use("EN");
+		}
 	}
 
 	getTestInfo() {
