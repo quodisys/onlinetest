@@ -13,7 +13,7 @@
                     </div>
                     <div class="col-md-12 col-lg-4 d-flex justify-content-end">
                         <div class="countdown-wrapper">
-                            <span>Time remaining</span>
+                            <span>{{'APP.timeRemain' | translate}}</span>
                             <countdown class="timer" [config]="config" (event)="counterEvent($event)"></countdown>
                         </div>
                     </div>
@@ -29,7 +29,7 @@
                         [disabled]="question.disabled"
                         [customClass]="question.customClass">
                         <div class="test-content" [hidden]="resultPage">
-                            <div class="part-section" *ngIf="question.type == 'direction'">Part {{question.part}}</div>
+                            <div class="part-section" *ngIf="question.type == 'direction'">{{'APP.part' | translate}} {{question.part}}</div>
                             <div class="player-wrapper" *ngIf="currentTabIndex == key && !resultPage">
                                 <plyr style="display: block; width: 440px;" plyrTitle="Video 1" [plyrPlaysInline]="true" [plyrSources]="question.audio" plyrType="audio" (plyrInit)="player = $event" [plyrOptions]="options" class="disabled"></plyr>
                             </div>
@@ -95,10 +95,10 @@
                             </div>
                             <!-- Button Group -->
                             <div class="d-flex justify-content-center w-100" *ngIf="!last">
-                                <button type="button" class="btn btn-main mt-2" (click)="showNextQuestion(key)">Next</button>
+                                <button type="button" class="btn btn-main mt-2" (click)="showNextQuestion(key)">{{'APP.next' | translate}}</button>
                             </div>
                             <div class="d-flex justify-content-center" *ngIf="last">
-                                <button type="submit" class="btn btn-main mt-2" (click)="showNextQuestion(key)">Next</button>
+                                <button type="submit" class="btn btn-main mt-2" (click)="showNextQuestion(key)">{{'APP.next' | translate}}</button>
                             </div>
                         </div>
                         <!-- Result -->
@@ -106,14 +106,13 @@
                             <div class="start-logo pt-3">
                                 <img src="/assets/images/listening-start.svg" alt="">
                             </div>
-                            <div class="title mb-4">LISTENING TEST</div>
+                            <div class="title mb-4">{{'APP.listeningTest' | translate}}</div>
                             <div class="sub-title sub-multiple-line text-left">
                                <p class="text-center">
-                                This is the end of the test. If you finish before the time is up, you may go
-                                back to Parts 1, 2, 3, and 4 to check your work.</p>
+                                {{'TOEIC.endOfTest' | translate}}</p>
                             </div>
                             <div class="d-flex justify-content-center" *ngIf="last">
-                                <button type="submit" class="btn btn-main mt-2" (click)="onSubmit()">Submit</button>
+                                <button type="submit" class="btn btn-main mt-2" (click)="onSubmit()">{{'APP.submit' | translate}}</button>
                             </div>
                         </div>
                     </tab>
@@ -122,7 +121,7 @@
             <div class="footer-logo justify-content-between">
                 <div class="btn-group" dropdown [dropup]="isDropup">
                     <button style="color: #fff;" id="button-dropup" dropdownToggle type="button" class="btn" aria-controls="dropdown-dropup">
-                        <img style="width: 30px;" src="/assets/images/vectorpaint.svg" alt=""> Answer Sheet
+                        <img style="width: 30px;" src="/assets/images/vectorpaint.svg" alt=""> {{'TOEIC.answerSheet' | translate}}
                     </button>
                     <ul id="dropdown-dropup" *dropdownMenu class="dropdown-menu dropdown-sheet" role="menu" aria-labelledby="button-dropup">
                         <li class="font-weight-bold"><div class="sheet-wrapper">Questions</div></li>

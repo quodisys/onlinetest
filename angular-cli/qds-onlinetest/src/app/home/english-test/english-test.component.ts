@@ -39,6 +39,7 @@ export class EnglishTestComponent implements OnInit {
 
 	getTest() {
 		let that =  this;
+		let languageStore = localStorage.getItem('language');
 		let data = {
 			token: localStorage.getItem('token'),
 			keyword: localStorage.getItem('keyword'),
@@ -62,6 +63,17 @@ export class EnglishTestComponent implements OnInit {
 			that.englishDashboard.map(test => {
 				test.totaltime = parseInt(test.totaltime);
 				that.totalTime += test.totaltime
+				if(languageStore === 'VN') {
+					if(test.topic === "Listening Test") {
+						test.topic = "BÀI KIỂM TRA NGHE"
+					} else if(test.topic === "Speaking Test") {
+						test.topic = "BÀI KIỂM TRA NÓI"
+					} else if(test.topic === "Grammar & Vocabulary Test") {
+						test.topic = "TỪ VỰNG & NGỮ PHÁP"
+					} else if(test.topic === "Reading Test") {
+						test.topic = "BÀI KIỂM TRA ĐỌC"
+					}
+				}
 			})
 			if(res[0].error) {
 				that.router.navigate(['/login'])

@@ -61,6 +61,7 @@ export class DashboardComponent implements OnInit {
 			keyword: localStorage.getItem('keyword'),
 			sess: localStorage.getItem('sessionId')
 		}
+		let languageStore = localStorage.getItem('language');
 		axios({
 			method: 'post',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -81,8 +82,22 @@ export class DashboardComponent implements OnInit {
 			that.dashboardTest.map(test => {
 				test.totaltime = parseInt(test.totaltime);
 				that.totalTime += test.totaltime
+				if(languageStore === 'VN') {
+					if(test.category === "Aptitude Test") {
+						test.category = "ĐÁNH GIÁ NĂNG LỰC TƯ DUY"
+					} else if(test.category === "English Test") {
+						test.category = "BÀI KIỂM TRA TIẾNG ANH"
+					} else if(test.category === "IQ Test") {
+						test.category = "BÀI KIỂM TRA IQ"
+					} else if(test.category === "Technical Test") {
+						test.category = "BÀI KIỂM TRA KỸ THUẬT"
+					} else if(test.category === "TOEIC Test") {
+						test.category = "BÀI KIỂM TRA TOEIC"
+					}
+				}
 			})
 			console.log(that.dashboardTest);
+
 		})
 		.catch(function (error) {
 			if(error) {
