@@ -4,7 +4,7 @@
 
 export const environment = {
 	production		: false,
-	hostApi     	: "https://onlinetest.quodisys.com",
+	hostApi     	: "http://13.212.189.47",
 };
 
 /*

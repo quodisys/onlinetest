@@ -35,6 +35,7 @@ export class ToeicReadingMainComponent implements OnInit {
 	topic:string = "TOEIC Reading"
 	subtopic:string = ''
 	formIsSubmit:boolean = false;
+	testid:string = ''
 	constructor(private router: Router, private route: ActivatedRoute, private modalService: BsModalService, private translate: TranslateService) { }
 
 	ngOnInit(): void {
@@ -107,6 +108,7 @@ export class ToeicReadingMainComponent implements OnInit {
 				that.formIsSubmit = true;
 				that.router.navigate(['toeic-test'])
 			}
+			that.testid = mainTest.testid
 			that.testTime = mainTest.totaltime*60;
 			that.subtopic = mainTest.subtopic
 			that.config = {
@@ -301,6 +303,7 @@ export class ToeicReadingMainComponent implements OnInit {
 		this.submitForm.qa.map(item => {
 			delete item.isViewed
 		})
+		this.submitForm['testid'] = this.testid
 		axios({
 			method: 'post',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },

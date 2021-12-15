@@ -38,6 +38,7 @@ export class ReadingMainComponent implements OnInit {
 	questionsOrinal:any = []
 	submitForm:any
 	formIsSubmit = false;
+	testid:string = ''
 
 	constructor(private router: Router, private translate: TranslateService) { }
 
@@ -106,6 +107,7 @@ export class ReadingMainComponent implements OnInit {
 				that.formIsSubmit = true;
 				that.router.navigate(['/english-test'])
 			}
+			that.testid = that.readingTestInfo.testid
 			that.testTime = that.readingTestInfo.totaltime*60;
 			that.subtopic = that.readingTestInfo.subtopic
 			that.config = {
@@ -250,6 +252,7 @@ export class ReadingMainComponent implements OnInit {
 	sendForm() {
 		let that = this
 		this.loading = true
+		this.submitForm['testid'] = this.testid
 		axios({
 			method: 'post',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },

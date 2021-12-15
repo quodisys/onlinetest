@@ -45,6 +45,7 @@ export class ListeningMainComponent implements OnInit {
 	questions:any = []
 	questionsOrinal:any = []
 	submitForm:any
+	testid:string = ''
 
 	constructor(private router: Router, private translate: TranslateService) { }
 
@@ -114,6 +115,7 @@ export class ListeningMainComponent implements OnInit {
 			var engtest = test.find(x => x.category == "English Test").engtests;
 			engtest = Object.keys(engtest).map((k) => engtest[k]);
 			that.listeningTestInfo = engtest.find(x => x.topic == "Listening Test");
+			that.testid = that.listeningTestInfo.testid
 			that.testTime = that.listeningTestInfo.totaltime*60;
 			that.subtopic = that.listeningTestInfo.subtopic
 			that.config = {
@@ -323,6 +325,7 @@ export class ListeningMainComponent implements OnInit {
 
 	onSubmit() {
 		let that =  this;
+		this.submitForm.testid = this.testid
 		axios({
 			method: 'post',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },

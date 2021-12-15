@@ -29,6 +29,7 @@ export class GrammarVocabularyMainComponent implements OnInit {
 	formIsSubmit = false;
 	email: string;
 	loading:boolean = false
+	testid:string = ''
 
 	constructor(private router: Router, private translate: TranslateService) { }
 
@@ -96,6 +97,7 @@ export class GrammarVocabularyMainComponent implements OnInit {
 			engtest = Object.keys(engtest).map((k) => engtest[k]);
 			that.vocabularyTestInfo = engtest.find(x => x.topic == "Grammar & Vocabulary Test");
 			// that.topic = that.vocabularyTestInfo.topic
+			that.testid = that.vocabularyTestInfo.testid
 			that.subtopic = that.vocabularyTestInfo.subtopic
 			that.testTime = that.vocabularyTestInfo.totaltime*60;
 			that.config = {
@@ -244,6 +246,7 @@ export class GrammarVocabularyMainComponent implements OnInit {
 	onSubmit() {
 		let that =  this;
 		this.loading = true
+		this.submitForm['testid'] = that.testid
 		axios({
 			method: 'post',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },

@@ -37,6 +37,7 @@ export class SpeakingMainComponent implements OnInit {
 	formData:any
 	isOpen: boolean = false
 	isStopOpen: boolean = false
+	testid:string = ''
 
 	recording: Boolean = false;
 
@@ -131,6 +132,7 @@ export class SpeakingMainComponent implements OnInit {
 				that.router.navigate(['/english-test'])
 			}
 			console.log(that.speakingTestInfo);
+			that.testid = that.speakingTestInfo.testid
 			that.subtopic = that.speakingTestInfo.subtopic
 			that.testTime = that.speakingTestInfo.totaltime*60;
 			that.config = {
@@ -320,6 +322,7 @@ export class SpeakingMainComponent implements OnInit {
 		this.formData.append('token', localStorage.getItem('token'));
 		this.formData.append('keyword', localStorage.getItem('keyword'));
 		this.formData.append('sess', localStorage.getItem('sessionId'));
+		this.formData.append('testid', this.testid);
 		this.formData.append('topic', "Speaking");
 		this.formData.append('id', this.currentQuestion.id);
 		this.formData.append('question', this.currentQuestion.question);

@@ -41,6 +41,7 @@ export class AptitudeMainComponent implements OnInit {
 	formIsSubmit = false;
 	testTime:number
 	loading:boolean = false
+	testid:string = ''
 
 	config = {}
 
@@ -149,7 +150,7 @@ export class AptitudeMainComponent implements OnInit {
 			that.attitudeTest = test.find( x => x.topic == "Aptitude");
 			that.testTime = that.attitudeTest.totaltime*60;
 			that.submitForm['subtopic'] = that.attitudeTest.subtopic;
-			console.log(that.attitudeTest);
+			that.submitForm['testid'] = that.attitudeTest.testid;
 			that.config = {
 				leftTime: that.testTime,
 				format: 'mm : ss'
