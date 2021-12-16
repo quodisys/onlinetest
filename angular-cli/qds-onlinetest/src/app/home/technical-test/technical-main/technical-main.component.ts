@@ -31,6 +31,7 @@ export class TechnicalMainComponent implements OnInit {
 
 	submitForm:any
 	formIsSubmit = false;
+	testid:string = ''
 
 	constructor(private elementRef: ElementRef, private router: Router, private route: ActivatedRoute, private formBuilder: FormBuilder, private translate: TranslateService) {
 		
@@ -105,6 +106,9 @@ export class TechnicalMainComponent implements OnInit {
 			that.technicalTest = that.technicalTest.techtests;
 			that.technicalTest = Object.keys(that.technicalTest).map((k) => that.technicalTest[k]);
 			var topicaa = that.technicalTest.find(x => x.topic == topic);
+			that.testid = topicaa.testid
+			console.log(that.testid);
+			
 			that.topic = topicaa.topic
 			that.subtopic = topicaa.subtopic
 			that.testTime = topicaa.totaltime*60;
@@ -216,6 +220,7 @@ export class TechnicalMainComponent implements OnInit {
 	onSubmit() {
 		let that =  this;
 		this.loading = true
+		this.submitForm['testid'] = this.testid
 		axios({
 			method: 'post',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },

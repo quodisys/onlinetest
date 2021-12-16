@@ -125,6 +125,7 @@ export class IqMainComponent implements OnInit {
 			var test = Object.keys(res).map((k) => res[k]);
 			that.iqTest = test.find( x => x.topic == "IQ");
 			that.submitForm['subtopic'] = that.iqTest.subtopic;
+			that.submitForm['testid'] = that.iqTest.testid;
 			that.testTime = that.iqTest.totaltime*60;
 			that.config = {
 				leftTime: that.testTime,
