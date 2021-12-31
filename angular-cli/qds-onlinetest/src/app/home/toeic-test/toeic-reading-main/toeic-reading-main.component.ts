@@ -130,7 +130,7 @@ export class ToeicReadingMainComponent implements OnInit {
 		.catch(function (error) {
 			if(error) {
 				that.formIsSubmit = true;
-				that.router.navigate(['/login'])
+				that.router.navigate(['/home'])
 			}
 			console.log(error);
 		});
@@ -311,10 +311,14 @@ export class ToeicReadingMainComponent implements OnInit {
 			data: JSON.stringify(this.submitForm)
 		})
 		.then(function (response) {
-			localStorage.removeItem('readingTime_' + that.email)
-			localStorage.removeItem('readingAnswer_' + that.email)
-			that.formIsSubmit = true;
-			that.router.navigate(['toeic-test/result'])
+			if(response.data[0].error) {
+				alert(response.data[0].error)
+			} else {
+				localStorage.removeItem('readingTime_' + that.email)
+				localStorage.removeItem('readingAnswer_' + that.email)
+				that.formIsSubmit = true;
+				that.router.navigate(['toeic-test/result'])
+			}
 		})
 		.catch(function (error) {
 			console.log(error);
