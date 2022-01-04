@@ -345,8 +345,13 @@ export class ToeicListeningMainComponent implements OnInit {
 			data: JSON.stringify(this.submitForm)
 		})
 		.then(function (response) {
+			let languageStore = localStorage.getItem('language');
 			if(response.data[0].error) {
-				alert(response.data[0].error)
+				if(languageStore === 'VN') {
+					alert("Quản trị viên đã vô hiệu hoá bài kiểm tra của bạn, kết quả kiểm tra của bạn sẽ không được ghi nhận.")
+				} else {
+					alert("Your test was disabled by the admin and your test results will not be recorded.")
+				}
 			} else {
 				localStorage.removeItem('listeningTime_' + that.email)
 				localStorage.removeItem('listeningAnswer_' + that.email)
