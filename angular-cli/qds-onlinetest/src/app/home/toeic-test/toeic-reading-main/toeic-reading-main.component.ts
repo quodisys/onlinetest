@@ -36,11 +36,13 @@ export class ToeicReadingMainComponent implements OnInit {
 	subtopic:string = ''
 	formIsSubmit:boolean = false;
 	testid:string = ''
+	error:any
 	constructor(private router: Router, private route: ActivatedRoute, private modalService: BsModalService, private translate: TranslateService) { }
 
 	ngOnInit(): void {
 		this.logo = localStorage.getItem('logoUrl');
 		this.email = localStorage.getItem('email');
+		this.error = localStorage.getItem('error')
 		if(this.logo == undefined || this.logo == '') {
 			this.logo = "https://qdsasia.com/wp-content/themes/qdstheme/assets/img/qds-logo-scaled.png"
 		}
@@ -60,8 +62,11 @@ export class ToeicReadingMainComponent implements OnInit {
 			topic: this.topic,
 			qa: []
 		}
+		console.log(this.submitForm);
+		
 		this.getTestInfo();
 		this.checkLanguage()
+		this.sendError()
 	}
 
 	checkLanguage() {
@@ -70,6 +75,30 @@ export class ToeicReadingMainComponent implements OnInit {
 			this.translate.use(languageStore);
 		} else {
 			this.translate.use("EN");
+		}
+	}
+
+	sendError() {
+		let that = this
+		let subtopic = localStorage.getItem('subtopic')
+		let data = {
+			token: localStorage.getItem('token'),
+			keyword: localStorage.getItem('keyword'),
+			sess: localStorage.getItem('sessionId'),
+			subtopic: subtopic,
+			error: that.error
+		}
+		if(that.error != undefined || that.error != '') {
+			axios({
+				method: 'post',
+				headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+				url: environment.hostApi + '/candidates/saveerror.php',
+				data: data
+			}).then(function(response) {
+				localStorage.removeItem('error')
+			}).catch(function(error) {
+				console.log(error);
+			})
 		}
 	}
 
@@ -227,8 +256,6 @@ export class ToeicReadingMainComponent implements OnInit {
 				})
 			}
 			that.readingQuestions[0].active = true
-			// console.log(that.readingQuestions)
-			// console.log(that.submitForm);
 		})
 		.catch(function (error) {
 			console.log(error);
@@ -251,8 +278,6 @@ export class ToeicReadingMainComponent implements OnInit {
 		let index = this.submitForm.qa.findIndex( x => x.id == question.id);
 		this.submitForm.qa[index].answer = alphabet;
 		localStorage.setItem('readingAnswer_' + this.email, JSON.stringify(this.submitForm))
-		// console.log(this.readingQuestions);
-		// console.log(this.submitForm);
 	}
 	goTab(id) {
 		this.resultPage = false;
@@ -304,6 +329,7 @@ export class ToeicReadingMainComponent implements OnInit {
 			delete item.isViewed
 		})
 		this.submitForm['testid'] = this.testid
+		this.submitForm['sess'] = localStorage.getItem('sessionId')
 		axios({
 			method: 'post',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -312,11 +338,19 @@ export class ToeicReadingMainComponent implements OnInit {
 		})
 		.then(function (response) {
 			let languageStore = localStorage.getItem('language');
+			console.log(response.data[0].error);
+			
 			if(response.data[0].error) {
-				if(languageStore === 'VN') {
-					alert("Quản trị viên đã vô hiệu hoá bài kiểm tra của bạn, kết quả kiểm tra của bạn sẽ không được ghi nhận.")
+				if(response.data[0].error === 'Test Submission is Disabled') {
+					if(languageStore === 'VN') {
+						alert("Quản trị viên đã vô hiệu hoá bài kiểm tra của bạn, kết quả kiểm tra của bạn sẽ không được ghi nhận.")
+					} else {
+						alert("Your test was disabled by the admin and your test results will not be recorded.")
+					}
+					localStorage.setItem('error', response.data[0].error)
 				} else {
-					alert("Your test was disabled by the admin and your test results will not be recorded.")
+					alert(response.data[0].error)
+					localStorage.setItem('error', response.data[0].error)
 				}
 			} else {
 				localStorage.removeItem('readingTime_' + that.email)
@@ -326,8 +360,15 @@ export class ToeicReadingMainComponent implements OnInit {
 			}
 		})
 		.catch(function (error) {
+			let errorData = error
+			if(errorData = "Error: Network Error") {
+				alert("Something wrong when submitting test! Please check your connection and try again.")
+			} else {
+				alert(errorData)
+			}
+			localStorage.setItem('error', JSON.stringify(errorData))
+			localStorage.setItem('subtopic', that.subtopic)
 			console.log(error);
-			alert("Something wrong when submitting test!")
 		});
 	}
 }
