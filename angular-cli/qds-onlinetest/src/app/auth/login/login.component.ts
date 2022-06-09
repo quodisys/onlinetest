@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
 	}
 
 	ngOnInit() {
+		localStorage.clear()
 		this.token = this.activatedRoute.snapshot.queryParams['token']
 		this.ca = this.activatedRoute.snapshot.queryParams['ca']
 		this.cl = this.activatedRoute.snapshot.queryParams['cl']
