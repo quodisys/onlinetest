@@ -1,10 +1,14 @@
 <div appBlockCopyPaste class="main main-2 main-center bg-blue">
     <div class="container">
         <div class="col-md-12">
+
             <div class="branding">
+                <div (click)="signOut()" class="sign-out"><img style="width: 22px;" class="logo-1" src="/assets/images/icon-logout.png" alt="">Sign Out </div>
+
                 <a>
                     <img src="{{logo}}" alt="company logo">
                 </a>
+                <div style="width: 90px;"></div>
             </div>
             <div class="content">
                 <div class="start-logo">
@@ -28,7 +32,6 @@
                 </div>
             </div>
             <div class="footer-logo">
-                <div (click)="signOut()" class="sign-out"><img style="width: 22px;" class="logo-1" src="/assets/images/icon-logout.png" alt="">Sign Out </div>
                 <img src="/assets/images/logox.svg" alt="footer logo">
             </div>
         </div>

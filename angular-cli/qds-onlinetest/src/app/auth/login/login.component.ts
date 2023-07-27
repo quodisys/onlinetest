@@ -69,8 +69,10 @@ export class LoginComponent implements OnInit {
 	// 		})
 	// 		.catch(function (error) {
 	// 		});
+	// 	} else {
+	// 		console.log(data);
+			
 	// 	}
-		
 	// }
 
 	getInfo() {

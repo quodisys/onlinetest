@@ -2,9 +2,11 @@
     <div class="container">
         <div class="col-md-12">
             <div class="branding">
+                <div (click)="signOut()" class="sign-out"><img style="width: 22px;" class="logo-1" src="/assets/images/icon-logout.png" alt="">Sign Out </div>
                 <a>
                     <img src="{{logo}}" alt="company logo">
                 </a>
+                <div style="width: 90px;"></div>
             </div>
             <div class="content">
                 <div class="start-logo">
@@ -27,12 +29,12 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-center mt-1 mb-3" >
-                        <button type="submit" class="btn btn-main mt-2" [disabled]="!testSelected">{{'APP.start' | translate}}</button>
+                        <button type="submit" class="btn btn-main mt-2 mr-2" [disabled]="!testSelected">{{'APP.start' | translate}}</button>
+                        <button type="submit" class="btn btn-main mt-2" routerLink="/home">Back to home page</button>
                     </div>
                 </form>
             </div>
             <div class="footer-logo">
-                <div (click)="signOut()" class="sign-out"><img style="width: 22px;" class="logo-1" src="/assets/images/icon-logout.png" alt="">Sign Out </div>
                 <img src="/assets/images/logox.svg" alt="footer logo">
             </div>
         </div>
