@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import axios from 'axios';
 import { environment } from './../../../../environments/environment';
+import { Router, ActivatedRoute } from '@angular/router';
 import {TranslateService} from '@ngx-translate/core';
 
 @Component({
@@ -12,7 +13,7 @@ export class ToeicStartComponent implements OnInit {
 	logo:string = ''
 	url:string = ''
 	noTest:boolean = true;
-	constructor(private translate: TranslateService) { 
+	constructor(private translate: TranslateService, private router: Router) { 
 		translate.use("EN");
 	}
 
@@ -92,6 +93,29 @@ export class ToeicStartComponent implements OnInit {
 		})
 		.catch(function (error) {
 			console.log(error);
+		});
+	}
+
+	signOut = function() {
+		let that =  this;
+		let data = {
+			token: localStorage.getItem('token'),
+			sess: localStorage.getItem('sessionId'),
+			email: localStorage.getItem('email'),
+			keyword: localStorage.getItem('keyword')
+		}
+		axios({
+			method: 'post',
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			url: environment.hostApi + '/candidates/logout.php',
+			data: JSON.stringify(data)
+		})
+		.then(function (response) {
+			
+			that.router.navigate(['/login'])
+			console.log(response);
+		})
+		.catch(function (error) {
 		});
 	}
 

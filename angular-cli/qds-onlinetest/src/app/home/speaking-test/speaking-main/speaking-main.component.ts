@@ -344,4 +344,27 @@ export class SpeakingMainComponent implements OnInit {
 	onSubmit() {
 		
 	}
+
+	signOut = function() {
+		let that =  this;
+		let data = {
+			token: localStorage.getItem('token'),
+			sess: localStorage.getItem('sessionId'),
+			email: localStorage.getItem('email'),
+			keyword: localStorage.getItem('keyword')
+		}
+		axios({
+			method: 'post',
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			url: environment.hostApi + '/candidates/logout.php',
+			data: JSON.stringify(data)
+		})
+		.then(function (response) {
+			
+			that.router.navigate(['/login'])
+			console.log(response);
+		})
+		.catch(function (error) {
+		});
+	}
 }

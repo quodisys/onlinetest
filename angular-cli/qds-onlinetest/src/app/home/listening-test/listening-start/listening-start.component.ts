@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import axios from 'axios';
 import { environment } from './../../../../environments/environment';
 import {TranslateService} from '@ngx-translate/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listening-start',
@@ -10,7 +11,7 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class ListeningStartComponent implements OnInit {
 	logo:string = ''
-	constructor(private translate: TranslateService) { }
+	constructor(private translate: TranslateService, private router: Router) { }
 
 	ngOnInit(): void {
 		this.logo = localStorage.getItem('logoUrl');
@@ -48,6 +49,29 @@ export class ListeningStartComponent implements OnInit {
 		})
 		.catch(function (error) {
 			console.log(error);
+		});
+	}
+
+	signOut = function() {
+		let that =  this;
+		let data = {
+			token: localStorage.getItem('token'),
+			sess: localStorage.getItem('sessionId'),
+			email: localStorage.getItem('email'),
+			keyword: localStorage.getItem('keyword')
+		}
+		axios({
+			method: 'post',
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			url: environment.hostApi + '/candidates/logout.php',
+			data: JSON.stringify(data)
+		})
+		.then(function (response) {
+			
+			that.router.navigate(['/login'])
+			console.log(response);
+		})
+		.catch(function (error) {
 		});
 	}
 

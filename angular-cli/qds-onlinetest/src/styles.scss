@@ -90,6 +90,16 @@ html, body {
     }
 }
 
+.sign-out {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    cursor: pointer;
+    & img {
+        margin-right: 7px;
+    }
+}
+
 .bg-blue {
     background-color: $backgroud-blue-color;
 }
@@ -259,7 +269,7 @@ html, body {
 .footer-logo {
     margin-top: 15px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
 }
 
 .start-logo {
