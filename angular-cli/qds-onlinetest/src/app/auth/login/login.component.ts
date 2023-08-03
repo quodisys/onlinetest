@@ -46,6 +46,9 @@ export class LoginComponent implements OnInit {
 		this.checkLanguage()
 		this.getInfo()
 		this.getLang()
+		if(this.pctrtoken != undefined) {
+			this.onSubmitPu()
+		}
 	}
 
 	get f() { return this.loginForm.controls; }
@@ -142,7 +145,6 @@ export class LoginComponent implements OnInit {
 		let that = this;
 		let data = {
 			token: that.token,
-			pctrtoken: that.pctrtoken,
 			cl: that.cl,
 			keyword: that.keyword,
 			email: this.loginForm.value.email,
@@ -152,65 +154,75 @@ export class LoginComponent implements OnInit {
 		if(this.loginForm.invalid){
 			return;
 		}
-		if(data.pctrtoken != undefined) {
-			axios({
-				method: 'post',
-				headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-				url: environment.hostApi + '/candidates/checkuser-pu.php',
-				  data: JSON.stringify(data)
-			})
-			.then(function (response) {
-				var res = response.data[0];
-				console.log(res);
-				if(res.msg == 'Success') {
-					localStorage.setItem('adminAuth', 'true');
-					localStorage.setItem('sessionId', res.sess);
-					localStorage.setItem('email', that.loginForm.value.email);
-					localStorage.setItem('fullname', res.fullname);
-					localStorage.setItem('language', that.loginForm.value.lang);
-					localStorage.setItem('token', res.token);
-					localStorage.setItem('cl', res.cl);
-					localStorage.setItem('keyword', res.keyword);
-					localStorage.setItem('logoUrl', res.logo);
+		axios({
+			method: 'post',
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			url: environment.hostApi + '/candidates/checkuser.php',
+			  data: JSON.stringify(data)
+		})
+		.then(function (response) {
+			var res = response.data[0];
+			if(res.msg == 'Success') {
+				localStorage.setItem('adminAuth', 'true');
+				localStorage.setItem('sessionId', res.sess);
+				localStorage.setItem('email', that.loginForm.value.email);
+				localStorage.setItem('fullname', res.fullname);
+				localStorage.setItem('language', that.loginForm.value.lang);
+				if(res.profile == '') {
+					that.router.navigate(['/profile']);
+				} else {
 					that.router.navigate(['/home']);
-				} else {
-					that.error = res.error;
-					console.log(res.error)
 				}
-				console.log(response);
-			})
-			.catch(function (error) {
-				console.log(error);
-			});
-		} else {
-			axios({
-				method: 'post',
-				headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-				url: environment.hostApi + '/candidates/checkuser.php',
-				  data: JSON.stringify(data)
-			})
-			.then(function (response) {
-				var res = response.data[0];
-				if(res.msg == 'Success') {
-					localStorage.setItem('adminAuth', 'true');
-					localStorage.setItem('sessionId', res.sess);
-					localStorage.setItem('email', that.loginForm.value.email);
-					localStorage.setItem('fullname', res.fullname);
-					localStorage.setItem('language', that.loginForm.value.lang);
-					if(res.profile == '') {
-						that.router.navigate(['/profile']);
-					} else {
-						that.router.navigate(['/home']);
-					}
-				} else {
-					that.error = res.error;
-					console.log(res.error)
-				}
-				console.log(response);
-			})
-			.catch(function (error) {
-				console.log(error);
-			});
+			} else {
+				that.error = res.error;
+				console.log(res.error)
+			}
+			console.log(response);
+		})
+		.catch(function (error) {
+			console.log(error);
+		});
+	}
+
+	onSubmitPu() {
+		let that = this;
+		let data = {
+			token: that.token,
+			pctrtoken: that.pctrtoken,
+			cl: that.cl,
+			keyword: that.keyword,
+			email: this.loginForm.value.email,
+			password: this.loginForm.value.password
 		}
+		this.isSubmitted = true;
+		axios({
+			method: 'post',
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			url: environment.hostApi + '/candidates/checkuser-pu.php',
+			  data: JSON.stringify(data)
+		})
+		.then(function (response) {
+			var res = response.data[0];
+			console.log(res);
+			if(res.msg == 'Success') {
+				localStorage.setItem('adminAuth', 'true');
+				localStorage.setItem('sessionId', res.sess);
+				localStorage.setItem('email', that.loginForm.value.email);
+				localStorage.setItem('fullname', res.fullname);
+				localStorage.setItem('language', that.loginForm.value.lang);
+				localStorage.setItem('token', res.token);
+				localStorage.setItem('cl', res.cl);
+				localStorage.setItem('keyword', res.keyword);
+				localStorage.setItem('logoUrl', res.logo);
+				that.router.navigate(['/home']);
+			} else {
+				that.error = res.error;
+				console.log(res.error)
+			}
+			console.log(response);
+		})
+		.catch(function (error) {
+			console.log(error);
+		});
 	}
 }
