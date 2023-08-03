@@ -13,6 +13,7 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class LoginComponent implements OnInit {
 	token: string;
+	pctrtoken: string;
 	loginForm: FormGroup;
 	isSubmitted = false;
 	logo: string = "";
@@ -29,9 +30,11 @@ export class LoginComponent implements OnInit {
 	ngOnInit() {
 		localStorage.clear()
 		this.token = this.activatedRoute.snapshot.queryParams['token']
+		this.pctrtoken = this.activatedRoute.snapshot.queryParams['pctrtoken']
 		this.ca = this.activatedRoute.snapshot.queryParams['ca']
 		this.cl = this.activatedRoute.snapshot.queryParams['cl']
 		localStorage.setItem('token', this.token);
+		localStorage.setItem('pctrtoken', this.pctrtoken);
 		localStorage.setItem('ca', this.ca);
 		localStorage.setItem('cl', this.cl);
 		this.loginForm = this.formBuilder.group({
@@ -139,6 +142,7 @@ export class LoginComponent implements OnInit {
 		let that = this;
 		let data = {
 			token: that.token,
+			pctrtoken: that.pctrtoken,
 			cl: that.cl,
 			keyword: that.keyword,
 			email: this.loginForm.value.email,
@@ -148,33 +152,65 @@ export class LoginComponent implements OnInit {
 		if(this.loginForm.invalid){
 			return;
 		}
-		axios({
-			method: 'post',
-			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-			url: environment.hostApi + '/candidates/checkuser.php',
-			  data: JSON.stringify(data)
-		})
-		.then(function (response) {
-			var res = response.data[0];
-			if(res.msg == 'Success') {
-				localStorage.setItem('adminAuth', 'true');
-				localStorage.setItem('sessionId', res.sess);
-				localStorage.setItem('email', that.loginForm.value.email);
-				localStorage.setItem('fullname', res.fullname);
-				localStorage.setItem('language', that.loginForm.value.lang);
-				if(res.profile == '') {
-					that.router.navigate(['/profile']);
-				} else {
+		if(data.pctrtoken != undefined) {
+			axios({
+				method: 'post',
+				headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+				url: environment.hostApi + '/candidates/checkuser-pu.php',
+				  data: JSON.stringify(data)
+			})
+			.then(function (response) {
+				var res = response.data[0];
+				console.log(res);
+				if(res.msg == 'Success') {
+					localStorage.setItem('adminAuth', 'true');
+					localStorage.setItem('sessionId', res.sess);
+					localStorage.setItem('email', that.loginForm.value.email);
+					localStorage.setItem('fullname', res.fullname);
+					localStorage.setItem('language', that.loginForm.value.lang);
+					localStorage.setItem('token', res.token);
+					localStorage.setItem('cl', res.cl);
+					localStorage.setItem('keyword', res.keyword);
+					localStorage.setItem('logoUrl', res.logo);
 					that.router.navigate(['/home']);
+				} else {
+					that.error = res.error;
+					console.log(res.error)
 				}
-			} else {
-				that.error = res.error;
-				console.log(res.error)
-			}
-			console.log(response);
-		})
-		.catch(function (error) {
-			console.log(error);
-		});
+				console.log(response);
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
+		} else {
+			axios({
+				method: 'post',
+				headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+				url: environment.hostApi + '/candidates/checkuser.php',
+				  data: JSON.stringify(data)
+			})
+			.then(function (response) {
+				var res = response.data[0];
+				if(res.msg == 'Success') {
+					localStorage.setItem('adminAuth', 'true');
+					localStorage.setItem('sessionId', res.sess);
+					localStorage.setItem('email', that.loginForm.value.email);
+					localStorage.setItem('fullname', res.fullname);
+					localStorage.setItem('language', that.loginForm.value.lang);
+					if(res.profile == '') {
+						that.router.navigate(['/profile']);
+					} else {
+						that.router.navigate(['/home']);
+					}
+				} else {
+					that.error = res.error;
+					console.log(res.error)
+				}
+				console.log(response);
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
+		}
 	}
 }
