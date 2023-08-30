@@ -52,6 +52,7 @@ export class SpeakingMainComponent implements OnInit {
 	url;
 	trueUrl
 	error;
+	isPresidentUniver: boolean = false;
 	constructor(private elementRef: ElementRef, private router: Router, private domSanitizer: DomSanitizer, private translate: TranslateService) { }
 
 
@@ -60,6 +61,10 @@ export class SpeakingMainComponent implements OnInit {
 		this.email = localStorage.getItem('email');
 		if(this.logo == undefined || this.logo == '') {
 			this.logo = "https://qdsasia.com/wp-content/themes/qdstheme/assets/img/qds-logo-scaled.png"
+		}
+		const keyword = localStorage.getItem('keyword')
+		if(keyword === 'presidentunive') {
+			this.isPresidentUniver = true
 		}
 		this.topic = 'Speaking';
 		this.submitForm = {

@@ -28,7 +28,8 @@
         "recordAgain":"Record again",
         "grammaVocaTest": "GRAMMAR & VOCABULARY TEST",
         "readingTest": "READING TEST",
-        "part": "Part"
+        "part": "Part",
+        "returnBackPresidentWebsite": "Return back to President University website"
     },
     "LOGIN": {
         "title": "ONLINE TEST PLATFORM",

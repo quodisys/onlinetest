@@ -64,6 +64,7 @@ export class IqMainComponent implements OnInit {
 		{question: 29, answer: "A"},
 		{question: 30, answer: "E"}
 	]
+	isPresidentUniver: boolean = false;
 	
 
 	constructor(private elementRef: ElementRef, private router: Router, private formBuilder: FormBuilder, private translate: TranslateService) { }
@@ -72,6 +73,10 @@ export class IqMainComponent implements OnInit {
 		this.logo = localStorage.getItem('logoUrl');
 		if(this.logo == undefined || this.logo == '') {
 			this.logo = "https://qdsasia.com/wp-content/themes/qdstheme/assets/img/qds-logo-scaled.png"
+		}
+		const keyword = localStorage.getItem('keyword')
+		if(keyword === 'presidentunive') {
+			this.isPresidentUniver = true
 		}
 		this.topic = 'IQ';
 		this.submitForm = {

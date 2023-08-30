@@ -16,6 +16,7 @@ export class ReadingMainComponent implements OnInit {
 	isSticky: boolean = false;
 	email: string;
 	loading:boolean = false
+	isPresidentUniver: boolean = false;
 
 	@HostListener('window:scroll', ['$event'])
 	checkScroll() {
@@ -47,6 +48,11 @@ export class ReadingMainComponent implements OnInit {
 		this.email = localStorage.getItem('email');
 		if(this.logo == undefined || this.logo == '') {
 			this.logo = "https://qdsasia.com/wp-content/themes/qdstheme/assets/img/qds-logo-scaled.png"
+		}
+
+		const keyword = localStorage.getItem('keyword')
+		if(keyword === 'presidentunive') {
+			this.isPresidentUniver = true
 		}
 		this.topic = "Reading"
 		this.submitForm = {

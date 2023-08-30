@@ -32,6 +32,7 @@ export class TechnicalMainComponent implements OnInit {
 	submitForm:any
 	formIsSubmit = false;
 	testid:string = ''
+	isPresidentUniver: boolean = false;
 
 	constructor(private elementRef: ElementRef, private router: Router, private route: ActivatedRoute, private formBuilder: FormBuilder, private translate: TranslateService) {
 		
@@ -41,6 +42,10 @@ export class TechnicalMainComponent implements OnInit {
 		this.logo = localStorage.getItem('logoUrl');
 		if(this.logo == undefined || this.logo == '') {
 			this.logo = "https://qdsasia.com/wp-content/themes/qdstheme/assets/img/qds-logo-scaled.png"
+		}
+		const keyword = localStorage.getItem('keyword')
+		if(keyword === 'presidentunive') {
+			this.isPresidentUniver = true
 		}
 		this.topic = '';
 		this.subtopic = '';

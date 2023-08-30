@@ -53,33 +53,33 @@ export class LoginComponent implements OnInit {
 
 	get f() { return this.loginForm.controls; }
 
-	// checkAndSignout() {
-	// 	let that = this
-	// 	let data = {
-	// 		token: localStorage.getItem('token'),
-	// 		email: localStorage.getItem('email'),
-	// 		keyword: localStorage.getItem('keyword')
-	// 	}
-	// 	console.log(data);
-	// 	if(data.token != null && data.email != null && data.keyword != null) {
-	// 		console.log('signout');
-	// 		axios({
-	// 			method: 'post',
-	// 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-	// 			url: environment.hostApi + '/candidates/logout.php',
-	// 			data: JSON.stringify(data)
-	// 		})
-	// 		.then(function (response) {
-	// 			localStorage.clear()
-	// 			console.log(response);
-	// 		})
-	// 		.catch(function (error) {
-	// 		});
-	// 	} else {
-	// 		console.log(data);
+	checkAndSignout() {
+		let that = this
+		let data = {
+			token: localStorage.getItem('token'),
+			email: 'xuong.huynh@quodisys.com',
+			keyword: 'quodisyspteltd'
+		}
+		console.log(data);
+		if(data.token != null && data.email != null && data.keyword != null) {
+			console.log('signout');
+			axios({
+				method: 'post',
+				headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+				url: environment.hostApi + '/candidates/logout.php',
+				data: JSON.stringify(data)
+			})
+			.then(function (response) {
+				localStorage.clear()
+				console.log(response);
+			})
+			.catch(function (error) {
+			});
+		} else {
+			console.log(data);
 			
-	// 	}
-	// }
+		}
+	}
 
 	getInfo() {
 		let that = this;

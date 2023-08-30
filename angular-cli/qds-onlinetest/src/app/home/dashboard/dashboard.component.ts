@@ -16,6 +16,8 @@ export class DashboardComponent implements OnInit {
 	dashboardTest = []
 	totalTime:number = 0
 	noTest: boolean = false;
+	isPresidentUniver = false 
+	noTestPresidentUniver = false
 
 	constructor(private router: Router, private formBuilder: FormBuilder, public globals: Globals, private translate: TranslateService) { 
 		translate.use("EN");
@@ -23,6 +25,10 @@ export class DashboardComponent implements OnInit {
 
 	ngOnInit() {
 		this.logo = localStorage.getItem('logoUrl');
+		const keyword = localStorage.getItem('keyword')
+		if(keyword === 'presidentunive') {
+			this.isPresidentUniver = true
+		}
 		if(this.logo == undefined || this.logo == '') {
 			this.logo = "https://qdsasia.com/wp-content/themes/qdstheme/assets/img/qds-logo-scaled.png"
 		}
@@ -75,9 +81,14 @@ export class DashboardComponent implements OnInit {
 			if(res.length == 0) {
 				that.noTest = true;
 			}
-			if(res[0].error) {
+			if(res[0].error && !that.isPresidentUniver) {
 				alert(res[0].error);
+				that.noTest = true;
 				that.router.navigate(['/login'])
+			} else if (that.isPresidentUniver && res[0].error === 'No Tests Found') {
+				console.log(res[0].error);
+				that.noTest = true;
+				that.noTestPresidentUniver = true
 			}
 			that.dashboardTest.map(test => {
 				test.totaltime = parseInt(test.totaltime);
@@ -131,6 +142,27 @@ export class DashboardComponent implements OnInit {
 		.then(function (response) {
 			
 			that.router.navigate(['/login'])
+			console.log(response);
+		})
+		.catch(function (error) {
+		});
+	}
+
+	goToPresidentWebsite = function() {
+		let data = {
+			token: localStorage.getItem('token'),
+			sess: localStorage.getItem('sessionId'),
+			keyword: localStorage.getItem('keyword')
+		}
+		axios({
+			method: 'post',
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			url: environment.hostApi + '/candidates/generate-pu.php',
+			data: JSON.stringify(data)
+		})
+		.then(function (response) {
+			// that.router.navigate(['https://presunivcenter.com/account'])
+			window.location.href = 'https://presunivcenter.com/account'
 			console.log(response);
 		})
 		.catch(function (error) {

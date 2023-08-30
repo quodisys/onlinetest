@@ -2,7 +2,7 @@
     <div class="container">
         <div class="col-md-12">
             <div class="branding">
-                <div (click)="signOut()" class="sign-out"><img style="width: 22px;" class="logo-1" src="/assets/images/icon-logout.png" alt="">Sign Out </div>
+                <div *ngIf="!isPresidentUniver" (click)="signOut()" class="sign-out"><img style="width: 22px;" class="logo-1" src="/assets/images/icon-logout.png" alt="">Sign Out </div>
 
                 <a>
                     <img src="{{logo}}" alt="company logo">

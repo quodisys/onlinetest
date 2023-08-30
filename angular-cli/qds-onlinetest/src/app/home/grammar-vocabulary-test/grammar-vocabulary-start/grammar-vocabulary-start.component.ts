@@ -11,12 +11,17 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class GrammarVocabularyStartComponent implements OnInit {
 	logo:string = ''
+	isPresidentUniver: boolean = false;
 	constructor(private translate: TranslateService, private router: Router) { }
 
 	ngOnInit(): void {
 		this.logo = localStorage.getItem('logoUrl');
 		if(this.logo == undefined || this.logo == '') {
 			this.logo = "https://qdsasia.com/wp-content/themes/qdstheme/assets/img/qds-logo-scaled.png"
+		}
+		const keyword = localStorage.getItem('keyword')
+		if(keyword === 'presidentunive') {
+			this.isPresidentUniver = true
 		}
 		this.checkLanguage()
 	}

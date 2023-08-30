@@ -1,7 +1,7 @@
 <div appBlockCopyPaste class="main inside-logo main-center bg-blue">
     <div class="container">
         <div class="col-md-12">
-            <div (click)="signOut()" class="sign-out"><img style="width: 22px;" class="logo-1" src="/assets/images/icon-logout.png" alt="">Sign Out </div>
+            <div *ngIf="!isPresidentUniver"  (click)="signOut()" class="sign-out"><img style="width: 22px;" class="logo-1" src="/assets/images/icon-logout.png" alt="">Sign Out </div>
             <div class="content">
                 <div class="branding">
                     <div></div>
@@ -10,11 +10,17 @@
                     </a>
                     <div></div>
                 </div>
-                <div class="title">{{ 'APP.title' | translate }}</div>
-                <div class="sub-title">
+                <div *ngIf="!noTest" class="title">{{ 'APP.title' | translate }}</div>
+                <div *ngIf="!noTest" class="sub-title">
                     <span>{{ 'DASHBOARD.clickIcon1' | translate }} {{totalTime}} {{ 'DASHBOARD.clickIcon2' | translate }}</span>
                 </div>
-                <div class="home-content mt-5">
+                <div class="d-block w-100 text-center" *ngIf="noTest">
+                    <span style="font-size: 18px; text-transform: uppercase; font-weight: 600;">{{ 'DASHBOARD.noTest' | translate }}</span>
+                </div> 
+                <div *ngIf="noTestPresidentUniver" class="d-flex justify-content-center mt-4 mb-3" >
+                    <button type="submit" class="btn btn-main mt-2" style="width: 500px;" (click)="goToPresidentWebsite()">{{'APP.returnBackPresidentWebsite' | translate}}</button>
+                </div>
+                <div *ngIf="!noTest" class="home-content mt-5">
                     <div class="row">
                         <div class="d-block w-100 text-center" *ngIf="noTest">
                             <span style="font-size: 18px; text-transform: uppercase; font-weight: 600;">{{ 'DASHBOARD.noTest' | translate }}</span>

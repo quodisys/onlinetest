@@ -11,6 +11,7 @@ import { environment } from './../../../../environments/environment';
 })
 export class AptitudeStartComponent implements OnInit {
 	logo:string = ''
+	isPresidentUniver = false
 	constructor(private translate: TranslateService, private router: Router) {
 		translate.use("EN");
 	}
@@ -19,6 +20,10 @@ export class AptitudeStartComponent implements OnInit {
 		this.logo = localStorage.getItem('logoUrl');
 		if(this.logo == undefined || this.logo == '') {
 			this.logo = "https://qdsasia.com/wp-content/themes/qdstheme/assets/img/qds-logo-scaled.png"
+		}
+		const keyword = localStorage.getItem('keyword')
+		if(keyword === 'presidentunive') {
+			this.isPresidentUniver = true
 		}
 		this.checkLanguage();
 	}

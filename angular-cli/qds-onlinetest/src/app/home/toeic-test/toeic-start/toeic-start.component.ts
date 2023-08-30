@@ -13,6 +13,7 @@ export class ToeicStartComponent implements OnInit {
 	logo:string = ''
 	url:string = ''
 	noTest:boolean = true;
+	isPresidentUniver: boolean = false;
 	constructor(private translate: TranslateService, private router: Router) { 
 		translate.use("EN");
 	}
@@ -21,6 +22,10 @@ export class ToeicStartComponent implements OnInit {
 		this.logo = localStorage.getItem('logoUrl');
 		if(this.logo == undefined || this.logo == '') {
 			this.logo = "https://qdsasia.com/wp-content/themes/qdstheme/assets/img/qds-logo-scaled.png"
+		}
+		const keyword = localStorage.getItem('keyword')
+		if(keyword === 'presidentunive') {
+			this.isPresidentUniver = true
 		}
 		this.getTestInfo();
 		this.checkLanguage();

@@ -30,6 +30,7 @@ export class GrammarVocabularyMainComponent implements OnInit {
 	email: string;
 	loading:boolean = false
 	testid:string = ''
+	isPresidentUniver = false
 
 	constructor(private router: Router, private translate: TranslateService) { }
 
@@ -38,6 +39,10 @@ export class GrammarVocabularyMainComponent implements OnInit {
 		this.logo = localStorage.getItem('logoUrl');
 		if(this.logo == undefined || this.logo == '') {
 			this.logo = "https://qdsasia.com/wp-content/themes/qdstheme/assets/img/qds-logo-scaled.png"
+		}
+		const keyword = localStorage.getItem('keyword')
+		if(keyword === 'presidentunive') {
+			this.isPresidentUniver = true
 		}
 		this.topic = 'Grammar & Vocabulary';
 		this.submitForm = {
