@@ -268,7 +268,35 @@ export class ToeicListeningMainComponent implements OnInit {
 			localStorage.setItem('listeningTime_' + this.email, timeleft)
 		}
 		if(e.action == 'done') {
-			this.onSubmit();
+			let that =  this;
+			this.submitForm.qa.map(item => {
+				delete item.isViewed
+			})
+			this.submitForm['testid'] = this.testid
+			axios({
+				method: 'post',
+				headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+				url: environment.hostApi + '/candidates/processexpiredtests.php',
+				data: JSON.stringify(this.submitForm)
+			})
+			.then(function (response) {
+				localStorage.removeItem('listeningTime_' + that.email)
+				localStorage.removeItem('listeningAnswer_' + that.email)
+				alert('Time Expired. Cannot submit the Test')
+				that.router.navigate(['/home'])
+				
+			})
+			.catch(function (error) {
+				let errorData = error
+				if(errorData = "Error: Network Error") {
+					alert("Something wrong when submitting test! Please check your connection and try again.")
+				} else {
+					alert(errorData)
+				}
+				localStorage.setItem('error', JSON.stringify(errorData))
+				localStorage.setItem('subtopic', that.subtopic)
+				console.log(error);
+			});
 		}
 	}
 

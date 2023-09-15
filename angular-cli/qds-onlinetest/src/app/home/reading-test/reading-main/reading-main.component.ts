@@ -226,7 +226,29 @@ export class ReadingMainComponent implements OnInit {
 			localStorage.setItem('readingTimeEng_' + this.email, timeleft)
 		}
 		if(e.action == 'done') {
-			this.onSubmit();
+			// this.onSubmit();
+			let that = this
+			this.loading = true
+			this.submitForm['testid'] = this.testid
+			axios({
+				method: 'post',
+				headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+				url: environment.hostApi + '/candidates/processexpiredtests.php',
+				data: JSON.stringify(this.submitForm)
+			})
+			.then(function (response) {
+				console.log(that.submitForm)
+				that.formIsSubmit = true;
+				that.loading = false
+				localStorage.removeItem('readingTimeEng_' + that.email)
+				localStorage.removeItem('readingTestQuestionEng_' + that.email)
+				alert('Time Expired. Cannot submit the Test')
+				that.router.navigate(['/home'])
+			})
+			.catch(function (error) {
+				console.log(error);
+				alert("Something wrong when submitting test!")
+			});
 		}
 	}
 

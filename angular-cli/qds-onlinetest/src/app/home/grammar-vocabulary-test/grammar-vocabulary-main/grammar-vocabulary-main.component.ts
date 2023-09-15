@@ -198,7 +198,29 @@ export class GrammarVocabularyMainComponent implements OnInit {
 			localStorage.setItem('grammaTime_' + this.email, timeleft)
 		}
 		if(e.action == 'done') {
-			this.onSubmit();
+			// this.onSubmit();
+			let that =  this;
+			this.loading = true
+			this.submitForm['testid'] = that.testid
+			axios({
+				method: 'post',
+				headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+				url: environment.hostApi + '/candidates/processexpiredtests.php',
+				data: JSON.stringify(this.submitForm)
+			})
+			.then(function (response) {
+				that.formIsSubmit = true;
+				that.loading = false
+				localStorage.removeItem('grammaAnswer_' + that.email)
+				localStorage.removeItem('grammaQuestions_' + that.email)
+				localStorage.removeItem('grammaTime_' + that.email)
+				alert('Time Expired. Cannot submit the Test')
+				that.router.navigate(['/home'])
+			})
+			.catch(function (error) {
+				console.log(error);
+				alert("Something wrong when submitting test!")
+			});
 		}
 	}
 

@@ -202,7 +202,25 @@ export class TechnicalMainComponent implements OnInit {
 
 	counterEvent(e: CountdownEvent) {
 		if(e.action == 'done') {
-			this.onSubmit();
+			let that =  this;
+			this.loading = true
+			this.submitForm['testid'] = this.testid
+			axios({
+				method: 'post',
+				headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+				url: environment.hostApi + '/candidates/processexpiredtests.php',
+				data: JSON.stringify(this.submitForm)
+			})
+			.then(function (response) {
+				that.formIsSubmit = true;
+				that.loading = false
+				alert('Time Expired. Cannot submit the Test')
+				that.router.navigate(['/technical-test'])
+			})
+			.catch(function (error) {
+				console.log(error);
+				alert("Something wrong when submitting test!")
+			});
 		}
 	}
 

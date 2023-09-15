@@ -268,7 +268,36 @@ export class ToeicReadingMainComponent implements OnInit {
 			localStorage.setItem('readingTime_' + this.email, timeleft)
 		}
 		if(e.action == 'done') {
-			this.onSubmit();
+			let that =  this;
+			this.submitForm.qa.map(item => {
+				delete item.isViewed
+			})
+			this.submitForm['testid'] = this.testid
+			this.submitForm['sess'] = localStorage.getItem('sessionId')
+			axios({
+				method: 'post',
+				headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+				url: environment.hostApi + '/candidates/processexpiredtests.php',
+				data: JSON.stringify(this.submitForm)
+			})
+			.then(function (response) {
+				localStorage.removeItem('readingTime_' + that.email)
+				localStorage.removeItem('readingAnswer_' + that.email)
+				that.formIsSubmit = true;
+				alert('Time Expired. Cannot submit the Test')
+				that.router.navigate(['/home'])
+			})
+			.catch(function (error) {
+				let errorData = error
+				if(errorData = "Error: Network Error") {
+					alert("Something wrong when submitting test! Please check your connection and try again.")
+				} else {
+					alert(errorData)
+				}
+				localStorage.setItem('error', JSON.stringify(errorData))
+				localStorage.setItem('subtopic', that.subtopic)
+				console.log(error);
+			});
 		}
 	}
 	changeTab(e) {

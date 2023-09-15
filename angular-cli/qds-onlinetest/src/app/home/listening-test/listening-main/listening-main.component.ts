@@ -306,7 +306,26 @@ export class ListeningMainComponent implements OnInit {
 			localStorage.setItem('listeningTimeEng_' + this.email, timeleft)
 		}
 		if(e.action == 'done') {
-			this.onSubmit();
+			let that =  this;
+			this.submitForm.testid = this.testid
+			axios({
+				method: 'post',
+				headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+				url: environment.hostApi + '/candidates/processexpiredtests.php',
+				data: JSON.stringify(this.submitForm)
+			})
+			.then(function (response) {
+				console.log(that.submitForm)
+				that.formIsSubmit = true;
+				localStorage.removeItem('listeningTimeEng_' + that.email)
+				localStorage.removeItem('listeningTestQuestionEng_' + that.email)
+				alert('Time Expired. Cannot submit the Test')
+				that.router.navigate(['/home'])
+			})
+			.catch(function (error) {
+				console.log(error);
+				alert("Something wrong when submitting test!")
+			});
 		}
 	}
 

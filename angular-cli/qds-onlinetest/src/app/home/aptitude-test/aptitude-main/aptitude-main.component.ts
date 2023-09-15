@@ -199,7 +199,27 @@ export class AptitudeMainComponent implements OnInit {
 
 	counterEvent(e: CountdownEvent) {
 		if(e.action == 'done') {
-			this.submit();
+			// this.submit();
+			let that =  this;
+			this.loading = true
+			this.submitForm.qa = this.formScore.qa;
+			axios({
+				method: 'post',
+				headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+				url: environment.hostApi + '/candidates/processexpiredtests.php',
+				data: JSON.stringify(this.submitForm)
+			})
+			.then(function (response) {
+				console.log(response)
+				that.formIsSubmit = true;
+				that.loading = false
+				alert('Time Expired. Cannot submit the Test')
+				that.router.navigate(['/home'])
+			})
+			.catch(function (error) {
+				console.log(error);
+				alert("Something wrong when submitting test!")
+			});
 		}
 	}
 
