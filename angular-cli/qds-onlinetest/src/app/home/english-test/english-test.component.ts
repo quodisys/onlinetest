@@ -60,35 +60,41 @@ export class EnglishTestComponent implements OnInit {
 			var res = response.data;
 			that.dashboardTest = Object.keys(res).map((k) => res[k]);
 			var engtest = that.dashboardTest.find(x => x.category == "English Test");
-			var testList = engtest.engtests;
-			testList = Object.keys(testList).map((k) => testList[k]);
-			that.englishDashboard = testList;
-			
-			console.log(testList);
-			that.englishDashboard.map(test => {
-				test.totaltime = parseInt(test.totaltime);
-				that.totalTime += test.totaltime
-				if(languageStore === 'VN') {
-					if(test.topic === "Listening Test") {
-						test.topic = "BÀI KIỂM TRA NGHE"
-					} else if(test.topic === "Speaking Test") {
-						test.topic = "BÀI KIỂM TRA NÓI"
-					} else if(test.topic === "Grammar & Vocabulary Test") {
-						test.topic = "TỪ VỰNG & NGỮ PHÁP"
-					} else if(test.topic === "Reading Test") {
-						test.topic = "BÀI KIỂM TRA ĐỌC"
+			console.log(engtest);
+			if(engtest !== undefined) {
+				var testList = engtest.engtests;
+				testList = Object.keys(testList).map((k) => testList[k]);
+				that.englishDashboard = testList;
+				console.log(testList);
+				that.englishDashboard.map(test => {
+					test.totaltime = parseInt(test.totaltime);
+					that.totalTime += test.totaltime
+					if(languageStore === 'VN') {
+						if(test.topic === "Listening Test") {
+							test.topic = "BÀI KIỂM TRA NGHE"
+						} else if(test.topic === "Speaking Test") {
+							test.topic = "BÀI KIỂM TRA NÓI"
+						} else if(test.topic === "Grammar & Vocabulary Test") {
+							test.topic = "TỪ VỰNG & NGỮ PHÁP"
+						} else if(test.topic === "Reading Test") {
+							test.topic = "BÀI KIỂM TRA ĐỌC"
+						}
 					}
-				}
-			})
-			if(res[0].error) {
+				})
+			}
+			if(res[0].error && !that.isPresidentUniver) {
+				alert(res[0].error);
 				that.router.navigate(['/login'])
+			} else if (that.isPresidentUniver && res[0].error === 'No Tests Found') {
+				console.log(res[0].error);
+				that.router.navigate(['/home'])
 			}
 			// that.moveInArray(that.dashboardTest, 2, 0)
 			// that.moveInArray(that.dashboardTest, 3, 2)
 			// that.moveInArray(that.dashboardTest, 2, 1)
 			// console.log(res);
 		})
-		.catch(function (error) {
+		.catch(function (error) {			
 			if(error) {
 				that.router.navigate(['/login'])
 			}

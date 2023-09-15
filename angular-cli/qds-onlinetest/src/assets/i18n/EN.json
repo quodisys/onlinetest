@@ -50,7 +50,7 @@
     "DASHBOARD": {
         "clickIcon1": "Click the icon to take your test, you have absolutely",
         "clickIcon2": "minutes to do all of the tests below",
-        "noTest": "No tests allocated",
+        "noTest": "No More Test Available",
         "backHome": "BACK TO HOMEPAGE"
     },
     "INSTRUCTION": {
