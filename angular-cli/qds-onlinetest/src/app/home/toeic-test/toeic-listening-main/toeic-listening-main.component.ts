@@ -181,6 +181,15 @@ export class ToeicListeningMainComponent implements OnInit {
 		})
 		.then(function (response) {
 			let data = response.data
+			console.log(data[0].error);
+			
+			if(data[0].error != undefined) {
+				alert(data[0].error + ' Please refresh the page and try again.')
+				localStorage.removeItem('listeningTime_' + that.email)
+				localStorage.removeItem('listeningAnswer_' + that.email)
+				that.formIsSubmit = true;
+				that.router.navigate(['/toeic-test'])
+			}
 			that.listeningQuestions = data;
 			//Audio array
 			that.listeningQuestions.map(item => {
