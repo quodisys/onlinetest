@@ -44,7 +44,7 @@ export class ProfileComponent implements OnInit {
 		this.profileForm = this.formBuilder.group({
 			fullname: [{value: this.fullname, disabled: true}, [Validators.required]],
             email: [{value: this.email, disabled: true}, [Validators.required, Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$")]],
-            dob: ['', [Validators.required]],
+            dob: [''],
 			position: ['', [Validators.required]],
 			level: ['Beginner', [Validators.required]],
 			experience: ['0', [Validators.required]],
@@ -56,7 +56,11 @@ export class ProfileComponent implements OnInit {
 
 	onSubmit() {
 		let that = this;
-		this.submitForm['dob'] = formatDate(this.profileForm.value.dob, 'MM/dd/yyyy', 'en-US');
+		if(this.submitForm['dob'] === undefined) {
+			this.submitForm['dob'] = '';
+		} else {
+			this.submitForm['dob'] = formatDate(this.profileForm.value.dob, 'MM/dd/yyyy', 'en-US');
+		}
 		this.submitForm['position'] = this.profileForm.value.position;
 		this.submitForm['level'] = this.profileForm.value.level;
 		this.submitForm['experience'] = this.profileForm.value.experience;
